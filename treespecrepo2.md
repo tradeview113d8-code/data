@@ -10,37 +10,38 @@ Name
 
 Alias
 
-    Reality Translation Engine
+    Dynamic Data Repository
 
 Type
 
-    Runtime Value Construction Repository
+    Dynamic Data Builder
 
 Purpose
 
-    Transform real-world events into Runtime Values
-    that evolve fictional worlds while preserving canon.
+    Build all dynamic data required by the World Simulator.
 
 Mission
 
-    Build a continuously evolving Runtime Layer
-    from Reality without modifying World DNA.
+    Continuously collect and generate dynamic data while
+    preserving World DNA.
 
 Final Output
 
-    Runtime Value Library
+    Actor Pool
 
-    Runtime Knowledge Package
+    Weather Library
+
+    News Library
 
 Stop Condition
 
-    Runtime Package is verified and published.
+    Dynamic libraries successfully published.
 
 ────────────────────────────────────────
 
 ONE SENTENCE
 
-Repository 2 exists only to convert Reality into Runtime Values.
+Repository 2 exists only to build dynamic data.
 
 ────────────────────────────────────────
 
@@ -48,391 +49,71 @@ BOUNDARY
 
 Receive
 
-    World DNA Library
+    World DNA
 
-    TreeData
+    External News Sources
 
-    JSONData
-
-    ActionData
-
-    Real World Signals
+    External Weather Sources
 
 Process
 
-    Observe
-
-    Filter
-
-    Translate
-
-    Simulate
-
-    Validate
-
-    Publish
-
-Produce
-
-    Runtime Values
-
-    Runtime World
-
-    Knowledge Package
-
-Never Produce
-
-    TreeData
-
-    JSONData
-
-    Stories
-
-    Episode Plan
-
-    Images
-
-    Videos
-
-────────────────────────────────────────
-
-WORKING MODEL
-
-Participants
-
-    Human
-
-    Chatbot
-
-Ownership
-
-    Human
-
-        Owns translation rules.
-
-    Chatbot
-
-        Executes translation.
-
-Principle
-
-    Reality changes values.
-
-    Reality never changes schema.
-
-────────────────────────────────────────
-
-RESPONSIBILITY
-
-Observe Reality
-
-Filter Signals
-
-Understand Events
-
-Translate Reality
-
-Simulate Runtime
-
-Maintain Runtime Memory
-
-Validate Runtime
-
-Publish Runtime
-
-────────────────────────────────────────
-
-DATA MODEL
-
-Receive
-
-TreeData
-
-↓
-
-JSONData
-
-↓
-
-WorldDNA Value
-
-↓
-
-Reality Signals
-
-Process
-
-Reality Translation
-
-Produce
-
-Runtime Value
-
-↓
-
-Knowledge Package
-
-↓
-
-Repository 3
-
-Rule
-
-TreeData never changes.
-
-JSONData never changes.
-
-WorldDNA is read-only.
-
-Only Runtime Values evolve.
-
-────────────────────────────────────────
-
-WORKERS
-
-WORKER A
-
-Reality Acquisition
-
-Receive
-
-    External Sources
-
-Process
+    Generate
 
     Collect
 
     Normalize
 
-    Attach Source
+    Store
 
-    Timestamp
-
-Produce
-
-    Raw Signals
-
-────────────────────────
-
-WORKER B
-
-Signal Filter
-
-Receive
-
-    Raw Signals
-
-Process
-
-    Remove Noise
-
-    Remove Duplicate
-
-    Evaluate Credibility
-
-    Rank Priority
+Publish
 
 Produce
 
-    Clean Signals
+    Actor Pool
 
-────────────────────────
+    Weather 24h
 
-WORKER C
+    Vietnam News 24h
 
-Event Classification
+    World News 24h
 
-Receive
+Never Produce
 
-    Clean Signals
+    Story
 
-Process
+    Script
 
-    Detect Event
+    Runtime Translation
 
-    Detect Entity
+    Episode
 
-    Detect Location
+    Image Prompt
 
-    Detect Time
-
-    Detect Magnitude
-
-    Detect Emotion
-
-Produce
-
-    Structured Events
-
-────────────────────────
-
-WORKER D
-
-Reality Translation
-
-Receive
-
-    Structured Events
-
-    World DNA
-
-    Translation Rules
-
-Process
-
-    Match Canon
-
-    Match World Rules
-
-    Translate Event
-
-    Preserve Canon
-
-Produce
-
-    Runtime Changes
-
-────────────────────────
-
-WORKER E
-
-Runtime Builder
-
-Receive
-
-    Runtime Changes
-
-Process
-
-    Update Runtime Values
-
-    Update World Mood
-
-    Update Active Conflicts
-
-    Update Runtime Variables
-
-Produce
-
-    Runtime World
-
-────────────────────────
-
-WORKER F
-
-Runtime Memory
-
-Receive
-
-    Runtime World
-
-Process
-
-    Store Event History
-
-    Store Runtime History
-
-    Remove Expired Events
-
-Produce
-
-    Runtime Memory
-
-────────────────────────
-
-WORKER G
-
-QA
-
-Receive
-
-    Runtime World
-
-Process
-
-    Canon Validation
-
-    Runtime Validation
-
-    Duplicate Validation
-
-    Consistency Validation
-
-Produce
-
-    Verified Runtime
-
-────────────────────────
-
-WORKER H
-
-Package Builder
-
-Receive
-
-    Verified Runtime
-
-    Runtime Memory
-
-Process
-
-    Build Runtime Package
-
-    Serialize
-
-    Version
-
-    Publish
-
-Produce
-
-    Knowledge Package
+    Audio Prompt
 
 ────────────────────────────────────────
 
-QUALITY
+RESPONSIBILITY
 
-Canon Safe
+Generate Actors
 
-Runtime Safe
+Collect Weather
 
-Duplicate Free
+Collect News
 
-Traceable
+Normalize Dynamic Data
 
-Deterministic
-
-Versioned
-
-Repository Ready
+Publish Dynamic Libraries
 
 ────────────────────────────────────────
 
-GLOBAL CONTRACT
-
-RECEIVE
-
-    World DNA
-
-    Reality Signals
-
-PROCESS
-
-    Translate Reality
-
-    Build Runtime
-
-PRODUCE
-
-    Runtime World
-
-    Knowledge Package
-
-────────────────────────────────────────
-
-HANDOFF
+DATA FLOW
 
 Repository 1
+
+↓
+
+World DNA
 
 ↓
 
@@ -440,70 +121,314 @@ Repository 2
 
 ↓
 
+Actor Pool
+
+Weather
+
+News
+
+↓
+
 Repository 3
 
-Repository 2 receives
+────────────────────────────────────────
 
-    TreeData
+DATA CONTRACT
 
-    JSONData
+Receive
 
-    WorldDNA Values
+World DNA
 
-Repository 2 publishes
+Purpose
 
-    Runtime Values
+Generate actors.
 
-    Runtime Memory
+Status
 
-    Knowledge Package
+Read Only
+
+────────────────────────
+
+Receive
+
+Weather Sources
+
+Purpose
+
+Collect weather.
+
+Status
+
+Dynamic
+
+────────────────────────
+
+Receive
+
+News Sources
+
+Purpose
+
+Collect news.
+
+Status
+
+Dynamic
+
+────────────────────────
+
+Produce
+
+Actor Pool
+
+Purpose
+
+Reusable actor library.
+
+────────────────────────
+
+Produce
+
+Weather Library
+
+Purpose
+
+Weather for current 24 hours.
+
+────────────────────────
+
+Produce
+
+News Library
+
+Purpose
+
+Collected news.
+
+────────────────────────────────────────
+
+WORKERS
+
+WORKER A
+
+Actor Builder
+
+Receive
+
+World DNA
+
+Process
+
+Generate actors.
+
+Generate personalities.
+
+Generate identities.
+
+Assign IDs.
+
+Store.
+
+Produce
+
+Actor Pool
+
+────────────────────────
+
+WORKER B
+
+Weather Collector
+
+Receive
+
+Weather Sources
+
+Process
+
+Collect.
+
+Normalize.
+
+Timestamp.
+
+Store.
+
+Produce
+
+Weather 24h
+
+────────────────────────
+
+WORKER C
+
+Vietnam News Collector
+
+Receive
+
+Vietnam News Sources
+
+Process
+
+Collect.
+
+Attach metadata.
+
+Store.
+
+Produce
+
+Vietnam News 24h
+
+────────────────────────
+
+WORKER D
+
+Global News Collector
+
+Receive
+
+Global News Sources
+
+Process
+
+Collect.
+
+Attach metadata.
+
+Store.
+
+Produce
+
+World News 24h
+
+────────────────────────
+
+WORKER E
+
+Publisher
+
+Receive
+
+Actor Pool
+
+Weather
+
+News
+
+Process
+
+Version.
+
+Serialize.
+
+Publish.
+
+Produce
+
+MongoDB 2
+
+────────────────────────────────────────
+
+QUALITY
+
+Complete
+
+Fresh
+
+Traceable
+
+Version Controlled
+
+Reusable
+
+Repository Independent
+
+────────────────────────────────────────
+
+GLOBAL CONTRACT
+
+Receive
+
+World DNA
+
+Weather Sources
+
+News Sources
+
+Process
+
+Generate.
+
+Collect.
+
+Normalize.
+
+Publish.
+
+Produce
+
+Actor Pool
+
+Weather Library
+
+News Library
 
 ────────────────────────────────────────
 
 GENERAL RULES
 
-Repository 2 never edits TreeData.
+Repository 2 never edits World DNA.
 
-Repository 2 never edits JSONData.
+Repository 2 never translates news.
 
-Repository 2 never edits WorldDNA.
+Repository 2 never interprets news.
 
-Repository 2 only creates Runtime Values.
+Repository 2 never generates stories.
 
-Every Runtime Value must map to an existing JSON key.
+Repository 2 never uses LLM.
 
-Every translation must preserve World Canon.
+Repository 2 only generates dynamic data.
 
-Every Runtime Value must be traceable to Reality.
+All generated actors originate from World DNA.
+
+All collected news must preserve the original title.
+
+All weather data must preserve source values.
 
 ────────────────────────────────────────
 
 GUARANTEE
 
-Runtime evolves continuously.
+Dynamic data always available.
 
-Canon is preserved.
+News always remains original.
 
-World remains internally consistent.
+Actors always match World DNA.
 
-Repository 3 always receives a complete Runtime Package.
+Weather always represents current conditions.
+
+Repository 3 receives complete dynamic libraries.
 
 ────────────────────────────────────────
 
 CHILDREN
 
-Reality Acquisition
+Phase 1
 
-Signal Filter
+Actor Builder
 
-Event Classification
+Phase 2
 
-Reality Translation
+Weather Collector
 
-Runtime Builder
+Phase 3
 
-Runtime Memory
+Vietnam News Collector
 
-QA
+Phase 4
 
-Package Builder
+Global News Collector
+
+Phase 5
+
+Publisher
