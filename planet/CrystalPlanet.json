@@ -1,0 +1,532 @@
+{
+  "metadata": {
+    "description": "World Simulator JSONData V7 - Fully inferred from Crystal Planet source.",
+    "version": "7.0",
+    "tree_schema": "TreeData V7",
+    "template": "Scene_Master_Template",
+    "author": "OpenAI",
+    "created_at": "2026-08-04",
+    "updated_at": "2026-08-04",
+    "notes": "Fully inferred from Crystal Planet scene."
+  },
+
+  "Scene.Cosmology_Worldbuilding.Universe_Type": "Alien crystalline exoplanet",
+  "Scene.Cosmology_Worldbuilding.Multiverse_Structure": "Single physical universe",
+  "Scene.Cosmology_Worldbuilding.Dimension_Count": "3 spatial dimensions",
+  "Scene.Cosmology_Worldbuilding.Reality_Layer": "Material crystalline realm",
+
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Gravity_Type": "Slightly lower than Earth gravity",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Time_Flow_Rate": "Earth-like",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Space_Dimension": "Three-dimensional Euclidean space",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Energy_Source_Primary": "Geothermal crystalline energy",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Thermodynamic_Rule": "Conventional thermodynamics enhanced by crystal energy resonance",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Causality_Type": "Linear causality",
+
+  "Scene.Cosmology_Worldbuilding.Magic_System.Magic_Type": "Crystal resonance manipulation",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Mana_Source": "Planetary crystal lattice",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Casting_Method": "Resonance synchronization",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Spell_Visual": "Radiating geometric light patterns",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Cost_Consequence": "Crystal energy depletion",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Limitation_Rule": "Requires proximity to active crystal formations",
+
+  "Scene.Cosmology_Worldbuilding.Civilization.Society_Type": "Primitive crystal-based settlements",
+  "Scene.Cosmology_Worldbuilding.Civilization.Tech_Level": "Natural crystal technology",
+  "Scene.Cosmology_Worldbuilding.Civilization.Culture": "Harmony with crystalline ecosystem",
+  "Scene.Cosmology_Worldbuilding.Civilization.Religion_Belief": "Crystal consciousness worship",
+  "Scene.Cosmology_Worldbuilding.Civilization.Language_Script": "Light pulse glyphs",
+  "Scene.Cosmology_Worldbuilding.Civilization.Economy_System": "Energy crystal exchange",
+  "Scene.Cosmology_Worldbuilding.Civilization.Political_Structure": "Council of crystal keepers",
+  "Scene.Cosmology_Worldbuilding.Civilization.Architecture_Style": "Organic crystalline formations",
+
+  "Scene.Cosmology_Worldbuilding.History_Lore.Era": "Age of Crystal Expansion",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Epoch": "Post-planetary crystallization",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Mythic_Event": "Birth of the World Crystal",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Legend": "The First Resonance",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Prophecy": "The Great Harmonic Awakening",
+
+  "Scene.Cosmology_Worldbuilding.Ecology.Biome": "Crystalline wasteland",
+  "Scene.Cosmology_Worldbuilding.Ecology.Food_Web": "Mineral-energy ecosystem",
+  "Scene.Cosmology_Worldbuilding.Ecology.Species_Diversity": "Low macroscopic, high crystalline microbial diversity",
+  "Scene.Cosmology_Worldbuilding.Ecology.Evolutionary_Stage": "Advanced mineral-based evolution",
+  "Scene.Cosmology_Worldbuilding.Ecology.Symbiosis_Type": "Crystal-energy mutualism",
+
+  "Scene.Subject.Group_Dynamic.Group_Size": "None",
+  "Scene.Subject.Group_Dynamic.Formation": "N/A",
+  "Scene.Subject.Group_Dynamic.Relationship": "N/A",
+  "Scene.Subject.Group_Dynamic.Hierarchy": "N/A",
+  "Scene.Subject.Group_Dynamic.Interaction_Type": "None",
+
+  "Scene.Subject.Creature.Identity": "Crystalline lifeform",
+  "Scene.Subject.Creature.Breed": "Crystal Sentinel",
+  "Scene.Subject.Creature.Species_Class": "Silicate-based alien organism",
+  "Scene.Subject.Creature.Ethnicity_Culture": "Native crystal civilization",
+  "Scene.Subject.Creature.State_Condition": "Healthy and fully energized",
+  "Scene.Subject.Creature.Pose_Action": "Standing motionless while resonating",
+  "Scene.Subject.Creature.Expression": "Serene",
+  "Scene.Subject.Creature.Emotion": "Calm",
+
+  "Scene.Subject.Creature.Head.Skull.Shape": "Angular crystalline",
+  "Scene.Subject.Creature.Head.Skull.Width": "Medium",
+  "Scene.Subject.Creature.Head.Skull.Height": "Tall",
+  "Scene.Subject.Creature.Head.Skull.Depth": "Moderate",
+
+  "Scene.Subject.Creature.Head.Hair.Style": "Crystal filaments",
+  "Scene.Subject.Creature.Head.Hair.Length": "Long",
+  "Scene.Subject.Creature.Head.Hair.Density": "Sparse",
+  "Scene.Subject.Creature.Head.Hair.Flow_Direction": "Downward",
+
+  "Scene.Subject.Creature.Head.Horn.Attach_Position": "Forehead",
+  "Scene.Subject.Creature.Head.Horn.Growth_Direction": "Upward",
+  "Scene.Subject.Creature.Head.Horn.Curvature": "Straight",
+  "Scene.Subject.Creature.Head.Horn.Length": "Long",
+  "Scene.Subject.Creature.Head.Horn.Thickness": "Medium",
+  "Scene.Subject.Creature.Head.Horn.Symmetry": "Perfect bilateral",
+
+  "Scene.Subject.Creature.Head.Crest.Attach_Position": "Crown",
+  "Scene.Subject.Creature.Head.Crest.Growth_Direction": "Backward",
+  "Scene.Subject.Creature.Head.Crest.Shape": "Blade-like",
+  "Scene.Subject.Creature.Head.Crest.Length": "Medium",
+  "Scene.Subject.Creature.Head.Crest.Thickness": "Thin",
+
+  "Scene.Subject.Creature.Head.Decoration": "Floating crystal halo",
+
+  "Scene.Subject.Creature.Head.Face.Face_Shape": "Diamond",
+  "Scene.Subject.Creature.Head.Face.Face_Depth": "Shallow",
+
+  "Scene.Subject.Creature.Head.Forehead": "Smooth crystal plate",
+
+  "Scene.Subject.Creature.Head.Eye.Eye_Shape": "Hexagonal",
+  "Scene.Subject.Creature.Head.Eye.Eye_Size": "Large",
+  "Scene.Subject.Creature.Head.Eye.Eye_Spacing": "Wide",
+  "Scene.Subject.Creature.Head.Eye.Eye_Depth": "Recessed",
+
+  "Scene.Subject.Creature.Head.Eyebrow": "None",
+  "Scene.Subject.Creature.Head.Eyelash": "None",
+
+  "Scene.Subject.Creature.Head.Nose.Nose_Profile": "Minimal ridge",
+  "Scene.Subject.Creature.Head.Nose.Nose_Length": "Short",
+  "Scene.Subject.Creature.Head.Nose.Nose_Width": "Narrow",
+
+  "Scene.Subject.Creature.Head.Mouth.Mouth_Width": "Medium",
+  "Scene.Subject.Creature.Head.Mouth.Lip_Profile": "Hard crystalline edge",
+
+  "Scene.Subject.Creature.Head.Teeth": "Transparent crystal teeth",
+  "Scene.Subject.Creature.Head.Tongue": "Blue energy membrane",
+
+  "Scene.Subject.Creature.Head.Ear.Attach_Position": "Side",
+  "Scene.Subject.Creature.Head.Ear.Ear_Direction": "Backward",
+  "Scene.Subject.Creature.Head.Ear.Ear_Length": "Medium",
+
+  "Scene.Subject.Creature.Head.Beard": "None",
+  "Scene.Subject.Creature.Head.Marking_Scar": "Natural crystal fracture lines",
+  "Scene.Subject.Creature.Head.Prosthetic_Implant": "None",
+
+  "Scene.Subject.Creature.Neck.Length": "Long",
+  "Scene.Subject.Creature.Neck.Thickness": "Slim",
+
+  "Scene.Subject.Creature.Torso.Back": "Faceted crystal plates",
+
+  "Scene.Subject.Creature.Torso.Shoulder.Width": "Broad",
+  "Scene.Subject.Creature.Torso.Shoulder.Slope": "Gentle",
+
+  "Scene.Subject.Creature.Torso.Chest.Width": "Broad",
+  "Scene.Subject.Creature.Torso.Chest.Depth": "Deep",
+
+  "Scene.Subject.Creature.Torso.Abdomen": "Segmented crystal core",
+
+  "Scene.Subject.Creature.Torso.Hip.Width": "Medium",
+
+  "Scene.Subject.Creature.Torso.Marking_Tattoo": "Natural glowing crystal veins"
+}
+{
+  "Scene.Subject.Creature.Arm.Length": "Long",
+  "Scene.Subject.Creature.Arm.Thickness": "Lean crystalline",
+  "Scene.Subject.Creature.Arm.Attach_Position": "Standard humanoid shoulder joint",
+  "Scene.Subject.Creature.Arm.Hand": "Five-fingered crystal hand",
+  "Scene.Subject.Creature.Arm.Finger": "Long articulated crystal digits",
+  "Scene.Subject.Creature.Arm.Gesture": "Open relaxed resonance pose",
+
+  "Scene.Subject.Creature.Leg.Length": "Long",
+  "Scene.Subject.Creature.Leg.Thickness": "Athletic crystalline",
+  "Scene.Subject.Creature.Leg.Attach_Position": "Standard humanoid pelvis",
+  "Scene.Subject.Creature.Leg.Foot": "Digitigrade crystal foot",
+  "Scene.Subject.Creature.Leg.Toe": "Three crystal toes",
+  "Scene.Subject.Creature.Leg.Gait": "Graceful silent stride",
+
+  "Scene.Subject.Creature.Tail.Attach_Position": "Lower spine",
+  "Scene.Subject.Creature.Tail.Growth_Direction": "Backward",
+  "Scene.Subject.Creature.Tail.Length": "Medium",
+  "Scene.Subject.Creature.Tail.Curvature": "Gentle arc",
+  "Scene.Subject.Creature.Tail.Thickness": "Slim",
+
+  "Scene.Subject.Creature.Wing.Wing_Type": "Crystalline energy wing",
+  "Scene.Subject.Creature.Wing.Wing_State": "Folded",
+  "Scene.Subject.Creature.Wing.Attach_Position": "Upper back",
+  "Scene.Subject.Creature.Wing.Wing_Span": "Large",
+  "Scene.Subject.Creature.Wing.Fold_Direction": "Backward",
+
+  "Scene.Subject.Creature.Fin.Attach_Position": "Forearm",
+  "Scene.Subject.Creature.Fin.Shape": "Transparent blade",
+
+  "Scene.Subject.Creature.Shell.Coverage": "Partial torso armor",
+  "Scene.Subject.Creature.Shell.Thickness": "Medium",
+
+  "Scene.Subject.Creature.Spike.Attach_Position": "Shoulders and forearms",
+  "Scene.Subject.Creature.Spike.Growth_Direction": "Outward",
+  "Scene.Subject.Creature.Spike.Length": "Medium",
+  "Scene.Subject.Creature.Spike.Length": "Medium",
+
+  "Scene.Subject.Creature.Tentacle.Attach_Position": "Lower back",
+  "Scene.Subject.Creature.Tentacle.Length": "Short",
+  "Scene.Subject.Creature.Tentacle.Flexibility": "Moderate",
+
+  "Scene.Subject.Creature.Root": "Crystal root energy anchors",
+  "Scene.Subject.Creature.InternalStructure": "Luminous crystal lattice",
+  "Scene.Subject.Creature.Aura_Field": "Blue-violet resonance field",
+  "Scene.Subject.Creature.Size_Scale": "2.5 meters tall",
+  "Scene.Subject.Creature.Mass_Density": "High-density crystal composite",
+  "Scene.Subject.Creature.Body_Proportion": "Tall athletic humanoid",
+  "Scene.Subject.Creature.Bilateral_Symmetry": "Perfect",
+
+  "Scene.Subject.Object_Prop.Type": "Floating crystal spire",
+  "Scene.Subject.Object_Prop.Material": "Translucent crystal",
+  "Scene.Subject.Object_Prop.State": "Levitation resonance",
+  "Scene.Subject.Object_Prop.Function": "Planetary energy conductor",
+  "Scene.Subject.Object_Prop.Age_Condition": "Ancient",
+  "Scene.Subject.Object_Prop.Scale": "Monumental",
+  "Scene.Subject.Object_Prop.Shape": "Hexagonal prism",
+  "Scene.Subject.Object_Prop.Proportion": "Extremely tall and slender",
+  "Scene.Subject.Object_Prop.Orientation": "Vertical",
+
+  "Scene.Subject.Clothing.Type": "Ceremonial crystal robe",
+  "Scene.Subject.Clothing.Material": "Energy-infused crystal fiber",
+  "Scene.Subject.Clothing.Condition": "Pristine",
+  "Scene.Subject.Clothing.Pattern": "Geometric light lattice",
+  "Scene.Subject.Clothing.Footwear": "Crystal sandals",
+  "Scene.Subject.Clothing.EmbeddedLight": "Blue-violet internal glow",
+  "Scene.Subject.Clothing.Cultural_Origin": "Native crystal civilization",
+  "Scene.Subject.Clothing.Fit": "Slim",
+  "Scene.Subject.Clothing.Layering": "Single flowing layer",
+  "Scene.Subject.Clothing.Coverage": "Full body",
+
+  "Scene.Subject.Armor.Type": "Natural crystal armor",
+  "Scene.Subject.Armor.Material": "Living crystal",
+  "Scene.Subject.Armor.Coverage": "Chest shoulders forearms",
+  "Scene.Subject.Armor.Damage_State": "Undamaged",
+  "Scene.Subject.Armor.Ornament": "Resonance glyph engravings",
+  "Scene.Subject.Armor.Thickness": "Medium",
+
+  "Scene.Subject.Equipment.Tool": "Crystal resonance staff",
+  "Scene.Subject.Equipment.Device": "Frequency harmonizer",
+  "Scene.Subject.Equipment.Gadget": "Floating crystal drone",
+  "Scene.Subject.Equipment.Power_Source": "Planetary crystal energy",
+  "Scene.Subject.Equipment.Carry_Position": "Right hand",
+
+  "Scene.Subject.Accessory.Jewelry": "Crystal circlet",
+  "Scene.Subject.Accessory.Amulet": "Resonance core pendant",
+  "Scene.Subject.Accessory.Mask": "Transparent crystal visor",
+  "Scene.Subject.Accessory.Headwear": "Floating crystal crown",
+  "Scene.Subject.Accessory.Attach_Position": "Head and neck",
+
+  "Scene.Subject.Weapon.Type": "Crystal energy spear",
+  "Scene.Subject.Weapon.Material": "Living crystal",
+  "Scene.Subject.Weapon.Enchantment": "Resonance amplification",
+  "Scene.Subject.Weapon.State": "Charged",
+  "Scene.Subject.Weapon.Energy_Emission": "Blue plasma glow",
+  "Scene.Subject.Weapon.Carry_Position": "Right hand",
+
+  "Scene.Subject.Vehicle.Type": "Floating crystal platform",
+  "Scene.Subject.Vehicle.Propulsion": "Gravitational resonance",
+  "Scene.Subject.Vehicle.Condition": "Operational",
+  "Scene.Subject.Vehicle.Scale": "Personal transport",
+  "Scene.Subject.Vehicle.Emission_Trail": "Blue light particles",
+  "Scene.Subject.Vehicle.Orientation": "Forward",
+
+  "Scene.Subject.Structure_Built.Type": "Natural crystal sanctuary",
+  "Scene.Subject.Structure_Built.Material": "Translucent living crystal",
+  "Scene.Subject.Structure_Built.Style": "Organic geometric architecture",
+  "Scene.Subject.Structure_Built.Condition": "Perfectly preserved",
+  "Scene.Subject.Structure_Built.Scale": "Monumental",
+  "Scene.Subject.Structure_Built.Ornament": "Glowing crystal engravings",
+  "Scene.Subject.Structure_Built.Layout": "Radial concentric arrangement"
+}
+{
+  "Scene.Surface.Skin.Thickness": "Thin crystalline epidermis",
+  "Scene.Surface.Skin.Roughness": "Smooth polished",
+  "Scene.Surface.Skin.Elasticity": "Low",
+
+  "Scene.Surface.Fur.Length": "None",
+  "Scene.Surface.Fur.Density": "None",
+  "Scene.Surface.Fur.Growth_Direction": "None",
+
+  "Scene.Surface.Feather.Length": "None",
+  "Scene.Surface.Feather.Density": "None",
+  "Scene.Surface.Feather.Arrangement": "None",
+
+  "Scene.Surface.Scale.Size": "Large hexagonal plates",
+  "Scene.Surface.Scale.Layering": "Overlapping crystalline layers",
+  "Scene.Surface.Scale.Pattern": "Hexagonal tessellation",
+
+  "Scene.Surface.Bark": "Petrified crystal bark",
+
+  "Scene.Surface.Leaf": "Transparent crystal leaves",
+
+  "Scene.Surface.Moss": "Bioluminescent crystal moss",
+
+  "Scene.Surface.Crystal.Growth_Direction": "Radially outward",
+  "Scene.Surface.Crystal.Facet_Shape": "Hexagonal prism",
+
+  "Scene.Surface.Rock": "Dark basalt infused with crystal veins",
+
+  "Scene.Surface.Metal.Oxidation": "None",
+  "Scene.Surface.Metal.Reflectivity": "Mirror-like",
+
+  "Scene.Surface.Lava": "Slow-flowing blue-white mineral magma",
+
+  "Scene.Surface.Ice.Transparency": "Crystal-clear",
+  "Scene.Surface.Ice.Fracture_Pattern": "Geometric radial fractures",
+
+  "Scene.Surface.Liquid.Viscosity": "Medium",
+  "Scene.Surface.Liquid.Color": "Cyan with violet highlights",
+  "Scene.Surface.Liquid.Reflectivity": "High",
+
+  "Scene.Surface.Gas": "Ionized crystal vapor",
+
+  "Scene.Surface.Energy.Plasma": "Blue-violet plasma streams",
+  "Scene.Surface.Energy.Arc": "Occasional crystal electrical arcs",
+  "Scene.Surface.Energy.Field": "Stable resonance field",
+
+  "Scene.Surface.Translucency": "High",
+
+  "Scene.Surface.Wetness": "Dry polished surface",
+
+  "Scene.Surface.Fabric.Weave_Pattern": "Interlocking crystal fibers",
+  "Scene.Surface.Fabric.Fold_Behavior": "Rigid angular folds",
+
+  "Scene.Surface.Wood": "Silicified crystal wood",
+
+  "Scene.Surface.Glass": "Ultra-clear crystalline glass",
+
+  "Scene.Surface.Ceramic": "Glossy white crystal ceramic",
+
+  "Scene.Surface.Bone": "Silicate crystal skeleton",
+
+  "Scene.Surface.Flesh": "Semi-transparent crystalline tissue",
+
+  "Scene.Surface.Dust": "Fine sparkling crystal dust",
+
+  "Scene.Surface.Sand": "Finely crushed crystal grains",
+
+  "Scene.Surface.Rust": "None",
+
+  "Scene.Surface.Corrosion": "Extremely low mineral erosion",
+
+  "Scene.Surface.Bioluminescent_Coating": "Soft blue-violet luminous mineral film"
+}
+{
+  "Scene.Environment.TimeOfDay": "Perpetual twilight",
+  "Scene.Environment.Season": "Seasonless",
+  "Scene.Environment.Era_Temporal": "Age of Crystal Ascendance",
+  "Scene.Environment.Celestial_Alignment": "Triple-moon crystal resonance",
+
+  "Scene.Environment.Terrain.Ground.Texture": "Faceted crystalline surface",
+  "Scene.Environment.Terrain.Ground.Elevation": "Undulating crystal plateaus",
+  "Scene.Environment.Terrain.Ground.Fracture_Type": "Geometric hexagonal fractures",
+  "Scene.Environment.Terrain.Ground.Slope": "Gentle rolling inclines",
+  "Scene.Environment.Terrain.Ground.Hardness": "Extremely hard",
+
+  "Scene.Environment.Terrain.Water.Type": "Liquid crystal lakes",
+  "Scene.Environment.Terrain.Water.Depth": "Moderate",
+  "Scene.Environment.Terrain.Water.Clarity": "Perfectly transparent",
+  "Scene.Environment.Terrain.Water.Motion": "Slow rippling",
+  "Scene.Environment.Terrain.Water.Flow_Direction": "Toward central crystal basin",
+
+  "Scene.Environment.Terrain.Vegetation.Flora": "Towering crystalline plants",
+  "Scene.Environment.Terrain.Vegetation.Fungi": "Luminescent crystal fungi",
+  "Scene.Environment.Terrain.Vegetation.Coral": "Crystal coral formations",
+  "Scene.Environment.Terrain.Vegetation.Alien_Flora": "Floating prism flowers",
+  "Scene.Environment.Terrain.Vegetation.Density": "Moderate",
+
+  "Scene.Environment.Terrain.Mountain.Height": "Several kilometers",
+  "Scene.Environment.Terrain.Mountain.Ridge_Profile": "Sharp faceted ridges",
+
+  "Scene.Environment.Terrain.Cave": "Crystal caverns",
+
+  "Scene.Environment.Terrain.Depth_Zone": "Surface crystalline layer",
+
+  "Scene.Environment.Terrain.Desert": "White crystal sand desert",
+
+  "Scene.Environment.Terrain.Tundra": "Frozen crystal plain",
+
+  "Scene.Environment.Terrain.Swamp": "Mineral-rich crystal marsh",
+
+  "Scene.Environment.Terrain.Volcano": "Dormant crystal magma vents",
+
+  "Scene.Environment.Terrain.Canyon": "Deep crystal fissures",
+
+  "Scene.Environment.Terrain.Plain": "Endless crystal flats",
+
+  "Scene.Environment.Terrain.Floating_Island": "Levitation crystal islands",
+
+  "Scene.Environment.Terrain.Abyssal_Trench": "Crystal abyss",
+
+  "Scene.Environment.Sky.CelestialBody": "Three crystalline moons and a purple nebula",
+  "Scene.Environment.Sky.Sky_Color": "Deep indigo",
+  "Scene.Environment.Sky.Sky_Phenomena": "Aurora-like crystal energy waves",
+  "Scene.Environment.Sky.Cloud_Type": "Thin iridescent crystal clouds",
+
+  "Scene.Environment.Structure.Architecture": "Organic crystalline formations",
+  "Scene.Environment.Structure.Signage": "Floating holographic crystal glyphs",
+  "Scene.Environment.Structure.Monument": "World Crystal Obelisk",
+  "Scene.Environment.Structure.Ruin": "Ancient fractured crystal temples",
+  "Scene.Environment.Structure.Infrastructure": "Planet-wide crystal resonance network",
+  "Scene.Environment.Structure.Artifact": "Ancient planetary crystal core",
+
+  "Scene.Environment.Medium_Atmosphere.Fog": "Thin luminous crystal fog",
+  "Scene.Environment.Medium_Atmosphere.Mist": "Soft refractive mist",
+  "Scene.Environment.Medium_Atmosphere.Dust": "Suspended crystal dust",
+  "Scene.Environment.Medium_Atmosphere.Smoke": "Ionized mineral vapor",
+  "Scene.Environment.Medium_Atmosphere.Steam": "Warm crystal vapor",
+  "Scene.Environment.Medium_Atmosphere.Ash": "Fine white mineral particles",
+  "Scene.Environment.Medium_Atmosphere.Particle": "Floating crystal fragments",
+  "Scene.Environment.Medium_Atmosphere.Cloud": "High translucent clouds",
+  "Scene.Environment.Medium_Atmosphere.Rain": "Crystal rain droplets",
+  "Scene.Environment.Medium_Atmosphere.Snow": "Tiny crystal flakes",
+  "Scene.Environment.Medium_Atmosphere.Ember": "Glowing energy shards",
+  "Scene.Environment.Medium_Atmosphere.Petal": "Floating crystal petals",
+  "Scene.Environment.Medium_Atmosphere.Spore": "Microscopic luminous spores",
+  "Scene.Environment.Medium_Atmosphere.Energy_Mote": "Blue-violet energy motes",
+  "Scene.Environment.Medium_Atmosphere.Flow_Direction": "Slow upward circulation",
+  "Scene.Environment.Medium_Atmosphere.Density": "Moderate",
+
+  "Scene.Environment.Anomaly_Zone.Spatial_Rift": "Minor resonance distortions",
+  "Scene.Environment.Anomaly_Zone.Gravity_Well": "Localized low-gravity fields",
+  "Scene.Environment.Anomaly_Zone.Time_Distortion_Field": "Stable temporal resonance",
+  "Scene.Environment.Anomaly_Zone.Reality_Fracture": "Inactive",
+  "Scene.Environment.Anomaly_Zone.Dimensional_Breach": "Dormant crystal portal",
+  "Scene.Environment.Anomaly_Zone.Void_Zone": "None",
+  "Scene.Environment.Anomaly_Zone.Mana_Storm": "Periodic crystal resonance storms",
+  "Scene.Environment.Anomaly_Zone.Radiation_Field": "Low-energy crystal radiation"
+}
+{
+  "Scene.Lighting.MainLight.Source": "Planetary crystal lattice",
+  "Scene.Lighting.MainLight.Direction": "Diffuse overhead",
+  "Scene.Lighting.MainLight.Color": "Blue-violet",
+  "Scene.Lighting.MainLight.Intensity": "Medium",
+  "Scene.Lighting.MainLight.Temperature": "Cool",
+
+  "Scene.Lighting.AmbientLight.Color": "Soft indigo",
+  "Scene.Lighting.AmbientLight.Intensity": "High",
+
+  "Scene.Lighting.Shadow.Hardness": "Soft",
+  "Scene.Lighting.Shadow.Opacity": "Medium",
+  "Scene.Lighting.Shadow.Direction": "Multi-directional",
+
+  "Scene.Lighting.Reflection.Intensity": "Very high",
+  "Scene.Lighting.Reflection.Roughness": "Very low",
+
+  "Scene.Lighting.Emission.Color": "Blue-violet crystalline glow",
+  "Scene.Lighting.Emission.Intensity": "High",
+
+  "Scene.Lighting.VolumetricLight.Density": "Medium",
+  "Scene.Lighting.VolumetricLight.Color": "Cyan-white",
+
+  "Scene.Lighting.Neon.Color": "None",
+  "Scene.Lighting.Neon.Intensity": "None",
+
+  "Scene.Lighting.Bioluminescent_Light.Color": "Blue-cyan",
+  "Scene.Lighting.Bioluminescent_Light.Intensity": "Medium",
+
+  "Scene.Lighting.Magical_Light.Color": "White-violet",
+  "Scene.Lighting.Magical_Light.Intensity": "Medium",
+
+  "Scene.Weather_Phenomena.Rain.Type": "Crystal rain",
+  "Scene.Weather_Phenomena.Rain.Intensity": "Light",
+  "Scene.Weather_Phenomena.Rain.Direction": "Vertical",
+
+  "Scene.Weather_Phenomena.Snow.Type": "Crystal snow",
+  "Scene.Weather_Phenomena.Snow.Density": "Sparse",
+  "Scene.Weather_Phenomena.Snow.Direction": "Slow downward",
+
+  "Scene.Weather_Phenomena.Storm.Type": "Crystal resonance storm",
+  "Scene.Weather_Phenomena.Storm.Intensity": "Moderate",
+
+  "Scene.Weather_Phenomena.Wind.Direction": "Variable gentle currents",
+  "Scene.Weather_Phenomena.Wind.Speed": "Low",
+
+  "Scene.Weather_Phenomena.Lightning.Frequency": "Occasional",
+  "Scene.Weather_Phenomena.Lightning.Color": "Blue-white",
+
+  "Scene.Weather_Phenomena.Sandstorm.Density": "Low crystal dust",
+  "Scene.Weather_Phenomena.Sandstorm.Direction": "Clockwise circulation",
+
+  "Scene.Weather_Phenomena.Volcanic.Ash_Density": "Very low mineral ash",
+  "Scene.Weather_Phenomena.Volcanic.Lava_Emission": "Rare crystal magma venting",
+
+  "Scene.Weather_Phenomena.Meteor_Shower.Density": "Rare",
+  "Scene.Weather_Phenomena.Meteor_Shower.Direction": "Northwest to southeast",
+
+  "Scene.Camera_Prompt_Tags.Shot_Type": "Extreme wide establishing shot",
+  "Scene.Camera_Prompt_Tags.Angle": "Eye-level with slight low angle",
+  "Scene.Camera_Prompt_Tags.Depth_Of_Field": "Deep focus",
+  "Scene.Camera_Prompt_Tags.Motion": "Slow cinematic dolly forward"
+}
+{
+  "Scene.Camera.Distance": "Ultra wide landscape distance",
+  "Scene.Camera.Scale_Perspective": "Planetary scale",
+  "Scene.Camera.Angle": "Low angle",
+  "Scene.Camera.Shot_Type": "Extreme wide establishing shot",
+  "Scene.Camera.Movement": "Slow cinematic dolly forward",
+  "Scene.Camera.DepthOfField": "Deep focus",
+
+  "Scene.Camera.Lens.Focal_Length": "24mm",
+  "Scene.Camera.Lens.Aperture": "f/11",
+  "Scene.Camera.Lens.Focus_Mode": "Infinity",
+
+  "Scene.Camera.Third_Person_Params.Follow_Distance": "None",
+  "Scene.Camera.Third_Person_Params.Height": "None",
+  "Scene.Camera.Third_Person_Params.Offset": "None",
+
+  "Scene.Render.Style": "Hyperrealistic cinematic science fantasy",
+  "Scene.Render.Detail": "Ultra detailed",
+  "Scene.Render.Quality": "8K",
+  "Scene.Render.ColorPalette": "Indigo, violet, cyan, white crystal spectrum",
+  "Scene.Render.DynamicRange": "HDR",
+  "Scene.Render.PostProcess": "Bloom, chromatic dispersion, volumetric lighting",
+  "Scene.Render.MaterialModel": "Physically Based Rendering",
+  "Scene.Render.RayTracing": "Enabled",
+
+  "Scene.Visual_Effect.Glow": "Strong crystal internal glow",
+  "Scene.Visual_Effect.Bioluminescence": "Soft secondary crystal illumination",
+  "Scene.Visual_Effect.Fire": "None",
+  "Scene.Visual_Effect.Explosion": "None",
+  "Scene.Visual_Effect.Splash_Spill": "Crystal particle scattering",
+  "Scene.Visual_Effect.Magic": "Resonance energy waves",
+  "Scene.Visual_Effect.Aura": "Planet-wide harmonic aura",
+  "Scene.Visual_Effect.Energy_Wave": "Expanding circular resonance pulses",
+  "Scene.Visual_Effect.Distortion": "Light refraction through crystal fields",
+  "Scene.Visual_Effect.Particle_System": "Floating crystal dust",
+  "Scene.Visual_Effect.Refraction": "High",
+  "Scene.Visual_Effect.Caustics": "Strong crystalline caustics",
+
+  "Scene.Narrative_Emotion.Mood": "Peaceful, mysterious, transcendent",
+  "Scene.Narrative_Emotion.Tone": "Majestic cosmic wonder",
+  "Scene.Narrative_Emotion.Theme": "Harmony between geology and life",
+  "Scene.Narrative_Emotion.Tension": "Low",
+  "Scene.Narrative_Emotion.Symbolism": "Crystal represents planetary consciousness",
+
+  "Scene.Audio.Ambience": "Low crystal resonance hum",
+  "Scene.Audio.Environment": "Gentle wind across crystal plains",
+  "Scene.Audio.Creature": "Soft harmonic resonance",
+  "Scene.Audio.Music": "Ambient orchestral with ethereal choir",
+
+  "Scene.Tags.Primary": "Crystal Planet",
+  "Scene.Tags.Secondary": [
+    "Alien World",
+    "Crystalline Landscape",
+    "Science Fantasy",
+    "Bioluminescence",
+    "Cinematic",
+    "Planetary Scale"
+  ]
+}
