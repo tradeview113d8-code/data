@@ -1,99 +1,210 @@
-TREE SPEC — GENERAL
-World Simulator Project
+WORLD SIMULATOR
 
-│
-├── IDENTITY
-│
-│   ├── Name
-│   │   └── World Simulator
-│   │
-│   ├── Type
-│   │   └── Global Project Specification
-│   │
-│   ├── Purpose
-│   │   └── Define the complete architecture of the project.
-│   │
-│   ├── Mission
-│   │   └── Build one unified specification that every repository,
-│   │       team and source code implementation follows.
-│   │
-│   ├── Final Output
-│   │   └── Complete Project TreeSpec
-│   │
-│   └── Stop Condition
-│       └── Every repository has an approved TreeSpec.
-│
-├── ONE SENTENCE
-│
-│   └── TreeSpec General exists only to describe the whole project.
-│
-├── BOUNDARY
-│
-│   ├── Starts With
-│   │
-│   │   ├── Project Goal
-│   │   ├── Project Scope
-│   │   ├── Global Philosophy
-│   │   └── System Requirements
-│   │
-│   ├── Ends With
-│   │
-│   │   └── Repository Specifications
-│   │
-│   └── Never Contains
-│
-│       ├── Repository implementation
-│       ├── Source code
-│       ├── Runtime data
-│       ├── JSONData
-│       └── Business logic
-│
-├── WORKING MODEL
-│
-│   ├── Participants
-│   │
-│   │   ├── Human
-│   │   └── Chatbot
-│   │
-│   ├── Human
-│   │
-│   │   ├── Define vision
-│   │   ├── Approve specification
-│   │   └── Own final decision
-│   │
-│   ├── Chatbot
-│   │
-│   │   ├── Analyze
-│   │   ├── Structure
-│   │   ├── Improve
-│   │   ├── Validate
-│   │   └── Generate specification
-│   │
-│   └── Principle
-│
-│       └── Human decides.
-│           Chatbot structures.
-│
-├── RESPONSIBILITY
-│
-│   ├── Define project identity.
-│   ├── Define project scope.
-│   ├── Define project architecture.
-│   ├── Define repository boundaries.
-│   ├── Define project workflow.
-│   ├── Define project contracts.
-│   ├── Define dependency rules.
-│   ├── Define quality rules.
-│   ├── Define version rules.
-│   └── Define expansion rules.
-│
-├── NON GOALS
-│
-│   ├── NOT describe repository internals.
-│   ├── NOT describe phase implementation.
-│   ├── NOT describe source code.
-│   ├── NOT store project data.
-│   ├── NOT execute workflows.
+GOAL
+
+Build an autonomous fantasy world from real-world data.
+
+═══════════════════════════════════════════════════════
+
+REPOSITORY 1
+
+STATIC WORLD EVOLUTION
+
+Purpose
+
+Build immutable world DNA.
+
+INPUT
+
+Earth
+Human Ideas
+Chatbot Knowledge
+
+↓
+
+EVOLUTION
+
+Human
+Multi Chatbot
+Loopback
+
+↓
+
+ARTIFACT FLOW
+
+Earth
+    ↓
+TreeDataEarth
+    ↓
+JSONDataEarth
+    ↓
+TreeData
+    ↓
+JSONData Schema
+    ↓
+Source JSONData
+    ↓
+Complete JSONData
+    ↓
+Final JSONData
+    ↓
+World Prefab Library
+    ↓
+MongoDB1
+
+OUTPUT
+
+MongoDB1
+
+Immutable World Library
+
+═══════════════════════════════════════════════════════
+
+REPOSITORY 2
+
+DYNAMIC WORLD EVOLUTION
+
+Purpose
+
+Transform immutable world into today's living world.
+
+INPUT
+
+MongoDB1
+
++
+
+Real World
+
+    ├── News
+    ├── People
+    ├── Weather
+    ├── Economy
+    ├── Science
+    ├── Sports
+    ├── Entertainment
+    └── Other Sources
+
+↓
+
+EVOLUTION
+
+Python
+
+Search Engine
+
+Rule Library
+
+Grammar Library
+
+World Rules
+
+↓
+
+ARTIFACT FLOW
+
+Real Sources
+    ↓
+Source Library
+    ↓
+Tree Library
+    ↓
+JSON Library
+    ↓
+Action Library
+    ↓
+World Reaction
+    ↓
+Today's World State
+    ↓
+MongoDB2
+
+OUTPUT
+
+MongoDB2
+
+Today's Living World
+
+═══════════════════════════════════════════════════════
+
+REPOSITORY 3
+
+NARRATIVE EVOLUTION
+
+Purpose
+
+Transform today's living world into stories.
+
+INPUT
+
+MongoDB2
+
+↓
+
+EVOLUTION
+
+Python
+
+Story Library
+
+Rule Library
+
+LLM
+
+↓
+
+ARTIFACT FLOW
+
+Today's World State
+    ↓
+Episode Candidates
+    ↓
+Episode Plan
+    ↓
+Script
+    ↓
+Image Prompt
+    ↓
+Narration
+    ↓
+Music Prompt
+    ↓
+Episode Package
+    ↓
+MongoDB3
+
+OUTPUT
+
+MongoDB3
+
+Episode Library
+
+═══════════════════════════════════════════════════════
+
+DATA EVOLUTION
+
+Earth
+        │
+        ▼
+MongoDB1
+(Immutable World DNA)
+
+        +
+
+Real World
+(News • People • Weather • Economy • ...)
+
+        │
+        ▼
+
+MongoDB2
+(Today's Living World)
+
+        │
+        ▼
+
+MongoDB3
+(World History)│   ├── NOT execute workflows.
 │   └── NOT replace repository specifications.
 │
 ├── PROJECT ARCHITECTURE
