@@ -1,0 +1,102 @@
+TREE-NEWS DEMO v0.1
+│
+├── 1. EVENT
+│   │
+│   ├── event_id
+│   ├── event_type
+│   │
+│   ├── ACTORS
+│   │   ├── actor_id
+│   │   ├── actor_type
+│   │   └── role
+│   │
+│   ├── TARGETS
+│   │   ├── target_id
+│   │   ├── target_type
+│   │   └── affected_role
+│   │
+│   ├── ACTION
+│   │   ├── action_type
+│   │   ├── action_status
+│   │   └── action_sequence
+│   │
+│   ├── STATE
+│   │   ├── before
+│   │   ├── current
+│   │   └── expected
+│   │
+│   ├── TIME
+│   │   ├── start
+│   │   ├── end
+│   │   └── temporal_status
+│   │
+│   ├── LOCATION
+│   │
+│   ├── CONSEQUENCES
+│   │   └── consequence_event_id[]
+│   │
+│   └── SOURCES
+│       ├── source_id
+│       ├── source_type
+│       └── source_reference
+│
+├── 2. RELATIONS
+│   │
+│   ├── CAUSES
+│   ├── LEADS_TO
+│   ├── AFFECTS
+│   ├── REACTS_TO
+│   ├── INTERRUPTS
+│   ├── PRECEDES
+│   ├── FOLLOWS
+│   ├── REPEATS
+│   ├── REACTIVATES
+│   ├── IMITATES
+│   └── CONTRADICTS
+│
+├── 3. EVENT_SEQUENCE
+│   │
+│   ├── sequence_id
+│   ├── events[]
+│   ├── order
+│   └── sequence_status
+│
+├── 4. ATTENTION
+│   │
+│   ├── attention_status
+│   ├── trigger
+│   ├── discovery
+│   ├── viral
+│   ├── debate
+│   ├── controversy
+│   ├── imitation
+│   ├── revival
+│   ├── collective_reaction
+│   └── correction
+│
+├── 5. CLAIM
+│   │
+│   ├── claim_id
+│   ├── claim_type
+│   ├── claim_content
+│   ├── claim_status
+│   │   ├── asserted
+│   │   ├── confirmed
+│   │   ├── disputed
+│   │   ├── denied
+│   │   └── false
+│   │
+│   └── evidence[]
+│
+└── 6. FORECAST
+    │
+    ├── forecast_id
+    ├── expected_event
+    ├── expected_time
+    ├── basis
+    └── status
+        ├── pending
+        ├── occurred
+        ├── delayed
+        ├── cancelled
+        └── unknown
