@@ -1,0 +1,97 @@
+{
+  "META": {
+    "news_id": "",
+    "schema_version": ""
+  },
+
+  "ENTITIES": [
+    {
+      "entity_id": "",
+      "entity_type": "",
+      "name": ""
+    }
+  ],
+
+  "STATES": [
+    {
+      "state_id": "",
+      "state_type": "",
+      "attributes": [],
+      "time_ref": "",
+      "location_ref": ""
+    }
+  ],
+
+  "EVENTS": [
+    {
+      "event_id": "",
+      "event_type": "",
+      "event_status": "",
+      "time": {},
+      "actors": [],
+      "targets": [],
+      "action": {},
+      "state": {},
+      "location_ref": ""
+    }
+  ],
+
+  "CLAIMS": [
+    {
+      "claim_id": "",
+      "claim_status": "",
+      "target_ref": {},
+      "target_description": "",
+      "evidence": []
+    }
+  ],
+
+  "ATTENTIONS": [
+    {
+      "attention_id": "",
+      "attention_type": "",
+      "target_ref": {},
+      "intensity": {},
+      "onset_time": ""
+    }
+  ],
+
+  "FORECASTS": [
+    {
+      "forecast_id": "",
+      "forecast_type": "",
+      "status": "",
+      "basis": "",
+      "target_ref": {},
+      "expected_time": ""
+    }
+  ],
+
+  "SEQUENCES": [
+    {
+      "sequence_id": "",
+      "sequence_status": "",
+      "event_refs": []
+    }
+  ],
+
+  "RELATIONS": [
+    {
+      "relation_id": "",
+      "relation_type": "",
+      "from_id": "",
+      "to_id": "",
+      "evidence": []
+    }
+  ],
+
+  "SOURCES": [
+    {
+      "source_id": "",
+      "source_type": "",
+      "name": "",
+      "url": "",
+      "published_at": ""
+    }
+  ]
+}
