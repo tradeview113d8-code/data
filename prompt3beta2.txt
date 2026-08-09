@@ -1,0 +1,306 @@
+# NEWS ATOM EXTRACTOR
+# BETA 2
+
+Hãy chuyển TOÀN BỘ các STORY ở kết quả ngay trước
+thành dữ liệu JSON tối giản.
+
+KHÔNG tìm kiếm thêm.
+
+KHÔNG thêm nguồn.
+
+KHÔNG thêm link.
+
+KHÔNG thêm URL.
+
+KHÔNG thêm thông tin ngoài STORY.
+
+KHÔNG giải thích.
+
+Chỉ trả về JSON.
+
+
+==================================================
+OUTPUT
+==================================================
+
+Mỗi STORY trở thành một object:
+
+{
+  "id": "",
+  "category": "",
+  "title": "",
+  "entities": [],
+  "states": [],
+  "events": []
+}
+
+
+==================================================
+1. id
+==================================================
+
+Đánh số theo thứ tự STORY:
+
+news_001
+news_002
+news_003
+...
+
+
+==================================================
+2. category
+==================================================
+
+Giữ nguyên CATEGORY của STORY.
+
+
+==================================================
+3. title
+==================================================
+
+Giữ nguyên TITLE.
+
+
+==================================================
+4. entities
+==================================================
+
+Liệt kê những thực thể quan trọng xuất hiện
+trong câu chuyện.
+
+Mỗi entity:
+
+{
+  "id": "",
+  "type": "",
+  "name": ""
+}
+
+type chỉ dùng một trong:
+
+person
+group
+organization
+place
+object
+phenomenon
+
+Không cần đưa mọi danh từ vào entities.
+
+Chỉ giữ những thực thể tham gia hoặc liên quan trực tiếp
+đến sự kiện.
+
+
+==================================================
+5. states
+==================================================
+
+Chỉ ghi những trạng thái hoặc thuộc tính quan trọng
+mà câu chuyện thực sự cần để hiểu sự kiện.
+
+Mỗi state:
+
+{
+  "type": "",
+  "value": ""
+}
+
+Ví dụ:
+
+{
+  "type": "age",
+  "value": "76 tuổi"
+}
+
+hoặc:
+
+{
+  "type": "duration",
+  "value": "8 tiếng"
+}
+
+hoặc:
+
+{
+  "type": "condition",
+  "value": "không biết bơi"
+}
+
+Nếu không có state quan trọng:
+
+[]
+
+
+==================================================
+6. events
+==================================================
+
+Đây là phần QUAN TRỌNG NHẤT.
+
+Tách STORY thành các sự kiện chính theo trình tự
+xảy ra trong câu chuyện.
+
+Mỗi event:
+
+{
+  "id": "",
+  "type": "",
+  "status": "",
+  "actor": [],
+  "target": [],
+  "action": "",
+  "location": "",
+  "time": ""
+}
+
+
+id:
+
+event_01
+event_02
+event_03
+...
+
+
+type:
+
+Dùng một từ hoặc cụm từ ngắn mô tả loại sự kiện.
+
+Ví dụ:
+
+discovery
+accident
+rescue
+fire
+collapse
+appearance
+announcement
+investigation
+rumor
+denial
+construction
+recognition
+
+KHÔNG cần cố gắng dùng một ontology cố định.
+
+
+status:
+
+Chỉ điền nếu STORY thể hiện rõ:
+
+completed
+ongoing
+pending
+
+Nếu không rõ:
+
+""
+
+
+actor:
+
+dùng entity id.
+
+
+target:
+
+dùng entity id.
+
+
+action:
+
+mô tả ngắn gọn hành động hoặc sự kiện.
+
+Không thêm cảm xúc.
+
+Không thêm suy luận.
+
+
+location:
+
+dùng entity id nếu có địa điểm rõ ràng.
+
+Nếu không có:
+
+""
+
+
+time:
+
+chỉ ghi thời gian nếu STORY nói rõ.
+
+Nếu không có:
+
+""
+
+
+==================================================
+7. QUY TẮC QUAN TRỌNG
+==================================================
+
+KHÔNG tạo:
+
+source
+source_type
+url
+published_at
+evidence
+attention
+forecast
+relation
+sequence
+claim
+
+Những thứ này sẽ được xử lý ở bước khác
+hoặc do Python suy ra.
+
+
+==================================================
+8. KHÔNG SUY LUẬN
+==================================================
+
+Nếu thông tin không có trong STORY:
+
+không tạo.
+
+Không đoán.
+
+Không bổ sung.
+
+Không dùng kiến thức bên ngoài.
+
+
+==================================================
+9. KHÔNG GỘP STORY
+==================================================
+
+Mỗi STORY = một object.
+
+Giữ nguyên thứ tự.
+
+
+==================================================
+10. OUTPUT FORMAT
+==================================================
+
+Chỉ trả về:
+
+[
+  {
+    "id": "news_001",
+    "category": "...",
+    "title": "...",
+    "entities": [],
+    "states": [],
+    "events": []
+  }
+]
+
+Không markdown.
+
+Không ```json.
+
+Không giải thích.
+
+
+BẮT ĐẦU.
