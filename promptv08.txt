@@ -1,0 +1,264 @@
+# NEWS DISCOVERY AGENT
+# BETA 0.8
+
+Hãy tìm các tin tức mới trong 24 giờ gần nhất.
+
+Mục tiêu chính:
+
+TÌM NHỮNG CÂU CHUYỆN VIRAL / ĐỜI SỐNG
+ĐANG ĐƯỢC CỘNG ĐỒNG MẠNG VIỆT NAM QUAN TÂM.
+
+Ưu tiên đặc biệt các câu chuyện:
+
+- viral tại Việt Nam;
+- cộng đồng mạng Việt Nam đang bàn luận;
+- chuyện lạ;
+- chuyện hy hữu;
+- sự cố bất ngờ;
+- tình huống trớ trêu;
+- chuyện đời sống;
+- hiện tượng bất thường;
+- hành vi kỳ quặc;
+- drama đời sống;
+- video gây tò mò;
+- những chuyện khiến người đọc muốn "xía vào".
+
+Có thể tìm thêm một số câu chuyện quốc tế
+nếu chúng đặc biệt kỳ lạ hoặc có khả năng viral.
+
+
+==================================================
+CATEGORY 1
+CHUYỆN LẠ / HY HỮU
+==================================================
+
+Tìm 5 câu chuyện.
+
+Ưu tiên Việt Nam.
+
+Nếu có nhiều hơn 5 kết quả,
+xếp theo thứ tự:
+
+ĐÁNG QUAN TÂM NHẤT
+→
+ÍT ĐÁNG QUAN TÂM HƠN.
+
+
+Mẫu:
+
+STORY_01
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_04
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_05
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+
+==================================================
+CATEGORY 2
+VIRAL / CỘNG ĐỒNG MẠNG VIỆT NAM
+==================================================
+
+Tìm 10 câu chuyện.
+
+ĐÂY LÀ CATEGORY ƯU TIÊN CAO NHẤT.
+
+Ưu tiên những câu chuyện đang được
+cộng đồng mạng Việt Nam bàn luận,
+chia sẻ, tò mò hoặc tranh cãi.
+
+Nếu có nhiều hơn 10 kết quả,
+xếp từ:
+
+VIRAL / ĐƯỢC QUAN TÂM NHIỀU NHẤT
+→
+ÍT ĐƯỢC QUAN TÂM HƠN.
+
+
+Mẫu:
+
+STORY_01
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+...
+
+STORY_10
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+
+==================================================
+CATEGORY 3
+SỰ CỐ / ĐỜI SỐNG
+==================================================
+
+Tìm 5 câu chuyện.
+
+Ưu tiên Việt Nam.
+
+Nếu có nhiều hơn 5 kết quả,
+xếp từ đáng quan tâm nhất
+đến ít đáng quan tâm hơn.
+
+Mẫu:
+
+STORY_01
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_04
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_05
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+
+==================================================
+CATEGORY 4
+CHUYỆN LẠ QUỐC TẾ
+==================================================
+
+Tìm 5 câu chuyện.
+
+Chỉ chọn những câu chuyện đặc biệt lạ,
+hy hữu, kỳ quặc hoặc có khả năng thu hút
+sự tò mò của cộng đồng.
+
+Xếp từ đáng quan tâm nhất
+đến ít đáng quan tâm hơn.
+
+Mẫu:
+
+STORY_01
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_04
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+STORY_05
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+
+==================================================
+LOẠI BỎ
+==================================================
+
+Không ưu tiên:
+
+- chính trị;
+- chiến tranh;
+- quân sự;
+- ngoại giao;
+- bầu cử;
+- kinh tế vĩ mô.
+
+
+==================================================
+OUTPUT
+==================================================
+
+Chỉ trả kết quả theo đúng 4 CATEGORY.
+
+Không cần:
+
+- JSON;
+- NEWS_ATOM;
+- EVENT TREE;
+- STORY_STATUS;
+- SOURCE_CONFIDENCE;
+- phân tích;
+- giải thích phương pháp.
+
+
+==================================================
+QUY TẮC QUAN TRỌNG
+==================================================
+
+Ưu tiên CHẤT LƯỢNG và SỰ QUAN TÂM
+hơn việc cố tìm đủ số lượng.
+
+Nếu không đủ kết quả phù hợp,
+không bịa thêm.
+
+Bắt đầu tìm kiếm ngay.
