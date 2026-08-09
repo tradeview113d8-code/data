@@ -1,0 +1,111 @@
+TREE-NEWS
+│
+├── 00_META
+│   ├── news_id
+│   ├── collected_at
+│   ├── published_at
+│   ├── updated_at
+│   ├── source
+│   └── source_count
+│
+├── 01_EVENT
+│   ├── event_type
+│   ├── tier
+│   ├── topic
+│   ├── title
+│   ├── summary
+│   └── event_status
+│
+├── 02_ACTORS
+│   ├── primary_actor
+│   ├── secondary_actors
+│   ├── affected_subject
+│   └── actor_relationship
+│
+├── 03_ACTION
+│   ├── action_type
+│   ├── action
+│   ├── action_chain
+│   ├── trigger
+│   ├── reaction
+│   └── counter_action
+│
+├── 04_TIME
+│   ├── event_time
+│   ├── start_time
+│   ├── end_time
+│   ├── duration
+│   ├── recurring
+│   └── future_time
+│
+├── 05_LOCATION
+│   ├── country
+│   ├── region
+│   ├── city
+│   ├── specific_location
+│   └── scope
+│
+├── 06_STATE
+│   ├── previous_state
+│   ├── current_state
+│   ├── target_state
+│   ├── state_change
+│   └── unresolved_state
+│
+├── 07_CAUSE_EFFECT
+│   ├── cause
+│   ├── immediate_effect
+│   ├── secondary_effect
+│   ├── cascade_effect
+│   └── consequence
+│
+├── 08_RESPONSE
+│   ├── authority_response
+│   ├── public_response
+│   ├── community_response
+│   ├── media_response
+│   └── platform_response
+│
+├── 09_ATTENTION
+│   ├── attention_trigger
+│   ├── discussion
+│   ├── controversy
+│   ├── viral_signal
+│   ├── public_interest
+│   └── trend_signal
+│
+├── 10_SOURCE
+│   ├── source_type
+│   ├── source_name
+│   ├── source_url
+│   ├── evidence_level
+│   ├── cross_checked
+│   └── conflicting_information
+│
+├── 11_EVENT_STRUCTURE
+│   ├── single_event
+│   ├── multi_step_event
+│   ├── interrupted_event
+│   ├── completed_event
+│   ├── failed_event
+│   ├── prevented_event
+│   ├── postponed_event
+│   ├── cancelled_event
+│   ├── recurring_event
+│   ├── future_event
+│   ├── correction_event
+│   └── denial_event
+│
+└── 12_TIER_2
+    ├── drama
+    ├── controversy
+    ├── viral_story
+    ├── meme
+    ├── trend
+    ├── community_discussion
+    ├── human_interest
+    ├── ordinary_event_big_attention
+    ├── old_event_revival
+    ├── rumor
+    ├── rumor_correction
+    └── social_reaction
