@@ -1,0 +1,829 @@
+CORPUS NEWS 01–28
+
+PHẦN 1/3 — ID 01–12
+
+A. NEWS TIER 1 — SỰ KIỆN / BIẾN ĐỘNG THỰC TẾ
+
+
+---
+
+[ID]: 01
+
+[CHỦ ĐỀ]: 1. Thời tiết / khí tượng
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Bắc Bộ nắng nóng trở lại sau gần 1 tháng mưa nhiều.
+
+[CHỦ THỂ]: Thời tiết Bắc Bộ
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Không có đối tượng trực tiếp (biến động trạng thái tự nhiên)
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Chuyển trạng thái từ mưa nhiều kéo dài sang nắng nóng diện rộng.
+
+[THỜI GIAN]: Ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Khu vực Bắc Bộ
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Thời tiết tạnh ráo, nhiệt độ cao nhất phổ biến 33–35 độ C, có nơi trên 35 độ C.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Cơ quan khí tượng phát bản tin cảnh báo hạn chế hoạt động ngoài trời vào giờ cao điểm.
+
+[NGUỒN]: Báo Tuổi Trẻ [1, 2, 3, 4]
+
+
+
+---
+
+[ID]: 02
+
+[CHỦ ĐỀ]: 2. Thiên tai / 29. Thay đổi / chuyển trạng thái
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Áp thấp nhiệt đới trên Biển Đông suy yếu thành một vùng áp thấp và tan dần.
+
+[CHỦ THỂ]: Áp thấp nhiệt đới (từng là bão số 3 - Kujira)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Khu vực đảo Hải Nam và vùng biển Bắc Biển Đông
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Di chuyển theo hướng Đông Đông Nam, giảm sức gió xuống dưới cấp 6, suy yếu cấu trúc hình thái và tan đi.
+
+[THỜI GIAN]: Tối 08/08/2026
+
+[ĐỊA ĐIỂM]: Trên khu vực đảo Hải Nam, Trung Quốc
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Đã tan hoàn toàn, không còn khả năng đổ bộ hay ảnh hưởng trực tiếp đến đất liền Việt Nam.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Trung tâm Dự báo Khí tượng Thủy văn Quốc gia phát đi bản tin cuối cùng để khép lại chuỗi theo dõi thiên tai.
+
+[NGUỒN]: Báo Nhân Dân [5, 6, 7, 8]
+
+
+
+---
+
+[ID]: 03
+
+[CHỦ ĐỀ]: 3. Tai nạn / 5. Giao thông
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Xe tải cẩu tông mạnh vào hộ lan hành lang khiến sập cầu Đắk Lung.
+
+[CHỦ THỂ]: Ô tô tải cẩu mang BKS 61CD - 000.25 do tài xế Nguyễn Cao T. điều khiển
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Cầu Đắk Lung
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Xe tải di chuyển trên đường bất ngờ gặp sự cố kỹ thuật rồi đâm trực diện cấu trúc cầu cơ giới.
+
+[THỜI GIAN]: Rạng sáng ngày 06/08/2026
+
+[ĐỊA ĐIỂM]: Đường liên khu phố 6T1, phường Phước Long, tỉnh Đồng Nai
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Cầu bị sập hoàn toàn; hai người trên xe tải may mắn thoát chết, chỉ bị xây xát nhẹ; giao thông khu vực tê liệt.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Lực lượng chức năng địa phương tiến hành phong tỏa hiện trường và thiết lập lối đi tạm thời cho người dân.
+
+[NGUỒN]: Báo Xây Dựng [9, 10]
+
+
+
+---
+
+[ID]: 04
+
+[CHỦ ĐỀ]: 4. Cháy / nổ
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Chợ Biên Hòa bất ngờ bốc cháy ngùn ngụt dữ dội trong đêm.
+
+[CHỦ THỂ]: Ngọn lửa (thiên tai/sự cố vô tri)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Các sạp hàng hóa và kết cấu hạ tầng khu vực chợ Biên Hòa
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Lửa khởi phát từ một khu vực sạp nhỏ rồi nhanh chóng lan rộng ra toàn bộ khu nhà lồng chợ.
+
+[THỜI GIAN]: Tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Thành phố Biên Hòa, tỉnh Đồng Nai
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Đám cháy lớn đã được khống chế dập tắt hoàn toàn; đang thống kê thiệt hại tài sản; không ghi nhận thương vong lớn về người.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Thu hút lượng lớn tiểu thương và người dân tụ tập theo dõi trực tiếp; cơ quan chức năng phong tỏa để điều tra nguyên nhân phát hỏa.
+
+[NGUỒN]: Báo điện tử VnExpress [11]
+
+
+
+---
+
+[ID]: 05
+
+[CHỦ ĐỀ]: 6. Hạ tầng / 30. Quyết định / hành động của cơ quan, tổ chức
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Hà Nội lên phương án đầu tư chỉnh trang lại toàn bộ 131 vòm cầu đường sắt trăm tuổi.
+
+[CHỦ THỂ]: UBND Thành phố Hà Nội và các cơ quan quản lý ngành đường sắt
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: 131 gầm vòm cầu đá đường sắt dẫn lên cầu Long Biên
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Khảo sát, phê duyệt phương án cải tạo công năng để biến khu hạ tầng cũ thành không gian sinh hoạt văn hóa và du lịch.
+
+[THỜI GIAN]: Tháng 8/2026
+
+[ĐỊA ĐIỂM]: Quận Hoàn Kiếm, Thành phố Hà Nội
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Dự án đang trong giai đoạn đề xuất lập quy hoạch chi tiết kỹ thuật.
+
+[NGUỒN]: VnExpress Thời sự [12]
+
+
+
+---
+
+[ID]: 06
+
+[CHỦ ĐỀ]: 7. Môi trường / 30. Quyết định / hành động của cơ quan, tổ chức
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Đóng cửa, phủ bạt toàn bộ bãi rác ở Sầm Sơn để khắc phục ô nhiễm môi trường.
+
+[CHỦ THỂ]: Chính quyền thành phố Sầm Sơn và đơn vị quản lý môi trường đô thị
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Bãi rác tập trung tại phường Sầm Sơn
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Thực hiện lệnh dừng tiếp nhận chất thải sinh hoạt mới, tiến hành san lấp bạt nhựa PVC cách ly để ngăn mùi hôi thối phát tán.
+
+[THỜI GIAN]: Ngày 07/08/2026
+
+[ĐỊA ĐIỂM]: Phường Sầm Sơn, tỉnh Thanh Hóa
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Toàn bộ bề mặt bãi rác đã được che phủ bạt kín; chấm dứt tình trạng ô nhiễm phát tán ra khu dân cư lân cận.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Biện pháp hành động khẩn cấp được triển khai ngay sau khi người dân bức xúc và báo chí phản ánh dữ dội.
+
+[NGUỒN]: Báo Lao Động [13]
+
+
+
+---
+
+[ID]: 07
+
+[CHỦ ĐỀ]: 8. Y tế / 9. Giáo dục / 15. Chính sách
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Thành phố Hồ Chí Minh công bố chính sách khám sức khỏe hoàn toàn miễn phí cho hơn 3 triệu học sinh, sinh viên.
+
+[CHỦ THỂ]: Sở Y tế và Sở Giáo dục & Đào tạo TP.HCM phối hợp tổ chức
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Khoảng 3 triệu đối tượng là học sinh, sinh viên trên địa bàn thành phố
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Ban hành văn bản hướng dẫn phối hợp liên ngành, chuẩn bị ngân sách công và huy động hệ thống y tế cơ sở lập kế hoạch kiểm tra sàng lọc bệnh lý tổng quát.
+
+[THỜI GIAN]: Áp dụng thí điểm bắt đầu từ năm học lộ trình 2026–2027
+
+[ĐỊA ĐIỂM]: Toàn địa bàn Thành phố Hồ Chí Minh
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Chính sách đã được thông qua về mặt chủ trương, đang chuẩn bị hạ tầng kỹ thuật tiếp nhận dữ liệu số.
+
+[NGUỒN]: Báo điện tử Đài Tiếng nói Việt Nam (VOV) [3]
+
+
+
+---
+
+[ID]: 08
+
+[CHỦ ĐỀ]: 12. Giá cả / thị trường / 13. Tài chính / 29. Thay đổi / chuyển trạng thái
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Giá các mặt hàng xăng tiêu dùng trong nước tiếp tục điều chỉnh tăng mạnh.
+
+[CHỦ THỂ]: Liên Bộ Công Thương - Tài chính (cơ quan điều hành giá)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Giá xăng dầu thị trường nội địa (Xăng E5 RON 92, Xăng RON 95-III) và người tiêu dùng
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Điều chỉnh tăng thêm 1.500 đồng/lít đối với xăng E5 RON 92 và 1.420 đồng/lít đối với xăng RON 95.
+
+[THỜI GIAN]: Tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Toàn quốc Việt Nam
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Thiết lập mặt bằng giá mới; xăng E5 RON 92 đạt mức 22.380 đồng/lít, xăng RON 95-III tăng lên 22.850 đồng/lít.
+
+[NGUỒN]: Hệ thống bảng giá VnExpress [11]
+
+
+
+---
+
+[ID]: 09
+
+[CHỦ ĐỀ]: 16. Pháp luật / 17. Tội phạm / điều tra
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Cơ quan điều tra phát lệnh truy tìm chủ tài khoản Facebook Dương Thị Quỳnh Tâm.
+
+[CHỦ THỂ]: Cơ quan Cảnh sát điều tra / Cơ quan chức năng có thẩm quyền
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Chủ tài khoản mạng xã hội có tên Dương Thị Quỳnh Tâm
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Phát văn bản thông báo công khai tới các đơn vị và nhân dân nhằm xác định tung tích đối tượng phục vụ xác minh vụ việc.
+
+[THỜI GIAN]: Ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Toàn quốc
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Vẫn đang trong quá trình tích cực truy tìm tung tích, chưa có kết quả bắt giữ.
+
+[NGUỒN]: VnExpress Pháp luật [14]
+
+
+
+---
+
+[ID]: 10
+
+[CHỦ ĐỀ]: 18. Chính trị / quản trị / 19. Quốc tế
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Tổng Bí thư, Chủ tịch nước Tô Lâm bắt đầu chuyến thăm cấp Nhà nước tới Australia và New Zealand.
+
+[CHỦ THỂ]: Tổng Bí thư, Chủ tịch nước Tô Lâm và Đoàn đại biểu cấp cao Việt Nam
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Quan hệ ngoại giao song phương giữa Việt Nam với Úc và New Zealand
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Di chuyển bằng chuyên cơ rời Hà Nội, lên đường thực hiện lịch trình làm việc ngoại giao cấp cao.
+
+[THỜI GIAN]: Ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Xuất phát từ Việt Nam sang Australia và New Zealand
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Chuyến đi công tác đang diễn ra theo đúng chương trình nghị sự dự kiến.
+
+[NGUỒN]: Mạng thông tin tổng hợp Báo Mới [4, 10]
+
+
+
+---
+
+[ID]: 11
+
+[CHỦ ĐỀ]: 22. Thể thao / 26. Thành tích / chiến thắng / 27. Thất bại / tổn thất
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Tuyển Thái Lan đánh bại Myanmar với tỷ số 2-0 để giành vé vào bán kết ASEAN Cup 2026.
+
+[CHỦ THỂ]: Đội tuyển bóng đá quốc gia Thái Lan
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Đội tuyển bóng đá quốc gia Myanmar
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Hai đội bóng thi đấu đối đầu trực tiếp trong lượt trận cuối cùng hệ thống vòng bảng giải vô địch Đông Nam Á.
+
+[THỜI GIAN]: Tối ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Sân vận động đăng cai tổ chức bảng B giải đấu
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Trận đấu kết thúc với kết quả thắng lợi 2-0 nghiêng về Thái Lan; Thái Lan giành ngôi nhất bảng B để đi tiếp, Myanmar chính thức bị loại.
+
+[NGUỒN]: Chuyên mục Thể thao Báo Lao Động [13]
+
+
+
+---
+
+[ID]: 12
+
+[CHỦ ĐỀ]: 25. Cứu hộ / giải cứu / 28. Phát hiện
+
+[TIER 1 / TIER 2]: TIER 1
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Cô gái trẻ không biết bơi sống sót hy hữu sau hơn 8 giờ đồng hồ trôi dạt tự do trên biển lớn.
+
+[CHỦ THỂ]: Nạn nhân nữ tên Trương Thị Phương (bị sóng cuốn trôi tại Mũi Nghê) và Lực lượng Hải quân Việt Nam
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Không có đối tượng bị tác động (mối quan hệ giải cứu người gặp nạn)
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Cô gái bám vào một chiếc phao lưới cũ nương theo sóng trôi dạt 8 tiếng; lực lượng tuần tra Hải quân phát hiện mục tiêu và triển khai xuồng cứu hộ tiếp cận đưa lên tàu an toàn.
+
+[THỜI GIAN]: Tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Khu vực biển Mũi Nghê, bán đảo Sơn Trà, thành phố Đà Nẵng
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Nạn nhân được cứu sống thành công, sức khỏe hồi phục ổn định sau khi được chăm sóc y tế.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Nhận được sự quan tâm và cảm phục đặc biệt từ dư luận xã hội về nghị lực sinh tồn của nạn nhân.
+
+[NGUỒN]: Báo điện tử VnExpress Đà Nẵng [11]
+
+
+
+---
+
+Hết phần 1 — ID 01–12.
+CORPUS NEWS 01–28
+
+PHẦN 2/3 — ID 13–23
+
+B. NEWS TIER 2 — ĐIỀU CON NGƯỜI ĐANG CHÚ Ý
+
+
+---
+
+[ID]: 13
+
+[CHỦ ĐỀ]: 37. Tranh luận cộng đồng / 42. Câu chuyện gây tranh cãi
+
+[TIER 1 / TIER 2]: TIER 2
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Vụ việc tuyển thủ Indonesia Shayne Pattynama tranh cãi gay gắt rồi bị tát ngay trên khán đài giải ASEAN Cup.
+
+[CHỦ THỂ]: Cầu thủ bóng đá Shayne Pattynama và nhóm Cổ động viên (CĐV) nhà Indonesia
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Tâm lý người hâm mộ bóng đá và hình ảnh đội tuyển quốc gia xứ vạn đảo
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Sau trận hòa thất vọng 1-1 trước Singapore dẫn đến bị loại sớm, cầu thủ tiến về khán đài đôi co, bất ngờ một CĐV quá khích ra tay tát vào mặt cầu thủ này.
+
+[THỜI GIAN]: Tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Sân vận động tại nước chủ nhà bảng đấu (Singapore)
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Đội tuyển Indonesia xách va ly về nước sớm; truyền thông trong nước chỉ trích dữ dội sự "ảo tưởng vươn tầm châu lục" của đội nhà.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Clip ghi lại vụ xô xát lan truyền với tốc độ chóng mặt trên các hội nhóm bóng đá Đông Nam Á, thu hút hàng triệu lượt xem và bình luận tranh cãi.
+
+[NGUỒN]: Hệ thống tin tức Quốc tế VnExpress [11]
+
+
+
+---
+
+[ID]: 14
+
+[CHỦ ĐỀ]: 43. Câu chuyện tử tế / truyền cảm hứng / 46. Hành vi đời thường trở thành chủ đề bàn luận
+
+[TIER 1 / TIER 2]: TIER 2 (Từ hành động thực tế dịch chuyển thành xu hướng chú ý của cộng đồng mạng)
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Chàng trai trẻ âm thầm dọn dẹp đống đất cát sạt lún vương vãi bất chấp nguy hiểm trên đường giao lộ.
+
+[CHỦ THỂ]: Một nam thanh niên người bình thường
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Đoạn đường quốc lộ bị bẩn, trơn trượt gây nguy cơ tai nạn giao thông
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Thấy đất cát rơi vãi từ xe tải làm nhiều xe máy đi qua trượt ngã, anh tự nguyện mang chổi, hốt rác ra đứng phân làn và quét sạch lòng đường.
+
+[THỜI GIAN]: Tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Tỉnh Bắc Ninh
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Mặt đường được dọn sạch hoàn toàn, các phương tiện lưu thông an toàn trở lại.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Hành động đẹp được người đi đường chụp ảnh, đăng tải lên mạng xã hội, thu hút hơn 23.500 lượt tương tác thích và chia sẻ lan tỏa năng lượng tích cực.
+
+[NGUỒN]: Diễn đàn thảo luận cộng đồng mạng - Báo VnExpress [11]
+
+
+
+---
+
+[ID]: 15
+
+[CHỦ ĐỀ]: 47. Chuyện gia đình / 50. Chuyện quan hệ giữa người với người
+
+[TIER 1 / TIER 2]: TIER 2 (Hiện tượng tâm sự, thảo luận đời sống hôn nhân được cộng đồng quan tâm lớn)
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Người vợ lên mạng trải lòng tâm sự chuyện phòng the phải liên tục "giả vờ lên đỉnh" để giữ sĩ diện cho người chồng bị yếu sinh lý.
+
+[CHỦ THỂ]: Người vợ (tác giả bài đăng giấu tên)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Người chồng (từ chối hợp tác đi bệnh viện khám bệnh)
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Gặp bế tắc trong sinh hoạt vợ chồng suốt 4 tháng do chồng bỏ qua khúc dạo đầu, người vợ mua thuốc ngâm rượu không đỡ, khuyên bảo không được nên lên mạng xin giải pháp.
+
+[THỜI GIAN]: Đăng tải ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Không gian chuyên mục Tâm sự trực tuyến
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Người phụ nữ rơi vào trạng thái tâm lý bế tắc, hụt hẫng và rối bời.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Bài viết thu hút hàng trăm lượt tư vấn, tranh luận từ cộng đồng mạng xã hội về chủ đề giữ gìn hạnh phúc gia đình và tâm lý nam giới.
+
+[NGUỒN]: Mục Đời sống - Hôn nhân gia đình VnExpress [15]
+
+
+
+---
+
+[ID]: 16
+
+[CHỦ ĐỀ]: 51. Một sự việc nhỏ nhưng được chú ý rất lớn / 55. Một hiện tượng xã hội được cộng đồng bàn luận
+
+[TIER 1 / TIER 2]: TIER 2
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Một chiếc bánh burrito nhỏ có giá bán 20 USD vô tình châm ngòi cho một cuộc "nội chiến" tranh luận gay gắt nội bộ phong trào MAGA tại Mỹ.
+
+[CHỦ THỂ]: Giá một chiếc bánh burrito tiêu dùng bình thường và các chính trị gia/nhà bình luận bảo thủ thuộc đảng Cộng hòa
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Căng thẳng chính trị nội bộ và chiến lược tranh cử giữa kỳ của phe bảo thủ
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Việc giá bánh burrito leo thang làm nổ ra tranh luận lớn; một số nhà bảo thủ khuyên người dân ăn kham khổ hơn liền bị các phe nhóm khác phản bác kịch liệt vì coi thường gánh nặng chi phí sinh hoạt của người dân.
+
+[THỜI GIAN]: Ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Không gian mạng xã hội và truyền thông chính trị Hoa Kỳ
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Thổi bùng làn sóng lo ngại sâu sắc về thực trạng lạm phát chi phí sinh hoạt thường ngày chạm ngưỡng 3.5%.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Vượt qua cả các chủ đề xung đột quốc tế phức tạp để trở thành mối quan tâm hàng đầu của 35% cử tri tham gia các cuộc thăm dò ý kiến lớn.
+
+[NGUỒN]: VnExpress Thế giới [11, 16]
+
+
+
+---
+
+A. NEWS TIER 1 — CÁC CẤU TRÚC ĐẶC BIỆT
+
+[ID]: 17
+
+[CHỦ ĐỀ]: 14. Doanh nghiệp / 15. Chính sách / 27. Thất bại / tổn thất
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Hành động thành công của thực thể A dẫn đến thiệt hại dây chuyền của loạt thực thể B
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Các ngân hàng tại Mỹ báo cáo lỗ hàng tỷ USD do chính sách kiểm soát lạm phát thắt chặt tiền tệ của Fed thành công.
+
+[CHỦ THỂ]: Cục Dự trữ Liên bang Mỹ (Fed)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Hệ thống các ngân hàng thương mại lớn tại Mỹ và thị trường trái phiếu
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Fed liên tục tăng và duy trì lãi suất ở mức cao nhằm ép lạm phát mục tiêu xuống 2%, làm sụt giảm mạnh giá trị danh mục trái phiếu do các ngân hàng nắm giữ.
+
+[THỜI GIAN]: Kỳ báo cáo tài chính cập nhật đến tháng 8/2026
+
+[ĐỊA ĐIỂM]: Hoa Kỳ
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Lạm phát hạ nhiệt (hành động của Fed thành công) nhưng kéo theo trạng thái sụt giảm lợi nhuận nghiêm trọng và lỗ danh nghĩa của các ngân hàng chạm mốc kỷ lục.
+
+[NGUỒN]: VnExpress Kinh doanh
+
+
+
+---
+
+[ID]: 18
+
+[CHỦ ĐỀ]: 16. Pháp luật / 17. Tội phạm / điều tra
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Một hành động phạm pháp đang diễn ra thì bị ngăn chặn/bắt quả tang tại trận bởi cơ quan chức năng
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Lực lượng Quản lý thị trường TP.HCM ập vào bắt quả tang một cơ sở đang gia công hàng ngàn sản phẩm giả mạo nhãn hiệu toàn cầu.
+
+[CHỦ THỂ]: Đội Quản lý thị trường số 3 (Cục QLTT TP.HCM)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Cơ sở kinh doanh dịch vụ may mặc do ông Nguyễn Văn X. làm chủ
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Khi các công nhân đang tiến hành dập nhãn mác giả lên áo thun, lực lượng chức năng bất ngờ kiểm tra hành chính đột xuất, ra lệnh dừng toàn bộ dây chuyền sản xuất.
+
+[THỜI GIAN]: Ngày 07/08/2026
+
+[ĐỊA ĐIỂM]: Quận Tân Phú, Thành phố Hồ Chí Minh
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Hành vi bị ngăn chặn hoàn toàn; lập biên bản tạm giữ hơn 3.200 sản phẩm vi phạm để xử lý theo luật định.
+
+[NGUỒN]: Báo Người Lao Động
+
+
+
+---
+
+[ID]: 19
+
+[CHỦ ĐỀ]: 2. Thiên tai / 25. Cứu hộ / giải cứu
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Chuỗi sự kiện đa bước (Sự cố thiên tai → Thiệt hại → Kế hoạch cứu hộ → Triển khai thực tế → Kết quả chưa hoàn tất)
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Chuỗi nỗ lực tiếp cận giải cứu 12 công nhân đang bị mắc kẹt sâu bên trong hầm thủy điện sập do sạt lún đất móng.
+
+[CHỦ THỂ]: Ban chỉ huy cứu hộ tỉnh phối hợp cùng Lực lượng công binh Quân khu
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: 12 công nhân xây dựng và cấu trúc hầm lò bị cô lập
+
+[HÀNH ĐỘNG / DIỄN BIẾN]:
+
+1. Mưa lớn gây sạt đất làm lấp cửa hầm thủy điện;
+
+
+2. Lực lượng cứu hộ tiếp cận hiện trường;
+
+
+3. Tiến hành khoan ống thông khí và truyền sữa, nước uống vào bên trong;
+
+
+4. Lực lượng chuyên trách đào đất đá mở lối đi phụ xuyên núi.
+
+
+
+[THỜI GIAN]: Diễn tiến liên tục từ ngày 05/08 đến tối ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Huyện biên giới thuộc tỉnh Lâm Đồng
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Sự việc chưa kết thúc; đã thông được ống khí liên lạc, xác nhận 12 nạn nhân còn sống; mũi đào đất cứu hộ vẫn đang tích cực khoét sâu thêm.
+
+[NGUỒN]: Báo Thanh Niên
+
+
+
+---
+
+[ID]: 20
+
+[CHỦ ĐỀ]: 20. Khoa học / 28. Phát hiện
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Sự vật vô tri tác động/chứa đựng thông tin lịch sử cổ đại được con người giải mã thành công
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Các nhà khảo cổ học tìm thấy mảnh gốm cổ 3.000 năm tuổi lưu giữ manh mối về kỹ thuật luyện kim của người Việt cổ.
+
+[CHỦ THỂ]: Nhóm chuyên gia thuộc Viện Khảo cổ học Việt Nam
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Tầng đất văn hóa sâu 2 mét tại di chỉ khảo cổ
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Thực hiện nghiệp vụ khai quật thực địa, phát hiện các mảnh khuôn đúc bằng đất nung, sau đó đưa về phòng thí nghiệm tiến hành quét tia X phân tích thành phần hóa học.
+
+[THỜI GIAN]: Công bố kết quả nghiên cứu tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Di chỉ kinh đô cổ thuộc tỉnh Phú Thọ
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Phát hiện thành công; xác định được niên đại chính xác và chứng minh người cổ đại đã tự chủ công nghệ đúc đồng thau từ rất sớm.
+
+[NGUỒN]: Báo Nhân Dân
+
+
+
+---
+
+B. NEWS TIER 2 — CẤU TRÚC ĐẶC BIỆT
+
+[ID]: 21
+
+[CHỦ ĐỀ]: 36. Drama / 45. Nhân vật nổi tiếng có diễn biến mới / 52. Một sự việc cũ bất ngờ nóng trở lại
+
+[TIER 1 / TIER 2]: TIER 2
+
+[CẤU TRÚC ĐẶC BIỆT]: Sự việc cũ đã kết thúc trong quá khứ bất ngờ có tình tiết mới châm ngòi cho toàn bộ cộng đồng mạng lật lại hồ sơ
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Đoạn video ghi âm cũ từ 3 năm trước của một nam ca sĩ nổi tiếng bất ngờ bị rò rỉ làm bùng phát lại làn sóng tẩy chay dữ dội.
+
+[CHỦ THỂ]: File ghi âm cuộc gọi bí mật (vật vô tri phát tán) và Cộng đồng mạng (đối tượng tiếp nhận phản ứng)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Sự nghiệp, các hợp đồng quảng cáo hiện tại của nam ca sĩ hạng A
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: File âm thanh chứa phát ngôn thiếu chuẩn mực cũ bị một tài khoản ẩn danh đăng lên nền tảng TikTok; người xem lập tức chia sẻ chéo sang Facebook, tạo làn sóng tràn vào trang cá nhân của nam ca sĩ yêu cầu giải trình.
+
+[THỜI GIAN]: Cao điểm thảo luận ngày 07/08 - 08/08/2026
+
+[ĐỊA ĐIỂM]: Không gian mạng xã hội Việt Nam (TikTok, Facebook)
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Nam ca sĩ khóa tính năng bình luận công khai; hai nhãn hàng tài trợ lớn ra văn bản tạm dừng hình ảnh đại diện của nghệ sĩ này để chờ xác minh.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Thu hút hơn 500.000 lượt thảo luận trực tiếp, lọt top 1 xu hướng tìm kiếm thị trường nội địa trong 24 giờ.
+
+[NGUỒN]: Các diễn đàn giải trí tổng hợp công khai trên Internet
+
+
+
+---
+
+[ID]: 22
+
+[CHỦ ĐỀ]: 34. Câu nói / cụm từ viral / 35. Meme / trend
+
+[TIER 1 / TIER 2]: TIER 2
+
+[CẤU TRÚC ĐẶC BIỆT]: Nhiều chủ thể không quen biết cùng thực hiện lặp đi lặp lại một hành động mô phỏng từ một trò chơi điện tử trực tuyến
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Trào lưu giới trẻ rủ nhau ra công viên mô phỏng động tác "quay xe quét kiếm" ngoài đời thực gây bão mạng xã hội.
+
+[CHỦ THỂ]: Các nhóm bạn trẻ, học sinh, sinh viên (đa chủ thể tự phát)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Không gian công cộng tại các công viên đô thị
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Người tham gia trào lưu cầm một chiếc ô hoặc cành cây, thực hiện động tác xoay người tung cánh tay giống nhân vật trong game rồi quay video lại để đăng lên mạng kèm hashtag chung.
+
+[THỜI GIAN]: Tuần đầu tháng 8/2026
+
+[ĐỊA ĐIỂM]: Các công viên lớn tại Hà Nội và TP.HCM
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Tạo ra một xu hướng tương tác thực tế vui nhộn, lành mạnh cho giới trẻ giải trí dịp hè.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Đạt hàng triệu lượt xem trên nền tảng chia sẻ video ngắn; lan sang cả đối tượng người trung niên tham gia hưởng ứng vui vẻ.
+
+[NGUỒN]: Xu hướng nền tảng số Video Short
+
+
+
+---
+
+[ID]: 23
+
+[CHỦ ĐỀ]: 41. Câu chuyện gây phẫn nộ / 46. Hành vi đời thường trở thành chủ đề bàn luận
+
+[TIER 1 / TIER 2]: TIER 2
+
+[CẤU TRÚC ĐẶC BIỆT]: Hành động thiếu ý thức cá nhân của một người gây ra phản ứng bất bình đồng loạt từ một nhóm xã hội lớn
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Hành vi người đàn ông thản nhiên bấm nút dừng khẩn cấp thang cuốn siêu thị để trêu đùa khiến một em nhỏ ngã nhào bị cộng đồng chỉ trích kịch liệt.
+
+[CHỦ THỂ]: Một người đàn ông trung niên
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Thang cuốn đang vận hành và một bé trai đi ngay phía sau
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Người đàn ông cố tình nhấn nút dừng an toàn của thang cuốn rồi bỏ đi; thang dừng đột ngột làm đứa trẻ mất đà ngã đập mặt xuống bậc kim loại.
+
+[THỜI GIAN]: Sự việc trích xuất từ camera an ninh ngày 06/08/2026
+
+[ĐỊA ĐIỂM]: Trung tâm thương mại tại Quận 7, TP.HCM
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Đứa trẻ chỉ bị bầm tím phần mềm; ban quản lý trung tâm đã mời người đàn ông này tới làm việc để bồi thường và răn đe.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Cộng đồng mạng phẫn nộ, chia sẻ danh tính đối tượng và yêu cầu cơ quan công an vào cuộc xử phạt hành chính về hành vi gây nguy hiểm cho người khác.
+
+[NGUỒN]: Diễn đàn văn hóa đô thị mạng xã hội
+
+
+
+---
+
+Hết phần 2 — ID 13–23.
+  CORPUS NEWS 01–28
+
+PHẦN 3/3 — ID 24–28
+
+
+---
+
+A. NEWS TIER 1 — CÁC CẤU TRÚC ĐẶC BIỆT
+
+[ID]: 24
+
+[CHỦ ĐỀ]: 15. Chính sách / 18. Chính trị / quản trị / 29. Thay đổi / chuyển trạng thái
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Tin dự báo / Hành động chắc chắn sẽ xảy ra trong tương lai theo lộ trình luật định (Sự kiện chưa diễn ra)
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Từ ngày 01/01/2027, toàn bộ người dân bắt đầu sử dụng mẫu thẻ Căn cước mới tích hợp dữ liệu sinh trắc học mống mắt sâu.
+
+[CHỦ THỂ]: Bộ Công an và cơ quan quản lý hành chính về trật tự xã hội
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Toàn bộ công dân Việt Nam đến độ tuổi cấp đổi thẻ căn cước
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Triển khai đồng bộ hệ thống máy quét mống mắt tại các quận/huyện, ngừng hoàn toàn việc thu nhận vân tay đơn lẻ đối với các trường hợp cấp mới.
+
+[THỜI GIAN]: Hiệu lực thi hành ấn định vào ngày 01/01/2027 (Thông tin ban hành ngày 08/08/2026)
+
+[ĐỊA ĐIỂM]: Toàn quốc Việt Nam
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Đang trong giai đoạn tập huấn kỹ thuật cho cán bộ cơ sở và hoàn thiện hạ tầng phần mềm lưu trữ dữ liệu lớn.
+
+[NGUỒN]: Cổng thông tin điện tử Bộ Công an
+
+
+
+---
+
+[ID]: 25
+
+[CHỦ ĐỀ]: 6. Hạ tầng / 30. Quyết định / hành động của cơ quan, tổ chức
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Hành động chủ động hoãn, hủy hoặc đình chỉ một kế hoạch đã định sẵn do xuất hiện yếu tố cản trở
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Hoãn thời gian thông xe kỹ thuật cầu huyết mạch nối hai bờ sông Hồng do chậm bàn giao mặt bằng phần đường dẫn.
+
+[CHỦ THỂ]: Ban Quản lý dự án đầu tư xây dựng công trình giao thông thành phố
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Lịch trình thông xe cầu mới và kế hoạch di chuyển của các nhà thầu thi công
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Ban quản lý ra thông báo khẩn cấp hủy bỏ buổi lễ khánh thành dự kiến vào tuần tới, yêu cầu nhà thầu lùi thời hạn bàn giao sang quý IV.
+
+[THỜI GIAN]: Ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Thành phố Hà Nội
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Công trình xây dựng cầu chính đã hoàn thành 99%, nhưng toàn bộ dự án rơi vào trạng thái tạm dừng khai thác để đợi giải phóng nốt 3 hộ dân phần đường dẫn.
+
+[NGUỒN]: Báo Giao Thông
+
+
+
+---
+
+[ID]: 26
+
+[CHỦ ĐỀ]: 1. Thời tiết / khí tượng / 7. Môi trường
+
+[TIER 1 / TIER 2]: TIER 1
+
+[CẤU TRÚC ĐẶC BIỆT]: Hiện tượng thiên nhiên tự phát sinh tác động trực tiếp và kéo dài lên đời sống một vùng mà không có sự tác động của con người
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Sương mù quang hóa đậm đặc bất ngờ bao phủ toàn bộ thành phố từ sáng đến chiều muộn làm giảm tầm nhìn nghiêm trọng.
+
+[CHỦ THỂ]: Khối không khí lặng gió kết hợp độ ẩm cao và bụi mịn tích tụ (Yếu tố tự nhiên/vô tri)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Bầu không khí đô thị và người tham gia giao thông trên đường
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Sương mù không tan suốt 10 tiếng đồng hồ, che lấp hoàn toàn các tòa nhà cao tầng, ép các phương tiện phải bật đèn pha di chuyển lúc giữa trưa.
+
+[THỜI GIAN]: Suốt ngày 08/08/2026
+
+[ĐỊA ĐIỂM]: Thành phố Hồ Chí Minh
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Chỉ số chất lượng không khí (AQI) duy trì ở mức kém (vượt ngưỡng 150); hiện tượng chỉ tự biến mất khi có gió mùa hoặc mưa giông giải tỏa.
+
+[NGUỒN]: Ứng dụng quan trắc AirVisual và mạng lưới báo chí khí tượng nội địa
+
+
+
+---
+
+B. NEWS TIER 2 — CÁC CẤU TRÚC ĐẶC BIỆT
+
+[ID]: 27
+
+[CHỦ ĐỀ]: 36. Drama / 37. Tranh luận cộng đồng / 55. Một hiện tượng xã hội được cộng đồng bàn luận
+
+[TIER 1 / TIER 2]: TIER 2
+
+[CẤU TRÚC ĐẶC BIỆT]: Hành động đính chính, phủ định một tin đồn thất thiệt đang viral (Sự việc thực tế là KHÔNG CÓ THẬT)
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Công ty quản lý lên tiếng bác bỏ tin đồn thất thiệt về việc một nữ ca sĩ thần tượng gen Z bí mật sinh con cho đại gia.
+
+[CHỦ THỂ]: Đại diện công ty giải trí chủ quản của nghệ sĩ
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Tin đồn ẩn danh đang lan truyền trên các hội nhóm chuyên bóc phốt (Drama)
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Công ty phát văn bản chính thức khẳng định thông tin trên mạng là hoàn toàn bịa đặt, tuyên bố đã thu thập bằng chứng để chuyển cho cơ quan an ninh mạng xử lý.
+
+[THỜI GIAN]: Tối ngày 07/08/2026
+
+[ĐỊA ĐIỂM]: Không gian mạng xã hội Việt Nam
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Tin đồn bị chặn đứng đà lan truyền; một loạt các trang tin cộng đồng tự động xóa bài viết đăng tải không kiểm chứng trước đó để tránh bị quét bản quyền pháp lý.
+
+[PHẢN ỨNG / MỨC ĐỘ CHÚ Ý]: Thu hút 120.000 lượt tương tác trong 3 giờ; dư luận xoay chiều từ tò mò sang chỉ trích các tài khoản tung tin bẩn câu view.
+
+[NGUỒN]: Thông cáo báo chí chính thức đăng trên Fanpage xác minh của Nghệ sĩ
+
+
+
+---
+
+[ID]: 28
+
+[CHỦ ĐỀ]: 35. Meme / trend / 52. Một sự việc cũ bất ngờ nóng trở lại
+
+[TIER 1 / TIER 2]: TIER 2
+
+[CẤU TRÚC ĐẶC BIỆT]: Sự kiện mang tính chu kỳ lặp lại đều đặn hàng năm khiến cộng đồng mạng tự động kích hoạt một loạt hành vi thảo luận giống hệt quá khứ
+
+[TIÊU ĐỀ / MÔ TẢ NGẮN]: Làn sóng chế ảnh meme "Hết nửa năm 2026 nhưng mục tiêu từ năm 2020 vẫn chưa hoàn thành" đồng loạt phủ kín mạng xã hội tháng 8.
+
+[CHỦ THỂ]: Tập thể người dùng mạng xã hội (Đa chủ thể không định danh)
+
+[ĐỐI TƯỢNG BỊ TÁC ĐỘNG]: Tâm lý áp lực đồng trang lứa và thói quen trì hoãn của giới trẻ văn phòng
+
+[HÀNH ĐỘNG / DIỄN BIẾN]: Cứ đến dịp cuối hè - đầu thu, người dùng lại tự sao chép các phôi ảnh chế cũ, sửa mốc thời gian thành năm hiện tại rồi chia sẻ lên trang cá nhân kèm những dòng trạng thái tự trào.
+
+[THỜI GIAN]: Từ đầu tháng 8/2026 đến nay
+
+[ĐỊA ĐIỂM]: Nền tảng Facebook và Threads tại Việt Nam
+
+[KẾT QUẢ / TRẠNG THÁI HIỆN TẠI]: Trở thành bộ nhận diện xu hướng tâm lý chung của tháng; thúc đẩy các bài viết chia sẻ mẹo quản lý thời gian ăn theo trào lưu này.
+
+[NGUỒN]: Bảng xếp hạng xu hướng thảo luận tự động trên mạng xã hội
+
+
+
+---
+
+HẾT CORPUS 01–28.
