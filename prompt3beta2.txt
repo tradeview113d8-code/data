@@ -1,82 +1,58 @@
-# NEWS ATOM EXTRACTOR
-# BETA 2
+# NEWS STRUCTURER
+# VERSION: FINAL 1.0
 
-Hãy chuyển TOÀN BỘ các STORY ở kết quả ngay trước
-thành dữ liệu JSON tối giản.
+Bạn nhận được danh sách STORIES từ kết quả tìm kiếm
+ở phía trên trong cuộc trò chuyện này.
 
-KHÔNG tìm kiếm thêm.
+Nhiệm vụ:
 
-KHÔNG thêm nguồn.
+CHUYỂN MỖI STORY THÀNH DỮ LIỆU JSON
+THEO ĐÚNG SKELETON BÊN DƯỚI.
 
-KHÔNG thêm link.
+Không tìm kiếm thêm.
 
-KHÔNG thêm URL.
+Không viết lại câu chuyện.
 
-KHÔNG thêm thông tin ngoài STORY.
+Không bình luận.
 
-KHÔNG giải thích.
+Không giải thích.
 
-Chỉ trả về JSON.
+Không thêm nguồn.
 
+Không thêm link.
 
-==================================================
-OUTPUT
-==================================================
-
-Mỗi STORY trở thành một object:
-
-{
-  "id": "",
-  "category": "",
-  "title": "",
-  "entities": [],
-  "states": [],
-  "events": []
-}
+Không thêm field ngoài skeleton.
 
 
 ==================================================
-1. id
+1. NGUYÊN TẮC QUAN TRỌNG NHẤT
 ==================================================
 
-Đánh số theo thứ tự STORY:
+Chỉ cấu trúc hóa thông tin đã có trong STORY.
 
-news_001
-news_002
-news_003
-...
+Không sáng tác.
 
+Không suy luận thêm.
 
-==================================================
-2. category
-==================================================
+Không bổ sung thông tin từ trí nhớ.
 
-Giữ nguyên CATEGORY của STORY.
+Không tự tìm thông tin mới.
 
+Nếu STORY không cung cấp thông tin cho một field:
 
-==================================================
-3. title
-==================================================
+dùng giá trị rỗng phù hợp.
 
-Giữ nguyên TITLE.
+Không tự bịa.
 
 
 ==================================================
-4. entities
+2. ENTITY
 ==================================================
 
-Liệt kê những thực thể quan trọng xuất hiện
-trong câu chuyện.
+Tách những thực thể quan trọng xuất hiện
+trực tiếp trong STORY.
 
-Mỗi entity:
-
-{
-  "id": "",
-  "type": "",
-  "name": ""
-}
-
-type chỉ dùng một trong:
+Ví dụ:
 
 person
 group
@@ -85,205 +61,285 @@ place
 object
 phenomenon
 
-Không cần đưa mọi danh từ vào entities.
+Mỗi entity:
 
-Chỉ giữ những thực thể tham gia hoặc liên quan trực tiếp
-đến sự kiện.
+{
+  "id": "ent_001",
+  "type": "...",
+  "name": "..."
+}
+
+Không cần tạo entity cho mọi danh từ.
+
+Chỉ giữ những thực thể có ích để hiểu STORY.
 
 
 ==================================================
-5. states
+3. STATE
 ==================================================
 
-Chỉ ghi những trạng thái hoặc thuộc tính quan trọng
-mà câu chuyện thực sự cần để hiểu sự kiện.
+Nếu STORY chứa một trạng thái,
+điều kiện, đặc điểm hoặc thông tin định lượng
+quan trọng thì đưa vào states.
 
-Mỗi state:
-
-{
-  "type": "",
-  "value": ""
-}
-
-Ví dụ:
+Format:
 
 {
-  "type": "age",
-  "value": "76 tuổi"
+  "type": "...",
+  "value": "..."
 }
 
-hoặc:
-
-{
-  "type": "duration",
-  "value": "8 tiếng"
-}
-
-hoặc:
-
-{
-  "type": "condition",
-  "value": "không biết bơi"
-}
-
-Nếu không có state quan trọng:
-
-[]
+Không cần tạo state nếu STORY không có.
 
 
 ==================================================
-6. events
+4. EVENT
 ==================================================
 
-Đây là phần QUAN TRỌNG NHẤT.
-
-Tách STORY thành các sự kiện chính theo trình tự
-xảy ra trong câu chuyện.
+Tách các sự kiện chính của STORY.
 
 Mỗi event:
 
 {
-  "id": "",
-  "type": "",
-  "status": "",
+  "id": "event_01",
+  "type": "...",
+  "status": "...",
   "actor": [],
   "target": [],
-  "action": "",
+  "action": "...",
   "location": "",
   "time": ""
 }
 
+Chỉ tạo event khi STORY thực sự mô tả
+một hành động hoặc sự kiện.
 
-id:
-
-event_01
-event_02
-event_03
-...
+Không biến mọi câu mô tả thành event.
 
 
-type:
+==================================================
+5. EVENT TYPE
+==================================================
 
-Dùng một từ hoặc cụm từ ngắn mô tả loại sự kiện.
+Tự mô tả loại sự kiện bằng từ ngắn gọn
+phù hợp với nội dung.
 
 Ví dụ:
 
-discovery
 accident
+discovery
+appearance
+conflict
 rescue
 fire
-collapse
-appearance
 announcement
-investigation
 rumor
-denial
-construction
-recognition
+dispute
+return
+collapse
+investigation
 
-KHÔNG cần cố gắng dùng một ontology cố định.
+Không cần dùng một danh sách type cố định.
+
+Không tạo type dài hoặc phức tạp.
 
 
-status:
+==================================================
+6. STATUS
+==================================================
 
-Chỉ điền nếu STORY thể hiện rõ:
+Nếu STORY thể hiện rõ trạng thái của event,
+có thể dùng:
 
 completed
 ongoing
 pending
 
-Nếu không rõ:
+Nếu không xác định được:
 
 ""
 
-
-actor:
-
-dùng entity id.
+Không tự suy đoán trạng thái.
 
 
-target:
+==================================================
+7. ACTOR / TARGET
+==================================================
 
-dùng entity id.
+Nếu STORY thể hiện rõ ai hoặc cái gì
+thực hiện hành động và ai/cái gì là đối tượng:
+
+đưa entity ID tương ứng vào actor / target.
+
+Nếu không rõ:
+
+[].
+
+Không ép phải điền.
+
+Không suy đoán.
 
 
-action:
+==================================================
+8. ACTION
+==================================================
 
-mô tả ngắn gọn hành động hoặc sự kiện.
+Mô tả ngắn gọn điều thực sự xảy ra.
 
 Không thêm cảm xúc.
 
-Không thêm suy luận.
+Không thêm nguyên nhân không có trong STORY.
+
+Không thêm kết luận.
+
+Không giật gân hóa.
 
 
-location:
+==================================================
+9. LOCATION / TIME
+==================================================
 
-dùng entity id nếu có địa điểm rõ ràng.
+Chỉ điền nếu STORY có thông tin.
 
 Nếu không có:
 
 ""
 
-
-time:
-
-chỉ ghi thời gian nếu STORY nói rõ.
-
-Nếu không có:
-
-""
+Không suy đoán.
 
 
 ==================================================
-7. QUY TẮC QUAN TRỌNG
+10. CATEGORY
 ==================================================
 
-KHÔNG tạo:
+Giữ nguyên category mà Prompt 1 đã tạo.
+
+Không đổi category.
+
+Không tự phân loại lại.
+
+
+==================================================
+11. TITLE
+==================================================
+
+Giữ nguyên title của STORY.
+
+Không viết lại.
+
+Không rút gọn.
+
+Không làm giật gân hơn.
+
+
+==================================================
+12. OUTPUT SKELETON
+==================================================
+
+Mỗi STORY phải trở thành:
+
+{
+  "id": "news_001",
+  "category": "...",
+  "title": "...",
+  "entities": [
+    {
+      "id": "ent_001",
+      "type": "...",
+      "name": "..."
+    }
+  ],
+  "states": [
+    {
+      "type": "...",
+      "value": "..."
+    }
+  ],
+  "events": [
+    {
+      "id": "event_01",
+      "type": "...",
+      "status": "...",
+      "actor": [],
+      "target": [],
+      "action": "...",
+      "location": "",
+      "time": ""
+    }
+  ]
+}
+
+
+==================================================
+13. ID
+==================================================
+
+Mỗi STORY:
+
+news_001
+news_002
+news_003
+...
+
+Entity ID không được trùng trong cùng STORY.
+
+Event ID không được trùng trong cùng STORY.
+
+
+==================================================
+14. FIELD BỊ CẤM
+==================================================
+
+TUYỆT ĐỐI KHÔNG tạo:
 
 source
-source_type
+sources
 url
-published_at
+link
+source_confidence
+story_status
 evidence
-attention
-forecast
-relation
-sequence
-claim
+claims
+attentions
+forecasts
+sequences
+relations
+news_atom
+schema_version
+meta
 
-Những thứ này sẽ được xử lý ở bước khác
-hoặc do Python suy ra.
+Không tạo bất kỳ field nào ngoài:
 
+id
+category
+title
+entities
+states
+events
 
-==================================================
-8. KHÔNG SUY LUẬN
-==================================================
-
-Nếu thông tin không có trong STORY:
-
-không tạo.
-
-Không đoán.
-
-Không bổ sung.
-
-Không dùng kiến thức bên ngoài.
+và các field con được quy định
+trong skeleton.
 
 
 ==================================================
-9. KHÔNG GỘP STORY
+15. JSON
 ==================================================
 
-Mỗi STORY = một object.
+Output phải là JSON hợp lệ.
 
-Giữ nguyên thứ tự.
+Không dùng Markdown.
 
+Không dùng:
 
-==================================================
-10. OUTPUT FORMAT
-==================================================
+```json
 
-Chỉ trả về:
+Không viết lời dẫn trước JSON.
+
+Không viết nhận xét sau JSON.
+
+Output duy nhất là một JSON ARRAY.
+
+Ví dụ:
 
 [
   {
@@ -296,11 +352,28 @@ Chỉ trả về:
   }
 ]
 
-Không markdown.
 
-Không ```json.
+==================================================
+16. QUY TẮC CUỐI
+==================================================
 
-Không giải thích.
+INPUT:
 
+STORIES đã được tìm kiếm.
 
-BẮT ĐẦU.
+OUTPUT:
+
+JSON machine-readable.
+
+Nhiệm vụ của bạn không phải là
+phân tích tin tức.
+
+Nhiệm vụ của bạn chỉ là:
+
+STORY
+↓
+STRUCTURE
+↓
+JSON
+
+KẾT THÚC.
