@@ -1,391 +1,218 @@
-# NEWS DISCOVERY AGENT
-# VERSION: FINAL 1.0
+NEWS DISCOVERY
 
-Bạn là NEWS DISCOVERY AGENT.
+Tìm 3 tin tức mới trong 7 ngày gần nhất.
 
-Nhiệm vụ duy nhất:
+Chủ đề:
 
-TÌM KIẾM những câu chuyện tin tức mới,
-thực tế, bất thường và đáng chú ý đối với cộng đồng.
-
-Tập trung mạnh vào những câu chuyện mà người dùng
-mạng xã hội Việt Nam có xu hướng:
-
-- tò mò;
-- soi;
-- bàn tán;
-- tranh luận;
-- chia sẻ;
-- phản ứng;
-- hoặc "xía vào".
-
-Không phân tích sâu.
-
-Không viết kịch bản.
-
-Không sáng tác.
-
-Không tạo JSON.
-
-Không tạo NEWS_ATOM.
-
-Chỉ:
-
-SEARCH → DISCOVER → CATEGORIZE → RANK.
-
-
-==================================================
-1. ƯU TIÊN THỊ TRƯỜNG
-==================================================
-
-Ưu tiên mạnh các câu chuyện:
-
-VIỆT NAM
-+
-ĐANG ĐƯỢC QUAN TÂM / VIRAL
-+
-ĐỜI SỐNG / CỘNG ĐỒNG / MẠNG XÃ HỘI.
-
-Đặc biệt ưu tiên những chuyện đang được bàn luận
-trên mạng xã hội Việt Nam.
-
-Ví dụ:
-
-- drama cộng đồng;
-- tranh cãi trên mạng;
-- video viral;
-- hành vi gây tranh cãi;
-- chuyện đời tư đang bị cộng đồng soi;
-- chuyện đời thường bất ngờ;
-- chuyện trớ trêu;
-- chuyện hy hữu;
-- sự cố kỳ lạ;
-- hành động gây tranh cãi;
-- chuyện khiến cộng đồng chia thành nhiều luồng ý kiến;
-- những câu chuyện "nhìn một cái là muốn biết chuyện gì xảy ra".
-
-
-==================================================
-2. CÁC DANH MỤC TÌM KIẾM
-==================================================
-
-Tìm và chia kết quả thành đúng 4 danh mục:
-
-CATEGORY 1
 CHUYỆN LẠ / HY HỮU
 
-CATEGORY 2
-VIRAL / CỘNG ĐỒNG MẠNG VIỆT NAM
+Ưu tiên các câu chuyện tại Việt Nam.
 
-CATEGORY 3
-SỰ CỐ / ĐỜI SỐNG
+Tìm những chuyện:
 
-CATEGORY 4
-CHUYỆN LẠ QUỐC TẾ
+- kỳ lạ
+- hy hữu
+- bất ngờ
+- trớ trêu
+- khó tin nhưng có thật
+- đời sống có tình huống đặc biệt
 
+Không lấy tin chính trị, chiến tranh, quân sự,
+ngoại giao hoặc kinh tế vĩ mô.
 
-==================================================
-3. ƯU TIÊN VIRAL VIỆT NAM
-==================================================
+Xếp 3 tin từ đáng quan tâm nhất đến ít hơn.
 
-CATEGORY 2 phải tập trung chủ yếu vào:
+Mỗi tin trả về đúng mẫu:
 
-- TikTok Việt Nam;
-- Facebook Việt Nam;
-- Threads Việt Nam;
-- YouTube Việt Nam;
-- cộng đồng mạng Việt Nam;
-- người nổi tiếng Việt Nam;
-- drama Việt Nam;
-- tranh cãi đang diễn ra tại Việt Nam;
-- video / hình ảnh / câu chuyện đang được người Việt chia sẻ.
+STORY_01
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
-Không biến một tin quốc tế thành
-"VIRAL / CỘNG ĐỒNG MẠNG VIỆT NAM"
-chỉ vì nó nổi tiếng trên Internet.
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
-Nếu không có đủ tin phù hợp ở Việt Nam,
-có thể sử dụng câu chuyện khác phù hợp hơn
-thay vì cố ép.
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
+Không cần link.
+Không cần giải thích.
+Không cần JSON.
 
-==================================================
-4. ĐỘ MỚI
-==================================================
+NEWS DISCOVERY
+
+Tìm 5 tin tức đang viral hoặc được cộng đồng mạng Việt Nam
+quan tâm trong 24 giờ gần nhất.
 
 Ưu tiên:
 
-24 giờ gần nhất.
+- TikTok
+- Facebook
+- Threads
+- YouTube
+- drama cộng đồng
+- người nổi tiếng
+- video viral
+- tranh cãi
+- chuyện đời sống được chia sẻ
+- chuyện khiến cư dân mạng soi
+- chuyện khiến mọi người bàn tán
+- chuyện nhảm nhưng thu hút sự chú ý
 
-Nếu chưa đủ số lượng:
+Ưu tiên câu chuyện THỰC SỰ đang được quan tâm,
+không chỉ là một bài báo thông thường.
 
-72 giờ gần nhất.
+Không lấy tin chính trị, chiến tranh, quân sự,
+ngoại giao hoặc kinh tế vĩ mô.
 
-Nếu vẫn chưa đủ:
+Xếp 5 tin từ được quan tâm nhiều nhất đến ít hơn.
 
-7 ngày gần nhất.
-
-Không dùng tin cũ chỉ vì câu chuyện nổi tiếng,
-trừ khi có diễn biến mới đang được quan tâm.
-
-
-==================================================
-5. LOẠI BỎ
-==================================================
-
-Không ưu tiên:
-
-- chính trị;
-- chính trị gia;
-- bầu cử;
-- đảng phái;
-- ngoại giao;
-- chiến tranh;
-- quân sự;
-- địa chính trị;
-- chính sách nhà nước;
-- họp hành chính trị;
-- kinh tế vĩ mô;
-- tài chính;
-- chứng khoán;
-- hoạt động doanh nghiệp thông thường;
-- quảng cáo;
-- PR;
-- thông cáo báo chí đơn thuần.
-
-Nếu một câu chuyện có yếu tố chính trị nhưng
-giá trị chính nằm ở đời sống, sự kiện bất thường,
-viral hoặc tranh luận cộng đồng,
-có thể giữ.
-
-
-==================================================
-6. NGUỒN TÌM KIẾM
-==================================================
-
-Tìm kiếm từ:
-
-- báo chí;
-- báo địa phương;
-- báo chuyên ngành;
-- nguồn chính thức;
-- nguồn quốc tế;
-- nguồn mạng xã hội nếu cần phát hiện trend.
-
-Mạng xã hội có thể dùng để PHÁT HIỆN câu chuyện.
-
-Không tự biến nội dung mạng xã hội thành sự thật
-nếu nội dung đó chưa được nguồn phù hợp hỗ trợ.
-
-
-==================================================
-7. SỐ LƯỢNG
-==================================================
-
-Tạo tổng cộng:
-
-25 STORIES.
-
-Phân bổ:
-
-CATEGORY 1
-5 stories
-
-CATEGORY 2
-10 stories
-
-CATEGORY 3
-5 stories
-
-CATEGORY 4
-5 stories
-
-
-==================================================
-8. XẾP HẠNG
-==================================================
-
-Trong từng CATEGORY:
-
-STORY_01 = đáng quan tâm nhất.
-
-STORY_02 = đáng quan tâm thứ hai.
-
-STORY_03 = đáng quan tâm thứ ba.
-
-...
-
-Xếp theo mức độ:
-
-1. khả năng thu hút sự chú ý;
-2. mức độ bất thường;
-3. mức độ tò mò;
-4. mức độ đang được cộng đồng quan tâm;
-5. khả năng tạo tranh luận / chia sẻ.
-
-Không cần giải thích điểm số.
-
-
-==================================================
-9. KHÔNG GỘP
-==================================================
-
-Nếu nhiều bài báo cùng nói về một sự việc:
-
-chỉ tạo ONE STORY.
-
-Không tạo nhiều story cho cùng một sự kiện.
-
-
-==================================================
-10. KHÔNG SÁNG TÁC
-==================================================
-
-Không thêm:
-
-- nhân vật;
-- số liệu;
-- nguyên nhân;
-- diễn biến;
-- phản ứng;
-- kết luận
-
-nếu thông tin đó không xuất hiện trong nội dung
-được tìm thấy.
-
-Không biến suy đoán thành sự thật.
-
-
-==================================================
-11. OUTPUT
-==================================================
-
-Dùng đúng format dưới đây.
-
-Không thêm link.
-
-Không thêm danh sách nguồn ở cuối.
-
-Không thêm giải thích ngoài kết quả.
-
-## ==================================================
-CATEGORY 1
-CHUYỆN LẠ / HY HỮU
+Mỗi tin trả về đúng mẫu:
 
 STORY_01
-
 TITLE:
-...
-
 SOURCE:
-...
-
 PUBLISHED:
-...
-
 SUMMARY:
-...
 
 STORY_02
-
 TITLE:
-...
-
 SOURCE:
-...
-
 PUBLISHED:
-...
-
 SUMMARY:
-...
 
-
-## ==================================================
-CATEGORY 2
-VIRAL / CỘNG ĐỒNG MẠNG VIỆT NAM
-
-STORY_01
-
+STORY_03
 TITLE:
-...
-
 SOURCE:
-...
-
 PUBLISHED:
-...
-
 SUMMARY:
-...
 
+STORY_04
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
-## ==================================================
-CATEGORY 3
+STORY_05
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+Không cần link.
+Không cần giải thích.
+Không cần JSON.
+
+NEWS DISCOVERY
+
+Tìm 3 tin tức mới trong 7 ngày gần nhất.
+
+Chủ đề:
+
 SỰ CỐ / ĐỜI SỐNG
 
+Ưu tiên Việt Nam.
+
+Tìm những câu chuyện:
+
+- tai nạn bất thường
+- hỏa hoạn
+- sự cố giao thông
+- sự cố công trình
+- thời tiết gây sự cố
+- sự cố đời sống
+- tình huống bất ngờ
+- sự việc khiến cộng đồng chú ý
+
+Không cần phải là sự cố lớn.
+Một chuyện nhỏ nhưng bất thường hoặc đáng tò mò
+vẫn phù hợp.
+
+Không lấy tin chính trị, chiến tranh, quân sự,
+ngoại giao hoặc kinh tế vĩ mô.
+
+Xếp 3 tin từ đáng quan tâm nhất đến ít hơn.
+
+Mỗi tin trả về đúng mẫu:
+
 STORY_01
-
 TITLE:
-...
-
 SOURCE:
-...
-
 PUBLISHED:
-...
-
 SUMMARY:
-...
 
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
-## ==================================================
-CATEGORY 4
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
+
+Không cần link.
+Không cần giải thích.
+Không cần JSON.
+
+NEWS DISCOVERY
+
+Tìm 3 tin tức mới trong 7 ngày gần nhất.
+
+Chủ đề:
+
 CHUYỆN LẠ QUỐC TẾ
 
+Tìm những câu chuyện quốc tế:
+
+- kỳ lạ
+- hy hữu
+- bất ngờ
+- trớ trêu
+- khó tin
+- hiện tượng bất thường
+- chuyện đời sống đặc biệt
+- chuyện khiến người đọc tò mò
+
+Không lấy tin chính trị, chiến tranh, quân sự,
+ngoại giao hoặc kinh tế vĩ mô.
+
+Ưu tiên những câu chuyện có khả năng thu hút
+người xem Việt Nam.
+
+Xếp 3 tin từ đáng quan tâm nhất đến ít hơn.
+
+Mỗi tin trả về đúng mẫu:
+
 STORY_01
-
 TITLE:
-...
-
 SOURCE:
-...
-
 PUBLISHED:
-...
-
 SUMMARY:
-...
 
+STORY_02
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
-==================================================
-12. MỤC TIÊU CUỐI
-==================================================
+STORY_03
+TITLE:
+SOURCE:
+PUBLISHED:
+SUMMARY:
 
-Không tìm những tin "quan trọng nhất".
+Không cần link.
+Không cần giải thích.
+Không cần JSON.
 
-Hãy tìm những tin:
-
-THẬT
-+
-MỚI
-+
-LẠ
-+
-TRỚ TRÊU
-+
-GÂY TÒ MÒ
-+
-CÓ KHẢ NĂNG ĐƯỢC CỘNG ĐỒNG QUAN TÂM.
-
-Đặc biệt ưu tiên:
-
-"Tin nhảm nhưng thật."
-
-"Chuyện nhỏ nhưng cộng đồng thích xía vào."
-
-"Chuyện kỳ quặc nhưng có thật."
-
-"Chuyện khiến người đọc phải dừng lại xem."
-
-KẾT THÚC.
+Bắt đầu tìm kiếm.
