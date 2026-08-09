@@ -1,0 +1,2458 @@
+TREE-NEWS v1.0
+
+OFFICIAL EVENT GRAMMAR — FIRST FORMAL VERSION
+
+Status: Candidate Official Grammar v1.0
+Purpose: Structured representation of real-world news/events
+Scope: Reality → structured event representation
+Out of scope: World Simulator, Action-News, narrative generation, planet/world mapping
+
+
+---
+
+0. CORE PRINCIPLE
+
+Tree-News is a structured event grammar, not a news database and not a simulator.
+
+It must represent:
+
+1. What happened.
+
+
+2. What is happening.
+
+
+3. What changed.
+
+
+4. What state currently exists.
+
+
+5. Who or what is involved.
+
+
+6. How events relate to one another.
+
+
+7. What people are paying attention to.
+
+
+8. What is merely claimed.
+
+
+9. What is forecast or expected.
+
+
+10. When something happened or will happen.
+
+
+
+Three absolute rules:
+
+> DO NOT INVENT.
+DO NOT FORCE-FIT.
+DO NOT FLATTEN.
+
+
+
+If the source does not provide an actor, do not invent one.
+
+If the source describes a state rather than an event, do not manufacture an event.
+
+If the source contains multiple events, do not compress them into one event merely because the root record represents one news item.
+
+
+---
+
+1. DESIGN BOUNDARY
+
+REAL WORLD
+    │
+    ▼
+NEWS / SIGNAL
+    │
+    ▼
+TREE-NEWS v1.0
+    │
+    ▼
+ACTION-NEWS
+    │
+    ▼
+WORLD SIMULATOR
+
+Tree-News answers:
+
+> What does the available evidence say happened, is happening, is claimed, or is attracting attention?
+
+
+
+Action-News answers:
+
+> What does that information mean for the simulated world?
+
+
+
+World Simulator answers:
+
+> How does the simulated world state change?
+
+
+
+Therefore Tree-News v1.0 does not attempt to become a State Machine.
+
+
+---
+
+2. ROOT STRUCTURE
+
+A Tree-News record may contain multiple nodes.
+
+TREE-NEWS
+│
+├── META
+│
+├── SOURCES[]
+│
+├── ENTITIES[]
+│
+├── EVENTS[]
+│
+├── STATES[]
+│
+├── RELATIONS[]
+│
+├── SEQUENCES[]
+│
+├── ATTENTIONS[]
+│
+├── CLAIMS[]
+│
+└── FORECASTS[]
+
+A news item does not necessarily require every node.
+
+Valid examples:
+
+EVENT
+
+EVENT + STATE
+
+EVENTS[] + RELATIONS[]
+
+CLAIM + ATTENTION
+
+ATTENTION + STATE
+
+EVENT + CLAIM + ATTENTION
+
+Empty arrays are valid.
+
+A node must not be created merely to satisfy schema shape.
+
+
+---
+
+3. META
+
+META
+├── news_id
+├── schema_version
+└── collected_at
+
+Fields
+
+Field	Type	Required	Description
+
+news_id	string	YES	Unique ID of the source/news record
+schema_version	string	YES	Tree-News schema version
+collected_at	datetime	NO	Time the record was collected/processed
+
+
+Example:
+
+{
+  "meta": {
+    "news_id": "news_20260808_001",
+    "schema_version": "1.0",
+    "collected_at": "2026-08-08T10:30:00Z"
+  }
+}
+
+
+---
+
+4. SOURCES
+
+Sources preserve provenance.
+
+SOURCES[]
+├── src_id
+├── name
+├── url
+├── type
+└── published_at
+
+Fields
+
+Field	Type	Required
+
+src_id	string	YES
+name	string	YES
+url	string	NO
+type	enum	NO
+published_at	datetime	NO
+
+
+type
+
+official
+press
+social
+anonymous
+unknown
+
+Example:
+
+{
+  "src_id": "src_001",
+  "name": "Example News",
+  "url": "https://example.com/article",
+  "type": "press",
+  "published_at": "2026-08-08T08:00:00Z"
+}
+
+Rule
+
+Never invent source information.
+
+If provenance is unknown:
+
+type = unknown
+
+
+---
+
+5. ENTITIES
+
+Entities provide persistent identity across records.
+
+ENTITIES[]
+├── entity_id
+├── entity_type
+├── name
+└── aliases[]
+
+entity_type
+
+person
+organization
+collective
+object
+phenomenon
+concept
+place
+unknown
+anonymous
+
+Examples
+
+{
+  "entity_id": "ent_fed",
+  "entity_type": "organization",
+  "name": "Federal Reserve",
+  "aliases": ["Fed"]
+}
+
+{
+  "entity_id": "ent_inflation",
+  "entity_type": "concept",
+  "name": "Inflation",
+  "aliases": []
+}
+
+Important rule
+
+There is no none entity type.
+
+If an event has no actor:
+
+"actors": []
+
+Do not create:
+
+{
+  "actor_type": "none"
+}
+
+
+---
+
+6. EVENT
+
+EVENT represents an identifiable occurrence, action, incident, decision, discovery, reaction, or state transition.
+
+EVENT
+├── event_id
+├── event_type
+├── event_status
+├── event_origin
+├── time
+├── actors[]
+├── targets[]
+├── action
+├── state_refs[]
+└── location_ref
+
+Required
+
+event_id
+event_type
+event_status
+
+Optional
+
+event_origin
+time
+actors
+targets
+action
+state_refs
+location_ref
+
+
+---
+
+7. EVENT CARDINALITY
+
+A Tree-News record may contain:
+
+events: []
+
+with zero, one, or many events.
+
+Example:
+
+EVENT A
+  │
+  ├── CAUSES → EVENT B
+  │
+  └── LEADS_TO → EVENT C
+
+This is preferred over:
+
+EVENT A:
+"Xe tải tông cầu khiến cầu sập khiến giao thông tê liệt..."
+
+when the source clearly describes distinct events.
+
+
+---
+
+8. EVENT TYPE
+
+event_type describes event grammar, not news topic.
+
+Core vocabulary
+
+state_change
+material_incident
+institutional_action
+communication_act
+legal_action
+policy_decision
+rescue_operation
+competition
+discovery
+enforcement
+reaction_event
+publication
+attention_event
+other
+
+Do NOT use
+
+weather
+politics
+sports
+drama
+traffic
+meme
+viral
+celebrity
+
+as event_type.
+
+Those are topics or attention categories, not generic event grammar.
+
+Rule
+
+A new news topic must not require a new event_type unless the underlying event grammar is genuinely new.
+
+
+---
+
+9. EVENT STATUS
+
+event_status is the authoritative lifecycle/status field for an event.
+
+occurred
+ongoing
+future
+postponed
+cancelled
+interrupted
+completed
+failed
+prevented
+unknown
+
+Important distinction
+
+event_status describes the event lifecycle/outcome.
+
+It does not replace temporal information.
+
+Examples:
+
+event_status = ongoing
+
+event_status = postponed
+
+event_status = prevented
+
+
+---
+
+10. SINGLE SOURCE OF TRUTH FOR EVENT STATUS
+
+Tree-News v1.0 removes:
+
+TIME.temporal_status
+
+There must be only one lifecycle authority:
+
+EVENT.event_status
+
+Therefore this is invalid:
+
+{
+  "event_status": "postponed",
+  "time": {
+    "temporal_status": "future"
+  }
+}
+
+Temporal information belongs to TIME.
+
+Lifecycle/outcome belongs to EVENT.event_status.
+
+
+---
+
+11. EVENT ORIGIN
+
+Optional:
+
+event_origin
+
+Vocabulary:
+
+world
+communication
+attention_driven
+social
+unknown
+
+Purpose:
+
+To distinguish a real-world event from an event whose newsworthiness primarily emerged through communication/social attention.
+
+Example:
+
+event_origin = world
+
+for:
+
+> A person physically clears debris from a road.
+
+
+
+Then:
+
+ATTENTION.attention_type = viral
+
+can represent why it became newsworthy.
+
+
+---
+
+12. TIME
+
+TIME describes when, not event lifecycle.
+
+time
+├── start
+├── end
+├── raw
+├── precision
+├── range
+└── effective_at
+
+All fields are optional depending on evidence.
+
+Fields
+
+Field	Description
+
+start	Beginning of known time
+end	End of known time
+raw	Original temporal expression
+precision	Accuracy/granularity of time
+range	Explicit time interval
+effective_at	Time at which a decision/rule/state takes effect
+
+
+
+---
+
+13. TIME PRECISION
+
+exact
+day
+week
+month
+quarter
+year
+range
+approximate
+unknown
+
+Example:
+
+Source:
+
+> “Tuần đầu tháng 8/2026”
+
+
+
+Represent:
+
+{
+  "raw": "tuần đầu tháng 8/2026",
+  "precision": "week"
+}
+
+Do not invent:
+
+2026-08-01
+
+unless the source actually provides that date.
+
+
+---
+
+14. ACTORS
+
+Actors represent participants/agents in an event.
+
+actors[]
+├── entity_ref
+└── role
+
+Core roles
+
+agent
+participant
+instrument
+experiencer
+beneficiary
+owner
+source
+
+Example:
+
+{
+  "entity_ref": "ent_fed",
+  "role": "agent"
+}
+
+No actor
+
+For natural events:
+
+"actors": []
+
+is valid.
+
+Example:
+
+> Áp thấp nhiệt đới suy yếu.
+
+
+
+No artificial actor is required.
+
+
+---
+
+15. TARGETS
+
+Targets identify what an event affects, acts upon, or is directed toward.
+
+targets[]
+├── entity_ref
+├── state_ref
+└── role
+
+A target may be:
+
+person;
+
+organization;
+
+object;
+
+phenomenon;
+
+collective;
+
+concept;
+
+state.
+
+
+Example:
+
+{
+  "state_ref": "state_burrito_price",
+  "role": "affected_state"
+}
+
+This avoids forcing abstract concepts into object or phenomenon.
+
+
+---
+
+16. ACTION
+
+ACTION exists only when an event contains an identifiable action/operation.
+
+action
+├── action_type
+├── actor_refs[]
+└── status
+
+action_type is controlled vocabulary where possible.
+
+Example:
+
+{
+  "action": {
+    "action_type": "rescue",
+    "actor_refs": ["ent_rescue_team"],
+    "status": "ongoing"
+  }
+}
+
+Natural state transitions do not require ACTION.
+
+Example:
+
+> Áp thấp suy yếu.
+
+
+
+does not require:
+
+ACTION
+
+
+---
+
+17. ACTION STEPS
+
+Tree-News v1.0 does not use ACTION.steps[] for independent events.
+
+If the source contains:
+
+Mưa lớn
+→ sập hầm
+→ công nhân mắc kẹt
+→ khoan thông khí
+→ đào lối phụ
+
+these should become distinct events where appropriate:
+
+EVENT A
+EVENT B
+EVENT C
+EVENT D
+EVENT E
+
+and relationships/sequence structures represent their dependencies.
+
+Reason:
+
+> A step with its own status, time, evidence, actor, or relationship is an event and must be independently addressable.
+
+
+
+
+---
+
+18. STATE
+
+STATE represents an identifiable condition/value of something.
+
+STATE
+├── state_id
+├── subject_ref
+├── attribute
+├── value
+├── unit
+├── qualifier
+└── time_ref
+
+Required
+
+state_id
+attribute
+value
+
+Optional
+
+subject_ref
+unit
+qualifier
+time_ref
+
+
+---
+
+19. STATE EXAMPLES
+
+Fuel price
+
+{
+  "state_id": "state_fuel_e5_price",
+  "subject_ref": "ent_e5",
+  "attribute": "price",
+  "value": 22380,
+  "unit": "VND/L"
+}
+
+AQI
+
+{
+  "state_id": "state_aqi_hcm",
+  "subject_ref": "ent_hcm",
+  "attribute": "AQI",
+  "value": 150,
+  "unit": "index",
+  "qualifier": "exceeded"
+}
+
+Inflation
+
+{
+  "state_id": "state_inflation",
+  "subject_ref": "ent_inflation",
+  "attribute": "rate",
+  "value": 3.5,
+  "unit": "percent"
+}
+
+
+---
+
+20. STATE ≠ EVENT
+
+A state and a change of state are different.
+
+Example:
+
+> Giá xăng là 22.380 đồng/lít.
+
+
+
+STATE
+
+Example:
+
+> Giá xăng được điều chỉnh lên 22.380 đồng/lít.
+
+
+
+Can be represented as:
+
+EVENT
+    │
+    └── updates/produces → STATE
+
+The event represents the change.
+
+The state represents the resulting condition.
+
+
+---
+
+21. STATE REFERENCES
+
+Because STATE has an ID, it can be referenced by:
+
+EVENT
+RELATION
+ATTENTION
+CLAIM
+
+This prevents artificial event creation.
+
+Example:
+
+> Giá burrito 20 USD đang gây tranh luận.
+
+
+
+Correct conceptual representation:
+
+STATE: burrito price = 20 USD
+
+ATTENTION:
+    type = debate
+    target = state_burrito_price
+
+Not:
+
+EVENT: "burrito price causes debate"
+
+unless an actual causal event is explicitly supported.
+
+
+---
+
+22. STATE DELTA
+
+Tree-News v1.0 does not define STATE_DELTA as a mandatory root node.
+
+State changes can be represented through:
+
+EVENT
+   ↓
+STATE
+
+or through references between relevant states/events.
+
+A dedicated simulation-oriented state transition layer belongs to:
+
+ACTION-NEWS
+
+not Tree-News core.
+
+
+---
+
+23. RELATIONS
+
+RELATIONS is the single graph mechanism.
+
+RELATIONS[]
+├── relation_id
+├── relation_type
+├── from_ref
+├── to_ref
+├── evidence_refs[]
+└── attributes
+
+All causal/temporal/semantic relationships that require graph edges should use this mechanism.
+
+
+---
+
+24. REMOVE CONSEQUENCES
+
+Tree-News v1.0 has no EVENT.CONSEQUENCES node.
+
+Do not represent:
+
+EVENT
+└── consequences[]
+
+Instead:
+
+EVENT A
+   │
+   └── CAUSES
+          ↓
+       EVENT B
+
+This establishes a single source of truth for event relationships.
+
+
+---
+
+25. RELATION TYPES
+
+Core v1.0:
+
+CAUSES
+LEADS_TO
+AFFECTS
+INTERRUPTS
+DELAYS
+REACTIVATES
+CONTRADICTS
+REACTS_TO
+INSTANCE_OF
+FULFILLS
+
+Meaning
+
+CAUSES
+
+A directly causes B.
+
+LEADS_TO
+
+A contributes to or leads toward B without necessarily claiming strict direct causation.
+
+AFFECTS
+
+A has an effect on B without specifying full causality.
+
+INTERRUPTS
+
+A interrupts B.
+
+DELAYS
+
+A causes B to occur later than intended/planned.
+
+REACTIVATES
+
+A causes an existing/historical pattern/event/attention episode to become active again.
+
+CONTRADICTS
+
+A conflicts with the content/claim represented by B.
+
+REACTS_TO
+
+A is a reaction to B.
+
+INSTANCE_OF
+
+A is an instance of a recurring pattern/concept.
+
+FULFILLS
+
+An actual event fulfills a previous forecast.
+
+
+---
+
+26. RELATION ENDPOINT TYPES
+
+Relations must be type-safe.
+
+Examples:
+
+CAUSES
+EVENT → EVENT
+EVENT → STATE
+
+AFFECTS
+EVENT → EVENT
+EVENT → STATE
+
+CONTRADICTS
+EVENT → CLAIM
+CLAIM → CLAIM
+
+REACTIVATES
+EVENT/ATTENTION → EVENT/ATTENTION/external_ref
+
+INSTANCE_OF
+EVENT/ATTENTION → PATTERN/external_ref
+
+FULFILLS
+EVENT → FORECAST
+
+The exact endpoint matrix is part of validation.
+
+An arbitrary:
+
+ACTOR → LOCATION
+
+must not be accepted merely because both IDs exist.
+
+
+---
+
+27. RELATION EVIDENCE
+
+evidence_refs[] contains references to source IDs.
+
+Example:
+
+{
+  "relation_id": "rel_001",
+  "relation_type": "CAUSES",
+  "from_ref": "evt_001",
+  "to_ref": "evt_002",
+  "evidence_refs": ["src_001"]
+}
+
+Evidence must be resolvable through:
+
+SOURCES[]
+
+unless an explicit external reference mechanism is used.
+
+
+---
+
+28. RELATION ATTRIBUTES
+
+attributes is optional and reserved for relation-specific metadata.
+
+Example:
+
+{
+  "impact_polarity": "negative"
+}
+
+However:
+
+> v1.0 does not require a universal causal probability model.
+
+
+
+Do not invent confidence values merely because the schema allows attributes.
+
+
+---
+
+29. IMITATION
+
+IMITATES is not a core relation type.
+
+For an actual action:
+
+ACTION.action_type = imitation
+
+For recurring behavior:
+
+EVENT
+   ↓ INSTANCE_OF
+PATTERN
+
+This avoids treating imitation as equivalent to causation.
+
+
+---
+
+30. SEQUENCES
+
+SEQUENCES group events into a coherent process or development.
+
+SEQUENCES[]
+├── sequence_id
+├── sequence_status
+├── event_refs[]
+└── dependency_edges[]
+
+
+---
+
+31. SEQUENCE STATUS
+
+ongoing
+completed
+interrupted
+failed
+cancelled
+unknown
+
+Sequence status describes the sequence as a whole.
+
+Individual events retain their own:
+
+event_status
+
+
+---
+
+32. SEQUENCE ≠ NARRATIVE ORDER
+
+A sequence must not force real-world operations into an artificial linear order.
+
+Example:
+
+EVENT A
+   ├──→ EVENT B
+   └──→ EVENT C
+
+EVENT B
+   └──→ EVENT D
+
+EVENT C
+   └──→ EVENT D
+
+B and C may happen in parallel.
+
+Therefore:
+
+> dependency_edges[] are authoritative for dependency.
+
+
+
+A simple list of events must not be interpreted as proof that:
+
+A → B → C
+
+occurred sequentially.
+
+
+---
+
+33. ATTENTION
+
+ATTENTION represents social/media/public attention or reaction.
+
+ATTENTIONS[]
+├── attention_id
+├── attention_type
+├── target
+├── onset_time
+├── metrics[]
+└── source_refs[]
+
+ATTENTION is intentionally separate from EVENT.
+
+
+---
+
+34. ATTENTION TYPES
+
+Core vocabulary:
+
+viral
+debate
+drama
+meme
+revival
+collective_reaction
+correction
+outrage
+mockery
+human_interest
+
+These describe attention/reaction, not subject matter.
+
+
+---
+
+35. ATTENTION TARGET
+
+An attention object may be:
+
+event_ref
+state_ref
+claim_ref
+entity_ref
+sequence_ref
+external_ref
+
+Example:
+
+{
+  "attention_id": "att_001",
+  "attention_type": "debate",
+  "target": {
+    "state_ref": "state_burrito_price"
+  }
+}
+
+This allows:
+
+> People debate a price.
+
+
+
+without inventing:
+
+> A “price debate event”.
+
+
+
+
+---
+
+36. ATTENTION AND EVENT INDEPENDENCE
+
+ATTENTION may exist without a newly occurring physical event.
+
+Examples:
+
+revival of an old controversy;
+
+seasonal meme;
+
+debate around a static price;
+
+renewed discussion of an old video.
+
+
+Therefore:
+
+> ATTENTION does not require a new EVENT.
+
+
+
+But it must have a meaningful target:
+
+event
+state
+claim
+entity
+sequence
+external reference
+
+An unrestricted:
+
+target = null
+
+is invalid.
+
+
+---
+
+37. ATTENTION METRICS
+
+Optional:
+
+metrics[]
+├── platform
+├── metric
+├── value
+└── window
+
+Example:
+
+{
+  "platform": "social",
+  "metric": "interactions",
+  "value": 23500,
+  "window": "24h"
+}
+
+Possible metrics:
+
+views
+shares
+likes
+comments
+interactions
+mentions
+posts
+discussion_volume
+
+The vocabulary may expand later.
+
+
+---
+
+38. CLAIM
+
+CLAIM represents a proposition that someone says, reports, alleges, denies, or asserts.
+
+CLAIMS[]
+├── claim_id
+├── content
+├── claim_status
+├── target_ref
+├── target_description
+└── evidence_refs[]
+
+A CLAIM is not automatically a fact.
+
+
+---
+
+39. CLAIM STATUS
+
+Core vocabulary:
+
+asserted
+confirmed
+disputed
+denied
+false
+unknown
+
+Important distinction
+
+denied
+
+means:
+
+> Someone explicitly rejects the claim.
+
+
+
+false
+
+means:
+
+> The claim has been established as false.
+
+
+
+These are not equivalent.
+
+
+---
+
+40. CLAIM TARGET
+
+A claim must have either:
+
+target_ref
+
+or:
+
+target_description
+
+If there is no resolvable internal object, textual description is permitted.
+
+Example:
+
+{
+  "claim_id": "clm_001",
+  "content": "The singer had a child.",
+  "claim_status": "denied",
+  "target_description": "allegation that the singer had a child",
+  "evidence_refs": ["src_001"]
+}
+
+This prevents orphan claims.
+
+
+---
+
+41. FALSE CLAIM RULE
+
+Hard rule:
+
+> A false claim must not automatically create the event described by the claim.
+
+
+
+Example:
+
+CLAIM
+"Celebrity X had a child"
+status = false
+
+does not produce:
+
+EVENT
+"Celebrity X had a child"
+
+Instead, if supported:
+
+EVENT:
+company publicly denied the rumor
+
+CLAIM:
+rumor about celebrity X
+
+ATTENTION:
+correction
+
+
+---
+
+42. COMMUNICATION ACT
+
+A real communication action is itself an EVENT when evidence supports it.
+
+Examples:
+
+company issued statement
+government announced policy
+person posted message
+organization denied allegation
+
+This resolves the distinction between:
+
+CLAIM
+
+and:
+
+EVENT: someone made/denied the claim
+
+The statement's content may be represented as a CLAIM.
+
+
+---
+
+43. FORECAST
+
+FORECAST represents an uncertain expectation, prediction, projection, or anticipated future outcome.
+
+FORECASTS[]
+├── forecast_id
+├── target_ref
+├── content
+├── status
+├── time
+└── evidence_refs[]
+
+Forecast is not simply:
+
+EVENT.event_status = future
+
+
+---
+
+44. SCHEDULED FUTURE EVENT VS FORECAST
+
+Scheduled/legal future event
+
+EVENT
+event_status = future
+time.effective_at = 2027-01-01
+
+Example:
+
+> A new legal rule takes effect on January 1, 2027.
+
+
+
+This is not necessarily a forecast.
+
+Uncertain projection
+
+FORECAST
+
+Example:
+
+> Analysts expect inflation to fall next quarter.
+
+
+
+This is a forecast.
+
+
+---
+
+45. FORECAST FULFILLMENT
+
+Do not use:
+
+FORECAST.status = occurred
+
+as a replacement for the real event.
+
+When the predicted event actually happens:
+
+EVENT
+   │
+   └── FULFILLS
+          ↓
+      FORECAST
+
+The forecast remains useful as historical information.
+
+The actual occurrence is represented by an EVENT.
+
+
+---
+
+46. RECURRENCE
+
+Tree-News v1.0 supports recurring patterns without requiring a complex recurrence engine.
+
+Use:
+
+recurrence
+├── pattern
+├── frequency
+└── instance_of
+
+or:
+
+INSTANCE_OF
+
+relation.
+
+Example:
+
+ATTENTION instance 2026
+        │
+        └── INSTANCE_OF
+                ↓
+       seasonal_meme_pattern
+
+This allows:
+
+ID 22
+
+and:
+
+ID 28
+
+to be represented without creating fake events.
+
+
+---
+
+47. HISTORICAL / EXTERNAL REFERENCES
+
+Not every historical event is present in today's record.
+
+Therefore references may be:
+
+internal_ref
+
+or:
+
+external_ref
+
+Example:
+
+{
+  "external_ref": "legacy_event_2023_001"
+}
+
+Use external references for:
+
+historical events;
+
+old videos;
+
+previous controversies;
+
+old memes;
+
+previously recorded patterns.
+
+
+Never invent the missing historical event merely to satisfy an internal foreign key.
+
+
+---
+
+48. LOCATION
+
+Location is structured minimally.
+
+location
+├── name
+├── type
+├── admin_region
+└── geo_ref
+
+Example
+
+{
+  "name": "Ho Chi Minh City",
+  "type": "city",
+  "admin_region": "Vietnam"
+}
+
+geo_ref is optional.
+
+Tree-News v1.0 does not define:
+
+spatial topology;
+
+traffic grids;
+
+polygon simulation;
+
+geographic propagation.
+
+
+Those belong to later layers.
+
+
+---
+
+49. COMPLETE CONCEPTUAL JSON
+
+{
+  "meta": {
+    "news_id": "news_001",
+    "schema_version": "1.0",
+    "collected_at": "2026-08-08T10:30:00Z"
+  },
+
+  "sources": [
+    {
+      "src_id": "src_001",
+      "name": "Example News",
+      "url": "https://example.com/article",
+      "type": "press",
+      "published_at": "2026-08-08T08:00:00Z"
+    }
+  ],
+
+  "entities": [
+    {
+      "entity_id": "ent_001",
+      "entity_type": "organization",
+      "name": "Example Organization",
+      "aliases": []
+    }
+  ],
+
+  "events": [
+    {
+      "event_id": "evt_001",
+      "event_type": "institutional_action",
+      "event_status": "occurred",
+      "event_origin": "world",
+
+      "time": {
+        "start": "2026-08-08T08:00:00Z",
+        "precision": "exact"
+      },
+
+      "actors": [
+        {
+          "entity_ref": "ent_001",
+          "role": "agent"
+        }
+      ],
+
+      "targets": [],
+
+      "action": {
+        "action_type": "announcement",
+        "actor_refs": ["ent_001"],
+        "status": "completed"
+      },
+
+      "state_refs": [],
+
+      "location_ref": null
+    }
+  ],
+
+  "states": [],
+
+  "relations": [],
+
+  "sequences": [],
+
+  "attentions": [],
+
+  "claims": [],
+
+  "forecasts": []
+}
+
+
+---
+
+50. MINIMAL VALID RECORD
+
+Một bản tin có thể cực kỳ đơn giản.
+
+Ví dụ:
+
+{
+  "meta": {
+    "news_id": "news_001",
+    "schema_version": "1.0"
+  },
+
+  "sources": [],
+
+  "entities": [],
+
+  "events": [
+    {
+      "event_id": "evt_001",
+      "event_type": "state_change",
+      "event_status": "occurred"
+    }
+  ],
+
+  "states": [],
+
+  "relations": [],
+  "sequences": [],
+  "attentions": [],
+  "claims": [],
+  "forecasts": []
+}
+
+Nhưng chỉ hợp lệ nếu source thực sự cung cấp đủ thông tin tương ứng.
+
+
+---
+
+51. MULTI-EVENT EXAMPLE
+
+Ví dụ:
+
+> Xe tải tông vào cầu. Cầu sập. Giao thông bị tê liệt.
+
+
+
+Tree-News:
+
+EVENT A
+event_type = material_incident
+event_status = occurred
+
+EVENT B
+event_type = material_incident
+event_status = occurred
+
+EVENT C
+event_type = state_change
+event_status = ongoing
+
+Relations:
+
+A --CAUSES--> B
+B --LEADS_TO--> C
+
+Không nhét cả ba vào một EVENT.
+
+
+---
+
+52. STATE EXAMPLE
+
+Ví dụ:
+
+> Giá xăng E5 RON 92 ở mức 22.380 đồng/lít.
+
+
+
+STATE
+state_id = state_fuel_e5
+attribute = price
+value = 22380
+unit = VND/L
+
+Không cần:
+
+EVENT = "price is 22380"
+
+
+---
+
+53. EVENT + STATE EXAMPLE
+
+Ví dụ:
+
+> Giá xăng được điều chỉnh lên 22.380 đồng/lít.
+
+
+
+EVENT
+event_type = state_change
+event_status = occurred
+
+và:
+
+STATE
+attribute = price
+value = 22380
+unit = VND/L
+
+Relation:
+
+EVENT --AFFECTS--> STATE
+
+
+---
+
+54. ATTENTION + STATE EXAMPLE
+
+Ví dụ:
+
+> Giá một chiếc burrito 20 USD gây tranh luận trên mạng.
+
+
+
+Không cần tạo event giả:
+
+EVENT = burrito controversy
+
+Có thể biểu diễn:
+
+STATE
+attribute = price
+value = 20
+unit = USD
+
+và:
+
+ATTENTION
+attention_type = debate
+target = state_burrito_price
+
+
+---
+
+55. REVIVAL EXAMPLE
+
+Ví dụ:
+
+> Một đoạn ghi âm ba năm trước bị rò rỉ và làm bùng lại tranh cãi cũ.
+
+
+
+Có thể có:
+
+EVENT
+event_type = publication
+event_status = occurred
+
+ATTENTION
+attention_type = revival
+target = external_ref: historical_case_2023
+
+và:
+
+EVENT/ATTENTION
+--REACTIVATES-->
+historical reference
+
+Không tạo một historical EVENT giả nếu dữ liệu cũ không có trong record.
+
+
+---
+
+56. CLAIM + DENIAL EXAMPLE
+
+Ví dụ:
+
+> Công ty phủ nhận tin đồn ca sĩ X sinh con.
+
+
+
+CLAIM
+content = "Ca sĩ X sinh con"
+claim_status = denied
+
+EVENT
+event_type = communication_act
+event_status = occurred
+
+RELATION
+EVENT --CONTRADICTS--> CLAIM
+
+Nếu claim được chứng minh false:
+
+claim_status = false
+
+Không tạo underlying birth event.
+
+
+---
+
+57. INTERRUPTION EXAMPLE
+
+Ví dụ:
+
+> Cơ sở đang gia công hàng giả thì lực lượng chức năng ập vào.
+
+
+
+EVENT A
+action = manufacturing
+status = ongoing
+
+EVENT B
+event_type = enforcement
+status = occurred
+
+B --INTERRUPTS--> A
+
+Event A có thể kết thúc với:
+
+event_status = interrupted
+
+
+---
+
+58. DELAY EXAMPLE
+
+Ví dụ:
+
+> Lễ thông xe bị hoãn do chậm bàn giao mặt bằng.
+
+
+
+EVENT A
+event_type = material_incident
+
+EVENT B
+event_type = institutional_action
+event_status = postponed
+
+A --DELAYS--> B
+
+Không dùng INTERRUPTS nếu bản chất là trì hoãn chứ không phải cắt đứt.
+
+
+---
+
+59. PARALLEL RESCUE EXAMPLE
+
+Ví dụ:
+
+> Một nhóm khoan ống thông khí trong khi nhóm khác đào lối phụ.
+
+
+
+EVENT A
+drilling
+
+EVENT B
+excavation
+
+Cả hai:
+
+A → rescue sequence
+B → rescue sequence
+
+Không được suy luận:
+
+A PRECEDES B
+
+chỉ vì A xuất hiện trước B trong bài viết.
+
+Nếu nguồn chứng minh dependency:
+
+A --LEADS_TO--> B
+
+thì mới tạo quan hệ.
+
+
+---
+
+60. RECURRING MEME EXAMPLE
+
+Ví dụ:
+
+> Một meme cũ quay trở lại vào tháng 8 như mọi năm.
+
+
+
+ATTENTION
+attention_type = revival
+
+recurrence:
+pattern = seasonal
+frequency = yearly
+
+và:
+
+ATTENTION_INSTANCE
+--INSTANCE_OF-->
+seasonal_meme_pattern
+
+Không tạo:
+
+EVENT = "meme happened"
+
+nếu không có event thực tế.
+
+
+---
+
+61. VALIDATION LAYER
+
+Tree-News v1.0 yêu cầu validation ở mức schema và semantic.
+
+Tối thiểu phải kiểm tra:
+
+1. ID uniqueness
+2. required fields
+3. enum validity
+4. reference integrity
+5. relation endpoint type
+6. status consistency
+7. claim/event separation
+8. attention target validity
+9. no duplicate causal representation
+10. time format/precision validity
+
+
+---
+
+62. HARD INVARIANTS
+
+R1 — NO INVENTED ACTOR
+
+Không có actor trong source:
+
+actors = []
+
+
+---
+
+R2 — NO INVENTED EVENT
+
+Không tạo event chỉ vì schema muốn có event.
+
+
+---
+
+R3 — NO STATE → EVENT FORCE-FIT
+
+State không tự động trở thành event.
+
+
+---
+
+R4 — NO ATTENTION → EVENT FORCE-FIT
+
+Attention không tự động trở thành event.
+
+
+---
+
+R5 — NO CLAIM → FACT
+
+Claim không tự động trở thành event/fact.
+
+
+---
+
+R6 — FALSE CLAIM PROTECTION
+
+Claim false không tự động sinh underlying event.
+
+
+---
+
+R7 — SINGLE EVENT STATUS AUTHORITY
+
+EVENT.event_status
+
+là lifecycle authority.
+
+
+---
+
+R8 — TIME IS TIME
+
+TIME không chứa lifecycle status.
+
+
+---
+
+R9 — SINGLE CAUSAL GRAPH
+
+Không tồn tại:
+
+EVENT.CONSEQUENCES
+
+song song với:
+
+RELATIONS.CAUSES
+
+
+---
+
+R10 — MULTI-EVENT
+
+Một record có thể có nhiều event.
+
+
+---
+
+R11 — STATE ADDRESSABILITY
+
+State quan trọng phải có ID khi cần reference.
+
+
+---
+
+R12 — ATTENTION TARGET
+
+Attention phải có target hợp lệ.
+
+
+---
+
+R13 — CLAIM TARGET
+
+Claim phải có target_ref hoặc target_description.
+
+
+---
+
+R14 — TYPED RELATIONS
+
+Relation endpoint phải phù hợp với relation type.
+
+
+---
+
+R15 — NO DANGLING INTERNAL REFERENCE
+
+Internal reference phải resolve được.
+
+External references là ngoại lệ hợp lệ.
+
+
+---
+
+R16 — SEQUENCE ≠ STORY ORDER
+
+Narrative order không được tự động biến thành causal/dependency order.
+
+
+---
+
+R17 — FORECAST ≠ FUTURE EVENT
+
+Forecast và scheduled future event phải được phân biệt.
+
+
+---
+
+R18 — FORECAST FULFILLMENT
+
+Forecast khi thành hiện thực phải được liên kết với EVENT thực tế.
+
+
+---
+
+R19 — EVENT TYPE ≠ TOPIC
+
+Event type là grammar.
+
+
+---
+
+R20 — ATTENTION TYPE ≠ TOPIC
+
+Attention type mô tả phản ứng/chú ý.
+
+
+---
+
+63. SINGLE SOURCE OF TRUTH
+
+Semantic	Authoritative structure
+
+Event lifecycle	EVENT.event_status
+Time	EVENT.time
+Causal/semantic graph	RELATIONS
+State	STATES
+Sequence dependency	RELATIONS / SEQUENCES.dependency_edges
+Public attention	ATTENTIONS
+Proposition/rumor	CLAIMS
+Prediction	FORECASTS
+Provenance	SOURCES
+Persistent identity	ENTITIES
+
+
+Không tạo hai node khác nhau để biểu diễn cùng một semantic nếu không có lý do rõ ràng.
+
+
+---
+
+64. NHỮNG CẤU TRÚC ĐÃ LOẠI BỎ
+
+Tree-News v1.0 không có:
+
+EVENT.CONSEQUENCES
+
+TIME.temporal_status
+
+ACTOR.type = none
+
+RELATIONS.IMITATES
+
+ACTION.steps[] cho multi-event sequence
+
+FORECAST.status = occurred
+
+Không có SIMULATOR_LAYER trong core v1.0.
+
+
+---
+
+65. WORLD SIMULATOR BOUNDARY
+
+Tree-News có thể cung cấp:
+
+EVENT
+STATE
+RELATION
+TIME
+ENTITY
+LOCATION
+ATTENTION
+CLAIM
+FORECAST
+
+Nhưng Tree-News không quyết định:
+
+world_state_transition
+probability
+simulation_action
+planet_effect
+species_effect
+resource_effect
+physics
+
+Các chuyển đổi này thuộc:
+
+ACTION-NEWS
+
+và:
+
+WORLD SIMULATOR
+
+
+---
+
+66. DEFINITION OF DONE
+
+Tree-News v1.0 được coi là đạt khi có thể biểu diễn Corpus 01–28 mà không:
+
+1. invent actor
+2. invent event
+3. force state into event
+4. force attention into event
+5. treat claim as fact
+6. lose temporal information
+7. lose quantitative state
+8. lose multi-event causality
+9. lose parallel operations
+10. create dangling internal references
+11. require topic-specific schema changes
+12. duplicate causal representation
+
+
+---
+
+67. CORPUS COVERAGE TARGET
+
+Các nhóm quan trọng:
+
+01 — natural state change
+02 — natural phenomenon lifecycle
+03 — multi-event causal chain
+08 — quantitative state
+10 — abstract target
+12 — rescue sequence
+13 — event + conflict + attention
+14 — ordinary event + attention
+15 — personal narrative
+16 — attention around state/concept
+17 — multi-hop causal chain
+18 — interruption
+19 — parallel rescue operation
+20 — discovery + claim
+21 — historical revival
+22 — collective imitation
+23 — collective outrage
+24 — future legal event
+25 — postponed event
+26 — environmental state
+27 — false rumor + correction
+28 — recurring attention
+
+
+---
+
+68. v1.0 MINIMAL ROOT CONTRACT
+
+{
+  "meta": {
+    "news_id": "string",
+    "schema_version": "1.0",
+    "collected_at": "datetime?"
+  },
+
+  "sources": [],
+
+  "entities": [],
+
+  "events": [],
+
+  "states": [],
+
+  "relations": [],
+
+  "sequences": [],
+
+  "attentions": [],
+
+  "claims": [],
+
+  "forecasts": []
+}
+
+
+---
+
+69. FINAL ARCHITECTURAL MODEL
+
+TREE-NEWS v1.0
+                              │
+              ┌───────────────┼────────────────┐
+              │               │                │
+          REALITY          STATE           INFORMATION
+              │               │                │
+              ▼               ▼                ▼
+           EVENTS          STATES           CLAIMS
+              │               │                │
+              └───────────────┼────────────────┘
+                              │
+                           RELATIONS
+                              │
+                 ┌────────────┼────────────┐
+                 │            │            │
+             SEQUENCES    ATTENTION     FORECAST
+                 │            │            │
+                 └────────────┼────────────┘
+                              │
+                        STRUCTURED REALITY
+                              │
+                              ▼
+                         ACTION-NEWS
+                              │
+                              ▼
+                       WORLD SIMULATOR
+
+
+---
+
+70. OFFICIAL DESIGN PRINCIPLE
+
+Tree-News v1.0 phải giữ được ba lớp khác nhau:
+
+WHAT HAPPENED
+      ↓
+EVENT
+
+WHAT IS THE STATE
+      ↓
+STATE
+
+WHAT PEOPLE SAY / THINK / ATTEND TO
+      ↓
+CLAIM / ATTENTION
+
+Và nối chúng bằng:
+
+RELATIONS
+
+với thời gian:
+
+TIME
+
+và provenance:
+
+SOURCES
+
+Đây là lõi của Tree-News.
+
+
+---
+
+71. VERSION POLICY
+
+v1.0
+
+Ổn định hóa:
+
+Event grammar;
+
+State;
+
+Relations;
+
+Attention;
+
+Claim;
+
+Forecast;
+
+Time;
+
+Sequence;
+
+Entity;
+
+Provenance;
+
+Validation invariants.
+
+
+v1.x
+
+Chỉ sửa:
+
+ambiguity;
+
+validation;
+
+machine-readability;
+
+lỗi phát hiện qua corpus/production.
+
+
+Không mở rộng schema chỉ vì “có thể hữu ích”.
+
+v2.x
+
+Chỉ khi có bằng chứng rằng:
+
+> v1.x không thể biểu diễn một class dữ liệu thực tế mới mà không force-fit.
+
+
+
+
+---
+
+72. FINAL STATUS
+
+TREE-NEWS v1.0
+
+> Official Event Grammar — First Formal Version
+
+
+
+Trạng thái trước Constitutional Review:
+
+STRUCTURE: DEFINED
+SEMANTICS: DEFINED
+BOUNDARY: DEFINED
+VALIDATION PRINCIPLES: DEFINED
+CORPUS COVERAGE TARGET: DEFINED
+SIMULATOR BOUNDARY: DEFINED
+
+Chưa LOCK tuyệt đối cho đến khi hoàn thành Round 3 Constitutional Review.
+
+Sau Round 3:
+
+NO CRITICAL GRAMMAR BUG
+        ↓
+LOCK TREE-NEWS v1.0
+
+Nếu có lỗi thật sự phá grammar:
+
+CRITICAL GRAMMAR BUG
+        ↓
+MINIMAL FIX
+        ↓
+TREE-NEWS v1.1
+
+Không redesign lại từ đầu.
