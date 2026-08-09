@@ -1,111 +1,237 @@
+TREE-NEWS DEMO v0.2
+Consensus Structural Revision
+Purpose: sửa các lỗi đã được ít nhất 3 phản biện độc lập cùng xác nhận.
+Không mở rộng schema ngoài phạm vi consensus.
+
+
 TREE-NEWS
 │
-├── 00_META
+├── 0. META
 │   ├── news_id
+│   ├── schema_version
 │   ├── collected_at
 │   ├── published_at
 │   ├── updated_at
-│   ├── source
-│   └── source_count
+│   └── source_ids[]
 │
-├── 01_EVENT
+├── 1. EVENT
+│   │
+│   ├── event_id
 │   ├── event_type
-│   ├── tier
-│   ├── topic
-│   ├── title
-│   ├── summary
-│   └── event_status
+│   ├── event_status
+│   │   ├── occurred
+│   │   ├── ongoing
+│   │   ├── future
+│   │   ├── postponed
+│   │   ├── cancelled
+│   │   ├── interrupted
+│   │   ├── completed
+│   │   ├── failed
+│   │   ├── prevented
+│   │   └── unknown
+│   │
+│   ├── ACTORS (optional)
+│   │   ├── actor_id
+│   │   ├── actor_type
+│   │   │   ├── person
+│   │   │   ├── organization
+│   │   │   ├── collective
+│   │   │   ├── phenomenon
+│   │   │   ├── object
+│   │   │   └── none
+│   │   └── role
+│   │
+│   ├── TARGETS (optional)
+│   │   ├── target_id
+│   │   ├── target_type
+│   │   │   ├── person
+│   │   │   ├── organization
+│   │   │   ├── collective
+│   │   │   ├── phenomenon
+│   │   │   ├── object
+│   │   │   └── none
+│   │   └── affected_role
+│   │
+│   ├── ACTION (optional)
+│   │   ├── action_type
+│   │   ├── action_status
+│   │   └── steps[]
+│   │       ├── step_id
+│   │       ├── order
+│   │       ├── action
+│   │       └── status
+│   │
+│   ├── STATE (optional)
+│   │   ├── before
+│   │   ├── current
+│   │   └── state_change
+│   │
+│   ├── TIME
+│   │   ├── start
+│   │   ├── end
+│   │   └── temporal_status
+│   │       ├── past
+│   │       ├── ongoing
+│   │       ├── future
+│   │       ├── postponed
+│   │       ├── cancelled
+│   │       └── unknown
+│   │
+│   ├── LOCATION (optional)
+│   │
+│   └── CONSEQUENCES (optional)
+│       └── items[]
+│           ├── consequence_event_id
+│           └── consequence_type
 │
-├── 02_ACTORS
-│   ├── primary_actor
-│   ├── secondary_actors
-│   ├── affected_subject
-│   └── actor_relationship
+├── 2. RELATIONS
+│   └── edges[]
+│       ├── edge_id
+│       ├── from_id
+│       ├── to_id
+│       ├── relation_type
+│       │   ├── CAUSES
+│       │   ├── LEADS_TO
+│       │   ├── AFFECTS
+│       │   ├── REACTS_TO
+│       │   ├── INTERRUPTS
+│       │   ├── REACTIVATES
+│       │   ├── IMITATES
+│       │   └── CONTRADICTS
+│       └── evidence[] (optional)
 │
-├── 03_ACTION
-│   ├── action_type
-│   ├── action
-│   ├── action_chain
-│   ├── trigger
-│   ├── reaction
-│   └── counter_action
+│   RULE:
+│   ├── from_id and to_id are mandatory
+│   ├── temporal order is NOT represented here
+│   └── PRECEDES / FOLLOWS are removed because EVENT_SEQUENCE owns order
 │
-├── 04_TIME
-│   ├── event_time
-│   ├── start_time
-│   ├── end_time
-│   ├── duration
-│   ├── recurring
-│   └── future_time
+├── 3. EVENT_SEQUENCE (optional)
+│   ├── sequence_id
+│   ├── events[]
+│   │   ├── event_id
+│   │   └── order
+│   ├── sequence_status
+│   │   ├── completed
+│   │   ├── ongoing
+│   │   ├── interrupted
+│   │   ├── failed
+│   │   └── unknown
+│   └── current_step (optional)
 │
-├── 05_LOCATION
-│   ├── country
-│   ├── region
-│   ├── city
-│   ├── specific_location
-│   └── scope
+├── 4. ATTENTION (optional)
+│   ├── attention_id
+│   ├── target_ref
+│   │   ├── event_id
+│   │   ├── claim_id
+│   │   └── null
+│   ├── attention_type
+│   │   ├── viral
+│   │   ├── drama
+│   │   ├── debate
+│   │   ├── meme
+│   │   ├── revival
+│   │   ├── collective_reaction
+│   │   ├── correction
+│   │   └── human_interest
+│   ├── attention_status
+│   ├── onset_time
+│   ├── attention_source (optional)
+│   └── intensity (optional)
 │
-├── 06_STATE
-│   ├── previous_state
-│   ├── current_state
-│   ├── target_state
-│   ├── state_change
-│   └── unresolved_state
+│   RULE:
+│   ├── ATTENTION may exist without a new EVENT
+│   └── ATTENTION must not invent an EVENT merely to satisfy the schema
 │
-├── 07_CAUSE_EFFECT
-│   ├── cause
-│   ├── immediate_effect
-│   ├── secondary_effect
-│   ├── cascade_effect
-│   └── consequence
+├── 5. CLAIM (optional)
+│   ├── claim_id
+│   ├── claim_type
+│   ├── claim_content
+│   ├── claim_status
+│   │   ├── asserted
+│   │   ├── confirmed
+│   │   ├── disputed
+│   │   ├── denied
+│   │   └── false
+│   ├── target_ref
+│   │   ├── event_id
+│   │   ├── sequence_id
+│   │   └── null
+│   └── evidence[]
 │
-├── 08_RESPONSE
-│   ├── authority_response
-│   ├── public_response
-│   ├── community_response
-│   ├── media_response
-│   └── platform_response
+│   RULE:
+│   └── CLAIM may represent a claim/rumor without asserting that the claimed event actually occurred
 │
-├── 09_ATTENTION
-│   ├── attention_trigger
-│   ├── discussion
-│   ├── controversy
-│   ├── viral_signal
-│   ├── public_interest
-│   └── trend_signal
-│
-├── 10_SOURCE
-│   ├── source_type
-│   ├── source_name
-│   ├── source_url
-│   ├── evidence_level
-│   ├── cross_checked
-│   └── conflicting_information
-│
-├── 11_EVENT_STRUCTURE
-│   ├── single_event
-│   ├── multi_step_event
-│   ├── interrupted_event
-│   ├── completed_event
-│   ├── failed_event
-│   ├── prevented_event
-│   ├── postponed_event
-│   ├── cancelled_event
-│   ├── recurring_event
-│   ├── future_event
-│   ├── correction_event
-│   └── denial_event
-│
-└── 12_TIER_2
-    ├── drama
-    ├── controversy
-    ├── viral_story
-    ├── meme
-    ├── trend
-    ├── community_discussion
-    ├── human_interest
-    ├── ordinary_event_big_attention
-    ├── old_event_revival
-    ├── rumor
-    ├── rumor_correction
-    └── social_reaction
+└── 6. FORECAST (optional)
+    ├── forecast_id
+    ├── target_ref
+    │   ├── event_id
+    │   ├── sequence_id
+    │   └── null
+    ├── expected_time
+    ├── basis
+    └── status
+        ├── pending
+        ├── occurred
+        ├── delayed
+        ├── cancelled
+        └── unknown
+
+
+GLOBAL ID RULE
+├── IDs must be unique within the TREE-NEWS record.
+├── IDs use explicit namespace prefixes:
+│   ├── evt_
+│   ├── act_
+│   ├── tgt_
+│   ├── seq_
+│   ├── att_
+│   ├── clm_
+│   ├── fcst_
+│   ├── edge_
+│   └── src_
+└── References use IDs, never display names.
+
+
+CORE SEMANTIC RULES
+1. EVENT = something that happens / changes / is observed.
+2. ATTENTION = people/media/platform/community paying attention to something.
+3. CLAIM = something asserted, denied, disputed, or confirmed.
+4. FORECAST = an expected future event/state.
+5. STATE describes condition/change; causal links belong in RELATIONS.
+6. EVENT_SEQUENCE owns temporal order.
+7. RELATIONS owns non-temporal typed links.
+8. Actor/target are optional; phenomenon and collective are valid entities.
+9. A pure attention story must not create a fake EVENT.
+10. A rumor/denial must not imply that the underlying event occurred.
+11. A consequence that is itself an event may be referenced through consequence_event_id.
+12. v0.2 does not require simulator-specific hints or probabilistic causal semantics.
+
+
+REMOVED / REPLACED FROM v0.1
+├── ACTORS implicit-mandatory assumption
+├── TARGETS implicit-mandatory assumption
+├── ACTION.action_sequence → ACTION.steps[]
+├── STATE.expected → removed from STATE
+├── RELATIONS flat relation lists → RELATIONS.edges[]
+├── RELATIONS.PRECEDES / FOLLOWS → EVENT_SEQUENCE.order
+├── ATTENTION boolean flag collection → ATTENTION.attention_type
+├── ATTENTION sibling-without-reference → target_ref
+├── CLAIM orphan possibility → target_ref
+├── FORECAST orphan possibility → target_ref
+└── 12_TIER_2 fixed grammar → removed; Tier-2 semantics are represented through ATTENTION / CLAIM / EVENT.
+
+
+OUT OF SCOPE FOR v0.2
+├── simulator_hint
+├── enables / blocks / modifies_probability
+├── detailed relation cardinality taxonomy
+├── actor_intent
+├── legal_force
+├── forecast_confidence model
+└── any new domain-specific node not required by the consensus fixes
+
+
+VERSION
+├── version: 0.2
+├── type: structural revision
+└── status: DEMO / REVIEW REQUIRED
