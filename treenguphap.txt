@@ -1,4 +1,5 @@
 
+
 1. CHÚ THÍCH
 
 CL    = Mệnh đề
@@ -45,51 +46,137 @@ CL
 │
 ├── I. CẤU TRÚC CÂU LÕI
 │   │
-│   ├── S + P
-│   ├── S + P + O
-│   ├── S + P + C
-│   ├── S + P + O + C
-│   ├── S + P + O + A
-│   ├── S + P + O1 + O2
-│   ├── S + P + A + O
-│   ├── S + P + C + A
-│   ├── S + P + O + O
-│   ├── S + P + O + C + A
-│   ├── S + P + O + REL
-│   ├── S + P + O + CONT
-│   ├── S + P + CONT
-│   ├── S + P + A + C
-│   ├── S + P + O + O + A
-│   ├── S + P + O + C + REL
-│   ├── S + P + O + C + CONT
-│   ├── S + P + O + O + REL
-│   ├── S + P + O + O + CONT
-│   ├── S + P + O + C + A + REL
-│   ├── S + P + O + O + C
-│   ├── S + P + O + O + C + A
-│   ├── S + P + O + O + C + REL
-│   ├── S + P + O + O + C + CONT
-│   ├── S + P + O + O + C + A + CONT
-│   ├── S + P + O + O + C + A + REL + CONT
-│   ├── S + P + O + O + C + A + REL + CONS
-│   ├── S + P + O + O + C + A + REL + PURP
-│   ├── S + P + O + O + C + A + REL + CONT + CONS
-│   ├── S + P + O + O + C + A + REL + CONT + PURP
-│   ├── S + P + O + O + C + A + REL + CONT + CAUSE
-│   ├── S + P + O + O + C + A + REL + CONT + COND
-│   ├── S + P + O + O + C + A + REL + CONT + CONTR
-│   ├── S + P + O + PURP
-│   ├── S + P + O + CAUSE
-│   ├── S + V + V + O
-│   └── P + S + O
+│   └── S
+│       │
+│       ├── P
+│       │   │
+│       │   ├── (kết thúc)
+│       │   │
+│       │   ├── O
+│       │   │   │
+│       │   │   ├── (kết thúc)
+│       │   │   ├── C
+│       │   │   │   ├── (kết thúc)
+│       │   │   │   ├── A
+│       │   │   │   ├── REL
+│       │   │   │   └── CONT
+│       │   │   ├── A
+│       │   │   ├── REL
+│       │   │   ├── CONT
+│       │   │   ├── PURP
+│       │   │   ├── CAUSE
+│       │   │   ├── O2
+│       │   │   │   ├── (kết thúc)
+│       │   │   │   ├── A
+│       │   │   │   ├── REL
+│       │   │   │   ├── CONT
+│       │   │   │   ├── C
+│       │   │   │   │   ├── (kết thúc)
+│       │   │   │   │   ├── A
+│       │   │   │   │   ├── REL
+│       │   │   │   │   └── CONT
+│       │   │   │   └── C + A + REL + CONT
+│       │   │   │       ├── CONS
+│       │   │   │       ├── PURP
+│       │   │   │       ├── CAUSE
+│       │   │   │       ├── COND
+│       │   │   │       └── CONTR
+│       │   │   └── O1 + O2
+│       │   │
+│       │   ├── C
+│       │   │   ├── (kết thúc)
+│       │   │   └── A
+│       │   │
+│       │   ├── A
+│       │   │   ├── O
+│       │   │   └── C
+│       │   │
+│       │   ├── CONT
+│       │   │
+│       │   └── V + O
+│       │
+│       └── A + P
+│           └── O
 │
 ├── II. CẤU TRÚC ĐẶC BIỆT
 │   │
 │   ├── V + NP + LOC
 │   ├── LOC + P + S
+│   ├── P + S + O
 │   ├── S + AUX + V
 │   │   └── PASS
-│   ├── S + PASS + V + bởi + NP
+│   │       └── bởi + NP
+│   ├── S + CAUS + O + V
+│   │   └── O
+│   ├── S + P + Adj
+│   │   └── A
+│   └── S + V + V + O
+│
+├── III. CẤU TRÚC VỚI THÀNH PHẦN MỞ RỘNG
+│   │
+│   ├── A + CORE
+│   ├── CORE + A
+│   ├── S + P + AdvP
+│   └── S + P + O + AdvP
+│
+├── IV. CẤU TRÚC NP
+│   │
+│   └── N
+│       ├── (kết thúc)
+│       ├── Q
+│       ├── Num
+│       ├── M
+│       ├── AP
+│       ├── PP
+│       ├── Q + M
+│       └── REL
+│
+├── V. CẤU TRÚC VP
+│   │
+│   └── V
+│       ├── (kết thúc)
+│       ├── Adv
+│       ├── AUX
+│       ├── NP
+│       │   ├── C
+│       │   └── PP
+│       ├── PP
+│       ├── CL
+│       └── V
+│
+├── VI. MỆNH ĐỀ PHỤ
+│   │
+│   ├── SC + MC
+│   ├── MC + SC
+│   ├── TIME
+│   │   ├── TIME + CL
+│   │   └── CL + TIME
+│   ├── CAUSE
+│   │   ├── MC + CAUSE
+│   │   └── CAUSE + MC
+│   ├── CONS
+│   │   └── MC + CONS
+│   ├── COND
+│   │   └── COND + MC
+│   ├── PURP
+│   │   └── MC + PURP
+│   └── CONTR
+│       └── CONTR + MC
+│
+├── VII. MỆNH ĐỀ LÀM THÀNH PHẦN
+│   │
+│   ├── V + CONT
+│   ├── V + REL
+│   ├── CONT + P + O
+│   ├── NP + REL
+│   └── O + REL
+│
+└── XI. CẤU TRÚC ĐẲNG LẬP
+    │
+    ├── CL + COORD + CL
+    ├── S + P + COORD + P
+    ├── O + COORD + O
+    └── NP + COORD + NP│   ├── S + PASS + V + bởi + NP
 │   ├── S + CAUS + O + V
 │   ├── S + CAUS + O + V + O
 │   ├── S + P + Adj
