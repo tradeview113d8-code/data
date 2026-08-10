@@ -1,0 +1,125 @@
+S     = Chủ ngữ
+P     = Vị ngữ
+O     = Tân ngữ
+C     = Bổ ngữ
+A     = Trạng ngữ
+M     = Định ngữ
+
+CL    = Mệnh đề
+MC    = Mệnh đề chính
+SC    = Mệnh đề phụ
+
+NP    = Cụm danh từ
+VP    = Cụm động từ
+PP    = Cụm giới từ
+AP    = Cụm tính từ
+AdvP  = Cụm phó từ
+
+N     = Danh từ
+V     = Động từ
+Adj   = Tính từ
+Adv   = Phó từ
+Pro   = Đại từ
+Num   = Số từ
+Q     = Lượng từ
+Prep  = Quan hệ từ
+Conj  = Liên từ
+
+REL   = Mệnh đề quan hệ
+TIME  = Thành phần thời gian
+LOC   = Thành phần nơi chốn
+CAUSE = Mệnh đề nguyên nhân
+PURP  = Mệnh đề mục đích
+COND  = Mệnh đề điều kiện
+CONS  = Mệnh đề kết quả
+CONTR = Mệnh đề đối lập
+CONT  = Mệnh đề nội dung
+COORD = Cấu trúc đẳng lập
+TREE-GRAMMAR
+│
+└── CL
+    │
+    ├── 1. CẤU TRÚC LÕI
+    │   │
+    │   ├── S + P
+    │   ├── S + P + O
+    │   ├── S + P + C
+    │   ├── S + P + O + C
+    │   └── S + P + O + A
+    │
+    ├── 2. THÀNH PHẦN MỞ RỘNG
+    │   │
+    │   ├── A + CORE
+    │   ├── CORE + A
+    │   ├── TIME + CORE
+    │   ├── CORE + TIME
+    │   ├── LOC + CORE
+    │   └── CORE + LOC
+    │
+    ├── 3. CẤU TRÚC NP
+    │   │
+    │   ├── N
+    │   ├── Q + N
+    │   ├── Num + N
+    │   ├── N + M
+    │   ├── Q + N + M
+    │   └── NP + REL
+    │
+    ├── 4. CẤU TRÚC VP
+    │   │
+    │   ├── V
+    │   ├── Adv + V
+    │   ├── Aux + V
+    │   ├── V + NP
+    │   ├── V + PP
+    │   ├── V + NP + C
+    │   └── V + CL
+    │
+    ├── 5. MỆNH ĐỀ PHỤ
+    │   │
+    │   ├── SC + MC
+    │   ├── MC + SC
+    │   │
+    │   ├── TIME
+    │   │   ├── TIME + CL
+    │   │   └── CL + TIME
+    │   │
+    │   ├── CAUSE
+    │   │   ├── MC + CAUSE
+    │   │   └── CAUSE + MC
+    │   │
+    │   ├── PURP
+    │   │   └── MC + PURP
+    │   │
+    │   ├── COND
+    │   │   └── COND + MC
+    │   │
+    │   ├── CONS
+    │   │   └── MC + CONS
+    │   │
+    │   ├── CONTR
+    │   │   └── CONTR + MC
+    │   │
+    │   └── REL
+    │       └── NP + REL
+    │
+    ├── 6. MỆNH ĐỀ LỒNG
+    │   │
+    │   ├── V + CONT
+    │   ├── V + REL
+    │   ├── CONT
+    │   │   └── S + P + O
+    │   ├── REL
+    │   │   └── S + P + O
+    │   └── CONT
+    │       └── CL
+    │           ├── CAUSE
+    │           ├── CONS
+    │           └── REL
+    │
+    └── 7. CẤU TRÚC ĐẲNG LẬP
+        │
+        ├── CL + COORD + CL
+        ├── S + P + COORD + P
+        ├── O + COORD + O
+        └── NP + COORD + NP
