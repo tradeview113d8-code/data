@@ -1,0 +1,192 @@
+Bạn là WHITELIST MINING ENGINE.
+
+Mục tiêu: xây dựng TREE-WHITELIST cho hệ thống xử lý tin tức tiếng Việt.
+
+Không xây lại Tree-Grammar.
+Không giải thích lý thuyết.
+Không tạo Reaction.
+Không tự tạo cấu trúc mới nếu chưa có trong cây.
+
+Dữ liệu đầu vào:
+- TREE-GRAMMAR hiện có được đính kèm.
+- Nhiệm vụ là tìm các TỪ / CỤM TỪ có giá trị tín hiệu mà hệ thống không nên loại bỏ khi lọc dữ liệu.
+
+==================================================
+PHẦN 1 — ĐIỀN TỪ VÀO CÁC VỊ TRÍ CỦA CÂY
+==================================================
+
+Dựa trên TREE-GRAMMAR được cung cấp, hãy lập danh sách lexical signal cho từng vị trí.
+
+NGUYÊN TẮC:
+
+1. Một vị trí có thể chứa NHIỀU từ hoặc cụm từ.
+
+Ví dụ:
+
+EVENT
+├── xử phạt
+├── bắt
+├── tạm giữ
+├── nổ
+└── sập
+
+Không giới hạn số lượng nếu còn từ phù hợp.
+
+2. Chỉ đưa vào những từ/cụm từ có khả năng mang thông tin mà hệ thống không nên làm mất trong quá trình FILTER.
+
+3. Không chỉ lấy các từ "mạnh".
+Phải tìm cả:
+- động từ;
+- cụm động từ;
+- danh từ;
+- tính từ;
+- phó từ;
+- từ chỉ quan hệ;
+- cụm từ;
+- từ/cụm từ báo hiệu chuyển trạng thái;
+- từ/cụm từ báo hiệu quan hệ giữa các sự kiện.
+
+4. Ưu tiên các từ/cụm từ có khả năng:
+- tạo EVENT;
+- tạo STATE;
+- xác định ACTOR/TARGET;
+- tạo quan hệ CAUSE/RESULT/CONDITION/CONTRAST/PURPOSE/TIME;
+- xác định CLAIM;
+- xác định mức độ hoặc thay đổi quan trọng;
+- báo hiệu bất thường, nguy cơ, thiệt hại, hành động hoặc hậu quả.
+
+5. Không được coi mọi TIME, LOCATION, số lượng hoặc tính từ là mặc nhiên phải giữ.
+Chỉ đưa vào Whitelist nếu chúng có giá trị tín hiệu.
+
+6. Một từ có thể xuất hiện ở nhiều vị trí nếu nó thực sự có nhiều chức năng.
+
+7. Có thể dùng cụm từ thay vì từng từ riêng lẻ khi ý nghĩa chỉ xuất hiện rõ ở cấp cụm.
+
+Ví dụ:
+"mất tích"
+"bị thương"
+"từ chức"
+"bị đình chỉ"
+
+không nhất thiết phải tách thành các từ riêng.
+
+8. Không đưa VALUE cụ thể của tin tức vào Whitelist.
+Ví dụ:
+"7,5 triệu đồng", "Hà Nội", "10/8" là dữ liệu của câu cụ thể, không phải lexical whitelist.
+Nhưng các mẫu/tín hiệu như:
+"triệu đồng", "tại", "vào", "trong tuần tới"
+chỉ được đưa vào nếu chúng thực sự có vai trò tín hiệu trong cây.
+
+9. Không suy diễn rằng một từ quan trọng chỉ vì nó xuất hiện trong một bài báo.
+Whitelist phải mang tính tái sử dụng cho nhiều bài báo.
+
+10. Nếu một vị trí trong TREE-GRAMMAR không cần Whitelist riêng, ghi:
+[KHÔNG CẦN WHITELIST]
+
+==================================================
+ĐỊNH DẠNG PHẦN 1
+==================================================
+
+Giữ đúng tên các node của TREE-GRAMMAR.
+
+Ví dụ:
+
+EVENT
+├── xử phạt
+├── bắt giữ
+├── tạm giữ
+└── ...
+
+STATE
+├── bị thương
+├── mất tích
+├── đóng cửa
+└── ...
+
+CAUSE
+├── vì
+├── do
+├── bởi
+└── ...
+
+Không giải thích dài dòng.
+Chỉ liệt kê từ/cụm từ.
+
+Sau khi hoàn thành toàn bộ cây, chuyển sang PHẦN 2.
+
+==================================================
+PHẦN 2 — XUẤT TREE-WHITELIST
+==================================================
+
+Từ kết quả Phần 1, xây dựng một TREE-WHITELIST hoàn chỉnh.
+
+YÊU CẦU:
+
+- Đây là cây Whitelist, không phải Tree-Grammar.
+- Không diễn giải.
+- Không viết nhận xét.
+- Không viết ví dụ ngoài cây.
+- Không thêm prompt.
+- Chỉ xuất cây và mã số.
+
+Mỗi node cấp cao phải có mã số.
+
+Ví dụ:
+
+01 EVENT
+02 STATE
+03 RELATION
+04 ACTOR
+05 TARGET
+...
+
+Các nhánh con tiếp tục được đánh số.
+
+Ví dụ:
+
+01 EVENT
+  01.01 ACTION
+  01.02 CHANGE
+  01.03 INCIDENT
+
+02 STATE
+  02.01 HUMAN_STATE
+  02.02 OBJECT_STATE
+
+Nếu một node có nhiều lexical item, đặt tất cả dưới node đó:
+
+01 EVENT
+  01.01 ACTION
+    - bắt
+    - bắt giữ
+    - tạm giữ
+    - xử phạt
+
+Mã số dùng để Python có thể nhận diện và xử lý.
+
+QUAN TRỌNG:
+
+- Mã số phải duy nhất.
+- Không đổi mã giữa các lần xuất nếu node vẫn cùng nghĩa.
+- Không dùng mã cho từng từ riêng lẻ nếu nhiều từ thuộc cùng một node.
+- Một node có thể chứa nhiều từ/cụm từ.
+- Một từ/cụm từ có thể xuất hiện ở nhiều node nếu cần.
+- Không tạo node chỉ vì muốn có thêm mã.
+
+==================================================
+OUTPUT CUỐI CÙNG
+==================================================
+
+Chỉ xuất đúng 2 phần:
+
+PHẦN 1 — TREE-GRAMMAR + LEXICAL WHITELIST
+
+[Danh sách từ/cụm từ được điền vào từng vị trí của Tree-Grammar]
+
+PHẦN 2 — TREE-WHITELIST
+
+[Cây Whitelist có mã số]
+
+Toàn bộ PHẦN 2 phải nằm trong MỘT code block duy nhất để có thể COPY nguyên cây.
+
+Không viết bất kỳ nội dung nào sau TREE-WHITELIST.
