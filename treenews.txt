@@ -1,102 +1,238 @@
-TREE-NEWS DEMO v0.1
+TREE-NEWS
 │
-├── 1. EVENT
-│   │
-│   ├── event_id
-│   ├── event_type
-│   │
-│   ├── ACTORS
-│   │   ├── actor_id
-│   │   ├── actor_type
-│   │   └── role
-│   │
-│   ├── TARGETS
-│   │   ├── target_id
-│   │   ├── target_type
-│   │   └── affected_role
-│   │
-│   ├── ACTION
-│   │   ├── action_type
-│   │   ├── action_status
-│   │   └── action_sequence
-│   │
-│   ├── STATE
-│   │   ├── before
-│   │   ├── current
-│   │   └── expected
-│   │
-│   ├── TIME
-│   │   ├── start
-│   │   ├── end
-│   │   └── temporal_status
-│   │
-│   ├── LOCATION
-│   │
-│   ├── CONSEQUENCES
-│   │   └── consequence_event_id[]
-│   │
-│   └── SOURCES
-│       ├── source_id
-│       ├── source_type
-│       └── source_reference
+├── 1000 META
+│   ├── 1001 news_id
+│   ├── 1002 schema_version
+│   ├── 1003 collected_at
+│   ├── 1004 published_at
+│   └── 1005 updated_at
 │
-├── 2. RELATIONS
+├── 2000 EVENT[]
+│   ├── 2001 event_id
+│   ├── 2002 event_type
+│   ├── 2003 event_status
 │   │
-│   ├── CAUSES
-│   ├── LEADS_TO
-│   ├── AFFECTS
-│   ├── REACTS_TO
-│   ├── INTERRUPTS
-│   ├── PRECEDES
-│   ├── FOLLOWS
-│   ├── REPEATS
-│   ├── REACTIVATES
-│   ├── IMITATES
-│   └── CONTRADICTS
+│   ├── 2040 ACTORS[]
+│   │   ├── 2041 actor_id
+│   │   ├── 2042 actor_type
+│   │   └── 2043 role
+│   │
+│   ├── 2050 TARGETS[]
+│   │   ├── 2051 target_id
+│   │   ├── 2052 target_type
+│   │   └── 2053 affected_role
+│   │
+│   ├── 2060 ACTION
+│   │   ├── 2061 action_type
+│   │   ├── 2062 action_status
+│   │   └── 2063 STEPS[]
+│   │       ├── 2064 step_id
+│   │       ├── 2065 order
+│   │       ├── 2066 action
+│   │       └── 2067 status
+│   │
+│   ├── 2070 STATE
+│   │   ├── 2071 before
+│   │   ├── 2072 current
+│   │   └── 2073 state_change
+│   │
+│   ├── 2080 TIME
+│   │   ├── 2081 start
+│   │   ├── 2082 end
+│   │   └── 2083 temporal_status
+│   │
+│   ├── 2090 LOCATION
+│   │   ├── 2091 location_id
+│   │   ├── 2092 location_type
+│   │   └── 2093 name
+│   │
+│   └── 2100 CONSEQUENCES[]
+│       ├── 2101 consequence_event_id
+│       └── 2102 consequence_type
 │
-├── 3. EVENT_SEQUENCE
-│   │
-│   ├── sequence_id
-│   ├── events[]
-│   ├── order
-│   └── sequence_status
+├── 3000 RELATIONS
+│   └── 3001 EDGES[]
+│       ├── 3002 edge_id
+│       ├── 3003 from_id
+│       ├── 3004 to_id
+│       ├── 3005 relation_type
+│       └── 3006 evidence
 │
-├── 4. ATTENTION
-│   │
-│   ├── attention_status
-│   ├── trigger
-│   ├── discovery
-│   ├── viral
-│   ├── debate
-│   ├── controversy
-│   ├── imitation
-│   ├── revival
-│   ├── collective_reaction
-│   └── correction
+├── 4000 EVENT_SEQUENCE[]
+│   ├── 4001 sequence_id
+│   ├── 4002 events[]
+│   │   ├── event_id
+│   │   └── order
+│   ├── 4003 sequence_status
+│   └── 4004 current_step
 │
-├── 5. CLAIM
-│   │
-│   ├── claim_id
-│   ├── claim_type
-│   ├── claim_content
-│   ├── claim_status
-│   │   ├── asserted
-│   │   ├── confirmed
-│   │   ├── disputed
-│   │   ├── denied
-│   │   └── false
-│   │
-│   └── evidence[]
+├── 5000 ATTENTION[]
+│   ├── 5001 attention_id
+│   ├── 5002 target_ref
+│   ├── 5003 attention_type
+│   ├── 5004 attention_status
+│   ├── 5005 onset_time
+│   ├── 5006 attention_source
+│   └── 5007 intensity
 │
-└── 6. FORECAST
-    │
-    ├── forecast_id
-    ├── expected_event
-    ├── expected_time
-    ├── basis
-    └── status
-        ├── pending
-        ├── occurred
-        ├── delayed
-        ├── cancelled
-        └── unknown
+├── 6000 CLAIM[]
+│   ├── 6001 claim_id
+│   ├── 6002 claim_type
+│   ├── 6003 claim_content
+│   ├── 6004 claim_status
+│   ├── 6005 target_ref
+│   └── 6006 evidence
+│
+└── 7000 FORECAST[]
+    ├── 7001 forecast_id
+    ├── 7002 target_ref
+    ├── 7003 expected_time
+    ├── 7004 basis
+    └── 7005 status
+
+
+ENUM MAP
+│
+├── 2002 event_type
+│   ├── 01 discovery
+│   ├── 02 accident
+│   ├── 03 rescue
+│   ├── 04 conflict
+│   ├── 05 construction
+│   ├── 06 appearance
+│   ├── 07 interaction
+│   ├── 08 announcement
+│   ├── 09 investigation
+│   ├── 10 fire
+│   ├── 11 theft
+│   ├── 12 return
+│   ├── 13 ingestion
+│   ├── 14 phenomenon
+│   ├── 15 chase
+│   ├── 16 explosion
+│   ├── 17 recording
+│   ├── 18 pursuit
+│   ├── 19 assault
+│   ├── 20 search
+│   ├── 21 survival
+│   ├── 22 denial
+│   ├── 23 rumor_spreading
+│   ├── 24 comparison
+│   ├── 25 non_payment
+│   ├── 26 accusation
+│   ├── 27 mobilization
+│   ├── 28 destruction
+│   ├── 29 collapse
+│   ├── 30 recognition
+│   ├── 31 cooking
+│   ├── 32 traffic_incident
+│   ├── 33 displacement
+│   ├── 34 medical_treatment
+│   ├── 35 death
+│   ├── 36 disappearance
+│   ├── 37 reunion
+│   ├── 38 performance
+│   ├── 39 controversy
+│   ├── 40 viral_spread
+│   ├── 41 discovery_of_error
+│   ├── 42 correction
+│   ├── 43 cancellation
+│   ├── 44 postponement
+│   └── 45 other
+│
+├── 2003 event_status
+│   ├── 01 occurred
+│   ├── 02 ongoing
+│   ├── 03 future
+│   ├── 04 postponed
+│   ├── 05 cancelled
+│   ├── 06 interrupted
+│   ├── 07 completed
+│   ├── 08 failed
+│   ├── 09 prevented
+│   └── 10 unknown
+│
+├── 2042 / 2052 actor_target_type
+│   ├── 01 person
+│   ├── 02 organization
+│   ├── 03 collective
+│   ├── 04 phenomenon
+│   ├── 05 object
+│   ├── 06 place
+│   └── 07 none
+│
+├── 2083 temporal_status
+│   ├── 01 past
+│   ├── 02 ongoing
+│   ├── 03 future
+│   ├── 04 postponed
+│   ├── 05 cancelled
+│   └── 06 unknown
+│
+├── 2092 location_type
+│   ├── 01 place
+│   ├── 02 city
+│   ├── 03 province
+│   ├── 04 country
+│   ├── 05 building
+│   ├── 06 road
+│   ├── 07 sea
+│   ├── 08 mountain
+│   └── 09 unknown
+│
+├── 3005 relation_type
+│   ├── 01 CAUSES
+│   ├── 02 LEADS_TO
+│   ├── 03 AFFECTS
+│   ├── 04 REACTS_TO
+│   ├── 05 INTERRUPTS
+│   ├── 06 REACTIVATES
+│   ├── 07 IMITATES
+│   └── 08 CONTRADICTS
+│
+├── 4003 sequence_status
+│   ├── 01 completed
+│   ├── 02 ongoing
+│   ├── 03 interrupted
+│   ├── 04 failed
+│   └── 05 unknown
+│
+├── 5003 attention_type
+│   ├── 01 viral
+│   ├── 02 drama
+│   ├── 03 debate
+│   ├── 04 meme
+│   ├── 05 revival
+│   ├── 06 collective_reaction
+│   ├── 07 correction
+│   ├── 08 human_interest
+│   ├── 09 controversy
+│   ├── 10 outrage
+│   ├── 11 scrutiny
+│   ├── 12 alarm
+│   ├── 13 surprise
+│   ├── 14 discussion
+│   ├── 15 interest
+│   └── 16 other
+│
+├── 5004 attention_status
+│   ├── 01 rising
+│   ├── 02 ongoing
+│   ├── 03 declining
+│   ├── 04 ended
+│   └── 05 unknown
+│
+├── 6004 claim_status
+│   ├── 01 asserted
+│   ├── 02 confirmed
+│   ├── 03 disputed
+│   ├── 04 denied
+│   ├── 05 false
+│   └── 06 unknown
+│
+└── 7005 forecast_status
+    ├── 01 pending
+    ├── 02 occurred
+    ├── 03 delayed
+    ├── 04 cancelled
+    └── 05 unknown
