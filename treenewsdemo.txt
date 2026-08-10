@@ -1,117 +1,445 @@
-TREE-NEWS DEMO v0.2
-Consensus Structural Revision
-Purpose: sửa các lỗi đã được ít nhất 3 phản biện độc lập cùng xác nhận.
-Không mở rộng schema ngoài phạm vi consensus.
+# TREE-NEWS-DEMO
+# MỤC ĐÍCH:
+# Xây dựng TREE-NEWS bằng cách lấy CHỦ ĐỀ làm XƯƠNG,
+# lấy NGỮ PHÁP TIẾNG VIỆT làm THỊT.
+#
+# Đây chỉ là DEMO để chatbot thảo luận.
+# KHÔNG phải cấu trúc final.
+# KHÔNG được coi các node dưới đây là đáp án cố định.
+
+============================================================
+I. NGUYÊN TẮC
+============================================================
+
+TREE-NEWS có 2 tầng:
+
+TOPIC
+└── GRAMMAR PATTERN
+    └── SEMANTIC NODE
+
+TOPIC trả lời:
+"Tin này thuộc loại cấu trúc nào?"
+
+GRAMMAR trả lời:
+"Câu tiếng Việt đang biểu đạt quan hệ gì?"
+
+NODE trả lời:
+"Phần thông tin đó thuộc loại dữ liệu nào trong JSON-NEWS?"
+
+Ví dụ:
+
+"Chiếc xe mất lái rồi đâm vào cầu."
+
+Không được chỉ nhìn từ khóa "đâm".
+
+Phải nhận ra:
+
+[CHIẾC XE]
+    = ENTITY
+
+[MẤT LÁI]
+    = EVENT / CAUSE
+
+[ĐÂM VÀO CẦU]
+    = EVENT / IMPACT
+
+[CẦU]
+    = ENTITY / TARGET
+
+============================================================
+II. TOPIC DEMO
+============================================================
+
+T01 — HÀNH VI / VI PHẠM
+
+Đặc điểm:
+Một người hoặc tổ chức thực hiện một hành vi,
+sau đó có thể xuất hiện điều tra, phát hiện hoặc hậu quả.
+
+Grammar thường gặp:
+
+ACTOR
+→ ACTION / VIOLATION
+→ INVESTIGATION
+→ DISCOVERY
+→ CONSEQUENCE
+
+Ví dụ dạng câu:
+
+"[A] thực hiện [hành vi]."
+
+"[Cơ quan chức năng] xác minh [hành vi]."
+
+"[Cơ quan chức năng] phát hiện [sự thật]."
+
+"[Hành vi] khiến [B] bị ảnh hưởng."
+
+Cần phân biệt:
+
+ACTION
+với
+DISCOVERY
+với
+CONSEQUENCE.
 
 
-TREE-NEWS
-│
-├── 0. META
-│   ├── news_id
-│   ├── schema_version
-│   ├── collected_at
-│   ├── published_at
-│   ├── updated_at
-│   └── source_ids[]
-│
-├── 1. EVENT
-│   │
-│   ├── event_id
-│   ├── event_type
-│   ├── event_status
-│   │   ├── occurred
-│   │   ├── ongoing
-│   │   ├── future
-│   │   ├── postponed
-│   │   ├── cancelled
-│   │   ├── interrupted
-│   │   ├── completed
-│   │   ├── failed
-│   │   ├── prevented
-│   │   └── unknown
-│   │
-│   ├── ACTORS (optional)
-│   │   ├── actor_id
-│   │   ├── actor_type
-│   │   │   ├── person
-│   │   │   ├── organization
-│   │   │   ├── collective
-│   │   │   ├── phenomenon
-│   │   │   ├── object
-│   │   │   └── none
-│   │   └── role
-│   │
-│   ├── TARGETS (optional)
-│   │   ├── target_id
-│   │   ├── target_type
-│   │   │   ├── person
-│   │   │   ├── organization
-│   │   │   ├── collective
-│   │   │   ├── phenomenon
-│   │   │   ├── object
-│   │   │   └── none
-│   │   └── affected_role
-│   │
-│   ├── ACTION (optional)
-│   │   ├── action_type
-│   │   ├── action_status
-│   │   └── steps[]
-│   │       ├── step_id
-│   │       ├── order
-│   │       ├── action
-│   │       └── status
-│   │
-│   ├── STATE (optional)
-│   │   ├── before
-│   │   ├── current
-│   │   └── state_change
-│   │
-│   ├── TIME
-│   │   ├── start
-│   │   ├── end
-│   │   └── temporal_status
-│   │       ├── past
-│   │       ├── ongoing
-│   │       ├── future
-│   │       ├── postponed
-│   │       ├── cancelled
-│   │       └── unknown
-│   │
-│   ├── LOCATION (optional)
-│   │
-│   └── CONSEQUENCES (optional)
-│       └── items[]
-│           ├── consequence_event_id
-│           └── consequence_type
-│
-├── 2. RELATIONS
-│   └── edges[]
-│       ├── edge_id
-│       ├── from_id
-│       ├── to_id
-│       ├── relation_type
-│       │   ├── CAUSES
-│       │   ├── LEADS_TO
-│       │   ├── AFFECTS
-│       │   ├── REACTS_TO
-│       │   ├── INTERRUPTS
-│       │   ├── REACTIVATES
-│       │   ├── IMITATES
-│       │   └── CONTRADICTS
-│       └── evidence[] (optional)
-│
-│   RULE:
-│   ├── from_id and to_id are mandatory
-│   ├── temporal order is NOT represented here
-│   └── PRECEDES / FOLLOWS are removed because EVENT_SEQUENCE owns order
-│
-├── 3. EVENT_SEQUENCE (optional)
-│   ├── sequence_id
-│   ├── events[]
-│   │   ├── event_id
-│   │   └── order
-│   ├── sequence_status
-│   │   ├── completed
+------------------------------------------------------------
+
+T02 — TAI NẠN / SỰ CỐ
+
+Đặc điểm:
+Một vật thể, phương tiện hoặc con người gặp sự cố
+và tạo ra tác động tiếp theo.
+
+Grammar:
+
+ACTOR / OBJECT
+→ INCIDENT
+→ IMPACT
+→ DAMAGE
+→ CONSEQUENCE
+
+Ví dụ:
+
+"[Xe] mất lái."
+
+"[Xe] đâm vào [cầu]."
+
+"[Cầu] bị sập."
+
+"Giao thông bị tê liệt."
+
+Không mặc định mọi mệnh đề là EVENT.
+Phải xác định quan hệ nhân quả.
+
+
+------------------------------------------------------------
+
+T03 — KHÁM PHÁ / PHÁT HIỆN BẤT NGỜ
+
+Đặc điểm:
+Thông tin quan trọng nằm ở sự thật được phát hiện
+sau một tình huống ban đầu.
+
+Grammar:
+
+INITIAL SITUATION
+→ DISCOVERY PROCESS
+→ HIDDEN FACT
+→ REACTION / RESULT
+
+Ví dụ:
+
+"Đi khám sức khỏe, cô gái phát hiện một vật thể lạ
+đã tồn tại trong cơ thể nhiều năm."
+
+Có thể chứa:
+
+BACKGROUND
+DISCOVERY ACTION
+DISCOVERED FACT
+TIME DEPTH
+REACTION
+
+
+------------------------------------------------------------
+
+T04 — VIRAL / TREND / CỘNG ĐỒNG
+
+Đặc điểm:
+Tin có một hiện tượng/trend/nội dung lan truyền
+và phản ứng của cộng đồng.
+
+Grammar:
+
+TREND / CONTENT
+→ PARTICIPATION
+→ PLATFORM
+→ SPREAD
+→ PUBLIC ATTENTION
+
+Phải phân biệt:
+
+HÀNH ĐỘNG TẠO NỘI DUNG
+
+với:
+
+SỰ LAN TRUYỀN
+
+với:
+
+PHẢN ỨNG CỘNG ĐỒNG.
+
+Ví dụ:
+
+"Một trào lưu mới đang lan rộng trên TikTok."
+
+"Giới trẻ đồng loạt tham gia."
+
+"Cộng đồng mạng tranh luận dữ dội."
+
+
+------------------------------------------------------------
+
+T05 — TRANH CÃI / PHẢN ỨNG XÃ HỘI
+
+Đặc điểm:
+Có một sự kiện/chính sách/phát ngôn làm phát sinh
+phản ứng xã hội.
+
+Grammar:
+
+TRIGGER
+→ AFFECTED GROUP
+→ REACTION
+→ PUBLIC DEBATE
+
+Ví dụ:
+
+"Chung cư cấm sạc xe điện dưới hầm."
+
+"Cư dân phản đối."
+
+"Cộng đồng mạng tranh luận gay gắt."
+
+Phải phân biệt:
+
+TRIGGER EVENT
+
+với:
+
+SOCIAL ATTENTION / REACTION.
+
+
+------------------------------------------------------------
+
+T06 — XUNG ĐỘT / BẠO LỰC
+
+Grammar:
+
+ACTOR
+→ CONFLICT ACTION
+→ TARGET
+→ EFFECT
+→ SOCIAL REACTION
+
+Ví dụ:
+
+"A đuổi theo B rồi hành hung."
+
+"B bị thương."
+
+"Cộng đồng mạng phẫn nộ."
+
+
+------------------------------------------------------------
+
+T07 — QUAN HỆ CON NGƯỜI / BIẾN CỐ ĐỜI SỐNG
+
+Đặc điểm:
+Một quan hệ hiện tại có thể phụ thuộc vào sự kiện trong quá khứ
+và dẫn tới một sự kiện tương lai.
+
+Grammar:
+
+PAST EVENT
+→ RELATION / STATE
+→ CURRENT EVENT
+→ FUTURE EVENT
+
+Ví dụ:
+
+"Người hiến tạng cứu sống cô gái 20 năm trước."
+
+"Hai người giữ quan hệ với gia đình."
+
+"Hiện nay họ chuẩn bị kết hôn."
+
+Phải giữ TIME ANCHOR.
+
+
+------------------------------------------------------------
+
+T08 — CỨU HỘ / GIẢI CỨU
+
+Grammar:
+
+DANGER / PROBLEM
+→ RESCUER
+→ RESCUE ACTION
+→ TARGET
+→ RESULT
+
+Ví dụ:
+
+"Một con mèo mắc kẹt trong đầu xe."
+
+"Nhân viên cứu hộ tháo phần đầu xe."
+
+"Con mèo được đưa ra ngoài."
+
+
+------------------------------------------------------------
+
+T09 — THIÊN NHIÊN / THIÊN VĂN / HIỆN TƯỢNG
+
+Grammar:
+
+PHENOMENON
+→ CURRENT STATE
+→ EXPECTED CHANGE
+→ TIME
+→ PUBLIC ATTENTION
+
+Ví dụ:
+
+"Mưa sao băng Perseids chuẩn bị đạt cực đại."
+
+Phải phân biệt:
+
+HIỆN TƯỢNG ĐANG XẢY RA
+
+với:
+
+DỰ KIẾN XẢY RA
+
+và:
+
+PHẢN ỨNG CỦA CỘNG ĐỒNG.
+
+
+------------------------------------------------------------
+
+T10 — ĐIỀU TRA / KẾ HOẠCH / DỰ KIẾN
+
+Grammar:
+
+ACTOR
+→ PLAN / INVESTIGATION
+→ TARGET
+→ EXPECTED ACTION
+→ FUTURE TIME
+
+Ví dụ:
+
+"Gia đình đang phối hợp thực hiện thủ tục
+để đưa thi thể xuống núi."
+
+Đây không đồng nghĩa với:
+
+"Đã đưa thi thể xuống núi."
+
+Phải bảo toàn STATUS và TIME.
+
+
+============================================================
+III. NODE SEMANTIC DEMO
+============================================================
+
+ENTITY
+- người
+- nhóm người
+- tổ chức
+- phương tiện
+- vật thể
+- địa điểm
+- hiện tượng
+
+EVENT
+- hành động
+- sự kiện
+- thay đổi
+- tác động
+- điều tra
+- phát hiện
+- cứu hộ
+- kế hoạch
+
+STATE
+- trạng thái tồn tại
+- kết quả đã xảy ra
+- tình trạng của entity
+
+ATTENTION
+- viral
+- tranh cãi
+- phẫn nộ
+- tò mò
+- xúc động
+- quan tâm
+- háo hức
+- phản ứng cộng đồng
+
+CLAIM
+- điều được nói/đồn/khẳng định
+- đặc biệt khi chưa được xác thực
+
+FORECAST
+- dự kiến
+- kế hoạch
+- khả năng xảy ra trong tương lai
+
+TIME
+- thời điểm
+- khoảng thời gian
+- thời lượng
+- mốc quá khứ
+- hiện tại
+- tương lai
+
+LOCATION
+- nơi xảy ra
+- nơi liên quan
+- nơi di chuyển tới/từ
+
+
+============================================================
+IV. QUY TẮC QUAN TRỌNG
+============================================================
+
+1. KHÔNG đồng nhất "động từ" với EVENT.
+
+2. KHÔNG đồng nhất "viral" với EVENT.
+   Có thể là ATTENTION.
+
+3. KHÔNG đồng nhất "tranh cãi" với EVENT.
+   Trigger có thể là EVENT,
+   tranh cãi có thể là ATTENTION.
+
+4. KHÔNG biến mọi câu mô tả hậu quả thành EVENT độc lập
+   nếu nó chỉ là STATE của entity.
+
+5. KHÔNG biến tin đồn thành FACT.
+
+6. KHÔNG biến kế hoạch thành sự kiện đã xảy ra.
+
+7. KHÔNG làm mất TIME chỉ vì câu có nhiều mệnh đề.
+
+8. KHÔNG làm mất LOCATION khi có nhiều địa điểm.
+
+9. Một câu có thể chứa nhiều semantic unit.
+
+10. Một semantic unit có thể được biểu đạt bằng nhiều kiểu
+    ngữ pháp tiếng Việt khác nhau.
+
+============================================================
+V. MỤC ĐÍCH CỦA DEMO
+============================================================
+
+TREE-NEWS-DEMO KHÔNG yêu cầu chatbot đồng ý với cấu trúc này.
+
+Chatbot phải:
+
+- kiểm tra;
+- phản biện;
+- tạo ví dụ;
+- tìm trường hợp ngoại lệ;
+- tìm cấu trúc tiếng Việt chưa được bao phủ;
+- đề xuất topic mới;
+- đề xuất grammar mới;
+- đề xuất node mới nếu cần.
+
+Kết quả cuối cùng mới được dùng để xây TREE-NEWS FINAL.│   │   ├── completed
 │   │   ├── ongoing
 │   │   ├── interrupted
 │   │   ├── failed
