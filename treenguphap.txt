@@ -8,6 +8,8 @@ O1    = Tân ngữ 1
 O2    = Tân ngữ 2
 C     = Bổ ngữ
 A     = Trạng ngữ
+VOC   = Hô ngữ
+INSERT = Thành phần chêm xen
 
 N     = Danh từ
 V     = Động từ
@@ -74,15 +76,21 @@ CL
 │   ├── S + P + O + O + C + A + REL + CONT + PURP
 │   ├── S + P + O + O + C + A + REL + CONT + CAUSE
 │   ├── S + P + O + O + C + A + REL + CONT + COND
-│   └── S + P + O + O + C + A + REL + CONT + CONTR
+│   ├── S + P + O + O + C + A + REL + CONT + CONTR
+│   ├── S + P + A + C
+│   ├── S + INSERT + P + O                     ← THÊM MỚI
+│   └── S + P + INSERT + O                     ← THÊM MỚI
 │
 ├── II. CẤU TRÚC ĐẶC BIỆT
 │   │
 │   ├── V + NP + LOC
 │   ├── LOC + P + S
+│   ├── P + O + A                             ← THÊM MỚI (mệnh lệnh vắng S)
 │   ├── S + AUX + V
 │   │   └── PASS
+│   ├── S + AUX + V + C
 │   ├── S + CAUS + O + V
+│   ├── S + CAUS + O + V + NP
 │   ├── S + P + Adj
 │   └── S + P + Adj + A
 │
@@ -93,7 +101,9 @@ CL
 │   ├── S + A + P + O
 │   ├── S + P + O + A
 │   ├── S + P + AdvP
-│   └── S + P + O + AdvP
+│   ├── S + P + O + AdvP
+│   ├── VOC + CL                              ← THÊM MỚI
+│   └── CL + VOC                              ← THÊM MỚI
 │
 ├── IV. CẤU TRÚC NP
 │   │
@@ -111,6 +121,7 @@ CL
 │   ├── AUX + V
 │   ├── V + NP
 │   ├── V + PP
+│   ├── V + NP + PP
 │   ├── V + NP + C
 │   └── V + CL
 │
@@ -141,7 +152,7 @@ CL
 │   ├── NP + REL
 │   └── O + REL
 │
-└── XI. CẤU TRÚC ĐẲNG LẬP
+└── VIII. CẤU TRÚC ĐẲNG LẬP
 │
 ├── CL + COORD + CL
 ├── S + P + COORD + P
