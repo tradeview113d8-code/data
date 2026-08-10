@@ -1,3 +1,127 @@
+==================================================
+TREE-NEWS v2
+NUMERIC SEMANTIC MAP
+==================================================
+
+PURPOSE
+--------------------------------------------------
+TREE-NEWS là BẢNG ÁNH XẠ NGỮ NGHĨA.
+
+TREE-NEWS KHÔNG PHẢI:
+- JSON Schema
+- JSON Output Format
+- JSON Skeleton
+- danh sách field được phép xuất
+- instruction về cấu trúc JSON
+
+JSON-NEWS-SKELETON mới là cấu trúc output duy nhất.
+
+Nhiệm vụ của TREE-NEWS:
+
+NATURAL LANGUAGE
+        ↓
+SEMANTIC MEANING
+        ↓
+TREE-NEWS NODE
+        ↓
+NUMERIC CODE
+        ↓
+JSON-NEWS-SKELETON
+
+--------------------------------------------------
+CORE RULE
+--------------------------------------------------
+
+1. Không tạo numeric code mới.
+2. Không thay đổi numeric code.
+3. Không dùng tên semantic thay cho numeric code khi
+   JSON-SKELETON yêu cầu numeric value.
+4. Không tự tạo field JSON dựa trên TREE-NEWS.
+5. Không coi TREE-NEWS là cấu trúc JSON.
+6. TREE-NEWS chỉ quyết định "ý nghĩa này thuộc node nào".
+7. JSON-SKELETON quyết định "node đó nằm ở đâu trong output".
+8. Nếu một thông tin không có node tương ứng:
+   không tự phát minh node mới.
+9. Nếu một node tồn tại trong TREE-NEWS nhưng
+   JSON-SKELETON không có vị trí chứa nó:
+   tuân thủ JSON-SKELETON, không tự tạo field.
+10. Chỉ ánh xạ thông tin thực sự xuất hiện trong NEWS TEXT.
+11. Không suy diễn sự kiện không được NEWS TEXT hỗ trợ.
+
+==================================================
+SEMANTIC PRIORITY
+==================================================
+
+Khi một câu có thể được hiểu theo nhiều cách,
+ưu tiên theo thứ tự:
+
+1. CORE EVENT
+2. STATE CHANGE
+3. CONSEQUENCE
+4. RELATION
+5. ATTENTION
+6. CLAIM
+7. FORECAST
+8. thông tin mô tả nền
+
+Không biến mọi động từ trong SUMMARY thành EVENT.
+
+--------------------------------------------------
+CORE EVENT TEST
+--------------------------------------------------
+
+Một hành động chỉ trở thành EVENT khi nó là diễn biến
+cốt lõi hoặc làm thay đổi ít nhất một trong các yếu tố:
+
+- trạng thái của actor
+- trạng thái của target
+- quan hệ giữa các entity
+- trạng thái của object
+- tình trạng của situation
+- tạo ra hậu quả
+- kích hoạt một diễn biến tiếp theo
+
+Các hành động nền như:
+- đi khám
+- đi đường
+- xuất hiện
+- chụp ảnh
+- sử dụng điện thoại
+- đang làm việc
+
+không tự động trở thành EVENT nếu bản thân hành động
+không phải trọng tâm của câu chuyện.
+
+--------------------------------------------------
+ATTENTION TEST
+--------------------------------------------------
+
+ATTENTION biểu diễn sự chú ý/phản ứng của cộng đồng,
+công chúng, truyền thông hoặc nhóm người đối với một
+sự kiện/entity.
+
+Ví dụ:
+
+"cộng đồng mạng tranh cãi dữ dội"
+→ ATTENTION
+
+"người dân bức xúc"
+→ ATTENTION
+
+"câu chuyện viral"
+→ ATTENTION
+
+Không biến phản ứng xã hội thành EVENT chỉ vì trong
+câu có động từ "tranh luận", "chia sẻ", "bức xúc",
+"bàn tán".
+
+EVENT = chuyện xảy ra.
+ATTENTION = phản ứng/chú ý đối với chuyện đó.
+
+==================================================
+TREE STRUCTURE
+==================================================
+
 TREE-NEWS
 │
 ├── 1000 META
@@ -11,17 +135,17 @@ TREE-NEWS
 │   ├── 2001 event_id
 │   ├── 2002 event_type
 │   ├── 2003 event_status
-│   │
+│
 │   ├── 2040 ACTORS[]
 │   │   ├── 2041 actor_id
 │   │   ├── 2042 actor_type
 │   │   └── 2043 role
-│   │
+│
 │   ├── 2050 TARGETS[]
 │   │   ├── 2051 target_id
 │   │   ├── 2052 target_type
 │   │   └── 2053 affected_role
-│   │
+│
 │   ├── 2060 ACTION
 │   │   ├── 2061 action_type
 │   │   ├── 2062 action_status
@@ -30,22 +154,22 @@ TREE-NEWS
 │   │       ├── 2065 order
 │   │       ├── 2066 action
 │   │       └── 2067 status
-│   │
+│
 │   ├── 2070 STATE
 │   │   ├── 2071 before
 │   │   ├── 2072 current
 │   │   └── 2073 state_change
-│   │
+│
 │   ├── 2080 TIME
 │   │   ├── 2081 start
 │   │   ├── 2082 end
 │   │   └── 2083 temporal_status
-│   │
+│
 │   ├── 2090 LOCATION
 │   │   ├── 2091 location_id
 │   │   ├── 2092 location_type
 │   │   └── 2093 name
-│   │
+│
 │   └── 2100 CONSEQUENCES[]
 │       ├── 2101 consequence_event_id
 │       └── 2102 consequence_type
@@ -91,148 +215,896 @@ TREE-NEWS
     └── 7005 status
 
 
+==================================================
+1000 META
+==================================================
+
+META chứa metadata của NEWS.
+
+1001 news_id
+→ mã định danh của tin.
+
+1002 schema_version
+→ phiên bản schema.
+
+1003 collected_at
+→ thời điểm dữ liệu được thu thập.
+
+1004 published_at
+→ thời điểm tin được công bố.
+
+1005 updated_at
+→ thời điểm tin được cập nhật.
+
+META không phải EVENT.
+
+
+==================================================
+2000 EVENT
+==================================================
+
+EVENT = một diễn biến thực sự xảy ra, đang xảy ra,
+được xác nhận sẽ xảy ra, hoặc được mô tả là không xảy ra
+theo NEWS TEXT.
+
+2002 = EVENT TYPE
+2003 = EVENT STATUS
+
+EVENT phải có quan hệ với entity nếu NEWS TEXT cung cấp.
+
+Không tạo EVENT chỉ vì một câu chứa động từ.
+
+
+--------------------------------------------------
+2040 ACTORS
+--------------------------------------------------
+
+2041 actor_id
+→ ID của entity thực hiện/tạo ra hành động.
+
+2042 actor_type
+→ loại actor theo ENUM MAP.
+
+2043 role
+→ vai trò của actor trong EVENT.
+
+Actor có thể là:
+person
+organization
+collective
+phenomenon
+object
+place
+none
+
+
+--------------------------------------------------
+2050 TARGETS
+--------------------------------------------------
+
+2051 target_id
+→ ID entity chịu tác động.
+
+2052 target_type
+→ loại target.
+
+2053 affected_role
+→ vai trò của target trong EVENT.
+
+
+--------------------------------------------------
+2060 ACTION
+--------------------------------------------------
+
+2061 action_type
+→ loại hành động.
+
+2062 action_status
+→ trạng thái hành động.
+
+2063 STEPS
+→ các bước thực hiện của cùng một ACTION khi NEWS TEXT
+thực sự mô tả nhiều bước.
+
+Không bắt buộc tạo STEPS cho mọi EVENT.
+
+
+--------------------------------------------------
+2070 STATE
+--------------------------------------------------
+
+STATE mô tả trạng thái trước, trạng thái hiện tại và
+sự thay đổi trạng thái.
+
+2071 before
+→ trạng thái trước EVENT.
+
+2072 current
+→ trạng thái hiện tại.
+
+2073 state_change
+→ thay đổi do EVENT tạo ra.
+
+STATE không phải EVENT.
+
+
+--------------------------------------------------
+2080 TIME
+--------------------------------------------------
+
+2081 start
+→ thời điểm bắt đầu.
+
+2082 end
+→ thời điểm kết thúc.
+
+2083 temporal_status
+→ trạng thái thời gian.
+
+Nếu NEWS TEXT chứa nhiều thông tin thời gian nhưng
+không có cấu trúc chính xác để tách riêng, giữ nguyên
+thông tin trong value theo JSON-SKELETON.
+
+Không tự suy diễn ngày/giờ.
+
+
+--------------------------------------------------
+2090 LOCATION
+--------------------------------------------------
+
+2091 location_id
+→ ID địa điểm nếu có.
+
+2092 location_type
+→ loại địa điểm.
+
+2093 name
+→ tên địa điểm.
+
+Nếu NEWS TEXT có nhiều địa điểm:
+giữ đầy đủ thông tin theo cấu trúc JSON-SKELETON.
+
+Không tự tạo location mới ngoài NEWS TEXT.
+
+
+--------------------------------------------------
+2100 CONSEQUENCES
+--------------------------------------------------
+
+CONSEQUENCE = hậu quả trực tiếp được NEWS TEXT mô tả.
+
+Không tự suy diễn hậu quả.
+
+Ví dụ:
+
+EVENT:
+xe cháy
+
+CONSEQUENCE:
+giao thông ùn tắc
+
+nếu NEWS TEXT thực sự nêu ùn tắc.
+
+
+==================================================
+3000 RELATIONS
+==================================================
+
+RELATION mô tả quan hệ giữa các node/event/entity.
+
+3002 edge_id
+3003 from_id
+3004 to_id
+3005 relation_type
+3006 evidence
+
+Không tạo RELATION nếu NEWS TEXT không hỗ trợ quan hệ.
+
+
+==================================================
+4000 EVENT_SEQUENCE
+==================================================
+
+EVENT_SEQUENCE biểu diễn thứ tự diễn biến.
+
+4001 sequence_id
+4002 events[]
+4003 sequence_status
+4004 current_step
+
+Chỉ tạo sequence khi NEWS TEXT cung cấp hoặc cho phép
+xác định rõ trình tự.
+
+
+==================================================
+5000 ATTENTION
+==================================================
+
+ATTENTION = sự chú ý hoặc phản ứng xã hội đối với
+EVENT / ENTITY / CLAIM.
+
+ATTENTION KHÔNG PHẢI EVENT.
+
+Ví dụ:
+
+"cộng đồng mạng tranh cãi dữ dội"
+→ ATTENTION
+
+"vụ việc viral"
+→ ATTENTION
+
+"người dân bức xúc"
+→ ATTENTION
+
+Không tạo EVENT chỉ để biểu diễn các phản ứng này.
+
+
+--------------------------------------------------
+5001 attention_id
+--------------------------------------------------
+
+ID của ATTENTION.
+
+
+--------------------------------------------------
+5002 target_ref
+--------------------------------------------------
+
+Đối tượng mà công chúng đang chú ý/phản ứng.
+
+Có thể tham chiếu:
+- event
+- entity
+- claim
+- situation
+
+
+--------------------------------------------------
+5003 attention_type
+--------------------------------------------------
+
+Chọn semantic type phù hợp nhất từ ENUM MAP.
+
+
+--------------------------------------------------
+5004 attention_status
+--------------------------------------------------
+
+Trạng thái của ATTENTION.
+
+
+--------------------------------------------------
+5005 onset_time
+--------------------------------------------------
+
+Thời điểm phản ứng bắt đầu nếu NEWS TEXT cung cấp.
+
+
+--------------------------------------------------
+5006 attention_source
+--------------------------------------------------
+
+Nguồn của phản ứng.
+
+Ví dụ:
+- cộng đồng mạng
+- người dân
+- khán giả
+- truyền thông
+- công chúng
+
+Không nhầm với SOURCE của bài báo.
+
+
+--------------------------------------------------
+5007 intensity
+--------------------------------------------------
+
+Mức độ phản ứng được mô tả trong NEWS TEXT.
+
+Không tự lượng hóa nếu NEWS TEXT không cung cấp.
+
+
+==================================================
+6000 CLAIM
+==================================================
+
+CLAIM = một phát biểu/khẳng định/tố cáo/nghi vấn được
+NEWS TEXT đề cập.
+
+CLAIM không đồng nghĩa với FACT.
+
+Nếu NEWS TEXT nói:
+"bị tố..."
+→ CLAIM
+
+Nếu NEWS TEXT nói:
+"cơ quan chức năng xác nhận..."
+→ có thể trở thành CLAIM confirmed
+hoặc thông tin FACT tùy cấu trúc skeleton.
+
+
+--------------------------------------------------
+6001 claim_id
+6002 claim_type
+6003 claim_content
+6004 claim_status
+6005 target_ref
+6006 evidence
+--------------------------------------------------
+
+Không tự xác nhận CLAIM nếu NEWS TEXT chưa xác nhận.
+
+
+==================================================
+7000 FORECAST
+==================================================
+
+FORECAST = điều được dự kiến trong tương lai.
+
+Chỉ tạo khi NEWS TEXT thực sự chứa thông tin tương lai,
+kế hoạch, dự kiến, lịch trình hoặc dự báo.
+
+
+--------------------------------------------------
+7001 forecast_id
+7002 target_ref
+7003 expected_time
+7004 basis
+7005 status
+--------------------------------------------------
+
+Không biến suy luận của Agent thành FORECAST.
+
+
+==================================================
 ENUM MAP
-│
-├── 2002 event_type
-│   ├── 01 discovery
-│   ├── 02 accident
-│   ├── 03 rescue
-│   ├── 04 conflict
-│   ├── 05 construction
-│   ├── 06 appearance
-│   ├── 07 interaction
-│   ├── 08 announcement
-│   ├── 09 investigation
-│   ├── 10 fire
-│   ├── 11 theft
-│   ├── 12 return
-│   ├── 13 ingestion
-│   ├── 14 phenomenon
-│   ├── 15 chase
-│   ├── 16 explosion
-│   ├── 17 recording
-│   ├── 18 pursuit
-│   ├── 19 assault
-│   ├── 20 search
-│   ├── 21 survival
-│   ├── 22 denial
-│   ├── 23 rumor_spreading
-│   ├── 24 comparison
-│   ├── 25 non_payment
-│   ├── 26 accusation
-│   ├── 27 mobilization
-│   ├── 28 destruction
-│   ├── 29 collapse
-│   ├── 30 recognition
-│   ├── 31 cooking
-│   ├── 32 traffic_incident
-│   ├── 33 displacement
-│   ├── 34 medical_treatment
-│   ├── 35 death
-│   ├── 36 disappearance
-│   ├── 37 reunion
-│   ├── 38 performance
-│   ├── 39 controversy
-│   ├── 40 viral_spread
-│   ├── 41 discovery_of_error
-│   ├── 42 correction
-│   ├── 43 cancellation
-│   ├── 44 postponement
-│   └── 45 other
-│
-├── 2003 event_status
-│   ├── 01 occurred
-│   ├── 02 ongoing
-│   ├── 03 future
-│   ├── 04 postponed
-│   ├── 05 cancelled
-│   ├── 06 interrupted
-│   ├── 07 completed
-│   ├── 08 failed
-│   ├── 09 prevented
-│   └── 10 unknown
-│
-├── 2042 / 2052 actor_target_type
-│   ├── 01 person
-│   ├── 02 organization
-│   ├── 03 collective
-│   ├── 04 phenomenon
-│   ├── 05 object
-│   ├── 06 place
-│   └── 07 none
-│
-├── 2083 temporal_status
-│   ├── 01 past
-│   ├── 02 ongoing
-│   ├── 03 future
-│   ├── 04 postponed
-│   ├── 05 cancelled
-│   └── 06 unknown
-│
-├── 2092 location_type
-│   ├── 01 place
-│   ├── 02 city
-│   ├── 03 province
-│   ├── 04 country
-│   ├── 05 building
-│   ├── 06 road
-│   ├── 07 sea
-│   ├── 08 mountain
-│   └── 09 unknown
-│
-├── 3005 relation_type
-│   ├── 01 CAUSES
-│   ├── 02 LEADS_TO
-│   ├── 03 AFFECTS
-│   ├── 04 REACTS_TO
-│   ├── 05 INTERRUPTS
-│   ├── 06 REACTIVATES
-│   ├── 07 IMITATES
-│   └── 08 CONTRADICTS
-│
-├── 4003 sequence_status
-│   ├── 01 completed
-│   ├── 02 ongoing
-│   ├── 03 interrupted
-│   ├── 04 failed
-│   └── 05 unknown
-│
-├── 5003 attention_type
-│   ├── 01 viral
-│   ├── 02 drama
-│   ├── 03 debate
-│   ├── 04 meme
-│   ├── 05 revival
-│   ├── 06 collective_reaction
-│   ├── 07 correction
-│   ├── 08 human_interest
-│   ├── 09 controversy
-│   ├── 10 outrage
-│   ├── 11 scrutiny
-│   ├── 12 alarm
-│   ├── 13 surprise
-│   ├── 14 discussion
-│   ├── 15 interest
-│   └── 16 other
-│
-├── 5004 attention_status
-│   ├── 01 rising
-│   ├── 02 ongoing
-│   ├── 03 declining
-│   ├── 04 ended
-│   └── 05 unknown
-│
-├── 6004 claim_status
-│   ├── 01 asserted
-│   ├── 02 confirmed
-│   ├── 03 disputed
-│   ├── 04 denied
-│   ├── 05 false
-│   └── 06 unknown
-│
-└── 7005 forecast_status
-    ├── 01 pending
-    ├── 02 occurred
-    ├── 03 delayed
-    ├── 04 cancelled
-    └── 05 unknown
+==================================================
+
+
+--------------------------------------------------
+2002 EVENT TYPE
+--------------------------------------------------
+
+01 = discovery
+Meaning:
+phát hiện một người/vật/sự việc/thông tin chưa được biết.
+
+02 = accident
+Meaning:
+sự cố/tai nạn xảy ra ngoài dự kiến.
+
+03 = rescue
+Meaning:
+giải cứu/cứu người hoặc đối tượng khỏi tình huống nguy hiểm.
+
+04 = conflict
+Meaning:
+xung đột/tranh chấp/đối đầu.
+
+05 = construction
+Meaning:
+xây dựng/lắp dựng/công trình.
+
+06 = appearance
+Meaning:
+xuất hiện trước công chúng hoặc xuất hiện trong một bối cảnh.
+
+07 = interaction
+Meaning:
+tương tác giữa các entity.
+
+08 = announcement
+Meaning:
+công bố/thông báo chính thức.
+
+09 = investigation
+Meaning:
+điều tra/xác minh.
+
+10 = fire
+Meaning:
+hỏa hoạn/cháy.
+
+11 = theft
+Meaning:
+trộm cắp/chiếm đoạt trái phép.
+
+12 = return
+Meaning:
+trả lại/hoàn trả.
+
+13 = ingestion
+Meaning:
+ăn/uống/nuốt một vật hoặc chất.
+
+14 = phenomenon
+Meaning:
+hiện tượng bất thường được mô tả như một diễn biến.
+
+15 = chase
+Meaning:
+đuổi theo.
+
+16 = explosion
+Meaning:
+phát nổ.
+
+17 = recording
+Meaning:
+ghi hình/ghi âm.
+
+18 = pursuit
+Meaning:
+truy đuổi.
+
+19 = assault
+Meaning:
+hành hung/tấn công người khác.
+
+20 = search
+Meaning:
+tìm kiếm.
+
+21 = survival
+Meaning:
+hành động/tình trạng sống sót trong nguy hiểm.
+
+22 = denial
+Meaning:
+phủ nhận một cáo buộc/thông tin.
+
+23 = rumor_spreading
+Meaning:
+tin đồn được lan truyền.
+
+24 = comparison
+Meaning:
+so sánh.
+
+25 = non_payment
+Meaning:
+không thanh toán/không trả tiền.
+
+26 = accusation
+Meaning:
+cáo buộc/tố cáo.
+
+27 = mobilization
+Meaning:
+huy động người/phương tiện/nguồn lực.
+
+28 = destruction
+Meaning:
+phá hủy/tiêu hủy.
+
+29 = collapse
+Meaning:
+sập/đổ.
+
+30 = recognition
+Meaning:
+nhận ra/công nhận/nhận diện.
+
+31 = cooking
+Meaning:
+nấu ăn/chế biến thực phẩm.
+
+32 = traffic_incident
+Meaning:
+sự cố giao thông.
+
+33 = displacement
+Meaning:
+di dời/di chuyển khỏi nơi ở/vị trí.
+
+34 = medical_treatment
+Meaning:
+điều trị/can thiệp y tế.
+
+35 = death
+Meaning:
+tử vong/chết.
+
+36 = disappearance
+Meaning:
+mất tích/biến mất.
+
+37 = reunion
+Meaning:
+đoàn tụ/gặp lại.
+
+38 = performance
+Meaning:
+biểu diễn/thực hiện một màn trình diễn.
+
+39 = controversy
+Meaning:
+sự kiện tranh cãi.
+
+40 = viral_spread
+Meaning:
+nội dung/sự việc lan truyền mạnh.
+
+41 = discovery_of_error
+Meaning:
+phát hiện sai sót/nhầm lẫn.
+
+42 = correction
+Meaning:
+đính chính/sửa sai.
+
+43 = cancellation
+Meaning:
+hủy bỏ.
+
+44 = postponement
+Meaning:
+hoãn lại.
+
+45 = other
+Meaning:
+EVENT thực nhưng không phù hợp các loại trên.
+
+
+--------------------------------------------------
+2003 EVENT STATUS
+--------------------------------------------------
+
+01 = occurred
+02 = ongoing
+03 = future
+04 = postponed
+05 = cancelled
+06 = interrupted
+07 = completed
+08 = failed
+09 = prevented
+10 = unknown
+
+
+--------------------------------------------------
+2042 / 2052 ACTOR_TARGET TYPE
+--------------------------------------------------
+
+01 = person
+02 = organization
+03 = collective
+04 = phenomenon
+05 = object
+06 = place
+07 = none
+
+
+--------------------------------------------------
+2083 TEMPORAL STATUS
+--------------------------------------------------
+
+01 = past
+02 = ongoing
+03 = future
+04 = postponed
+05 = cancelled
+06 = unknown
+
+
+--------------------------------------------------
+2092 LOCATION TYPE
+--------------------------------------------------
+
+01 = place
+02 = city
+03 = province
+04 = country
+05 = building
+06 = road
+07 = sea
+08 = mountain
+09 = unknown
+
+
+--------------------------------------------------
+3005 RELATION TYPE
+--------------------------------------------------
+
+01 = CAUSES
+Meaning:
+from trực tiếp gây ra to.
+
+02 = LEADS_TO
+Meaning:
+from dẫn đến to.
+
+03 = AFFECTS
+Meaning:
+from tác động đến to.
+
+04 = REACTS_TO
+Meaning:
+from phản ứng với to.
+
+05 = INTERRUPTS
+Meaning:
+from làm gián đoạn to.
+
+06 = REACTIVATES
+Meaning:
+from kích hoạt lại to.
+
+07 = IMITATES
+Meaning:
+from mô phỏng/bắt chước to.
+
+08 = CONTRADICTS
+Meaning:
+from mâu thuẫn/phủ định to.
+
+
+--------------------------------------------------
+4003 SEQUENCE STATUS
+--------------------------------------------------
+
+01 = completed
+02 = ongoing
+03 = interrupted
+04 = failed
+05 = unknown
+
+
+--------------------------------------------------
+5003 ATTENTION TYPE
+--------------------------------------------------
+
+01 = viral
+Meaning:
+nội dung/sự việc lan truyền mạnh.
+
+02 = drama
+Meaning:
+sự chú ý xoay quanh diễn biến drama/xung đột xã hội.
+
+03 = debate
+Meaning:
+công chúng tranh luận hoặc chia thành các luồng ý kiến.
+
+04 = meme
+Meaning:
+nội dung trở thành meme/được sử dụng theo dạng meme.
+
+05 = revival
+Meaning:
+nội dung cũ/sự việc cũ được đào lại hoặc nổi lại.
+
+06 = collective_reaction
+Meaning:
+phản ứng tập thể nói chung.
+
+07 = correction
+Meaning:
+sự chú ý xoay quanh việc đính chính/sửa thông tin.
+
+08 = human_interest
+Meaning:
+sự chú ý do yếu tố đời sống/con người/cảm xúc.
+
+09 = controversy
+Meaning:
+tranh cãi rõ ràng quanh một sự việc/phát biểu/hành động.
+
+10 = outrage
+Meaning:
+phẫn nộ/chỉ trích mạnh.
+
+11 = scrutiny
+Meaning:
+soi xét/theo dõi kỹ một người/sự việc.
+
+12 = alarm
+Meaning:
+báo động/lo ngại.
+
+13 = surprise
+Meaning:
+ngạc nhiên/bất ngờ.
+
+14 = discussion
+Meaning:
+bàn luận/thảo luận.
+
+15 = interest
+Meaning:
+thu hút sự quan tâm.
+
+16 = other
+Meaning:
+phản ứng xã hội thực nhưng không thuộc các loại trên.
+
+
+--------------------------------------------------
+5004 ATTENTION STATUS
+--------------------------------------------------
+
+01 = rising
+02 = ongoing
+03 = declining
+04 = ended
+05 = unknown
+
+
+--------------------------------------------------
+6004 CLAIM STATUS
+--------------------------------------------------
+
+01 = asserted
+02 = confirmed
+03 = disputed
+04 = denied
+05 = false
+06 = unknown
+
+
+--------------------------------------------------
+7005 FORECAST STATUS
+--------------------------------------------------
+
+01 = pending
+02 = occurred
+03 = delayed
+04 = cancelled
+05 = unknown
+
+
+==================================================
+MAPPING RULES
+==================================================
+
+RULE 01
+Một câu mô tả chuyện xảy ra
+→ xem xét EVENT.
+
+RULE 02
+Một câu mô tả phản ứng/chú ý của công chúng
+→ xem xét ATTENTION.
+
+RULE 03
+Một câu mô tả điều được khẳng định/tố cáo/nghi vấn
+→ xem xét CLAIM.
+
+RULE 04
+Một câu mô tả kế hoạch/dự kiến tương lai
+→ xem xét FORECAST.
+
+RULE 05
+Một câu chỉ mô tả trạng thái
+→ xem xét STATE.
+
+RULE 06
+Một câu mô tả quan hệ nhân quả/trình tự/phản ứng
+→ xem xét RELATION hoặc EVENT_SEQUENCE khi phù hợp.
+
+RULE 07
+Không tạo EVENT chỉ vì xuất hiện động từ.
+
+RULE 08
+Không tạo ATTENTION chỉ vì có từ "người dân",
+"cộng đồng mạng", "khán giả".
+
+Phải có phản ứng/chú ý thực sự.
+
+RULE 09
+Không tạo CLAIM chỉ vì câu có từ "tin".
+
+Phải xác định đó là một claim/rumor/allegation được
+NEWS TEXT đề cập.
+
+RULE 10
+Không biến SUMMARY thành danh sách EVENT.
+SUMMARY chỉ là nguồn để nhận diện semantic.
+
+RULE 11
+Không suy diễn nguyên nhân, hậu quả, thời gian,
+địa điểm hoặc phản ứng nếu NEWS TEXT không hỗ trợ.
+
+RULE 12
+Không tạo duplicate EVENT nếu nhiều câu cùng mô tả
+một diễn biến.
+
+RULE 13
+Một EVENT có thể có nhiều ACTORS/TARGETS.
+
+RULE 14
+Một STORY có thể có nhiều EVENT.
+
+RULE 15
+Một STORY có thể không có ATTENTION.
+
+RULE 16
+Một STORY có thể có ATTENTION nhưng không cần tạo
+ATTENTION thành EVENT.
+
+RULE 17
+Một STORY có thể có CLAIM nhưng CLAIM không mặc định
+là FACT.
+
+RULE 18
+EVENT_TYPE phải chọn loại semantic cụ thể nhất có
+trong ENUM MAP.
+
+RULE 19
+Nếu không có loại phù hợp:
+dùng 45 = other.
+
+RULE 20
+Không tự tạo ENUM mới.
+
+==================================================
+FIELD OWNERSHIP
+==================================================
+
+1000
+→ META DOMAIN
+
+2000
+→ EVENT DOMAIN
+
+2002
+→ EVENT TYPE ENUM
+
+2003
+→ EVENT STATUS ENUM
+
+2042
+→ ACTOR TYPE ENUM
+
+2052
+→ TARGET TYPE ENUM
+
+2083
+→ TIME ENUM
+
+2092
+→ LOCATION ENUM
+
+3005
+→ RELATION ENUM
+
+4003
+→ SEQUENCE ENUM
+
+5003
+→ ATTENTION TYPE ENUM
+
+5004
+→ ATTENTION STATUS ENUM
+
+6004
+→ CLAIM STATUS ENUM
+
+7005
+→ FORECAST STATUS ENUM
+
+
+==================================================
+IMPORTANT DISTINCTION
+==================================================
+
+TREE-NEWS trả lời:
+
+"THÔNG TIN NÀY CÓ Ý NGHĨA GÌ?"
+
+JSON-NEWS-SKELETON trả lời:
+
+"THÔNG TIN NÀY ĐƯỢC ĐẶT Ở ĐÂU?"
+
+PROMPT 2 trả lời:
+
+"PHẢI THỰC HIỆN VIỆC ÁNH XẠ NHƯ THẾ NÀO?"
+
+PYTHON trả lời:
+
+"GHÉP CÁC VALUE VÀO TREE-NEWS CỨNG NHƯ THẾ NÀO?"
+
+
+==================================================
+END OF TREE-NEWS v2
+==================================================
