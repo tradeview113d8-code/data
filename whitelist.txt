@@ -1,47 +1,145 @@
-WHITELIST
-│
-├── 01_EVENT
-│   ├── hành động xảy ra
-│   ├── hành động thực thi
-│   ├── biến cố
-│   └── thay đổi trạng thái
-│
-├── 02_STATE
-│   ├── trạng thái người
-│   ├── trạng thái vật/thể
-│   └── trạng thái hệ thống
-│
-├── 03_RELATION
-│   ├── nguyên nhân
-│   ├── kết quả
-│   ├── điều kiện
-│   ├── thời gian
-│   ├── đối lập
-│   └── mục đích
-│
-├── 04_ACTOR
-│   ├── cơ quan
-│   ├── cá nhân
-│   ├── tổ chức
-│   └── nhóm người
-│
-├── 05_TARGET
-│   └── đối tượng chịu tác động
-│
-├── 06_LOCATION
-│   ├── địa điểm
-│   └── PLATFORM
-│
-├── 07_TIME
-│   └── mốc thời gian có giá trị
-│
-├── 08_CLAIM
-│   ├── phát ngôn
-│   ├── phủ nhận
-│   ├── cáo buộc
-│   └── khẳng định
-│
-└── 09_SIGNAL
-    ├── từ báo hiệu bất thường
-    ├── từ báo hiệu mức độ
-    └── từ báo hiệu thay đổi
+01 EVENT
+  01.01 HANH_DONG_XAY_RA
+    - xảy ra
+    - diễn ra
+    - bùng phát
+    - xuất hiện
+  01.02 HANH_DONG_THUC_THI
+    - khởi tố
+    - điều tra
+    - bắt giữ
+    - tạm giữ
+    - xử phạt
+    - đình chỉ
+  01.03 BIEN_CO
+    - cháy
+    - nổ
+    - tai nạn
+    - sập
+    - thiệt mạng
+  01.04 THAY_DOI_TRANG_THAI
+    - tăng
+    - giảm
+    - phá sản
+    - phục hồi
+
+02 STATE
+  02.01 TRANG_THAI_NGUOI
+    - tử vong
+    - bị thương
+    - mất tích
+    - nguy kịch
+  02.02 TRANG_THAI_VAT_THE
+    - hư hỏng
+    - thiêu rụi
+    - vỡ
+    - đứt
+  02.03 TRANG_THAI_HE_THONG
+    - tê liệt
+    - gián đoạn
+    - sập
+    - khôi phục
+
+03 RELATION
+  03.01 NGUYEN_NHAN
+    - do
+    - vì
+    - bởi
+  03.02 KET_QUA
+    - dẫn đến
+    - gây ra
+    - khiến
+  03.03 DIEU_KIEN
+    - nếu
+    - khi
+    - trong trường hợp
+  03.04 THOI_GIAN
+    - sau khi
+    - trước khi
+    - đồng thời
+  03.05 DOI_LAP
+    - nhưng
+    - tuy nhiên
+    - mặc dù
+  03.06 MUC_DICH
+    - để
+    - nhằm
+    - với mục đích
+
+04 ACTOR
+  04.01 CO_QUAN
+    - bộ
+    - sở
+    - ủy ban
+    - tòa án
+  04.02 CA_NHAN
+    - nghi phạm
+    - bị can
+    - đối tượng
+    - nạn nhân
+  04.03 TO_CHUC
+    - công ty
+    - tập đoàn
+    - ngân hàng
+  04.04 NHOM_NGUOI
+    - người dân
+    - hành khách
+    - băng nhóm
+
+05 TARGET
+  05.01 DOI_TUONG_CHIU_TAC_DONG
+    - tài sản
+    - dự án
+    - công trình
+
+06 LOCATION
+  06.01 DIA_DIEM
+    - tại
+    - ở
+    - hiện trường
+    - trụ sở
+  06.02 PLATFORM
+    - trên
+    - mạng xã hội
+    - nền tảng
+
+07 TIME
+  07.01 MOC_THOI_GIAN_CO_GIA_TRI
+    - vào lúc
+    - rạng sáng
+    - vừa qua
+    - sắp tới
+
+08 CLAIM
+  08.01 PHAT_NGON
+    - cho biết
+    - nói
+    - thông báo
+  08.02 PHU_NHAN
+    - phủ nhận
+    - bác bỏ
+    - không có chuyện
+  08.03 CAO_BUOC
+    - cáo buộc
+    - tố cáo
+    - lên án
+  08.04 KHANG_DINH
+    - khẳng định
+    - nhấn mạnh
+    - cam kết
+
+09 SIGNAL
+  09.01 TU_BAO_HIEU_BAT_THUONG
+    - bất ngờ
+    - đột ngột
+    - bất thường
+    - nghi vấn
+  09.02 TU_BAO_HIEU_MUC_DO
+    - nghiêm trọng
+    - dữ dội
+    - hàng loạt
+    - kỷ lục
+  09.03 TU_BAO_HIEU_THAY_DOI
+    - đột biến
+    - chuyển biến
+    - leo thang
