@@ -41,71 +41,90 @@ CAUS  = Sai khiến
 
 2. TREE-GRAMMAR-DEMO
 
-CL
+​CL
 │
 ├── I. CẤU TRÚC CÂU LÕI
 │   │
 │   ├── S + P
-│   │
 │   ├── S + P + O
-│   │
 │   ├── S + P + C
-│   │
 │   ├── S + P + O + C
-│   │
 │   ├── S + P + O + A
-│   │
 │   ├── S + P + O1 + O2
-│   │
 │   ├── S + P + A + O
-│   │
-│   └── S + P + C + A
+│   ├── S + P + C + A
+│   ├── S + COP + NP
+│   └── S + COP + CL
 │
 ├── II. CẤU TRÚC ĐẶC BIỆT
 │   │
 │   ├── V + NP + LOC
-│   │
 │   ├── LOC + P + S
-│   │
 │   ├── S + AUX + V
 │   │   └── PASS
-│   │
 │   ├── S + CAUS + O + V
-│   │
-│   └── S + P + Adj
+│   ├── S + P + Adj
+│   ├── TOPIC + CL
+│   ├── S + [S' + P']
+│   ├── V_exist + NP
+│   ├── V_exist + NP + VP
+│   └── S + P + COMP + NP / CL
 │
-├── III. CẤU TRÚC VỚI THÀNH PHẦN MỞ RỘNG
+├── III. CẤU TRÚC NGHI VẤN
+│   │
+│   ├── S + P + WH
+│   ├── WH + P
+│   └── S + P + Q-part
+│
+├── IV. CẤU TRÚC VỚI THÀNH PHẦN MỞ RỘNG
 │   │
 │   ├── A + CORE
-│   │
 │   ├── CORE + A
-│   │
 │   ├── S + A + P + O
-│   │
 │   ├── S + P + O + A
-│   │
 │   └── S + P + AdvP
 │
-├── IV. CẤU TRÚC NP
+├── V. CẤU TRÚC NP
 │   │
 │   ├── N
 │   ├── Q + N
 │   ├── Num + N
 │   ├── N + M
 │   ├── Q + N + M
+│   ├── Clf + N
+│   ├── N + Dem
+│   ├── Clf + N + Dem
+│   ├── N + N
 │   └── NP + REL
 │
-├── V. CẤU TRÚC VP
+├── VI. CẤU TRÚC VP
 │   │
 │   ├── V
 │   ├── Adv + V
+│   ├── NEG + V
 │   ├── AUX + V
+│   ├── V + V
 │   ├── V + NP
 │   ├── V + PP
+│   ├── V + Adj
 │   ├── V + NP + C
 │   └── V + CL
 │
-├── VI. MỆNH ĐỀ PHỤ
+├── VII. CẤU TRÚC AP
+│   │
+│   ├── Adj
+│   ├── Adv + Adj
+│   ├── Adj + Adv
+│   ├── Adj + PP
+│   └── Adj + CL
+│
+├── VIII. CẤU TRÚC PP
+│   │
+│   ├── Prep + NP
+│   ├── Prep + VP
+│   └── Prep + CL
+│
+├── IX. MỆNH ĐỀ PHỤ
 │   │
 │   ├── SC + MC
 │   ├── MC + SC
@@ -130,39 +149,21 @@ CL
 │   └── CONTR
 │       └── CONTR + MC
 │
-├── VII. MỆNH ĐỀ LÀM THÀNH PHẦN
+├── X. MỆNH ĐỀ LÀM THÀNH PHẦN
 │   │
 │   ├── V + CONT
-│   │
 │   ├── V + REL
-│   │
 │   ├── CONT + P + O
-│   │
 │   ├── NP + REL
-│   │
-│   └── O + REL
+│   ├── O + REL
+│   ├── CONT
+│   │   └── S + P + O
+│   └── REL
+│       └── S + P + O
 │
-└── VIII. CẤU TRÚC ĐẲNG LẬP
-    │
-    ├── CL + COORD + CL
-    ├── S + P + COORD + P
-    ├── O + COORD + O
-    └── NP + COORD + NP    │   │
-    │   ├── V + CONT
-    │   ├── V + REL
-    │   ├── CONT
-    │   │   └── S + P + O
-    │   ├── REL
-    │   │   └── S + P + O
-    │   └── CONT
-    │       └── CL
-    │           ├── CAUSE
-    │           ├── CONS
-    │           └── REL
-    │
-    └── 7. CẤU TRÚC ĐẲNG LẬP
-        │
-        ├── CL + COORD + CL
-        ├── S + P + COORD + P
-        ├── O + COORD + O
-        └── NP + COORD + NP
+└── XI. CẤU TRÚC ĐẲNG LẬP
+│
+├── CL + COORD + CL
+├── S + P + COORD + P
+├── O + COORD + O
+└── NP + COORD + NP
