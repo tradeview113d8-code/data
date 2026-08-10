@@ -1,55 +1,138 @@
 [
   {
-    "id": "news_001",
-    "category": 0,
-    "rank": 0,
+    "news_id": "",
+    "schema_version": "2.0",
+    "category": "",
     "title": "",
-    "entities": [
-      {
-        "id": "ent_001",
-        "type": 0,
-        "name": ""
-      }
-    ],
-    "states": [
-      {
-        "type": 0,
-        "value": ""
-      }
-    ],
     "events": [
       {
-        "id": "event_001",
-        "type": 0,
-        "status": 0,
-        "actor": [],
-        "target": [],
-        "action": "",
-        "location": "",
-        "time": ""
+        "event_id": "",
+        "event_type": 0,
+        "event_status": 0,
+
+        "actors": [
+          {
+            "actor_id": "",
+            "actor_type": 0,
+            "role": ""
+          }
+        ],
+
+        "targets": [
+          {
+            "target_id": "",
+            "target_type": 0,
+            "affected_role": ""
+          }
+        ],
+
+        "action": {
+          "action_type": "",
+          "action_status": "",
+          "steps": [
+            {
+              "step_id": "",
+              "order": 0,
+              "action": "",
+              "status": ""
+            }
+          ]
+        },
+
+        "state": {
+          "before": "",
+          "current": "",
+          "state_change": ""
+        },
+
+        "time": {
+          "start": "",
+          "end": "",
+          "temporal_status": 0
+        },
+
+        "location": [
+          {
+            "location_id": "",
+            "location_type": 0,
+            "name": ""
+          }
+        ],
+
+        "consequences": [
+          {
+            "consequence_event_id": "",
+            "consequence_type": ""
+          }
+        ]
       }
     ],
-    "attention": {
-      "type": 0,
-      "status": 0,
-      "intensity": 0
-    },
-    "claims": [],
-    "sequences": [
-      {
-        "id": "seq_001",
-        "status": 0,
-        "events": []
-      }
-    ],
+
     "relations": [
       {
-        "id": "rel_001",
-        "type": 0,
-        "from": "",
-        "to": ""
+        "edge_id": "",
+        "from_id": "",
+        "to_id": "",
+        "relation_type": 0,
+        "evidence": []
       }
     ],
-    "forecast": []
+
+    "event_sequence": [
+      {
+        "sequence_id": "",
+        "events": [
+          {
+            "event_id": "",
+            "order": 0
+          }
+        ],
+        "sequence_status": 0,
+        "current_step": 0
+      }
+    ],
+
+    "attentions": [
+      {
+        "attention_id": "",
+        "target_ref": {
+          "event_ids": [],
+          "entity_ids": [],
+          "claim_ids": []
+        },
+        "attention_type": 0,
+        "attention_status": 0,
+        "onset_time": "",
+        "attention_source": "",
+        "intensity": ""
+      }
+    ],
+
+    "claims": [
+      {
+        "claim_id": "",
+        "claim_type": "",
+        "claim_content": "",
+        "claim_status": 0,
+        "target_ref": {
+          "event_ids": [],
+          "entity_ids": []
+        },
+        "evidence": []
+      }
+    ],
+
+    "forecasts": [
+      {
+        "forecast_id": "",
+        "target_ref": {
+          "event_ids": [],
+          "entity_ids": []
+        },
+        "expected_time": "",
+        "basis": "",
+        "status": 0
+      }
+    ]
   }
 ]
