@@ -1,19 +1,13 @@
+1. CHÚ THÍCH
+
+CL    = Mệnh đề
 S     = Chủ ngữ
 P     = Vị ngữ
 O     = Tân ngữ
+O1    = Tân ngữ 1
+O2    = Tân ngữ 2
 C     = Bổ ngữ
 A     = Trạng ngữ
-M     = Định ngữ
-
-CL    = Mệnh đề
-MC    = Mệnh đề chính
-SC    = Mệnh đề phụ
-
-NP    = Cụm danh từ
-VP    = Cụm động từ
-PP    = Cụm giới từ
-AP    = Cụm tính từ
-AdvP  = Cụm phó từ
 
 N     = Danh từ
 V     = Động từ
@@ -25,86 +19,135 @@ Q     = Lượng từ
 Prep  = Quan hệ từ
 Conj  = Liên từ
 
+NP    = Cụm danh từ
+VP    = Cụm động từ
+PP    = Cụm giới từ
+AP    = Cụm tính từ
+AdvP  = Cụm phó từ
+
 REL   = Mệnh đề quan hệ
-TIME  = Thành phần thời gian
-LOC   = Thành phần nơi chốn
-CAUSE = Mệnh đề nguyên nhân
-PURP  = Mệnh đề mục đích
-COND  = Mệnh đề điều kiện
-CONS  = Mệnh đề kết quả
-CONTR = Mệnh đề đối lập
 CONT  = Mệnh đề nội dung
-COORD = Cấu trúc đẳng lập
-TREE-GRAMMAR
+CAUSE = Mệnh đề nguyên nhân
+CONS  = Mệnh đề kết quả
+COND  = Mệnh đề điều kiện
+PURP  = Mệnh đề mục đích
+CONTR = Mệnh đề đối lập
+COORD = Đẳng lập
+
+AUX   = Trợ động từ
+PASS  = Bị động
+CAUS  = Sai khiến
+
+
+2. TREE-GRAMMAR-DEMO
+
+CL
 │
-└── CL
+├── I. CẤU TRÚC CÂU LÕI
+│   │
+│   ├── S + P
+│   │
+│   ├── S + P + O
+│   │
+│   ├── S + P + C
+│   │
+│   ├── S + P + O + C
+│   │
+│   ├── S + P + O + A
+│   │
+│   ├── S + P + O1 + O2
+│   │
+│   ├── S + P + A + O
+│   │
+│   └── S + P + C + A
+│
+├── II. CẤU TRÚC ĐẶC BIỆT
+│   │
+│   ├── V + NP + LOC
+│   │
+│   ├── LOC + P + S
+│   │
+│   ├── S + AUX + V
+│   │   └── PASS
+│   │
+│   ├── S + CAUS + O + V
+│   │
+│   └── S + P + Adj
+│
+├── III. CẤU TRÚC VỚI THÀNH PHẦN MỞ RỘNG
+│   │
+│   ├── A + CORE
+│   │
+│   ├── CORE + A
+│   │
+│   ├── S + A + P + O
+│   │
+│   ├── S + P + O + A
+│   │
+│   └── S + P + AdvP
+│
+├── IV. CẤU TRÚC NP
+│   │
+│   ├── N
+│   ├── Q + N
+│   ├── Num + N
+│   ├── N + M
+│   ├── Q + N + M
+│   └── NP + REL
+│
+├── V. CẤU TRÚC VP
+│   │
+│   ├── V
+│   ├── Adv + V
+│   ├── AUX + V
+│   ├── V + NP
+│   ├── V + PP
+│   ├── V + NP + C
+│   └── V + CL
+│
+├── VI. MỆNH ĐỀ PHỤ
+│   │
+│   ├── SC + MC
+│   ├── MC + SC
+│   │
+│   ├── TIME
+│   │   ├── TIME + CL
+│   │   └── CL + TIME
+│   │
+│   ├── CAUSE
+│   │   ├── MC + CAUSE
+│   │   └── CAUSE + MC
+│   │
+│   ├── CONS
+│   │   └── MC + CONS
+│   │
+│   ├── COND
+│   │   └── COND + MC
+│   │
+│   ├── PURP
+│   │   └── MC + PURP
+│   │
+│   └── CONTR
+│       └── CONTR + MC
+│
+├── VII. MỆNH ĐỀ LÀM THÀNH PHẦN
+│   │
+│   ├── V + CONT
+│   │
+│   ├── V + REL
+│   │
+│   ├── CONT + P + O
+│   │
+│   ├── NP + REL
+│   │
+│   └── O + REL
+│
+└── VIII. CẤU TRÚC ĐẲNG LẬP
     │
-    ├── 1. CẤU TRÚC LÕI
-    │   │
-    │   ├── S + P
-    │   ├── S + P + O
-    │   ├── S + P + C
-    │   ├── S + P + O + C
-    │   └── S + P + O + A
-    │
-    ├── 2. THÀNH PHẦN MỞ RỘNG
-    │   │
-    │   ├── A + CORE
-    │   ├── CORE + A
-    │   ├── TIME + CORE
-    │   ├── CORE + TIME
-    │   ├── LOC + CORE
-    │   └── CORE + LOC
-    │
-    ├── 3. CẤU TRÚC NP
-    │   │
-    │   ├── N
-    │   ├── Q + N
-    │   ├── Num + N
-    │   ├── N + M
-    │   ├── Q + N + M
-    │   └── NP + REL
-    │
-    ├── 4. CẤU TRÚC VP
-    │   │
-    │   ├── V
-    │   ├── Adv + V
-    │   ├── Aux + V
-    │   ├── V + NP
-    │   ├── V + PP
-    │   ├── V + NP + C
-    │   └── V + CL
-    │
-    ├── 5. MỆNH ĐỀ PHỤ
-    │   │
-    │   ├── SC + MC
-    │   ├── MC + SC
-    │   │
-    │   ├── TIME
-    │   │   ├── TIME + CL
-    │   │   └── CL + TIME
-    │   │
-    │   ├── CAUSE
-    │   │   ├── MC + CAUSE
-    │   │   └── CAUSE + MC
-    │   │
-    │   ├── PURP
-    │   │   └── MC + PURP
-    │   │
-    │   ├── COND
-    │   │   └── COND + MC
-    │   │
-    │   ├── CONS
-    │   │   └── MC + CONS
-    │   │
-    │   ├── CONTR
-    │   │   └── CONTR + MC
-    │   │
-    │   └── REL
-    │       └── NP + REL
-    │
-    ├── 6. MỆNH ĐỀ LỒNG
-    │   │
+    ├── CL + COORD + CL
+    ├── S + P + COORD + P
+    ├── O + COORD + O
+    └── NP + COORD + NP    │   │
     │   ├── V + CONT
     │   ├── V + REL
     │   ├── CONT
