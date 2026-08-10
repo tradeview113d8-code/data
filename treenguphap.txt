@@ -1,44 +1,47 @@
+01 = CL    = Mệnh đề
+02 = S     = Chủ ngữ
+03 = P     = Vị ngữ
+04 = O     = Tân ngữ
+05 = O1    = Tân ngữ 1
+06 = O2    = Tân ngữ 2
+07 = C     = Bổ ngữ
+08 = A     = Trạng ngữ
 
+09 = N     = Danh từ
+10 = V     = Động từ
+11 = Adj   = Tính từ
+12 = Adv   = Phó từ
+13 = Pro   = Đại từ
+14 = Num   = Số từ
+15 = Q     = Lượng từ
+16 = Prep  = Quan hệ từ
+17 = Conj  = Liên từ
 
-1. CHÚ THÍCH
+18 = NP    = Cụm danh từ
+19 = VP    = Cụm động từ
+20 = PP    = Cụm giới từ
+21 = AP    = Cụm tính từ
+22 = AdvP  = Cụm phó từ
 
-CL    = Mệnh đề
-S     = Chủ ngữ
-P     = Vị ngữ
-O     = Tân ngữ
-O1    = Tân ngữ 1
-O2    = Tân ngữ 2
-C     = Bổ ngữ
-A     = Trạng ngữ
+23 = REL   = Mệnh đề quan hệ
+24 = CONT  = Mệnh đề nội dung
+25 = CAUSE = Mệnh đề nguyên nhân
+26 = CONS  = Mệnh đề kết quả
+27 = COND  = Mệnh đề điều kiện
+28 = PURP  = Mệnh đề mục đích
+29 = CONTR = Mệnh đề đối lập
+30 = COORD = Đẳng lập
 
-N     = Danh từ
-V     = Động từ
-Adj   = Tính từ
-Adv   = Phó từ
-Pro   = Đại từ
-Num   = Số từ
-Q     = Lượng từ
-Prep  = Quan hệ từ
-Conj  = Liên từ
+31 = AUX   = Trợ động từ
+32 = PASS  = Bị động
+33 = CAUS  = Sai khiến
 
-NP    = Cụm danh từ
-VP    = Cụm động từ
-PP    = Cụm giới từ
-AP    = Cụm tính từ
-AdvP  = Cụm phó từ
-
-REL   = Mệnh đề quan hệ
-CONT  = Mệnh đề nội dung
-CAUSE = Mệnh đề nguyên nhân
-CONS  = Mệnh đề kết quả
-COND  = Mệnh đề điều kiện
-PURP  = Mệnh đề mục đích
-CONTR = Mệnh đề đối lập
-COORD = Đẳng lập
-
-AUX   = Trợ động từ
-PASS  = Bị động
-CAUS  = Sai khiến
+34 = MC    = Mệnh đề chính
+35 = SC    = Mệnh đề phụ
+36 = LOC   = Nơi chốn
+37 = TIME  = Thời gian
+38 = M     = Thành phần bổ nghĩa danh từ
+39 = CORE  = Cấu trúc lõi
 
 
 2. TREE-GRAMMAR-DEMO
