@@ -1,565 +1,195 @@
-# TREE-NEWS-DEMO
-# MỤC ĐÍCH:
-# Xây dựng TREE-NEWS bằng cách lấy CHỦ ĐỀ làm XƯƠNG,
-# lấy NGỮ PHÁP TIẾNG VIỆT làm THỊT.
-#
-# Đây chỉ là DEMO để chatbot thảo luận.
-# KHÔNG phải cấu trúc final.
-# KHÔNG được coi các node dưới đây là đáp án cố định.
+# TREE-NEWS-DEMO v2
+# MỤC ĐÍCH: DÙNG CHỦ ĐỀ LÀM XƯƠNG, NGỮ PHÁP TIẾNG VIỆT LÀM THỊT
 
-============================================================
-I. NGUYÊN TẮC
-============================================================
+ROOT
+└── NEWS
+    │
+    ├── 01. TOPIC
+    │   └── Chủ đề của bản tin
+    │
+    ├── 02. GRAMMAR
+    │   └── Cấu trúc câu tiếng Việt thường dùng của TOPIC
+    │
+    ├── 03. SEMANTIC
+    │   ├── ENTITY
+    │   ├── EVENT
+    │   ├── STATE
+    │   ├── ATTENTION
+    │   ├── CLAIM
+    │   ├── FORECAST
+    │   ├── TIME
+    │   ├── LOCATION
+    │   └── SOURCE
+    │
+    └── 04. RELATION
+        ├── CAUSE
+        ├── RESULT
+        ├── SEQUENCE
+        ├── CONDITION
+        ├── CONTRAST
+        └── REFERENCE
 
-TREE-NEWS có 2 tầng:
+
+# NGUYÊN TẮC CỐT LÕI
+
+TOPIC = Xương
+GRAMMAR = Thịt
+SEMANTIC NODE = Vị trí dữ liệu
+RELATION = Liên kết giữa các vị trí
+
+Không xây TREE bằng cách liệt kê tất cả từ khóa.
+
+Phải xác định:
 
 TOPIC
-└── GRAMMAR PATTERN
-    └── SEMANTIC NODE
-
-TOPIC trả lời:
-"Tin này thuộc loại cấu trúc nào?"
-
-GRAMMAR trả lời:
-"Câu tiếng Việt đang biểu đạt quan hệ gì?"
-
-NODE trả lời:
-"Phần thông tin đó thuộc loại dữ liệu nào trong JSON-NEWS?"
-
-Ví dụ:
-
-"Chiếc xe mất lái rồi đâm vào cầu."
-
-Không được chỉ nhìn từ khóa "đâm".
-
-Phải nhận ra:
-
-[CHIẾC XE]
-    = ENTITY
-
-[MẤT LÁI]
-    = EVENT / CAUSE
-
-[ĐÂM VÀO CẦU]
-    = EVENT / IMPACT
-
-[CẦU]
-    = ENTITY / TARGET
-
-============================================================
-II. TOPIC DEMO
-============================================================
-
-T01 — HÀNH VI / VI PHẠM
-
-Đặc điểm:
-Một người hoặc tổ chức thực hiện một hành vi,
-sau đó có thể xuất hiện điều tra, phát hiện hoặc hậu quả.
-
-Grammar thường gặp:
-
-ACTOR
-→ ACTION / VIOLATION
-→ INVESTIGATION
-→ DISCOVERY
-→ CONSEQUENCE
-
-Ví dụ dạng câu:
-
-"[A] thực hiện [hành vi]."
-
-"[Cơ quan chức năng] xác minh [hành vi]."
-
-"[Cơ quan chức năng] phát hiện [sự thật]."
-
-"[Hành vi] khiến [B] bị ảnh hưởng."
-
-Cần phân biệt:
-
-ACTION
-với
-DISCOVERY
-với
-CONSEQUENCE.
+→ các cấu trúc ngữ pháp đặc trưng
+→ các thành phần ngữ nghĩa xuất hiện trong từng cấu trúc
+→ vị trí của chúng trong JSON.
 
 
-------------------------------------------------------------
+# EVENT
 
-T02 — TAI NẠN / SỰ CỐ
+Không đồng nhất:
 
-Đặc điểm:
-Một vật thể, phương tiện hoặc con người gặp sự cố
-và tạo ra tác động tiếp theo.
+ĐỘNG TỪ = EVENT
 
-Grammar:
+Một cụm động từ chỉ được tạo EVENT khi nó biểu diễn
+một hành động / sự kiện có ý nghĩa độc lập đối với bản tin.
 
-ACTOR / OBJECT
-→ INCIDENT
-→ IMPACT
-→ DAMAGE
-→ CONSEQUENCE
+Các động từ nằm trong:
+
+- mệnh đề nền
+- mệnh đề quan hệ
+- mô tả STATE
+- nội dung CLAIM
+- nội dung ATTENTION
+- mô tả thời gian
+
+không mặc nhiên tạo EVENT.
+
+
+# STATE
+
+STATE = tình trạng / thuộc tính / điều kiện tồn tại của ENTITY.
 
 Ví dụ:
 
-"[Xe] mất lái."
+"đã nằm trong cơ thể 15 năm"
+"cầu bị sập"
+"đang bị cấm"
+"đang mắc kẹt"
 
-"[Xe] đâm vào [cầu]."
-
-"[Cầu] bị sập."
-
-"Giao thông bị tê liệt."
-
-Không mặc định mọi mệnh đề là EVENT.
-Phải xác định quan hệ nhân quả.
+Không tự động chuyển STATE thành EVENT.
 
 
-------------------------------------------------------------
+# ATTENTION
 
-T03 — KHÁM PHÁ / PHÁT HIỆN BẤT NGỜ
-
-Đặc điểm:
-Thông tin quan trọng nằm ở sự thật được phát hiện
-sau một tình huống ban đầu.
-
-Grammar:
-
-INITIAL SITUATION
-→ DISCOVERY PROCESS
-→ HIDDEN FACT
-→ REACTION / RESULT
+ATTENTION = phản ứng / mức độ chú ý / lan truyền của cộng đồng.
 
 Ví dụ:
 
-"Đi khám sức khỏe, cô gái phát hiện một vật thể lạ
-đã tồn tại trong cơ thể nhiều năm."
+- gây bão mạng
+- lan truyền mạnh
+- gây phẫn nộ
+- tranh cãi dữ dội
+- thu hút hàng triệu lượt xem
 
-Có thể chứa:
-
-BACKGROUND
-DISCOVERY ACTION
-DISCOVERED FACT
-TIME DEPTH
-REACTION
+Không biến ATTENTION thành EVENT chỉ vì có động từ.
 
 
-------------------------------------------------------------
+# CLAIM
 
-T04 — VIRAL / TREND / CỘNG ĐỒNG
+CLAIM = nội dung chưa được xác nhận hoặc được phát biểu bởi một chủ thể.
 
-Đặc điểm:
-Tin có một hiện tượng/trend/nội dung lan truyền
-và phản ứng của cộng đồng.
+Dấu hiệu thường gặp:
 
-Grammar:
-
-TREND / CONTENT
-→ PARTICIPATION
-→ PLATFORM
-→ SPREAD
-→ PUBLIC ATTENTION
+- nghi
+- nghi vấn
+- được cho là
+- theo thông tin...
+- cáo buộc
+- tin đồn
+- phủ nhận
+- khẳng định
 
 Phải phân biệt:
 
-HÀNH ĐỘNG TẠO NỘI DUNG
+EVENT phát ngôn
+≠
+nội dung của phát ngôn.
 
-với:
 
-SỰ LAN TRUYỀN
+# FORECAST
 
-với:
+FORECAST = sự kiện dự kiến / có điều kiện / chưa xảy ra.
 
-PHẢN ỨNG CỘNG ĐỒNG.
+Dấu hiệu:
 
-Ví dụ:
-
-"Một trào lưu mới đang lan rộng trên TikTok."
-
-"Giới trẻ đồng loạt tham gia."
-
-"Cộng đồng mạng tranh luận dữ dội."
-
-
-------------------------------------------------------------
-
-T05 — TRANH CÃI / PHẢN ỨNG XÃ HỘI
-
-Đặc điểm:
-Có một sự kiện/chính sách/phát ngôn làm phát sinh
-phản ứng xã hội.
-
-Grammar:
-
-TRIGGER
-→ AFFECTED GROUP
-→ REACTION
-→ PUBLIC DEBATE
-
-Ví dụ:
-
-"Chung cư cấm sạc xe điện dưới hầm."
-
-"Cư dân phản đối."
-
-"Cộng đồng mạng tranh luận gay gắt."
-
-Phải phân biệt:
-
-TRIGGER EVENT
-
-với:
-
-SOCIAL ATTENTION / REACTION.
-
-
-------------------------------------------------------------
-
-T06 — XUNG ĐỘT / BẠO LỰC
-
-Grammar:
-
-ACTOR
-→ CONFLICT ACTION
-→ TARGET
-→ EFFECT
-→ SOCIAL REACTION
-
-Ví dụ:
-
-"A đuổi theo B rồi hành hung."
-
-"B bị thương."
-
-"Cộng đồng mạng phẫn nộ."
-
-
-------------------------------------------------------------
-
-T07 — QUAN HỆ CON NGƯỜI / BIẾN CỐ ĐỜI SỐNG
-
-Đặc điểm:
-Một quan hệ hiện tại có thể phụ thuộc vào sự kiện trong quá khứ
-và dẫn tới một sự kiện tương lai.
-
-Grammar:
-
-PAST EVENT
-→ RELATION / STATE
-→ CURRENT EVENT
-→ FUTURE EVENT
-
-Ví dụ:
-
-"Người hiến tạng cứu sống cô gái 20 năm trước."
-
-"Hai người giữ quan hệ với gia đình."
-
-"Hiện nay họ chuẩn bị kết hôn."
-
-Phải giữ TIME ANCHOR.
-
-
-------------------------------------------------------------
-
-T08 — CỨU HỘ / GIẢI CỨU
-
-Grammar:
-
-DANGER / PROBLEM
-→ RESCUER
-→ RESCUE ACTION
-→ TARGET
-→ RESULT
-
-Ví dụ:
-
-"Một con mèo mắc kẹt trong đầu xe."
-
-"Nhân viên cứu hộ tháo phần đầu xe."
-
-"Con mèo được đưa ra ngoài."
-
-
-------------------------------------------------------------
-
-T09 — THIÊN NHIÊN / THIÊN VĂN / HIỆN TƯỢNG
-
-Grammar:
-
-PHENOMENON
-→ CURRENT STATE
-→ EXPECTED CHANGE
-→ TIME
-→ PUBLIC ATTENTION
-
-Ví dụ:
-
-"Mưa sao băng Perseids chuẩn bị đạt cực đại."
-
-Phải phân biệt:
-
-HIỆN TƯỢNG ĐANG XẢY RA
-
-với:
-
-DỰ KIẾN XẢY RA
-
-và:
-
-PHẢN ỨNG CỦA CỘNG ĐỒNG.
-
-
-------------------------------------------------------------
-
-T10 — ĐIỀU TRA / KẾ HOẠCH / DỰ KIẾN
-
-Grammar:
-
-ACTOR
-→ PLAN / INVESTIGATION
-→ TARGET
-→ EXPECTED ACTION
-→ FUTURE TIME
-
-Ví dụ:
-
-"Gia đình đang phối hợp thực hiện thủ tục
-để đưa thi thể xuống núi."
-
-Đây không đồng nghĩa với:
-
-"Đã đưa thi thể xuống núi."
-
-Phải bảo toàn STATUS và TIME.
-
-
-============================================================
-III. NODE SEMANTIC DEMO
-============================================================
-
-ENTITY
-- người
-- nhóm người
-- tổ chức
-- phương tiện
-- vật thể
-- địa điểm
-- hiện tượng
-
-EVENT
-- hành động
-- sự kiện
-- thay đổi
-- tác động
-- điều tra
-- phát hiện
-- cứu hộ
-- kế hoạch
-
-STATE
-- trạng thái tồn tại
-- kết quả đã xảy ra
-- tình trạng của entity
-
-ATTENTION
-- viral
-- tranh cãi
-- phẫn nộ
-- tò mò
-- xúc động
-- quan tâm
-- háo hức
-- phản ứng cộng đồng
-
-CLAIM
-- điều được nói/đồn/khẳng định
-- đặc biệt khi chưa được xác thực
-
-FORECAST
+- sẽ
 - dự kiến
-- kế hoạch
-- khả năng xảy ra trong tương lai
-
-TIME
-- thời điểm
-- khoảng thời gian
-- thời lượng
-- mốc quá khứ
-- hiện tại
-- tương lai
-
-LOCATION
-- nơi xảy ra
-- nơi liên quan
-- nơi di chuyển tới/từ
+- chuẩn bị
+- có kế hoạch
+- có thể
+- nếu... thì...
 
 
-============================================================
-IV. QUY TẮC QUAN TRỌNG
-============================================================
+# TIME
 
-1. KHÔNG đồng nhất "động từ" với EVENT.
+TIME phải được gắn với đúng thành phần mà nó mô tả.
 
-2. KHÔNG đồng nhất "viral" với EVENT.
-   Có thể là ATTENTION.
+Phân biệt:
 
-3. KHÔNG đồng nhất "tranh cãi" với EVENT.
-   Trigger có thể là EVENT,
-   tranh cãi có thể là ATTENTION.
+TIME của EVENT
+và
+TIME DEPTH của STATE / CLAIM / sự kiện quá khứ được nhắc lại.
 
-4. KHÔNG biến mọi câu mô tả hậu quả thành EVENT độc lập
-   nếu nó chỉ là STATE của entity.
-
-5. KHÔNG biến tin đồn thành FACT.
-
-6. KHÔNG biến kế hoạch thành sự kiện đã xảy ra.
-
-7. KHÔNG làm mất TIME chỉ vì câu có nhiều mệnh đề.
-
-8. KHÔNG làm mất LOCATION khi có nhiều địa điểm.
-
-9. Một câu có thể chứa nhiều semantic unit.
-
-10. Một semantic unit có thể được biểu đạt bằng nhiều kiểu
-    ngữ pháp tiếng Việt khác nhau.
-
-============================================================
-V. MỤC ĐÍCH CỦA DEMO
-============================================================
-
-TREE-NEWS-DEMO KHÔNG yêu cầu chatbot đồng ý với cấu trúc này.
-
-Chatbot phải:
-
-- kiểm tra;
-- phản biện;
-- tạo ví dụ;
-- tìm trường hợp ngoại lệ;
-- tìm cấu trúc tiếng Việt chưa được bao phủ;
-- đề xuất topic mới;
-- đề xuất grammar mới;
-- đề xuất node mới nếu cần.
-
-Kết quả cuối cùng mới được dùng để xây TREE-NEWS FINAL.│   │   ├── completed
-│   │   ├── ongoing
-│   │   ├── interrupted
-│   │   ├── failed
-│   │   └── unknown
-│   └── current_step (optional)
-│
-├── 4. ATTENTION (optional)
-│   ├── attention_id
-│   ├── target_ref
-│   │   ├── event_id
-│   │   ├── claim_id
-│   │   └── null
-│   ├── attention_type
-│   │   ├── viral
-│   │   ├── drama
-│   │   ├── debate
-│   │   ├── meme
-│   │   ├── revival
-│   │   ├── collective_reaction
-│   │   ├── correction
-│   │   └── human_interest
-│   ├── attention_status
-│   ├── onset_time
-│   ├── attention_source (optional)
-│   └── intensity (optional)
-│
-│   RULE:
-│   ├── ATTENTION may exist without a new EVENT
-│   └── ATTENTION must not invent an EVENT merely to satisfy the schema
-│
-├── 5. CLAIM (optional)
-│   ├── claim_id
-│   ├── claim_type
-│   ├── claim_content
-│   ├── claim_status
-│   │   ├── asserted
-│   │   ├── confirmed
-│   │   ├── disputed
-│   │   ├── denied
-│   │   └── false
-│   ├── target_ref
-│   │   ├── event_id
-│   │   ├── sequence_id
-│   │   └── null
-│   └── evidence[]
-│
-│   RULE:
-│   └── CLAIM may represent a claim/rumor without asserting that the claimed event actually occurred
-│
-└── 6. FORECAST (optional)
-    ├── forecast_id
-    ├── target_ref
-    │   ├── event_id
-    │   ├── sequence_id
-    │   └── null
-    ├── expected_time
-    ├── basis
-    └── status
-        ├── pending
-        ├── occurred
-        ├── delayed
-        ├── cancelled
-        └── unknown
+Không gom tất cả thời gian của câu thành một TIME chung.
 
 
-GLOBAL ID RULE
-├── IDs must be unique within the TREE-NEWS record.
-├── IDs use explicit namespace prefixes:
-│   ├── evt_
-│   ├── act_
-│   ├── tgt_
-│   ├── seq_
-│   ├── att_
-│   ├── clm_
-│   ├── fcst_
-│   ├── edge_
-│   └── src_
-└── References use IDs, never display names.
+# LOCATION
+
+Phân biệt:
+
+LOCATION vật lý
+và
+PLATFORM / không gian mạng.
+
+Không mặc nhiên coi Facebook, TikTok, Threads... là địa điểm địa lý.
 
 
-CORE SEMANTIC RULES
-1. EVENT = something that happens / changes / is observed.
-2. ATTENTION = people/media/platform/community paying attention to something.
-3. CLAIM = something asserted, denied, disputed, or confirmed.
-4. FORECAST = an expected future event/state.
-5. STATE describes condition/change; causal links belong in RELATIONS.
-6. EVENT_SEQUENCE owns temporal order.
-7. RELATIONS owns non-temporal typed links.
-8. Actor/target are optional; phenomenon and collective are valid entities.
-9. A pure attention story must not create a fake EVENT.
-10. A rumor/denial must not imply that the underlying event occurred.
-11. A consequence that is itself an event may be referenced through consequence_event_id.
-12. v0.2 does not require simulator-specific hints or probabilistic causal semantics.
+# BỊ ĐỘNG
+
+Câu bị động có thể không có ACTOR.
+
+Nếu nguồn không nêu ACTOR:
+
+→ bỏ ACTOR
+
+Không tự tạo ACTOR.
 
 
-REMOVED / REPLACED FROM v0.1
-├── ACTORS implicit-mandatory assumption
-├── TARGETS implicit-mandatory assumption
-├── ACTION.action_sequence → ACTION.steps[]
-├── STATE.expected → removed from STATE
-├── RELATIONS flat relation lists → RELATIONS.edges[]
-├── RELATIONS.PRECEDES / FOLLOWS → EVENT_SEQUENCE.order
-├── ATTENTION boolean flag collection → ATTENTION.attention_type
-├── ATTENTION sibling-without-reference → target_ref
-├── CLAIM orphan possibility → target_ref
-├── FORECAST orphan possibility → target_ref
-└── 12_TIER_2 fixed grammar → removed; Tier-2 semantics are represented through ATTENTION / CLAIM / EVENT.
+# NHIỀU EVENT
+
+Một câu có thể có:
+
+EVENT A → EVENT B → EVENT C
+
+nhưng cũng có thể có nhiều động từ chỉ thuộc cùng một EVENT.
+
+Phải dựa vào cấu trúc ngữ pháp + ý nghĩa độc lập,
+không tách máy móc theo động từ.
 
 
-OUT OF SCOPE FOR v0.2
-├── simulator_hint
-├── enables / blocks / modifies_probability
-├── detailed relation cardinality taxonomy
-├── actor_intent
-├── legal_force
-├── forecast_confidence model
-└── any new domain-specific node not required by the consensus fixes
+# MỤC TIÊU CỦA TREE-NEWS
 
+TREE-NEWS không phải cây từ khóa.
 
-VERSION
-├── version: 0.2
-├── type: structural revision
-└── status: DEMO / REVIEW REQUIRED
+TREE-NEWS phải là:
+
+TOPIC
+→ GRAMMAR PATTERN
+→ NODE MAPPING
+→ RELATION
+
+để chatbot nhìn vào cấu trúc câu tiếng Việt
+và biết mỗi thành phần phải đi vào vị trí nào trong JSON.
