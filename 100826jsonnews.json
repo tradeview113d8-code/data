@@ -1,711 +1,794 @@
 [
 {
-"id": "news_001",
-"category": "01",
-"title": "Đi khám sức khỏe định kỳ, cô gái sốc khi phát hiện "vật thể lạ" nằm trong cơ thể suốt 22 năm",
+"id": "news_001_01",
+"category": 1,
+"rank": 1,
+"title": "Đăng clip bốc đầu xe máy lên TikTok câu view, nam thiếu niên bất ngờ bị lộ xe trộm cắp",
 "entities": [
 {
 "id": "ent_001",
-"type": "01",
-"name": "cô gái"
+"type": 1,
+"name": "Nam thiếu niên 16 tuổi"
 },
 {
 "id": "ent_002",
-"type": "05",
-"name": "vật thể lạ"
+"type": 5,
+"name": "Xe máy (tang vật trộm cắp)"
 },
 {
 "id": "ent_003",
-"type": "03",
-"name": "bác sĩ"
+"type": 2,
+"name": "Lực lượng công an"
 }
 ],
-"states": [
-{
-"type": "thời gian ký sinh",
-"value": "22 năm"
-}
-],
+"states": [],
 "events": [
 {
 "id": "event_001",
-"type": "34",
-"status": "07",
-"actor": [
-"ent_001"
-],
-"target": [],
-"action": "Đi khám sức khỏe định kỳ",
-"location": "Việt Nam",
+"type": 17,
+"status": 7,
+"actor": ["ent_001"],
+"target": ["ent_002"],
+"action": "Điều khiển xe máy chạy bằng một bánh (bốc đầu) rồi quay clip đăng lên mạng xã hội TikTok nhằm mục đích câu tương tác",
+"location": "Hà Tĩnh",
 "time": ""
 },
 {
 "id": "event_002",
-"type": "01",
-"status": "01",
-"actor": [
-"ent_003"
-],
-"target": [
-"ent_002"
-],
-"action": "Phát hiện vật thể lạ nằm trong cơ thể",
-"location": "Việt Nam",
-"time": ""
-}
-]
-},
-{
-"id": "news_002",
-"category": "01",
-"title": "Đăng clip bốc đầu xe máy lên TikTok câu view, thiếu niên lộ xe máy trộm cắp",
-"entities": [
-{
-"id": "ent_201",
-"type": "01",
-"name": "thiếu niên"
-},
-{
-"id": "ent_202",
-"type": "05",
-"name": "xe máy"
-},
-{
-"id": "ent_203",
-"type": "02",
-"name": "cơ quan công an"
-}
-],
-"states": [
-{
-"type": "tuổi của thiếu niên",
-"value": "16 tuổi"
-},
-{
-"type": "tình trạng tài sản",
-"value": "tang vật của một vụ trộm cắp"
-}
-],
-"events": [
-{
-"id": "event_201",
-"type": "32",
-"status": "01",
-"actor": [
-"ent_201"
-],
-"target": [
-"ent_202"
-],
-"action": "Bốc đầu xe máy",
+"type": 9,
+"status": 1,
+"actor": ["ent_003"],
+"target": ["ent_001"],
+"action": "Tiến hành xác minh để xử lý vi phạm trật tự an toàn giao thông",
 "location": "Hà Tĩnh",
 "time": ""
 },
 {
-"id": "event_202",
-"type": "17",
-"status": "07",
-"actor": [
-"ent_201"
-],
-"target": [],
-"action": "Đăng clip lên TikTok câu view",
-"location": "",
-"time": ""
-},
-{
-"id": "event_203",
-"type": "09",
-"status": "01",
-"actor": [
-"ent_203"
-],
-"target": [
-"ent_201"
-],
-"action": "Vào cuộc xác minh vi phạm giao thông và phát hiện xe máy trộm cắp",
+"id": "event_003",
+"type": 1,
+"status": 7,
+"actor": ["ent_003"],
+"target": ["ent_002"],
+"action": "Bất ngờ phát hiện chiếc xe máy sử dụng chính là tang vật của một vụ trộm cắp trước đó",
 "location": "Hà Tĩnh",
 "time": ""
 }
+],
+"attention": {
+"type": 15,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_001",
+"status": 1,
+"events": [
+{"event_id": "event_001", "order": 1},
+{"event_id": "event_002", "order": 2},
+{"event_id": "event_003", "order": 3}
 ]
+}
+],
+"relations": [
+{
+"id": "rel_001",
+"type": 2,
+"from": "event_001",
+"to": "event_002"
 },
 {
-"id": "news_003",
-"category": "01",
-"title": "Đội bóng hơn nửa thế kỷ truyền thống Đồng Tháp bị đổi tên, rơi vào cảnh "hồn Trương Ba, da Hàng Thịt"",
+"id": "rel_002",
+"type": 2,
+"from": "event_002",
+"to": "event_003"
+}
+],
+"forecast": []
+},
+{
+"id": "news_001_02",
+"category": 1,
+"rank": 2,
+"title": "Mối nhân duyên kỳ diệu kết hôn với em trai của người hiến tạng cứu sống mình",
 "entities": [
 {
-"id": "ent_301",
-"type": "02",
-"name": "đội bóng Đồng Tháp"
+"id": "ent_004",
+"type": 1,
+"name": "Cô gái 24 tuổi"
 },
 {
-"id": "ent_302",
-"type": "02",
-"name": "chính quyền"
+"id": "ent_005",
+"type": 1,
+"name": "Em trai của người hiến tạng"
 },
 {
-"id": "ent_303",
-"type": "02",
-"name": "nhà tài trợ"
+"id": "ent_006",
+"type": 1,
+"name": "Người hiến tạng (ân nhân)"
 }
 ],
 "states": [
 {
-"type": "truyền thống đội bóng",
-"value": "hơn nửa thế kỷ"
-},
-{
-"type": "tên mới",
-"value": "Bình Minh Sài Gòn"
+"type": 0,
+"value": "Cô gái nhận tạng từ ân nhân và bình phục, giữ mối quan hệ thân thiết với gia đình người hiến suốt 20 năm"
 }
 ],
 "events": [
 {
-"id": "event_301",
-"type": "45",
-"status": "07",
-"actor": [
-"ent_301"
-],
+"id": "event_004",
+"type": 7,
+"status": 7,
+"actor": ["ent_004", "ent_005"],
 "target": [],
-"action": "Đổi tên thành Bình Minh Sài Gòn theo tên nhà tài trợ",
-"location": "Đồng Tháp",
-"time": ""
-},
-{
-"id": "event_302",
-"type": "33",
-"status": "02",
-"actor": [
-"ent_301"
-],
-"target": [],
-"action": "Lên Sài Gòn ăn nhờ ở đậu, không thể ăn tập tại sân nhà",
-"location": "Sài Gòn",
-"time": ""
-}
-]
-},
-{
-"id": "news_004",
-"category": "40",
-"title": "Vụ việc tiệm tóc làm content bẩn, quấy rối khách nữ nhận "bão" chỉ trích dữ dội từ cộng đồng mạng",
-"entities": [
-{
-"id": "ent_401",
-"type": "02",
-"name": "tiệm tóc"
-},
-{
-"id": "ent_402",
-"type": "01",
-"name": "khách hàng nữ"
-},
-{
-"id": "ent_403",
-"type": "03",
-"name": "cộng đồng mạng"
-}
-],
-"states": [],
-"events": [
-{
-"id": "event_401",
-"type": "17",
-"status": "07",
-"actor": [
-"ent_401"
-],
-"target": [
-"ent_402"
-],
-"action": "Dàn dựng cảnh quấy rối khách hàng nữ, làm nội dung bẩn câu view",
-"location": "",
-"time": ""
-}
-]
-},
-{
-"id": "news_005",
-"category": "40",
-"title": "Tranh cãi dữ dội về việc các chung cư "cấm cửa" xe điện dưới hầm và nỗi lo của đơn vị vận hành",
-"entities": [
-{
-"id": "ent_501",
-"type": "02",
-"name": "ban quản lý chung cư"
-},
-{
-"id": "ent_502",
-"type": "05",
-"name": "xe máy điện, xe đạp điện"
-},
-{
-"id": "ent_503",
-"type": "03",
-"name": "cư dân mạng"
-}
-],
-"states": [],
-"events": [
-{
-"id": "event_501",
-"type": "43",
-"status": "01",
-"actor": [
-"ent_501"
-],
-"target": [
-"ent_502"
-],
-"action": "Cấm đỗ và sạc xe điện dưới tầng hầm chung cư",
-"location": "chung cư",
-"time": ""
-}
-]
-},
-{
-"id": "news_006",
-"category": "40",
-"title": "Hiện tượng "ảo tưởng sức mạnh" và cuộc đua bất chấp biến cố người khác để cày view của các giang hồ mạng",
-"entities": [
-{
-"id": "ent_601",
-"type": "03",
-"name": "giang hồ mạng"
-},
-{
-"id": "ent_602",
-"type": "03",
-"name": "đám đông"
-},
-{
-"id": "ent_603",
-"type": "02",
-"name": "cơ quan pháp lý"
-}
-],
-"states": [],
-"events": [
-{
-"id": "event_601",
-"type": "09",
-"status": "07",
-"actor": [
-"ent_603"
-],
-"target": [
-"ent_601"
-],
-"action": "Thực hiện các cuộc điều tra pháp lý đối với giang hồ mạng",
-"location": "",
-"time": ""
-},
-{
-"id": "event_602",
-"type": "17",
-"status": "01",
-"actor": [
-"ent_602"
-],
-"target": [],
-"action": "Kéo đến hiện trường tai nạn, đám cháy để livestream cày view",
-"location": "hiện trường biến cố",
-"time": ""
-}
-]
-},
-{
-"id": "news_007",
-"category": "40",
-"title": "Hậu trường cưỡi ngựa trong phim cổ trang khiến cư dân mạng ngã ngửa vì sự thật hài hước",
-"entities": [
-{
-"id": "ent_701",
-"type": "01",
-"name": "diễn viên"
-},
-{
-"id": "ent_702",
-"type": "03",
-"name": "ê-kíp hỗ trợ"
-}
-],
-"states": [],
-"events": [
-{
-"id": "event_701",
-"type": "38",
-"status": "07",
-"actor": [
-"ent_701",
-"ent_702"
-],
-"target": [],
-"action": "Diễn viên đứng một chỗ lắc người và giật dây cương, ê-kíp di chuyển bằng công cụ thủ công",
-"location": "hậu trường phim",
-"time": ""
-}
-]
-},
-{
-"id": "news_008",
-"category": "40",
-"title": "TikToker AI hút 400.000 fan chỉ trong 30 ngày, quảng cáo 60 giây giá 1 tỷ đồng gây xôn xao",
-"entities": [
-{
-"id": "ent_801",
-"type": "01",
-"name": "TikToker AI"
-}
-],
-"states": [
-{
-"type": "lượng người hâm mộ",
-"value": "400.000 fan"
-},
-{
-"type": "thời gian đạt fan",
-"value": "30 ngày"
-},
-{
-"type": "giá quảng cáo 60 giây",
-"value": "1 tỷ đồng"
-}
-],
-"events": []
-},
-{
-"id": "news_009",
-"category": "02",
-"title": "Vụ sóng cuốn trôi 4 người chụp ảnh tại Mũi Nghê - Đà Nẵng: Trắng đêm tìm kiếm các nạn nhân",
-"entities": [
-{
-"id": "ent_901",
-"type": "03",
-"name": "nhóm 4 người"
-},
-{
-"id": "ent_902",
-"type": "04",
-"name": "sóng lớn"
-},
-{
-"id": "ent_903",
-"type": "02",
-"name": "lực lượng Hải quân và các cơ quan chức năng"
-}
-],
-"states": [
-{
-"type": "số lượng cứu sống",
-"value": "2 người"
-},
-{
-"type": "số lượng mất tích",
-"value": "2 người"
-},
-{
-"type": "thời gian lênh đênh của cô gái",
-"value": "8 tiếng"
-}
-],
-"events": [
-{
-"id": "event_901",
-"type": "06",
-"status": "07",
-"actor": [
-"ent_901"
-],
-"target": [],
-"action": "Tham quan và chụp ảnh",
-"location": "Mũi Nghê, bán đảo Sơn Trà (Đà Nẵng)",
-"time": ""
-},
-{
-"id": "event_902",
-"type": "02",
-"status": "01",
-"actor": [
-"ent_902"
-],
-"target": [
-"ent_901"
-],
-"action": "Cuốn trôi ra biển",
-"location": "Mũi Nghê, bán đảo Sơn Trà (Đà Nẵng)",
-"time": ""
-},
-{
-"id": "event_903",
-"type": "20",
-"status": "02",
-"actor": [
-"ent_903"
-],
-"target": [
-"ent_901"
-],
-"action": "Huy động tàu bè xuyên đêm tìm kiếm các nạn nhân",
-"location": "biển Đà Nẵng",
-"time": "đêm"
-}
-]
-},
-{
-"id": "news_010",
-"category": "02",
-"title": "Cháy xe đầu kéo chở dàn xe sang Lexus RX trên cao tốc Hà Nội - Hải Phòng",
-"entities": [
-{
-"id": "ent_1001",
-"type": "05",
-"name": "xe đầu kéo"
-},
-{
-"id": "ent_1002",
-"type": "05",
-"name": "dàn xe sang Lexus RX"
-}
-],
-"states": [],
-"events": [
-{
-"id": "event_1001",
-"type": "10",
-"status": "01",
-"actor": [],
-"target": [
-"ent_1001"
-],
-"action": "Bốc cháy dữ dội ở phần sơ mi rơ-moóc",
-"location": "cao tốc Hà Nội - Hải Phòng",
-"time": "khoảng 10h sáng"
-},
-{
-"id": "event_1002",
-"type": "28",
-"status": "01",
-"actor": [],
-"target": [
-"ent_1002"
-],
-"action": "Ngọn lửa lan rộng và thiêu rụi tài sản",
-"location": "cao tốc Hà Nội - Hải Phòng",
-"time": ""
-}
-]
-},
-{
-"id": "news_011",
-"category": "02",
-"title": "Mưa gió lớn làm cây gạo cổ thụ cao 10m bật gốc đổ sập chắn ngang đèo Bảo Lộc",
-"entities": [
-{
-"id": "ent_1101",
-"type": "05",
-"name": "cây gạo cổ thụ"
-},
-{
-"id": "ent_1102",
-"type": "04",
-"name": "mưa lớn kèm gió giật mạnh"
-}
-],
-"states": [
-{
-"type": "chiều cao cây",
-"value": "khoảng 10m"
-}
-],
-"events": [
-{
-"id": "event_1101",
-"type": "29",
-"status": "01",
-"actor": [
-"ent_1102"
-],
-"target": [
-"ent_1101"
-],
-"action": "Làm cây gạo cổ thụ bật gốc hoàn toàn và đổ sập chắn ngang đường",
-"location": "đèo Bảo Lộc (tỉnh Lâm Đồng), Quốc lộ 20",
-"time": ""
-}
-]
-},
-{
-"id": "news_012",
-"category": "14",
-"title": "Mỹ giải mật đợt hồ sơ UFO mới, công bố video vật thể lạ hình tam giác trên bầu trời Trung Đông",
-"entities": [
-{
-"id": "ent_1201",
-"type": "02",
-"name": "Chính phủ Mỹ"
-},
-{
-"id": "ent_1202",
-"type": "05",
-"name": "hồ sơ giải mật liên quan UAP/UFO"
-},
-{
-"id": "ent_1203",
-"type": "05",
-"name": "vật thể lạ hình tam giác"
-}
-],
-"states": [
-{
-"type": "số lượng tài liệu",
-"value": "41 tài liệu"
-},
-{
-"type": "giai đoạn hồ sơ",
-"value": "từ năm 1950 đến 2026"
-}
-],
-"events": [
-{
-"id": "event_1201",
-"type": "08",
-"status": "07",
-"actor": [
-"ent_1201"
-],
-"target": [
-"ent_1202"
-],
-"action": "Chính thức công bố giải mật đợt hồ sơ UFO mới",
+"action": "Dần nảy sinh tình cảm tự nhiên",
 "location": "Mỹ",
-"time": ""
-},
-{
-"id": "event_1202",
-"type": "06",
-"status": "01",
-"actor": [
-"ent_1203"
+"time": "Suốt 20 năm sau khi nhận tạng"
+}
 ],
-"target": [],
-"action": "Che khuất hoàn toàn các ngôi sao đêm trên bầu trời",
-"location": "Trung Đông",
-"time": "đêm"
+"attention": {
+"type": 8,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": [
+{
+"id": "fore_001",
+"target_ref": "ent_004",
+"expected_time": "Tương lai gần",
+"basis": "Chuẩn bị kết hôn",
+"status": 1
 }
 ]
 },
 {
-"id": "news_013",
-"category": "14",
-"title": "Chiếc SUV mất lái phóng với tốc độ cao rồi "bay" thẳng lên mắc kẹt trên ngọn cây tại Trung Quốc",
+"id": "news_001_03",
+"category": 1,
+"rank": 3,
+"title": "Xe SUV đang di chuyển trên cao tốc bất ngờ mất lái bay lên ngọn cây",
 "entities": [
 {
-"id": "ent_1301",
-"type": "05",
-"name": "chiếc SUV màu trắng"
+"id": "ent_007",
+"type": 5,
+"name": "Xe ô tô thuộc dòng thể thao đa dụng (SUV)"
 },
 {
-"id": "ent_1302",
-"type": "02",
-"name": "lực lượng cứu hộ"
-},
-{
-"id": "ent_1303",
-"type": "03",
-"name": "hai người bên trong"
+"id": "ent_008",
+"type": 5,
+"name": "Ngọn cây bên hành lang an toàn giao thông"
 }
 ],
 "states": [
 {
-"type": "độ cao mắc kẹt",
-"value": "cách mặt đất 2 mét"
+"type": 0,
+"value": "Chiếc xe máy bị mắc kẹt trên ngọn cây"
 }
 ],
 "events": [
 {
-"id": "event_1301",
-"type": "32",
-"status": "07",
-"actor": [
-"ent_1301"
-],
+"id": "event_005",
+"type": 32,
+"status": 7,
+"actor": ["ent_007"],
 "target": [],
-"action": "Vào cua tốc độ cao, mất kiểm soát, lao lên ta luy rồi bay lên mắc kẹt giữa thân cây và trạm biến áp",
-"location": "thành phố Trùng Khánh, Trung Quốc",
+"action": "Đang lưu thông bình thường trên tuyến đường cao tốc thì bất ngờ gặp sự cố mất lái nghiêm trọng, lao thẳng ra khỏi lề đường và bay thẳng lên mắc kẹt trên một ngọn cây",
+"location": "Tuyến đường cao tốc",
+"time": ""
+}
+],
+"attention": {
+"type": 15,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": []
+},
+{
+"id": "news_002_01",
+"category": 2,
+"rank": 1,
+"title": "Trào lưu quay video "Lời hồi đáp từ năm 2026" gây bão diện rộng trên TikTok",
+"entities": [
+{
+"id": "ent_009",
+"type": 3,
+"name": "Cộng đồng mạng Việt Nam / Người dùng TikTok"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_006",
+"type": 17,
+"status": 2,
+"actor": ["ent_009"],
+"target": [],
+"action": "Đồng loạt chia sẻ và tham gia trào lưu mở lại các dòng trạng thái, câu hỏi vu vơ của chính mình từ năm 2016 để thực hiện video hồi đáp dưới góc nhìn của năm 2026",
+"location": "Việt Nam (Mạng xã hội TikTok)",
+"time": "Hiện tại"
+}
+],
+"attention": {
+"type": 1,
+"status": 1,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": []
+},
+{
+"id": "news_002_02",
+"category": 2,
+"rank": 2,
+"title": "Tranh cãi dữ dội quanh việc các chung cư thắt chặt quy định, cấm cửa xe điện",
+"entities": [
+{
+"id": "ent_010",
+"type": 3,
+"name": "Cư dân mạng / Hội nhóm Facebook"
+},
+{
+"id": "ent_011",
+"type": 2,
+"name": "Ban quản lý chung cư"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_007",
+"type": 0,
+"status": 7,
+"actor": ["ent_011"],
+"target": [],
+"action": "Ra quy định cấm đỗ, cấm sạc xe máy điện và xe đạp điện dưới hầm",
+"location": "Nhiều chung cư",
+"time": ""
+}
+],
+"attention": {
+"type": 3,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [
+{
+"id": "rel_003",
+"type": 4,
+"from": "ent_010",
+"to": "event_007"
+}
+],
+"forecast": []
+},
+{
+"id": "news_002_03",
+"category": 2,
+"rank": 3,
+"title": "Video tài xế chặn đường hành hung đồng nghiệp vì xin vượt không được gây phẫn nộ",
+"entities": [
+{
+"id": "ent_012",
+"type": 1,
+"name": "Tài xế hành hung"
+},
+{
+"id": "ent_013",
+"type": 1,
+"name": "Tài xế bị hại (xin vượt đường)"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_008",
+"type": 15,
+"status": 7,
+"actor": ["ent_012"],
+"target": ["ent_013"],
+"action": "Đuổi theo chặn xe đối phương do trước đó xin vượt đường nhưng không được đáp ứng",
+"location": "Đường phố",
 "time": ""
 },
 {
-"id": "event_1302",
-"type": "03",
-"status": "07",
-"actor": [
-"ent_1302"
-],
-"target": [
-"ent_1303"
-],
-"action": "Dùng thang giải cứu hai người bên trong ra ngoài an toàn",
-"location": "thành phố Trùng Khánh, Trung Quốc",
+"id": "event_009",
+"type": 19,
+"status": 7,
+"actor": ["ent_012"],
+"target": ["ent_013"],
+"action": "Lao vào đánh chảy máu mũi đối phương",
+"location": "Đường phố",
 "time": ""
+}
+],
+"attention": {
+"type": 10,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_002",
+"status": 1,
+"events": [
+{"event_id": "event_008", "order": 1},
+{"event_id": "event_009", "order": 2}
+]
+}
+],
+"relations": [
+{
+"id": "rel_004",
+"type": 2,
+"from": "event_008",
+"to": "event_009"
+}
+],
+"forecast": []
+},
+{
+"id": "news_002_04",
+"category": 2,
+"rank": 4,
+"title": "Làn sóng "xin link" phản cảm sau tin đồn lộ clip riêng tư của nữ tiktoker nổi tiếng",
+"entities": [
+{
+"id": "ent_014",
+"type": 1,
+"name": "Nữ TikToker nổi tiếng"
+},
+{
+"id": "ent_015",
+"type": 3,
+"name": "Cư dân mạng / Tài khoản mạng xã hội"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_010",
+"type": 23,
+"status": 7,
+"actor": [],
+"target": ["ent_014"],
+"action": "Xuất hiện tin đồn thất thiệt về việc lộ clip nhạy cảm riêng tư",
+"location": "Mạng xã hội Threads / Facebook",
+"time": ""
+}
+],
+"attention": {
+"type": 9,
+"status": 1,
+"intensity": 0
+},
+"claims": [
+{
+"id": "claim_001",
+"type": 0,
+"claim_content": "Tin đồn nữ TikToker nổi tiếng bị lộ clip riêng tư nhạy cảm",
+"claim_status": 6,
+"target_ref": "ent_014",
+"evidence": ""
+}
+],
+"sequences": [],
+"relations": [
+{
+"id": "rel_005",
+"type": 4,
+"from": "ent_015",
+"to": "event_010"
+}
+],
+"forecast": []
+},
+{
+"id": "news_002_05",
+"category": 2,
+"rank": 5,
+"title": "Trào lưu "Thách thức mạo danh" thu hút các nhóm bạn trẻ quay video biến tấu",
+"entities": [
+{
+"id": "ent_016",
+"type": 3,
+"name": "Các nhóm bạn trẻ / Hội bạn thân / Đồng nghiệp văn phòng"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_011",
+"type": 38,
+"status": 2,
+"actor": ["ent_016"],
+"target": [],
+"action": "Cùng chọn một chủ đề trang phục, sử dụng ứng dụng chọn ngẫu nhiên một người nhận từ khóa khác biệt để tạo tình huống lộ diện bất ngờ",
+"location": "Nền tảng TikTok Việt Nam",
+"time": "Hiện tại"
+}
+],
+"attention": {
+"type": 1,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": []
+},
+{
+"id": "news_003_01",
+"category": 3,
+"rank": 1,
+"title": "Xe tải cẩu mất lái đâm sập cầu sắt tại Đồng Nai lúc rạng sáng",
+"entities": [
+{
+"id": "ent_017",
+"type": 5,
+"name": "Xe ô tô tải cẩu"
+},
+{
+"id": "ent_018",
+"type": 5,
+"name": "Cầu Đắk Lung (phường Phước Long)"
+}
+],
+"states": [
+{
+"type": 0,
+"value": "Chiếc xe tải lật nghiêng vắt vẻo trên thành cầu, giao thông qua khu vực tê liệt hoàn toàn"
+}
+],
+"events": [
+{
+"id": "event_012",
+"type": 32,
+"status": 7,
+"actor": ["ent_017"],
+"target": ["ent_018"],
+"action": "Đang lưu thông hướng về Nhà máy Thủy điện Thác Mơ thì bất ngờ gặp sự cố nghiêm trọng, mất lái và tông thẳng vào cầu",
+"location": "Đồng Nai",
+"time": "Khoảng 4 giờ sáng"
+},
+{
+"id": "event_013",
+"type": 29,
+"status": 7,
+"actor": [],
+"target": ["ent_018"],
+"action": "Toàn bộ cấu trúc cầu sắt bị sập do cú tông mạnh",
+"location": "Đồng Nai",
+"time": "Khoảng 4 giờ sáng"
+}
+],
+"attention": {
+"type": 15,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_003",
+"status": 1,
+"events": [
+{"event_id": "event_012", "order": 1},
+{"event_id": "event_013", "order": 2}
+]
+}
+],
+"relations": [
+{
+"id": "rel_006",
+"type": 1,
+"from": "event_012",
+"to": "event_013"
+}
+],
+"forecast": []
+},
+{
+"id": "news_003_02",
+"category": 3,
+"rank": 2,
+"title": "Ô tô di chuyển trên cao tốc Phan Thiết - Dầu Giây bất ngờ bị ném đá vỡ kính lái",
+"entities": [
+{
+"id": "ent_019",
+"type": 5,
+"name": "Chiếc ô tô đang di chuyển"
+},
+{
+"id": "ent_020",
+"type": 5,
+"name": "Viên đá lớn rơi từ trên cao"
+},
+{
+"id": "ent_021",
+"type": 2,
+"name": "Cơ quan chức năng"
+}
+],
+"states": [
+{
+"type": 0,
+"value": "Phần kính lái phía trước bị thủng một góc lớn và rạn nứt nghiêm trọng"
+}
+],
+"events": [
+{
+"id": "event_014",
+"type": 32,
+"status": 7,
+"actor": ["ent_020"],
+"target": ["ent_019"],
+"action": "Rơi trúng phần kính lái ô tô khi xe đang di chuyển qua khu vực cầu vượt dân sinh",
+"location": "Đoạn cuối tuyến cao tốc Phan Thiết - Dầu Giây",
+"time": ""
+},
+{
+"id": "event_015",
+"type": 9,
+"status": 2,
+"actor": ["ent_021"],
+"target": [],
+"action": "Khẩn cấp tiến hành điều tra sự việc",
+"location": "Đoạn cuối tuyến cao tốc Phan Thiết - Dầu Giây",
+"time": ""
+}
+],
+"attention": {
+"type": 12,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_004",
+"status": 2,
+"events": [
+{"event_id": "event_014", "order": 1},
+{"event_id": "event_015", "order": 2}
+]
+}
+],
+"relations": [
+{
+"id": "rel_007",
+"type": 2,
+"from": "event_014",
+"to": "event_015"
+}
+],
+"forecast": []
+},
+{
+"id": "news_003_03",
+"category": 3,
+"rank": 3,
+"title": "Xe máy vượt đèn đỏ đâm ngã người đi đường rồi tăng ga rời bỏ hiện trường",
+"entities": [
+{
+"id": "ent_022",
+"type": 1,
+"name": "Tài xế xe máy vi phạm"
+},
+{
+"id": "ent_023",
+"type": 1,
+"name": "Người đi đường (nạn nhân)"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_016",
+"type": 32,
+"status": 7,
+"actor": ["ent_022"],
+"target": ["ent_023"],
+"action": "Cố tình tăng tốc vượt đèn đỏ tại nút giao lộ và đâm trực diện vào xe máy khác khiến nạn nhân ngã văng mạnh xuống đường",
+"location": "Nút giao lộ",
+"time": ""
+},
+{
+"id": "event_017",
+"type": 33,
+"status": 7,
+"actor": ["ent_022"],
+"target": [],
+"action": "Không dừng lại giúp đỡ mà lập tức tăng ga phóng xe bỏ chạy khỏi hiện trường",
+"location": "Nút giao lộ",
+"time": ""
+}
+],
+"attention": {
+"type": 10,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_005",
+"status": 1,
+"events": [
+{"event_id": "event_016", "order": 1},
+{"event_id": "event_017", "order": 2}
+]
+}
+],
+"relations": [
+{
+"id": "rel_008",
+"type": 2,
+"from": "event_016",
+"to": "event_017"
+}
+],
+"forecast": []
+},
+{
+"id": "news_004_01",
+"category": 4,
+"rank": 1,
+"title": "Kế hoạch đưa thi thể "Giày xanh" trở về quê hương sau 30 năm nằm lại đỉnh Everest",
+"entities": [
+{
+"id": "ent_024",
+"type": 3,
+"name": "Gia đình nhà leo núi người Ấn Độ"
+},
+{
+"id": "ent_025",
+"type": 1,
+"name": "Nhà leo núi quá cố (biệt danh Giày xanh)"
+}
+],
+"states": [
+{
+"type": 0,
+"value": "Thi thể nhà leo núi nằm lại từ năm 1996 và vốn được biết đến rộng rãi như một cột mốc định vị trên đỉnh Everest"
+}
+],
+"events": [
+{
+"id": "event_018",
+"type": 35,
+"status": 7,
+"actor": ["ent_025"],
+"target": [],
+"action": "Hy sinh trong khi thực hiện hành trình chinh phục đỉnh núi",
+"location": "Đỉnh Everest",
+"time": "Năm 1996"
+},
+{
+"id": "event_019",
+"type": 0,
+"status": 2,
+"actor": ["ent_024"],
+"target": [],
+"action": "Đang tích cực phối hợp thực hiện các thủ tục cần thiết",
+"location": "Đỉnh Everest",
+"time": "Hiện tại (Sau 30 năm)"
+}
+],
+"attention": {
+"type": 15,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": [
+{
+"id": "fore_002",
+"target_ref": "ent_025",
+"expected_time": "Tương lai",
+"basis": "Kế hoạch phối hợp thực hiện các thủ tục để đưa thi thể xuống núi trở về quê hương",
+"status": 1
 }
 ]
 },
 {
-"id": "news_014",
-"category": "14",
-"title": "Siêu bão Dolphin đổ bộ vào Trung Quốc gây hủy hoại lớn, hơn một triệu người phải di dời khẩn cấp",
+"id": "news_004_02",
+"category": 4,
+"rank": 2,
+"title": "Nam nhân viên cứu hộ tháo tung đầu xe ô tô để giải cứu một chú mèo con mắc kẹt",
 "entities": [
 {
-"id": "ent_1401",
-"type": "04",
-"name": "siêu bão Dolphin"
+"id": "ent_026",
+"type": 3,
+"name": "Đội ngũ cứu hộ / Nam nhân viên cứu hộ"
 },
 {
-"id": "ent_1402",
-"type": "03",
-"name": "hơn một triệu người cư dân"
+"id": "ent_027",
+"type": 1,
+"name": "Chú mèo con"
 },
 {
-"id": "ent_1403",
-"type": "02",
-"name": "giới chức các tỉnh"
+"id": "ent_028",
+"type": 5,
+"name": "Chiếc ô tô Honda (lưới tản nhiệt, cản trước)"
 }
 ],
 "states": [
 {
-"type": "lượng mưa",
-"value": "lên tới 500mm"
+"type": 0,
+"value": "Chú mèo con bị lọt và mắc kẹt hoàn toàn phía sau lưới tản nhiệt của chiếc ô tô giữa thời tiết nắng nóng đỉnh điểm"
 }
 ],
 "events": [
 {
-"id": "event_1401",
-"type": "32",
-"status": "07",
-"actor": [
-"ent_1401"
-],
-"target": [],
-"action": "Quét qua Nhật Bản rồi chính thức đổ bộ vào khu vực miền đông",
-"location": "Trung Quốc",
+"id": "event_020",
+"type": 3,
+"status": 7,
+"actor": ["ent_026"],
+"target": ["ent_027"],
+"action": "Quyết định tháo rời toàn bộ phần cản trước, đầu xe để đưa con vật ra ngoài an toàn mà không làm hư hại nặng cấu trúc xe",
+"location": "",
 "time": ""
+}
+],
+"attention": {
+"type": 8,
+"status": 2,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": []
 },
 {
-"id": "event_1402",
-"type": "33",
-"status": "01",
-"actor": [
-"ent_1403"
+"id": "news_004_03",
+"category": 4,
+"rank": 3,
+"title": "Người dân thế giới háo hức chờ đón hiện tượng mưa sao băng Perseids đạt cực đại",
+"entities": [
+{
+"id": "ent_029",
+"type": 3,
+"name": "Cộng đồng yêu thiên văn quốc tế và Việt Nam / Người dân"
+},
+{
+"id": "ent_030",
+"type": 4,
+"name": "Hiện tượng mưa sao băng Perseids"
+}
 ],
-"target": [
-"ent_1402"
-],
-"action": "Khẩn trương sơ tán và di dời cư dân để tránh thảm họa lũ lụt, sạt lở đất",
-"location": "Chiết Giang, Phúc Kiến và Thượng Hải",
-"time": ""
+"states": [],
+"events": [],
+"attention": {
+"type": 15,
+"status": 1,
+"intensity": 0
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": [
+{
+"id": "fore_003",
+"target_ref": "ent_030",
+"expected_time": "Tương lai gần",
+"basis": "Chu kỳ chu chuẩn bị bước vào giai đoạn đạt cực đại, kết hợp cùng thời điểm quan sát thuận lợi của sao Thủy và sao Kim",
+"status": 1
 }
 ]
 }
