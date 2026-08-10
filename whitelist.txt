@@ -1,5 +1,3 @@
-TREE-WHITELIST:
-
 ROOT
 └── CLAUSE (01)
     ├── S (02) - SUBJECT
@@ -114,46 +112,63 @@ ROOT
     │   ├── TIME (05-03)
     │   │   ├── marker (05-03-01)
     │   │   │   ├── lúc (05-03-01-001)
+    │   │   │   │   └── KEEP_SIBLING
     │   │   │   ├── trong (05-03-01-002)
+    │   │   │   │   └── KEEP_SIBLING
     │   │   │   └── sau (05-03-01-003)
     │   │   │       └── KEEP_SIBLING
     │   │   └── value (05-03-02)
     │   │       ├── hôm qua (05-03-02-001)
+    │   │       │   └── KEEP_SIBLING
     │   │       ├── hôm nay (05-03-02-002)
+    │   │       │   └── KEEP_SIBLING
     │   │       ├── ngày mai (05-03-02-003)
+    │   │       │   └── KEEP_SIBLING
     │   │       └── vừa qua (05-03-02-004)
     │   │           └── KEEP_SIBLING
     │   │
     │   ├── OPP (05-04) - OPPOSITION
     │   │   ├── nhưng (05-04-001)
+    │   │   │   └── KEEP_SIBLING
     │   │   └── tuy (05-04-002)
     │   │       └── KEEP_SIBLING
     │   │
     │   └── PURP (05-05) - PURPOSE
     │       ├── để (05-05-001)
+    │       │   └── KEEP_SIBLING
     │       └── nhằm (05-05-002)
     │           └── KEEP_SIBLING
     │
     ├── LOC (06) - LOCATION
     │   ├── marker (06-01)
     │   │   ├── tại (06-01-001)
+    │   │   │   └── KEEP_SIBLING
     │   │   ├── ở (06-01-002)
+    │   │   │   └── KEEP_SIBLING
     │   │   └── trên (06-01-003)
     │   │       └── KEEP_SIBLING
     │   └── value (06-02)
     │       ├── Hà Nội (06-02-001)
+    │       │   └── KEEP_SIBLING
     │       ├── TP.HCM (06-02-002)
+    │       │   └── KEEP_SIBLING
     │       ├── tỉnh (06-02-003)
+    │       │   └── KEEP_SIBLING
     │       └── khu vực (06-02-004)
     │           └── KEEP_SIBLING
     │
     ├── QUOTE (07) - QUOTE/CLAIM
     │   ├── marker (07-01)
     │   │   ├── nói (07-01-001)
+    │   │   │   └── KEEP_PATH
     │   │   ├── cho biết (07-01-002)
+    │   │   │   └── KEEP_PATH
     │   │   ├── khẳng định (07-01-003)
+    │   │   │   └── KEEP_PATH
     │   │   ├── phủ nhận (07-01-004)
+    │   │   │   └── KEEP_PATH
     │   │   ├── cáo buộc (07-01-005)
+    │   │   │   └── KEEP_PATH
     │   │   └── tuyên bố (07-01-006)
     │   │       └── KEEP_PATH
     │   └── content (07-02)
@@ -162,12 +177,17 @@ ROOT
     └── LEVEL (08) - LEVEL MARKER
         ├── mức độ (08-01)
         │   ├── rất (08-01-001)
+        │   │   └── KEEP_PARENT
         │   ├── hơi (08-01-002)
+        │   │   └── KEEP_PARENT
         │   ├── cực kỳ (08-01-003)
+        │   │   └── KEEP_PARENT
         │   └── đặc biệt (08-01-004)
         │       └── KEEP_PARENT
         └── thay đổi (08-02)
             ├── đột ngột (08-02-001)
+            │   └── KEEP_PARENT
             ├── từ từ (08-02-002)
+            │   └── KEEP_PARENT
             └── nhanh chóng (08-02-003)
                 └── KEEP_PARENT
