@@ -1,575 +1,173 @@
-01 EVENT
-  01.01 ACTION_OCCUR
-    - xảy ra
-    - diễn ra
-    - nổ ra
-    - bùng phát
-    - phát sinh
-    - xuất hiện
-    - bùng nổ
-    - nổi lên
-  01.02 ACTION_EXECUTE
-    - bắt
-    - bắt giữ
-    - tạm giữ
-    - tạm giam
-    - xử phạt
-    - phạt
-    - khởi tố
-    - truy tố
-    - xét xử
-    - kết án
-    - tuyên án
-    - thi hành
-    - thực hiện
-    - tiến hành
-    - triển khai
-    - ban hành
-    - công bố
-    - phê duyệt
-    - chấp thuận
-    - từ chối
-    - bác bỏ
-    - đình chỉ
-    - tạm dừng
-    - hủy bỏ
-    - thu hồi
-    - tịch thu
-    - cưỡng chế
-    - giải tán
-    - sơ tán
-    - cứu hộ
-    - cứu nạn
-    - hỗ trợ
-    - viện trợ
-    - đầu tư
-    - khởi công
-    - khánh thành
-    - đưa vào sử dụng
-    - đóng cửa
-    - mở cửa
-    - phong tỏa
-    - cách ly
-    - kiểm soát
-    - giám sát
-    - thanh tra
-  01.03 INCIDENT
-    - tai nạn
-    - sự cố
-    - thảm họa
-    - cháy
-    - nổ
-    - sập
-    - lở
-    - lũ
-    - bão
-    - động đất
-    - sóng thần
-    - va chạm
-    - đâm
-    - đâm sầm
-    - đâm vào
-    - rơi
-    - rơi xuống
-    - chìm
-    - đắm
-    - chết
-    - tử vong
-    - thiệt mạng
-    - bị thương
-    - thương vong
-    - mất tích
-    - mất liên lạc
-    - event
-    - sự kiện
-    - biến cố
-  01.04 STATE_CHANGE
-    - thay đổi
-    - biến đổi
-    - chuyển biến
-    - chuyển sang
-    - trở thành
-    - thành
-    - bị
-    - được
-    - chuyển
-    - chuyển giao
-    - bàn giao
-    - tiếp nhận
-    - sáp nhập
-    - tách
-    - chia tách
-    - giải thể
-    - thành lập
-    - tái cơ cấu
-    - cải tổ
-    - đổi mới
-    - nâng cấp
-    - mở rộng
-    - thu hẹp
-    - tăng
-    - giảm
-    - tăng mạnh
-    - giảm mạnh
-    - tăng vọt
-    - lao dốc
-    - tăng đột biến
-    - giảm sâu
+TREE-WHITELIST:
 
-02 STATE
-  02.01 HUMAN_STATE
-    - bị thương
-    - trọng thương
-    - tử vong
-    - chết
-    - thiệt mạng
-    - mất tích
-    - mất liên lạc
-    - bị bắt
-    - bị tạm giữ
-    - bị tạm giam
-    - bị khởi tố
-    - bị kết án
-    - bị đình chỉ
-    - bị cách chức
-    - từ chức
-    - nghỉ việc
-    - nghỉ hưu
-    - nghỉ ốm
-    - bị ốm
-    - mắc bệnh
-    - nhiễm
-    - dương tính
-    - âm tính
-    - khỏe mạnh
-    - an toàn
-    - nguy kịch
-    - nguy hiểm
-    - bị đe dọa
-  02.02 OBJECT_STATE
-    - hư hỏng
-    - hư hại
-    - thiệt hại
-    - bị phá hủy
-    - bị sập
-    - bị cháy
-    - bị chìm
-    - bị đắm
-    - bị lật
-    - bị va chạm
-    - bị kẹt
-    - bị phong tỏa
-    - bị đóng cửa
-    - bị tạm dừng
-    - ngừng hoạt động
-    - tạm ngừng
-    - hoạt động trở lại
-    - hoạt động bình thường
-    - quá tải
-    - tắc nghẽn
-    - tắc đường
-    - sụp đổ
-    - đổ sập
-    - nứt
-    - nứt nẻ
-    - sạt lở
-    - lở đất
-    - ngập
-    - ngập lụt
-    - chìm trong nước
-    - bị cô lập
-  02.03 SYSTEM_STATE
-    - sập
-    - sập nguồn
-    - sự cố
-    - lỗi
-    - lỗi kỹ thuật
-    - gián đoạn
-    - gián đoạn dịch vụ
-    - ngừng hoạt động
-    - tạm ngừng
-    - phục hồi
-    - hoạt động trở lại
-    - quá tải
-    - tắc nghẽn
-    - bảo trì
-    - bảo dưỡng
-    - nâng cấp
-    - cập nhật
-    - lỗi hệ thống
-    - sự cố mạng
-    - mất điện
-    - mất nước
-    - mất tín hiệu
-    - mất kết nối
-    - đứt cáp
-
-03 RELATION
-  03.01 CAUSE
-    - vì
-    - do
-    - bởi
-    - bởi vì
-    - do bởi
-    - nguyên nhân
-    - nguyên do
-    - xuất phát từ
-    - bắt nguồn từ
-    - gây ra bởi
-    - dẫn đến bởi
-    - do hậu quả
-    - do ảnh hưởng
-    - do tác động
-  03.02 RESULT
-    - dẫn đến
-    - khiến
-    - làm
-    - gây
-    - gây ra
-    - gây nên
-    - khiến cho
-    - làm cho
-    - kết quả
-    - hậu quả
-    - hệ quả
-    - dẫn tới
-    - đưa đến
-    - tạo ra
-    - sinh ra
-  03.03 CONDITION
-    - nếu
-    - nếu như
-    - trong trường hợp
-    - khi
-    - miễn là
-    - với điều kiện
-    - điều kiện
-    - chỉ khi
-    - trừ khi
-    - trường hợp
-  03.04 TIME_REL
-    - khi
-    - trong khi
-    - trong lúc
-    - sau khi
-    - trước khi
-    - ngay khi
-    - vừa
-    - vừa mới
-    - đang
-    - đang diễn ra
-    - đã
-    - đã xảy ra
-    - sẽ
-    - sẽ diễn ra
-    - sắp
-    - sắp tới
-    - trong thời gian
-    - trong khoảng
-    - kể từ
-    - từ
-    - đến
-    - cho đến
-    - đến nay
-    - hiện nay
-  03.05 CONTRAST
-    - nhưng
-    - tuy nhiên
-    - thế nhưng
-    - mặc dù
-    - dù
-    - dù vậy
-    - trái lại
-    - ngược lại
-    - trong khi đó
-    - trong lúc đó
-    - đối lập
-    - mâu thuẫn
-  03.06 PURPOSE
-    - để
-    - nhằm
-    - nhằm mục đích
-    - với mục đích
-    - vì mục đích
-    - để phục vụ
-    - để thực hiện
-    - để đảm bảo
-    - để ngăn chặn
-    - để bảo vệ
-    - để hỗ trợ
-
-04 ACTOR
-  04.01 AGENCY
-    - cơ quan
-    - cơ quan chức năng
-    - lực lượng
-    - lực lượng chức năng
-    - công an
-    - cảnh sát
-    - quân đội
-    - bộ
-    - sở
-    - ban
-    - ngành
-    - ủy ban
-    - hội đồng
-    - chính phủ
-    - nhà nước
-    - tòa án
-    - viện kiểm sát
-    - thanh tra
-    - kiểm toán
-    - hải quan
-  04.02 PERSON
-    - người
-    - cá nhân
-    - công dân
-    - nạn nhân
-    - bị cáo
-    - bị can
-    - nghi phạm
-    - thủ phạm
-    - đối tượng
-    - lãnh đạo
-    - quan chức
-    - cán bộ
-    - nhân viên
-    - công nhân
-    - học sinh
-    - sinh viên
-    - bác sĩ
-    - y tá
-    - tài xế
-    - lái xe
-  04.03 ORGANIZATION
-    - tổ chức
-    - doanh nghiệp
-    - công ty
-    - tập đoàn
-    - ngân hàng
-    - trường
-    - bệnh viện
-    - đơn vị
-    - cơ sở
-    - hãng
-    - nhà máy
-    - xí nghiệp
-    - hội
-    - hiệp hội
-  04.04 GROUP
-    - nhóm
-    - đoàn
-    - đoàn người
-    - đám đông
-    - người dân
-    - cư dân
-    - dân cư
-    - cộng đồng
-    - lực lượng
-    - đội
-    - đội cứu hộ
-    - đội cứu nạn
-    - nhóm đối tượng
-
-05 TARGET
-  05.01 AFFECTED
-    - nạn nhân
-    - bị hại
-    - người bị
-    - đối tượng
-    - tài sản
-    - nhà
-    - nhà cửa
-    - xe
-    - phương tiện
-    - công trình
-    - cầu
-    - đường
-    - cây
-    - rừng
-    - đất
-    - nước
-    - môi trường
-    - hệ thống
-    - dịch vụ
-    - cơ sở
-    - doanh nghiệp
-    - công ty
-    - người dân
-
-06 LOCATION
-  06.01 PLACE
-    - tại
-    - ở
-    - tại khu vực
-    - trên
-    - dưới
-    - trong
-    - ngoài
-    - gần
-    - quanh
-    - dọc
-    - dọc theo
-    - khu vực
-    - vùng
-    - địa bàn
-    - hiện trường
-    - hiện trường vụ
-    - nơi
-    - chỗ
-  06.02 PLATFORM
-    - trên mạng
-    - trên mạng xã hội
-    - trên Facebook
-    - trên Twitter
-    - trên X
-    - trên TikTok
-    - trên YouTube
-    - trên website
-    - trên cổng thông tin
-    - qua mạng
-    - trực tuyến
-    - online
-
-07 TIME
-  07.01 TIME_MARKER
-    - hôm nay
-    - hôm qua
-    - sáng nay
-    - chiều nay
-    - tối qua
-    - đêm qua
-    - sáng sớm
-    - đêm
-    - tuần này
-    - tuần trước
-    - tuần tới
-    - tháng này
-    - tháng trước
-    - tháng tới
-    - năm nay
-    - năm trước
-    - năm tới
-    - vừa qua
-    - gần đây
-    - sắp tới
-    - trong tương lai
-    - trước đây
-    - hiện nay
-    - hiện tại
-    - lúc
-    - vào lúc
-    - vào thời điểm
-    - trong ngày
-    - trong tuần
-    - trong tháng
-    - trong năm
-    - từ ngày
-    - đến ngày
-    - kể từ
-    - cho đến
-
-08 CLAIM
-  08.01 STATEMENT
-    - nói
-    - cho biết
-    - khẳng định
-    - tuyên bố
-    - phát biểu
-    - chia sẻ
-    - thông báo
-    - công bố
-    - tiết lộ
-    - nêu
-    - cho hay
-    - cho rằng
-  08.02 DENIAL
-    - phủ nhận
-    - bác bỏ
-    - từ chối
-    - không thừa nhận
-    - không đồng ý
-    - không xác nhận
-    - bác
-  08.03 ACCUSATION
-    - cáo buộc
-    - tố cáo
-    - tố giác
-    - buộc tội
-    - kết tội
-    - nghi ngờ
-    - nghi vấn
-    - cáo
-  08.04 AFFIRMATION
-    - khẳng định
-    - xác nhận
-    - cam kết
-    - hứa
-    - đảm bảo
-    - bảo đảm
-
-09 SIGNAL
-  09.01 ABNORMAL
-    - bất thường
-    - bất ngờ
-    - đột ngột
-    - nghiêm trọng
-    - nguy hiểm
-    - nguy kịch
-    - khẩn cấp
-    - cấp bách
-    - đặc biệt
-    - hiếm gặp
-    - lần đầu
-    - chưa từng
-    - chưa từng có
-    - kỷ lục
-    - cao nhất
-    - thấp nhất
-    - lớn nhất
-    - nhỏ nhất
-    - đáng chú ý
-  09.02 DEGREE
-    - nghiêm trọng
-    - nặng
-    - nhẹ
-    - rất
-    - cực kỳ
-    - hết sức
-    - vô cùng
-    - đáng kể
-    - mạnh
-    - yếu
-    - cao
-    - thấp
-    - lớn
-    - nhỏ
-    - nhiều
-    - ít
-    - tăng mạnh
-    - giảm mạnh
-    - tăng vọt
-    - lao dốc
-    - đột biến
-    - sâu
-    - rõ rệt
-  09.03 CHANGE_SIGNAL
-    - thay đổi
-    - biến đổi
-    - chuyển biến
-    - tăng
-    - giảm
-    - tăng lên
-    - giảm xuống
-    - tăng mạnh
-    - giảm mạnh
-    - tăng vọt
-    - lao dốc
-    - tăng đột biến
-    - giảm sâu
-    - cải thiện
-    - xấu đi
-    - trở nên
-    - chuyển sang
-    - từ ... sang
-    - thay vì
+ROOT
+└── CLAUSE (01)
+    ├── S (02) - SUBJECT
+    │   └── N (02-01) - NOUN_PHRASE
+    │       ├── tổ chức (02-01-001)
+    │       │   └── KEEP_SELF
+    │       ├── doanh nghiệp (02-01-002)
+    │       │   └── KEEP_SELF
+    │       ├── cơ quan (02-01-003)
+    │       │   └── KEEP_SELF
+    │       ├── cá nhân (02-01-004)
+    │       │   └── KEEP_SELF
+    │       ├── nhóm (02-01-005)
+    │       │   └── KEEP_SELF
+    │       └── hệ thống (02-01-006)
+    │           └── KEEP_SELF
+    │
+    ├── P (03) - PREDICATE
+    │   ├── V (03-01) - VERB
+    │   │   ├── xảy ra (03-01-001)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── nổ (03-01-002)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── sập (03-01-003)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── đình chỉ (03-01-004)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── thực thi (03-01-005)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── thay đổi (03-01-006)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── diễn ra (03-01-007)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── rơi (03-01-008)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── giảm (03-01-009)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── tăng (03-01-010)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── phát sinh (03-01-011)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── xuất hiện (03-01-012)
+    │   │   │   └── KEEP_PATH
+    │   │   ├── áp dụng (03-01-013)
+    │   │   │   └── KEEP_PATH
+    │   │   └── kết thúc (03-01-014)
+    │   │       └── KEEP_PATH
+    │   │
+    │   ├── MOD (03-02) - MODIFIER
+    │   │   ├── bất thường (03-02-001)
+    │   │   │   └── KEEP_PARENT
+    │   │   ├── đặc biệt (03-02-002)
+    │   │   │   └── KEEP_PARENT
+    │   │   ├── nghiêm trọng (03-02-003)
+    │   │   │   └── KEEP_PARENT
+    │   │   ├── nguy hiểm (03-02-004)
+    │   │   │   └── KEEP_PARENT
+    │   │   ├── quan trọng (03-02-005)
+    │   │   │   └── KEEP_PARENT
+    │   │   ├── tích cực (03-02-006)
+    │   │   │   └── CONDITIONAL
+    │   │   ├── tiêu cực (03-02-007)
+    │   │   │   └── KEEP_PARENT
+    │   │   └── khẩn cấp (03-02-008)
+    │   │       └── KEEP_PATH
+    │   │
+    │   └── PASS (03-03) - PASSIVE MARKER
+    │       ├── bị (03-03-001)
+    │       │   └── KEEP_SELF
+    │       └── được (03-03-002)
+    │           └── CONDITIONAL
+    │
+    ├── O (04) - OBJECT
+    │   └── N (04-01) - NOUN_PHRASE
+    │       ├── hoạt động (04-01-001)
+    │       │   └── KEEP_CHILD
+    │       ├── quy định (04-01-002)
+    │       │   └── KEEP_CHILD
+    │       ├── hệ thống (04-01-003)
+    │       │   └── KEEP_SELF
+    │       ├── tài liệu (04-01-004)
+    │       │   └── KEEP_SELF
+    │       ├── thông tin (04-01-005)
+    │       │   └── KEEP_SELF
+    │       ├── dữ liệu (04-01-006)
+    │       │   └── KEEP_SELF
+    │       ├── người (04-01-007)
+    │       │   └── KEEP_SELF
+    │       └── đối tượng (04-01-008)
+    │           └── KEEP_SELF
+    │
+    ├── REL (05) - RELATION
+    │   ├── CAUSE (05-01)
+    │   │   ├── marker (05-01-01)
+    │   │   │   ├── vì (05-01-01-001)
+    │   │   │   │   └── KEEP_SIBLING
+    │   │   │   ├── do (05-01-01-002)
+    │   │   │   │   └── KEEP_SIBLING
+    │   │   │   ├── bởi (05-01-01-003)
+    │   │   │   │   └── KEEP_SIBLING
+    │   │   │   └── tại (05-01-01-004)
+    │   │   │       └── KEEP_SIBLING
+    │   │   └── clause (05-01-02)
+    │   │       └── KEEP_CHILD
+    │   │
+    │   ├── COND (05-02) - CONDITION
+    │   │   ├── nếu (05-02-001)
+    │   │   │   └── KEEP_SIBLING
+    │   │   └── khi (05-02-002)
+    │   │       └── KEEP_SIBLING
+    │   │
+    │   ├── TIME (05-03)
+    │   │   ├── marker (05-03-01)
+    │   │   │   ├── lúc (05-03-01-001)
+    │   │   │   ├── trong (05-03-01-002)
+    │   │   │   └── sau (05-03-01-003)
+    │   │   │       └── KEEP_SIBLING
+    │   │   └── value (05-03-02)
+    │   │       ├── hôm qua (05-03-02-001)
+    │   │       ├── hôm nay (05-03-02-002)
+    │   │       ├── ngày mai (05-03-02-003)
+    │   │       └── vừa qua (05-03-02-004)
+    │   │           └── KEEP_SIBLING
+    │   │
+    │   ├── OPP (05-04) - OPPOSITION
+    │   │   ├── nhưng (05-04-001)
+    │   │   └── tuy (05-04-002)
+    │   │       └── KEEP_SIBLING
+    │   │
+    │   └── PURP (05-05) - PURPOSE
+    │       ├── để (05-05-001)
+    │       └── nhằm (05-05-002)
+    │           └── KEEP_SIBLING
+    │
+    ├── LOC (06) - LOCATION
+    │   ├── marker (06-01)
+    │   │   ├── tại (06-01-001)
+    │   │   ├── ở (06-01-002)
+    │   │   └── trên (06-01-003)
+    │   │       └── KEEP_SIBLING
+    │   └── value (06-02)
+    │       ├── Hà Nội (06-02-001)
+    │       ├── TP.HCM (06-02-002)
+    │       ├── tỉnh (06-02-003)
+    │       └── khu vực (06-02-004)
+    │           └── KEEP_SIBLING
+    │
+    ├── QUOTE (07) - QUOTE/CLAIM
+    │   ├── marker (07-01)
+    │   │   ├── nói (07-01-001)
+    │   │   ├── cho biết (07-01-002)
+    │   │   ├── khẳng định (07-01-003)
+    │   │   ├── phủ nhận (07-01-004)
+    │   │   ├── cáo buộc (07-01-005)
+    │   │   └── tuyên bố (07-01-006)
+    │   │       └── KEEP_PATH
+    │   └── content (07-02)
+    │       └── KEEP_CHILD
+    │
+    └── LEVEL (08) - LEVEL MARKER
+        ├── mức độ (08-01)
+        │   ├── rất (08-01-001)
+        │   ├── hơi (08-01-002)
+        │   ├── cực kỳ (08-01-003)
+        │   └── đặc biệt (08-01-004)
+        │       └── KEEP_PARENT
+        └── thay đổi (08-02)
+            ├── đột ngột (08-02-001)
+            ├── từ từ (08-02-002)
+            └── nhanh chóng (08-02-003)
+                └── KEEP_PARENT
