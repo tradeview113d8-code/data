@@ -1,336 +1,339 @@
-TÔI ĐANG XÂY DỰNG MỘT KIẾN TRÚC "GRAMMAR → REACTION ENGINE"
+# GRAMMAR → STRUCTURE → EVENT FILTER → CHARACTER → REACTION
 
-Hãy hiểu hệ thống theo logic sau, không được mặc định rằng LLM phải tự viết phản ứng bằng ngôn ngữ tự nhiên.
+## 1. MỤC TIÊU
 
-1. TÁCH CÂU KHỎI NGỮ NGHĨA
+Hệ thống không muốn dùng LLM để tự suy luận toàn bộ từ một bài báo.
 
-Một câu tin tức trước tiên được phân tích thành cấu trúc ngữ pháp.
+Mục tiêu là biến câu tiếng Việt thành một cấu trúc ngữ pháp có thể mã hóa bằng số, để Python có thể xử lý cấu trúc đó một cách deterministic.
 
-Ví dụ:
+LLM chủ yếu làm nhiệm vụ:
+TEXT → xác định cấu trúc ngữ pháp
 
-"Cơ quan chức năng xử phạt doanh nghiệp."
+Python làm nhiệm vụ:
+GRAMMAR STRUCTURE → lọc → ánh xạ → xử lý logic
 
-→ Subject + Predicate + Object
+LLM cuối cùng, nếu cần, chỉ làm nhiệm vụ:
+STRUCTURED DATA → câu văn tự nhiên.
 
-Ta không cần giữ toàn bộ từ ngữ để Python suy luận.
+---
 
-Ta biến cấu trúc đó thành mã:
+## 2. KHÔNG XỬ LÝ TOÀN BỘ BÀI BÁO
 
-S + P + O
-→ GRAMMAR_CODE = 03
+Một bài báo có rất nhiều câu nhưng không phải câu nào cũng có giá trị đối với World Simulator.
 
-Các cấu trúc phức tạp hơn cũng được mã hóa:
+Do đó hệ thống tạo một PHỄU:
 
-S + P + O + A
-→ 04
-
-S + P + O + CAUSE
-→ 07
-
-S + P + CLAIM
-→ 12
-
-...
-
-TREE-GRAMMAR là cây phân cấp của toàn bộ các cấu trúc này.
-
-Python không cần "hiểu tiếng Việt" ở tầng suy luận.
-Python chỉ cần nhận diện và thao tác trên GRAMMAR_CODE.
-
-
-2. CÂU → CẤU TRÚC → CHUỖI SỐ
-
-Pipeline cơ bản:
-
-TEXT
+NEWS
 ↓
-GRAMMAR PARSER
-↓
-TREE-GRAMMAR
-↓
-GRAMMAR_CODE
-
-Ví dụ:
-
-"Cơ quan chức năng xử phạt doanh nghiệp vì vi phạm."
-
-→ S + P + O + CAUSE
-→ 07
-
-Như vậy câu đã được chuyển từ ngôn ngữ tự nhiên sang một biểu diễn cấu trúc.
-
-
-3. EVENT KHÔNG PHẢI LÀ REACTION
-
-Đây là điểm cực kỳ quan trọng.
-
-Grammar chỉ nói:
-
-"Câu đang mô tả loại quan hệ nào?"
-
-Event nói:
-
-"Chuyện gì đang xảy ra?"
-
-Nhưng Reaction nói:
-
-"Nhân vật này phản ứng thế nào trước chuyện đó?"
-
-Do đó:
-
-GRAMMAR_CODE ≠ REACTION
-
-
-4. REACTION LÀ KẾT QUẢ CỦA VIỆC GHÉP CẤU TRÚC VỚI NHÂN VẬT
-
-Một câu sau khi được parse sẽ có:
-
-EVENT_CODE
-GRAMMAR_CODE
-
-Một nhân vật có:
-
-PERSONALITY_CODE
-
-Khi Event tác động đến nhân vật, hệ thống kết hợp các thông tin này:
-
-EVENT
-+
-GRAMMAR
-+
-PERSONALITY
-+
-RELATION
-+
-CURRENT_STATE
-↓
-REACTION_CODE
-
-
-5. PERSONALITY ĐƯỢC MÃ HÓA
-
-Nhân vật không cần lưu tính cách bằng một đoạn văn dài để Python suy luận.
-
-Ví dụ:
-
-PERSON_A
-→ P-02-04-07-01
-
-PERSON_B
-→ P-08-01-03-06
-
-Các con số đại diện cho những trục tính cách đã được định nghĩa trước.
-
-Ví dụ chỉ để minh họa:
-
-01 = mức chủ động
-02 = mức thận trọng
-03 = mức đối đầu
-04 = mức đồng cảm
-05 = mức tham vọng
-...
-
-Đây chỉ là mã.
-
-Python không cần hiểu chữ "thận trọng" hay "tham vọng".
-Nó chỉ cần thao tác với giá trị đã mã hóa.
-
-
-6. REACTION KHÔNG NHẤT THIẾT CỐ ĐỊNH
-
-Đây là điểm cần phân biệt.
-
-Không nên hiểu:
-
-GRAMMAR_CODE → một Reaction cố định.
-
-Mà phải hiểu:
-
-GRAMMAR_CODE + PERSONALITY_CODE + EVENT_CODE + CONTEXT
-→ REACTION_CODE
-
-Cùng một sự kiện:
-
-"Doanh nghiệp X bị xử phạt."
-
-có thể tạo phản ứng khác nhau:
-
-Nhân viên X → lo lắng
-Đối thủ → hài lòng
-Chủ doanh nghiệp → phủ nhận / giải thích
-Cơ quan quản lý → tiếp tục xử lý
-
-Vì vậy Grammar là một đầu vào của Reaction Engine, không phải bản thân Reaction.
-
-
-7. REACTION_CODE LÀ LỚP TRUNG GIAN
-
-Hệ thống không nhất thiết phải sinh ngay câu:
-
-"Anh ta rất lo lắng."
-
-Nó có thể sinh trước:
-
-REACTION_CODE = R17
-
-Sau đó:
-
-R17
-→ hành vi
-→ trạng thái
-→ mục tiêu
-→ cường độ
-→ lựa chọn ngôn ngữ
-
-và cuối cùng mới sinh:
-
-"Anh ta lập tức lo lắng và tìm cách hỏi rõ tình hình."
-
-
-8. PYTHON CÓ THỂ ĐẢM NHIỆM PHẦN LOGIC
-
-Kiến trúc mục tiêu:
-
-TEXT
-↓
-Grammar Parser
-↓
-TREE-GRAMMAR
-↓
-GRAMMAR_CODE
-↓
-EVENT
-↓
-REACTION ENGINE
-↑
-PERSONALITY_CODE
-↑
-RELATION
-↑
-STATE
-↓
-REACTION_CODE
-↓
-LLM
-↓
-NATURAL LANGUAGE
-
-
-9. VAI TRÒ CỦA LLM BỊ THAY ĐỔI
-
-LLM không còn phải tự quyết định toàn bộ:
-
-- chuyện gì xảy ra;
-- cấu trúc quan hệ;
-- nhân vật thuộc kiểu tính cách nào;
-- nhân vật phải phản ứng thế nào;
-- phản ứng có hợp logic hay không.
-
-Những phần này có thể được quyết định bằng:
-
-TREE-GRAMMAR
-+
-CODE
-+
-RULE
-+
-LOOKUP
-+
-STATE
-
-LLM chủ yếu đảm nhiệm tầng biểu đạt:
-
-STRUCTURED REACTION
-→ NATURAL LANGUAGE
-
-
-10. MỤC TIÊU CUỐI CÙNG
-
-Mục tiêu không phải là tạo một hệ thống "LLM thông minh hơn".
-
-Mục tiêu là xây một tầng suy luận có cấu trúc nằm giữa dữ liệu và LLM.
-
-LLM không còn là bộ não duy nhất.
-
-Kiến trúc trở thành:
-
-REALITY
-↓
-EVENT
+SENTENCE
 ↓
 GRAMMAR
 ↓
-CODE
+GRAMMAR CODE
+↓
+FILTER
+↓
+GIỮ / LOẠI
+↓
+EVENT / INFORMATION hữu ích
 ↓
 CHARACTER
 ↓
 REACTION
+
+Những câu có cấu trúc không phục vụ hệ thống sẽ bị loại càng sớm càng tốt.
+
+Ví dụ:
+
+- câu chỉ mô tả thời gian → có thể bỏ
+- câu chỉ mô tả địa điểm → có thể bỏ
+- câu mang thông tin nền nhưng không tạo ra tác động → có thể bỏ
+- câu chứa cấu trúc có khả năng tạo EVENT/CAUSE/RESULT/CLAIM... → giữ.
+
+Việc lọc dựa trước hết vào cấu trúc, không dựa vào việc LLM tự viết lại ý nghĩa.
+
+---
+
+## 3. GRAMMAR ĐƯỢC MÃ HÓA
+
+Mỗi đơn vị ngữ pháp có một mã số.
+
+Ví dụ:
+
+S → mã số
+P → mã số
+O → mã số
+CAUSE → mã số
+
+Một cấu trúc:
+
+S + P + O + CAUSE
+
+sẽ trở thành:
+
+02-03-04-25
+
+Chuỗi số này là GRAMMAR CODE.
+
+Python không cần đọc lại câu tiếng Việt để biết cấu trúc.
+
+Nó chỉ cần so khớp chuỗi số với các pattern đã được định nghĩa.
+
+---
+
+## 4. GRAMMAR CODE KHÔNG PHẢI VALUE
+
+Đây là nguyên tắc quan trọng.
+
+GRAMMAR CODE chỉ mô tả:
+
+"Câu này được cấu tạo như thế nào?"
+
+VALUE mô tả:
+
+"Câu này nói về cái gì?"
+
+Ví dụ:
+
+02-03-04-25
+
+có thể chứa:
+
+02 = Công an
+03 = xử phạt
+04 = doanh nghiệp
+25 = vi phạm quy định
+
+Một câu khác có thể có cùng GRAMMAR CODE:
+
+02 = Giám đốc
+03 = thưởng
+04 = nhân viên
+25 = đạt doanh số
+
+Hai câu có cùng cấu trúc nhưng VALUE khác nhau.
+
+Vì vậy:
+
+GRAMMAR ≠ EVENT.
+
+GRAMMAR là cấu trúc để Python biết cách đọc và phân loại dữ liệu.
+
+VALUE mới chứa nội dung thực tế.
+
+---
+
+## 5. TREE QUAN TRỌNG HƠN MỘT CHUỖI PHẲNG
+
+Không nên chỉ biến toàn bộ câu thành một chuỗi duy nhất.
+
+Câu phải được xem như một TREE.
+
+Ví dụ:
+
+CL
+└── MC
+    ├── S
+    │   └── NP
+    ├── P
+    │   └── VP
+    ├── O
+    │   └── NP
+    └── CAUSE
+        └── SC
+
+Mỗi node có mã số.
+
+Do đó Python có thể nhìn cấu trúc ở nhiều độ sâu:
+
+LEVEL cao:
+CL
+
+LEVEL tiếp theo:
+MC / SC
+
+LEVEL tiếp theo:
+S / P / O / C / A
+
+LEVEL tiếp theo:
+NP / VP / PP...
+
+LEVEL sâu hơn:
+N / V / Adj / Adv...
+
+Như vậy cùng một câu có thể được phân tích từ tổng quát đến chi tiết.
+
+---
+
+## 6. GRAMMAR CODE LÀ CÁCH NÉN CẤU TRÚC
+
+Thay vì truyền cho Python:
+
+"Chủ ngữ là cơ quan chức năng, vị ngữ là xử phạt, tân ngữ là doanh nghiệp..."
+
+Python nhận:
+
+02-03-04
+
+và lấy VALUE tương ứng từ dữ liệu.
+
+Điều này tạo ra một lớp trung gian:
+
+TEXT
+→ GRAMMAR TREE
+→ NUMBER TREE
+→ PYTHON
+
+LLM không cần liên tục diễn giải bằng ngôn ngữ tự nhiên.
+
+---
+
+## 7. GRAMMAR LÀ PHỄU, KHÔNG PHẢI NỘI DUNG
+
+Hệ thống không cố biến mọi cấu trúc ngữ pháp thành dữ liệu có giá trị.
+
+Ngược lại:
+
+GRAMMAR TREE
+→ xác định nhánh nào đáng giữ
+→ loại nhánh không cần thiết
+→ giữ các nhánh có khả năng mang thông tin hữu ích.
+
+Ví dụ các cấu trúc có thể dẫn đến:
+
+EVENT
+CAUSE
+CONS
+CLAIM
+CONT
+REL
+PURP
+COND
+CONTR
+
+có thể được giữ lại tùy mục đích của pipeline.
+
+Các thành phần chỉ có vai trò phụ trợ nhưng không tạo giá trị cho hệ thống có thể bị bỏ ở tầng filter.
+
+---
+
+## 8. SAU KHI LỌC MỚI ĐẾN CHARACTER
+
+Sau khi lọc được thông tin hữu ích:
+
+GRAMMAR
++
+VALUE
 ↓
-CODE
-↓
-LANGUAGE
+EVENT / INFORMATION
 
-Trong đó:
+Sau đó hệ thống mới đưa EVENT vào từng CHARACTER.
 
-TREE-GRAMMAR
-= cách hệ thống hiểu cấu trúc câu.
+Mỗi CHARACTER có một bộ mã riêng mô tả đặc điểm của nhân vật.
 
-PERSONALITY_CODE
-= cách hệ thống biểu diễn đặc tính của cá nhân.
+Không cần mô tả tính cách bằng một đoạn văn dài.
 
-REACTION_ENGINE
-= cách hệ thống biến sự kiện + cá nhân + ngữ cảnh thành phản ứng.
+Ví dụ về mặt nguyên lý:
 
-LLM
-= công cụ diễn đạt phản ứng đó thành ngôn ngữ tự nhiên.
+CHARACTER
+→ các trục tính cách
+→ mỗi trục có mã số
+→ toàn bộ tạo thành CHARACTER CODE.
 
+Python có thể dùng CHARACTER CODE để quyết định cách nhân vật phản ứng trước cùng một EVENT.
 
-11. ĐIỂM CẦN KIỂM CHỨNG
+---
 
-Không được mặc định rằng kiến trúc trên chắc chắn hoạt động.
+## 9. REACTION KHÔNG PHẢI LÀ MỘT ĐOẠN VĂN CỐ ĐỊNH
 
-Cần kiểm chứng riêng:
+Reaction nên được xem là OUTPUT của việc kết hợp:
 
-A. TREE-GRAMMAR có bao phủ đủ cấu trúc cần thiết không?
+EVENT / INFORMATION
++
+CHARACTER
++
+STATE / RELATION / CONTEXT
++
+các quy tắc của hệ thống.
 
-B. GRAMMAR_CODE có đủ thông tin để biểu diễn sự kiện không?
+Grammar cung cấp cấu trúc để xác định và tổ chức thông tin đầu vào.
 
-C. PERSONALITY_CODE có đủ thông tin để phân biệt phản ứng không?
+Không được mặc định rằng:
 
-D. Có cần RELATION_CODE và STATE_CODE không?
+GRAMMAR CODE = REACTION CODE.
 
-E. REACTION có phải hàm xác định hay có xác suất / biến thiên?
+Cần kiểm nghiệm bằng dữ liệu thực tế xem Grammar đóng vai trò:
 
-F. Khi nào hai cấu trúc ngữ pháp khác nhau nhưng tạo cùng một Reaction?
+- chỉ là bộ phân tích cấu trúc;
+- là một điều kiện lọc;
+- hay có ảnh hưởng trực tiếp đến Reaction.
 
-G. Khi nào cùng một cấu trúc ngữ pháp tạo ra nhiều Reaction?
+---
 
-H. LLM có thể được loại khỏi tầng suy luận và chỉ giữ lại ở tầng diễn đạt đến mức nào?
+## 10. Ý TƯỞNG CỐT LÕI
 
-Đây mới là các câu hỏi cần nghiên cứu.
-Không được kết luận trước.
+Hệ thống đang cố chuyển một phần công việc mà LLM thường làm bằng token/ngôn ngữ tự nhiên thành xử lý cấu trúc.
 
+Thay vì:
 
-12. CÔNG THỨC KHÁI NIỆM
+TEXT
+→ LLM suy luận
+→ LLM suy luận tiếp
+→ LLM viết phản ứng
+→ LLM viết câu
 
-Có thể xem hệ thống như:
+hệ thống hướng tới:
 
-R = f(E, G, P, Rel, State, Context)
+TEXT
+→ GRAMMAR TREE
+→ NUMBER TREE
+→ FILTER
+→ STRUCTURED EVENT
+→ CHARACTER CODE
+→ RULE / MAPPING
+→ REACTION STRUCTURE
+→ LLM biểu đạt thành câu nếu cần.
 
-Trong đó:
+Python trở thành bộ máy xử lý cấu trúc.
 
-E = Event
-G = Grammar Code
-P = Personality Code
-Rel = Relationship Code
-State = Current State
-Context = Context
+LLM không bị loại bỏ hoàn toàn.
 
-R = Reaction Code
+LLM được đẩy về đúng nơi nó có lợi thế:
+- nhận diện ngôn ngữ;
+- xử lý phần ngữ nghĩa khó;
+- biểu đạt ngôn ngữ tự nhiên.
 
-Sau đó:
+Python đảm nhiệm phần:
+- mã hóa;
+- so khớp;
+- lọc;
+- routing;
+- lookup;
+- áp dụng luật;
+- quản lý dữ liệu;
+- tạo cấu trúc deterministic.
 
-Reaction Code
-→ Natural Language
+---
 
-Mục tiêu của hệ thống là làm cho phần f() càng nhiều càng tốt được thực hiện bằng dữ liệu, mã hóa và luật xác định, thay vì bắt LLM tự suy luận lại từ đầu.
+## 11. NGUYÊN TẮC KIỂM CHỨNG
+
+Không giả định trước rằng mọi thứ đều deterministic.
+
+Mỗi tầng phải được kiểm chứng bằng dữ liệu.
+
+Đặc biệt phải kiểm tra:
+
+1. Các LLM có phân tích cùng một câu thành cùng cấu trúc hay không.
+2. Các cấu trúc nào xuất hiện thường xuyên nhất.
+3. Các cấu trúc nào thực sự hữu ích cho việc lọc news.
+4. Cấu trúc nào dẫn tới EVENT.
+5. Cấu trúc nào dẫn tới CAUSE / RESULT / CLAIM...
+6. Cùng một EVENT nhưng khác cách diễn đạt có tạo ra các Grammar Code khác nhau hay không.
+7. Nếu Grammar Code khác nhau nhưng EVENT giống nhau thì hệ thống có cần chuẩn hóa chúng về cùng một EVENT hay không.
+8. Character Code kết hợp với EVENT như thế nào để tạo Reaction.
+9. Phần nào có thể làm hoàn toàn bằng Python.
+10. Phần nào bắt buộc phải để LLM xử lý.
+
+Mục tiêu cuối cùng không phải là thay thế LLM bằng mọi giá.
+
+Mục tiêu là tìm ra phần nào của quá trình có thể chuyển từ suy luận xác suất của LLM sang cấu trúc và luật deterministic mà không làm mất thông tin cần thiết.
