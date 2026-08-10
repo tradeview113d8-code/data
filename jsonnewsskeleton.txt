@@ -1,0 +1,55 @@
+[
+  {
+    "id": "news_001",
+    "category": 0,
+    "rank": 0,
+    "title": "",
+    "entities": [
+      {
+        "id": "ent_001",
+        "type": 0,
+        "name": ""
+      }
+    ],
+    "states": [
+      {
+        "type": 0,
+        "value": ""
+      }
+    ],
+    "events": [
+      {
+        "id": "event_001",
+        "type": 0,
+        "status": 0,
+        "actor": [],
+        "target": [],
+        "action": "",
+        "location": "",
+        "time": ""
+      }
+    ],
+    "attention": {
+      "type": 0,
+      "status": 0,
+      "intensity": 0
+    },
+    "claims": [],
+    "sequences": [
+      {
+        "id": "seq_001",
+        "status": 0,
+        "events": []
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_001",
+        "type": 0,
+        "from": "",
+        "to": ""
+      }
+    ],
+    "forecast": []
+  }
+]
