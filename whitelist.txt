@@ -1,0 +1,47 @@
+WHITELIST
+│
+├── 01_EVENT
+│   ├── hành động xảy ra
+│   ├── hành động thực thi
+│   ├── biến cố
+│   └── thay đổi trạng thái
+│
+├── 02_STATE
+│   ├── trạng thái người
+│   ├── trạng thái vật/thể
+│   └── trạng thái hệ thống
+│
+├── 03_RELATION
+│   ├── nguyên nhân
+│   ├── kết quả
+│   ├── điều kiện
+│   ├── thời gian
+│   ├── đối lập
+│   └── mục đích
+│
+├── 04_ACTOR
+│   ├── cơ quan
+│   ├── cá nhân
+│   ├── tổ chức
+│   └── nhóm người
+│
+├── 05_TARGET
+│   └── đối tượng chịu tác động
+│
+├── 06_LOCATION
+│   ├── địa điểm
+│   └── PLATFORM
+│
+├── 07_TIME
+│   └── mốc thời gian có giá trị
+│
+├── 08_CLAIM
+│   ├── phát ngôn
+│   ├── phủ nhận
+│   ├── cáo buộc
+│   └── khẳng định
+│
+└── 09_SIGNAL
+    ├── từ báo hiệu bất thường
+    ├── từ báo hiệu mức độ
+    └── từ báo hiệu thay đổi
