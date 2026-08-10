@@ -1,0 +1,1240 @@
+
+
+[
+  {
+    "id": "news_001",
+    "category": 1,
+    "rank": 1,
+    "title": "Hy hữu: Hai chị em sinh đôi có hàng loạt trùng hợp đặc biệt, cùng kết nạp Đảng dưới mái trường của bố mẹ",
+    "entities": [
+      {
+        "id": "ent_001",
+        "type": 1,
+        "name": "Hoàng Linh Phương"
+      },
+      {
+        "id": "ent_002",
+        "type": 1,
+        "name": "Hoàng Linh Trang"
+      },
+      {
+        "id": "ent_003",
+        "type": 2,
+        "name": "Đảng Cộng sản Việt Nam"
+      },
+      {
+        "id": "ent_004",
+        "type": 2,
+        "name": "Trường Đại học Thủy lợi"
+      },
+      {
+        "id": "ent_005",
+        "type": 1,
+        "name": "Bố của hai em (cựu sinh viên khóa 39N)"
+      }
+    ],
+    "states": [
+      {
+        "type": 14,
+        "value": "Hai chị em sinh đôi có hàng loạt trùng hợp đặc biệt, cùng học ngành Kinh tế xây dựng"
+      }
+    ],
+    "events": [
+      {
+        "id": "event_001",
+        "type": 30,
+        "status": 1,
+        "actor": [
+          "ent_003"
+        ],
+        "target": [
+          "ent_001",
+          "ent_002"
+        ],
+        "action": "Kết nạp vào Đảng Cộng sản Việt Nam",
+        "location": "Trường Đại học Thủy lợi",
+        "time": "08/08/2026"
+      },
+      {
+        "id": "event_002",
+        "type": 45,
+        "status": 7,
+        "actor": [
+          "ent_005"
+        ],
+        "target": [
+          "ent_004"
+        ],
+        "action": "Từng là cựu sinh viên khóa 39N của trường",
+        "location": "Trường Đại học Thủy lợi",
+        "time": "Quá khứ"
+      }
+    ],
+    "attention": {
+      "type": 8,
+      "status": 1,
+      "intensity": 1
+    },
+    "claims": [],
+    "sequences": [],
+    "relations": [
+      {
+        "id": "rel_001",
+        "type": 3,
+        "from": "event_002",
+        "to": "event_001"
+      }
+    ],
+    "forecast": []
+  },
+  {
+    "id": "news_002",
+    "category": 1,
+    "rank": 2,
+    "title": "Đội bóng Đồng Tháp bất ngờ bị đổi tên thành Bình Minh Sài Gòn, phải lên TP.HCM \"ăn nhờ ở đậu\"",
+    "entities": [
+      {
+        "id": "ent_006",
+        "type": 2,
+        "name": "Đội bóng Đồng Tháp (Bình Minh Sài Gòn)"
+      },
+      {
+        "id": "ent_007",
+        "type": 6,
+        "name": "Đồng Tháp"
+      },
+      {
+        "id": "ent_008",
+        "type": 6,
+        "name": "TP.HCM"
+      },
+      {
+        "id": "ent_009",
+        "type": 3,
+        "name": "Các cựu huấn luyện viên, cầu thủ cùng người hâm mộ"
+      }
+    ],
+    "states": [
+      {
+        "type": 45,
+        "value": "Hồn Trương Ba, da Hàng Thịt, mất đi phiên hiệu quê nhà"
+      }
+    ],
+    "events": [
+      {
+        "id": "event_003",
+        "type": 8,
+        "status": 1,
+        "actor": [],
+        "target": [
+          "ent_006"
+        ],
+        "action": "Bất ngờ bị đổi tên thành Bình Minh Sài Gòn",
+        "location": "Đồng Tháp",
+        "time": "10/08/2026"
+      },
+      {
+        "id": "event_004",
+        "type": 33,
+        "status": 1,
+        "actor": [
+          "ent_006"
+        ],
+        "target": [],
+        "action": "Phải lên TP.HCM tập luyện, sinh hoạt tại một trường cao đẳng",
+        "location": "TP.HCM",
+        "time": "10/08/2026"
+      },
+      {
+        "id": "event_005",
+        "type": 7,
+        "status": 1,
+        "actor": [
+          "ent_009"
+        ],
+        "target": [],
+        "action": "Ngỡ ngàng và tiếc nuối trước sự việc",
+        "location": "",
+        "time": "10/08/2026"
+      }
+    ],
+    "attention": {
+      "type": 13,
+      "status": 2,
+      "intensity": 2
+    },
+    "claims": [],
+    "sequences": [
+      {
+        "id": "seq_001",
+        "status": 1,
+        "events": [
+          {
+            "event_id": "event_003",
+            "order": 1
+          },
+          {
+            "event_id": "event_004",
+            "order": 2
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_002",
+        "type": 1,
+        "from": "event_003",
+        "to": "event_005"
+      }
+    ],
+    "forecast": []
+  },
+  {
+    "id": "news_003",
+    "category": 1,
+    "rank": 3,
+    "title": "Chuyện lạ Việt Nam: Liên tiếp phát hiện hành khách giấu hàng chục iPhone, iPad không khai báo qua đường bộ",
+    "entities": [
+      {
+        "id": "ent_010",
+        "type": 3,
+        "name": "Hành khách"
+      },
+      {
+        "id": "ent_011",
+        "type": 5,
+        "name": "Hàng chục iPhone, Oppo và máy tính bảng Lenovo"
+      },
+      {
+        "id": "ent_012",
+        "type": 2,
+        "name": "Cơ quan chức năng / Hải quan"
+      }
+    ],
+    "states": [],
+    "events": [
+      {
+        "id": "event_006",
+        "type": 11,
+        "status": 1,
+        "actor": [
+          "ent_010"
+        ],
+        "target": [
+          "ent_011"
+        ],
+        "action": "Giấu số lượng lớn điện thoại và máy tính bảng không khai báo khi nhập cảnh",
+        "location": "Đường bộ vào Việt Nam",
+        "time": "Trong vòng một tuần"
+      },
+      {
+        "id": "event_007",
+        "type": 1,
+        "status": 1,
+        "actor": [
+          "ent_012"
+        ],
+        "target": [
+          "ent_010",
+          "ent_011"
+        ],
+        "action": "Liên tiếp phát hiện 3 vụ việc hành khách mang hàng lậu",
+        "location": "Đường bộ vào Việt Nam",
+        "time": "06/08/2026"
+      }
+    ],
+    "attention": {
+      "type": 15,
+      "status": 2,
+      "intensity": 1
+    },
+    "claims": [],
+    "sequences": [
+      {
+        "id": "seq_002",
+        "status": 1,
+        "events": [
+          {
+            "event_id": "event_006",
+            "order": 1
+          },
+          {
+            "event_id": "event_007",
+            "order": 2
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_003",
+        "type": 2,
+        "from": "event_006",
+        "to": "event_007"
+      }
+    ],
+    "forecast": []
+  },
+  {
+    "id": "news_004",
+    "category": 2,
+    "rank": 1,
+    "title": "Phiên livestream trên TikTok của bà Nguyễn Phương Hằng bất ngờ bị khoá vì vi phạm tiêu chuẩn cộng đồng",
+    "entities": [
+      {
+        "id": "ent_013",
+        "type": 1,
+        "name": "Bà Nguyễn Phương Hằng"
+      },
+      {
+        "id": "ent_014",
+        "type": 5,
+        "name": "Phiên phát sóng trực tiếp trên TikTok"
+      },
+      {
+        "id": "ent_015",
+        "type": 2,
+        "name": "Hệ thống TikTok"
+      },
+      {
+        "id": "ent_016",
+        "type": 3,
+        "name": "Dư luận mạng xã hội Việt Nam"
+      }
+    ],
+    "states": [
+      {
+        "type": 45,
+        "value": "Bị khóa vì vi phạm tiêu chuẩn cộng đồng"
+      }
+    ],
+    "events": [
+      {
+        "id": "event_008",
+        "type": 38,
+        "status": 6,
+        "actor": [
+          "ent_013"
+        ],
+        "target": [
+          "ent_014"
+        ],
+        "action": "Livestream thu hút lượng tương tác khổng lồ",
+        "location": "Mạng xã hội TikTok",
+        "time": "Tối ngày 5/8"
+      },
+      {
+        "id": "event_009",
+        "type": 43,
+        "status": 1,
+        "actor": [
+          "ent_015"
+        ],
+        "target": [
+          "ent_014"
+        ],
+        "action": "Quét và khóa thẳng tay phiên livestream",
+        "location": "Mạng xã hội TikTok",
+        "time": "Tối ngày 5/8"
+      },
+      {
+        "id": "event_010",
+        "type": 40,
+        "status": 1,
+        "actor": [
+          "ent_016"
+        ],
+        "target": [],
+        "action": "Bùng nổ hàng triệu lượt bàn tán, soi xét lý do đằng sau",
+        "location": "Mạng xã hội Việt Nam",
+        "time": "06/08/2026"
+      }
+    ],
+    "attention": {
+      "type": 1,
+      "status": 1,
+      "intensity": 3
+    },
+    "claims": [
+      {
+        "id": "claim_001",
+        "type": 45,
+        "claim_content": "Lý do đằng sau việc vi phạm tiêu chuẩn cộng đồng",
+        "claim_status": 6,
+        "target_ref": "event_009",
+        "evidence": "Bàn tán của cư dân mạng"
+      }
+    ],
+    "sequences": [
+      {
+        "id": "seq_003",
+        "status": 1,
+        "events": [
+          {
+            "event_id": "event_008",
+            "order": 1
+          },
+          {
+            "event_id": "event_009",
+            "order": 2
+          },
+          {
+            "event_id": "event_010",
+            "order": 3
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "id": "rel_004",
+        "type": 5,
+        "from": "event_009",
+        "to": "event_008"
+      },
+      {
+        "id": "rel_005",
+        "type": 1,
+        "from": "event_009",
+        "to": "event_010"
+      }
+    ],
+    "forecast": []
+  },
+  {
+    "id": "news_005",
+    "category": 2,
+    "rank": 2,
+    "title": "Khoảnh khắc \"viral\" của mỹ nhân giống hệt AI thu hút bão tương tác từ netizen",
+    "entities": [
+      {
+        "id": "ent_017",
+        "type": 1,
+        "name": "Nữ ca sĩ Karina (aespa)"
+      },
+      {
+        "id": "ent_018",
+        "type": 5,
+        "name": "Đoạn video và hình ảnh tại concert mới nhất"
+      },
+      {
+        "id": "ent_019",
+        "type": 3,
+        "name": "Cộng đồng mạng Việt Nam / Netizen"
+      }
+    ],
+    "states": [
+      {
+        "type": 14,
+        "value": "Nhan sắc thực tế đầy siêu thực, chuẩn chỉnh như AI"
+      }
+    ],
+    "events": [
+      {
+        "id": "event_011",
+        "type": 17,
+        "status": 7,
+        "actor": [],
+        "target": [
+          "ent_017"
+        ],
+        "action": "Ghi lại nhan sắc thực tế tại concert mới nhất",
+        "location": "Concert",
+        "time": "Gần đây"
+      },
+      {
+        "id": "event_012",
+        "type": 40,
+        "status": 1,
+        "actor": [
+          "ent_019"
+        ],
+        "target": [
+          "ent_018"
+        ],
+        "action": "Phủ sóng, thu về hàng trăm nghìn lượt thích và chia sẻ rầm rộ",
+        "location": "Các diễn đàn mạng Việt Nam",
+        "time": "09/08/2026"
+      }
+    ],
+    "attention": {
+      "type": 1,
+      "status": 1,
+      "intensity": 2
+    },
+
+"claims": [
+{
+"id": "claim_002",
+"type": 24,
+"claim_content": "Nhan sắc giống hệt một sản phẩm được tạo ra từ công nghệ trí tuệ nhân tạo (AI)",
+"claim_status": 1,
+"target_ref": "ent_017",
+"evidence": "Đoạn video và hình ảnh thực tế"
+}
+],
+"sequences": [],
+"relations": [
+{
+"id": "rel_006",
+"type": 2,
+"from": "event_011",
+"to": "event_012"
+}
+],
+"forecast": []
+},
+{
+"id": "news_006",
+"category": 2,
+"rank": 3,
+"title": "Trào lưu chia sẻ mật mã "6 giờ 50" và "9 giờ 53" rầm rần phủ sóng mạng xã hội Việt Nam",
+"entities": [
+{
+"id": "ent_020",
+"type": 5,
+"name": "Mật mã "6 giờ 50" và "9 giờ 53""
+},
+{
+"id": "ent_021",
+"type": 3,
+"name": "Giới trẻ và người hâm mộ bóng đá tại Việt Nam"
+}
+],
+"states": [
+{
+"type": 45,
+"value": "Trở thành một hiện tượng mạng hot trend"
+}
+],
+"events": [
+{
+"id": "event_013",
+"type": 40,
+"status": 2,
+"actor": [
+"ent_021"
+],
+"target": [
+"ent_020"
+],
+"action": "Rần rần sử dụng hai mốc giờ này như một loại mật mã để nhận diện nhau",
+"location": "Khắp các diễn đàn mạng xã hội Việt Nam",
+"time": "10/08/2026 (Trong 24 giờ qua)"
+}
+],
+"attention": {
+"type": 4,
+"status": 1,
+"intensity": 2
+},
+"claims": [],
+"sequences": [],
+"relations": [],
+"forecast": []
+},
+{
+"id": "news_007",
+"category": 2,
+"rank": 4,
+"title": "Đoạn video TikTok "Có thể bạn không để ý: Hôm nay là ngày đặc biệt" lọt xu hướng, thu hút hàng chục nghìn bình luận",
+"entities": [
+{
+"id": "ent_022",
+"type": 5,
+"name": "Đoạn video ngắn trên TikTok"
+},
+{
+"id": "ent_023",
+"type": 3,
+"name": "Hàng vạn netizen Việt Nam"
+}
+],
+"states": [
+{
+"type": 45,
+"value": "Lọt xu hướng, đạt triệu view"
+}
+],
+"events": [
+{
+"id": "event_014",
+"type": 40,
+"status": 1,
+"actor": [
+"ent_023"
+],
+"target": [
+"ent_022"
+],
+"action": "Tràn vào bình luận, khoe ngày sinh nhật và tranh cãi về mốc thời gian đặc biệt",
+"location": "Nền tảng TikTok Việt Nam",
+"time": "07/08/2026"
+}
+],
+"attention": {
+"type": 1,
+"status": 1,
+"intensity": 2
+},
+"claims": [
+{
+"id": "claim_003",
+"type": 45,
+"claim_content": "Sự trùng hợp thú vị của các con số ngày tháng trong tuần tạo nên ngày đặc biệt",
+"claim_status": 3,
+"target_ref": "ent_022",
+"evidence": "Nội dung video và tranh cãi của netizen"
+}
+],
+"sequences": [],
+"relations": [],
+"forecast": []
+},
+{
+"id": "news_008",
+"category": 2,
+"rank": 5,
+"title": "Tranh luận dữ dội quanh phát ngôn giải thích việc trả lời sai tên bài hát tại Running Man của Ninh Dương Lan Ngọc",
+"entities": [
+{
+"id": "ent_024",
+"type": 1,
+"name": "Diễn viên Ninh Dương Lan Ngọc"
+},
+{
+"id": "ent_025",
+"type": 5,
+"name": "Bài đăng đính chính / Lời giải thích "chưa kịp nhìn gợi ý""
+},
+{
+"id": "ent_026",
+"type": 3,
+"name": "Cộng đồng mạng Việt Nam"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_015",
+"type": 41,
+"status": 7,
+"actor": [
+"ent_024"
+],
+"target": [],
+"action": "Trả lời sai một câu hỏi liên quan đến tên bài hát trong chương trình Running Man",
+"location": "Chương trình Running Man",
+"time": "Quá khứ"
+},
+{
+"id": "event_016",
+"type": 42,
+"status": 1,
+"actor": [
+"ent_024"
+],
+"target": [
+"ent_025"
+],
+"action": "Đăng bài giải thích chưa kịp nhìn gợi ý",
+"location": "Mạng xã hội",
+"time": "Gần đây"
+},
+{
+"id": "event_017",
+"type": 39,
+"status": 1,
+"actor": [
+"ent_026"
+],
+"target": [
+"ent_025"
+],
+"action": "Đổ dồn sự chú ý, tạo ra hai luồng ý kiến tranh cãi trái chiều",
+"location": "Khắp Facebook và Threads",
+"time": "09/08/2026"
+}
+],
+"attention": {
+"type": 3,
+"status": 1,
+"intensity": 2
+},
+"claims": [
+{
+"id": "claim_004",
+"type": 22,
+"claim_content": "Chưa kịp nhìn gợi ý nên dẫn đến việc trả lời sai tên bài hát",
+"claim_status": 3,
+"target_ref": "event_016",
+"evidence": "Bài đăng đính chính của Lan Ngọc"
+}
+],
+"sequences": [
+{
+"id": "seq_004",
+"status": 1,
+"events": [
+{
+"event_id": "event_015",
+"order": 1
+},
+{
+"event_id": "event_016",
+"order": 2
+},
+{
+"event_id": "event_017",
+"order": 3
+}
+]
+}
+],
+"relations": [
+{
+"id": "rel_007",
+"type": 2,
+"from": "event_015",
+"to": "event_016"
+},
+{
+"id": "rel_008",
+"type": 4,
+"from": "event_016",
+"to": "event_017"
+}
+],
+"forecast": []
+},
+{
+"id": "news_009",
+"category": 3,
+"rank": 1,
+"title": "Xe đầu kéo chở loạt ô tô hạng sang Lexus bất ngờ bốc cháy ngùn ngụt trên cao tốc Hà Nội - Hải Phòng",
+"entities": [
+{
+"id": "ent_027",
+"type": 5,
+"name": "Xe đầu kéo"
+},
+{
+"id": "ent_028",
+"type": 5,
+"name": "Nhiều chiếc ô tô hạng sang nhãn hiệu Lexus"
+},
+{
+"id": "ent_029",
+"type": 6,
+"name": "Cao tốc Hà Nội - Hải Phòng"
+},
+{
+"id": "ent_030",
+"type": 3,
+"name": "Tài xế đường dài / Giao thông qua khu vực"
+}
+],
+"states": [
+{
+"type": 28,
+"value": "Thiệt hại nghiêm trọng về tài sản, giao thông tê liệt"
+}
+],
+"events": [
+{
+"id": "event_018",
+"type": 10,
+"status": 1,
+"actor": [],
+"target": [
+"ent_027",
+"ent_028"
+],
+"action": "Bất ngờ bốc cháy dữ dội ngùn ngụt khi đang vận chuyển xe",
+"location": "Cao tốc Hà Nội - Hải Phòng",
+"time": "08/08/2026"
+},
+{
+"id": "event_019",
+"type": 32,
+"status": 1,
+"actor": [
+"ent_030"
+],
+"target": [],
+"action": "Giao thông bị tê liệt, thu hút sự chú ý lớn từ các tài xế",
+"location": "Cao tốc Hà Nội - Hải Phòng",
+"time": "08/08/2026"
+}
+],
+"attention": {
+"type": 12,
+"status": 1,
+"intensity": 2
+},
+"claims": [],
+"sequences": [],
+"relations": [
+{
+"id": "rel_009",
+"type": 1,
+"from": "event_018",
+"to": "event_019"
+}
+],
+"forecast": []
+},
+{
+"id": "news_010",
+"category": 3,
+"rank": 2,
+"title": "Cháy lớn tại khu nhà xưởng Tân Triều Mới, cảnh sát thức đêm khuân hàng loạt bình gas ra ngoài",
+"entities": [
+{
+"id": "ent_031",
+"type": 5,
+"name": "Khu vực nhà xưởng khung thép mái tôn ở Tân Triều Mới"
+},
+{
+"id": "ent_032",
+"type": 2,
+"name": "Lực lượng PCCC / Cảnh sát"
+},
+{
+"id": "ent_033",
+"type": 5,
+"name": "Nhiều bình gas lớn"
+}
+],
+"states": [
+{
+"type": 45,
+"value": "Cột khói đen cao hàng chục mét, tình huống căng thẳng"
+}
+],
+"events": [
+{
+"id": "event_020",
+"type": 10,
+"status": 1,
+"actor": [],
+"target": [
+"ent_031"
+],
+"action": "Bất ngờ bùng phát đám cháy lớn tạo ra cột khói đen cao",
+"location": "Xã Thanh Liệt (Hà Nội)",
+"time": "Đêm 08/08/2026 - rạng sáng 09/08/2026"
+},
+{
+"id": "event_021",
+"type": 3,
+"status": 1,
+"actor": [
+"ent_032"
+],
+"target": [
+"ent_033"
+],
+"action": "Thức đêm liều mình lao vào đám cháy khuân di dời khẩn cấp các bình gas ra ngoài",
+"location": "Xã Thanh Liệt (Hà Nội)",
+"time": "Đêm 08/08/2026 - rạng sáng 09/08/2026"
+}
+],
+"attention": {
+"type": 12,
+"status": 2,
+"intensity": 2
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_005",
+"status": 1,
+"events": [
+{
+"event_id": "event_020",
+"order": 1
+},
+{
+"event_id": "event_021",
+"order": 2
+}
+]
+}
+],
+"relations": [
+{
+"id": "rel_010",
+"type": 4,
+"from": "event_020",
+"to": "event_021"
+}
+],
+"forecast": []
+},
+{
+"id": "news_011",
+"category": 3,
+"rank": 3,
+"title": "Ghe gỗ bán tạp hóa bất ngờ bốc cháy dữ dội rồi chìm nghỉm trên sông Sài Gòn",
+"entities": [
+{
+"id": "ent_034",
+"type": 5,
+"name": "Chiếc ghe gỗ chuyên chở hàng tạp hóa"
+},
+{
+"id": "ent_035",
+"type": 1,
+"name": "Một người phụ nữ tử vong"
+},
+{
+"id": "ent_036",
+"type": 2,
+"name": "Lực lượng chức năng"
+}
+],
+"states": [
+{
+"type": 28,
+"value": "Chìm xuống lòng sông Sài Gòn, phong tỏa hiện trường"
+}
+],
+"events": [
+{
+"id": "event_022",
+"type": 10,
+"status": 1,
+"actor": [],
+"target": [
+"ent_034"
+],
+"action": "Đang lưu thông thì bất ngờ phát hỏa ngùn ngụt rồi chìm",
+"location": "Đoạn sông Sài Gòn qua phường Bình Quới (TP.HCM)",
+"time": "Sáng ngày 08/08/2026"
+},
+{
+"id": "event_023",
+"type": 35,
+"status": 1,
+"actor": [],
+"target": [
+"ent_035"
+],
+"action": "Tử vong do sự cố cháy ghe",
+"location": "Sông Sài Gòn",
+"time": "Sáng ngày 08/08/2026"
+},
+{
+"id": "event_024",
+"type": 9,
+"status": 1,
+"actor": [
+"ent_036"
+],
+"target": [
+"ent_034"
+],
+"action": "Tổ chức phong tỏa hiện trường để trục vớt phương tiện",
+"location": "Phường Bình Quới (TP.HCM)",
+"time": "08/08/2026"
+}
+],
+"attention": {
+"type": 6,
+"status": 2,
+"intensity": 2
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_006",
+"status": 1,
+"events": [
+{
+"event_id": "event_022",
+"order": 1
+},
+{
+"event_id": "event_023",
+"order": 2
+},
+{
+"event_id": "event_024",
+"order": 3
+}
+]
+}
+],
+"relations": [
+{
+"id": "rel_011",
+"type": 1,
+"from": "event_022",
+"to": "event_023"
+},
+{
+"id": "rel_012",
+"type": 4,
+"from": "event_022",
+"to": "event_024"
+}
+],
+"forecast": []
+},
+{
+"id": "news_012",
+"category": 4,
+"rank": 1,
+"title": "Khó tin: Người phụ nữ liên tục gọi tổng đài khẩn cấp chỉ để yêu cầu... tìm hộ một ông chồng",
+"entities": [
+{
+"id": "ent_037",
+"type": 1,
+"name": "Người phụ nữ tên Audrey Scott (57 tuổi)"
+},
+{
+"id": "ent_038",
+"type": 2,
+"name": "Hệ thống tổng đài đường dây khẩn cấp"
+},
+{
+"id": "ent_039",
+"type": 3,
+"name": "Các tổng đài viên / Nhân viên trực tổng đài"
+}
+],
+"states": [],
+"events": [
+{
+"id": "event_025",
+"type": 7,
+"status": 1,
+"actor": [
+"ent_037"
+],
+"target": [
+"ent_038"
+],
+"action": "Liên tục gọi điện quấy rối, bắt nhân viên phải tìm kiếm và kết duyên cho mình một người chồng",
+"location": "Tiểu bang Ohio (Mỹ)",
+"time": "05/08/2026"
+},
+{
+"id": "event_026",
+"type": 7,
+"status": 1,
+"actor": [
+"ent_039"
+],
+"target": [
+"ent_037"
+],
+"action": "Hết lời giải thích đây là hệ thống cứu hộ",
+"location": "Tiểu bang Ohio (Mỹ)",
+"time": "05/08/2026"
+}
+],
+"attention": {
+"type": 13,
+"status": 1,
+"intensity": 1
+},
+"claims": [
+{
+"id": "claim_005",
+"type": 1,
+"claim_content": "Yêu cầu tổng đài khẩn cấp phải tìm hộ một ông chồng",
+"claim_status": 1,
+"target_ref": "event_025",
+"evidence": "Cuộc gọi ghi âm đến tổng đài"
+}
+],
+"sequences": [],
+"relations": [
+{
+"id": "rel_013",
+"type": 4,
+"from": "event_025",
+"to": "event_026"
+}
+],
+"forecast": []
+},
+{
+"id": "news_013",
+"category": 4,
+"rank": 2,
+"title": "Chuyện lạ có một không hai: Người đàn ông thuê nhà mở "đại sứ quán" cho các quốc gia không được công nhận",
+"entities": [
+{
+"id": "ent_040",
+"type": 1,
+"name": "Ông Harshvardhan Jain (47 tuổi)"
+},
+{
+"id": "ent_041",
+"type": 5,
+"name": "Căn nhà thuê / Văn phòng đại diện"
+},
+{
+"id": "ent_042",
+"type": 3,
+"name": "Các quốc gia tự phong chưa được công nhận (Westarctica, Seborga, Ladonia)"
+}
+],
+"states": [
+{
+"type": 45,
+"value": "Tự xưng là đại sứ hoặc cố vấn cấp cao"
+}
+],
+"events": [
+{
+"id": "event_027",
+"type": 45,
+"status": 1,
+"actor": [
+"ent_040"
+],
+"target": [
+"ent_041"
+],
+"action": "Thuê hẳn một căn nhà để lập văn phòng đại diện kinh doanh kỳ lạ",
+"location": "Vùng ngoại ô gần New Delhi (Ấn Độ)",
+"time": "05/08/2026"
+}
+],
+"attention": {
+"type": 15,
+"status": 1,
+"intensity": 1
+},
+"claims": [
+{
+"id": "claim_006",
+"type": 1,
+"claim_content": "Tự xưng là đại sứ hoặc cố vấn cấp cao cho các quốc gia tự phong",
+"claim_status": 1,
+"target_ref": "event_027",
+"evidence": "Văn phòng đại diện tại căn nhà thuê"
+}
+],
+"sequences": [],
+"relations": [],
+"forecast": []
+},
+{
+"id": "news_014",
+"category": 4,
+"rank": 3,
+"title": "Hy hữu cảnh tượng 16 người bị bỏng nhập viện sau tai nạn tại Lễ hội rước đuốc",
+"entities": [
+{
+"id": "ent_043",
+"type": 3,
+"name": "16 người tham gia lễ hội"
+},
+{
+"id": "ent_044",
+"type": 4,
+"name": "Ngọn lửa từ các ngọn đuốc lớn / Đám cháy nhỏ"
+},
+{
+"id": "ent_045",
+"type": 3,
+"name": "Du khách chứng kiến"
+}
+],
+"states": [
+{
+"type": 45,
+"value": "Cảnh tượng hỗn loạn trước ống kính"
+}
+],
+"events": [
+{
+"id": "event_028",
+"type": 10,
+"status": 1,
+"actor": [],
+"target": [
+"ent_044"
+],
+"action": "Ngọn lửa bất ngờ mất kiểm soát làm bùng phát đám cháy nhỏ tại Lễ hội rước đuốc",
+"location": "Trung Quốc",
+"time": "Đêm diễn ra lễ hội (trước 08/08/2026)"
+},
+{
+"id": "event_029",
+"type": 2,
+"status": 1,
+"actor": [
+"ent_044"
+],
+"target": [
+"ent_043"
+],
+"action": "Khiến ít nhất 16 người bị bỏng ở các mức độ khác nhau",
+"location": "Trung Quốc",
+"time": "Đêm diễn ra lễ hội"
+},
+{
+"id": "event_030",
+"type": 34,
+"status": 1,
+"actor": [],
+"target": [
+"ent_043"
+],
+"action": "Nhập viện điều trị sau tai nạn",
+"location": "Bệnh viện tại Trung Quốc",
+"time": "08/08/2026"
+}
+],
+"attention": {
+"type": 13,
+"status": 2,
+"intensity": 2
+},
+"claims": [],
+"sequences": [
+{
+"id": "seq_007",
+"status": 1,
+"events": [
+{
+"event_id": "event_028",
+"order": 1
+},
+{
+"event_id": "event_029",
+"order": 2
+},
+{
+"event_id": "event_030",
+"order": 3
+}
+]
+}
+],
+"relations": [
+{
+"id": "rel_013",
+"type": 1,
+"from": "event_028",
+"to": "event_029"
+},
+{
+"id": "rel_014",
+"type": 2,
+"from": "event_029",
+"to": "event_030"
+}
+],
+"forecast": []
+}
+]
+
+
