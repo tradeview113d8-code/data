@@ -1,145 +1,575 @@
 01 EVENT
-  01.01 HANH_DONG_XAY_RA
+  01.01 ACTION_OCCUR
     - xảy ra
     - diễn ra
+    - nổ ra
     - bùng phát
+    - phát sinh
     - xuất hiện
-  01.02 HANH_DONG_THUC_THI
-    - khởi tố
-    - điều tra
+    - bùng nổ
+    - nổi lên
+  01.02 ACTION_EXECUTE
+    - bắt
     - bắt giữ
     - tạm giữ
+    - tạm giam
     - xử phạt
+    - phạt
+    - khởi tố
+    - truy tố
+    - xét xử
+    - kết án
+    - tuyên án
+    - thi hành
+    - thực hiện
+    - tiến hành
+    - triển khai
+    - ban hành
+    - công bố
+    - phê duyệt
+    - chấp thuận
+    - từ chối
+    - bác bỏ
     - đình chỉ
-  01.03 BIEN_CO
+    - tạm dừng
+    - hủy bỏ
+    - thu hồi
+    - tịch thu
+    - cưỡng chế
+    - giải tán
+    - sơ tán
+    - cứu hộ
+    - cứu nạn
+    - hỗ trợ
+    - viện trợ
+    - đầu tư
+    - khởi công
+    - khánh thành
+    - đưa vào sử dụng
+    - đóng cửa
+    - mở cửa
+    - phong tỏa
+    - cách ly
+    - kiểm soát
+    - giám sát
+    - thanh tra
+  01.03 INCIDENT
+    - tai nạn
+    - sự cố
+    - thảm họa
     - cháy
     - nổ
-    - tai nạn
     - sập
+    - lở
+    - lũ
+    - bão
+    - động đất
+    - sóng thần
+    - va chạm
+    - đâm
+    - đâm sầm
+    - đâm vào
+    - rơi
+    - rơi xuống
+    - chìm
+    - đắm
+    - chết
+    - tử vong
     - thiệt mạng
-  01.04 THAY_DOI_TRANG_THAI
+    - bị thương
+    - thương vong
+    - mất tích
+    - mất liên lạc
+    - event
+    - sự kiện
+    - biến cố
+  01.04 STATE_CHANGE
+    - thay đổi
+    - biến đổi
+    - chuyển biến
+    - chuyển sang
+    - trở thành
+    - thành
+    - bị
+    - được
+    - chuyển
+    - chuyển giao
+    - bàn giao
+    - tiếp nhận
+    - sáp nhập
+    - tách
+    - chia tách
+    - giải thể
+    - thành lập
+    - tái cơ cấu
+    - cải tổ
+    - đổi mới
+    - nâng cấp
+    - mở rộng
+    - thu hẹp
     - tăng
     - giảm
-    - phá sản
-    - phục hồi
+    - tăng mạnh
+    - giảm mạnh
+    - tăng vọt
+    - lao dốc
+    - tăng đột biến
+    - giảm sâu
 
 02 STATE
-  02.01 TRANG_THAI_NGUOI
-    - tử vong
+  02.01 HUMAN_STATE
     - bị thương
+    - trọng thương
+    - tử vong
+    - chết
+    - thiệt mạng
     - mất tích
+    - mất liên lạc
+    - bị bắt
+    - bị tạm giữ
+    - bị tạm giam
+    - bị khởi tố
+    - bị kết án
+    - bị đình chỉ
+    - bị cách chức
+    - từ chức
+    - nghỉ việc
+    - nghỉ hưu
+    - nghỉ ốm
+    - bị ốm
+    - mắc bệnh
+    - nhiễm
+    - dương tính
+    - âm tính
+    - khỏe mạnh
+    - an toàn
     - nguy kịch
-  02.02 TRANG_THAI_VAT_THE
+    - nguy hiểm
+    - bị đe dọa
+  02.02 OBJECT_STATE
     - hư hỏng
-    - thiêu rụi
-    - vỡ
-    - đứt
-  02.03 TRANG_THAI_HE_THONG
-    - tê liệt
-    - gián đoạn
+    - hư hại
+    - thiệt hại
+    - bị phá hủy
+    - bị sập
+    - bị cháy
+    - bị chìm
+    - bị đắm
+    - bị lật
+    - bị va chạm
+    - bị kẹt
+    - bị phong tỏa
+    - bị đóng cửa
+    - bị tạm dừng
+    - ngừng hoạt động
+    - tạm ngừng
+    - hoạt động trở lại
+    - hoạt động bình thường
+    - quá tải
+    - tắc nghẽn
+    - tắc đường
+    - sụp đổ
+    - đổ sập
+    - nứt
+    - nứt nẻ
+    - sạt lở
+    - lở đất
+    - ngập
+    - ngập lụt
+    - chìm trong nước
+    - bị cô lập
+  02.03 SYSTEM_STATE
     - sập
-    - khôi phục
+    - sập nguồn
+    - sự cố
+    - lỗi
+    - lỗi kỹ thuật
+    - gián đoạn
+    - gián đoạn dịch vụ
+    - ngừng hoạt động
+    - tạm ngừng
+    - phục hồi
+    - hoạt động trở lại
+    - quá tải
+    - tắc nghẽn
+    - bảo trì
+    - bảo dưỡng
+    - nâng cấp
+    - cập nhật
+    - lỗi hệ thống
+    - sự cố mạng
+    - mất điện
+    - mất nước
+    - mất tín hiệu
+    - mất kết nối
+    - đứt cáp
 
 03 RELATION
-  03.01 NGUYEN_NHAN
-    - do
+  03.01 CAUSE
     - vì
+    - do
     - bởi
-  03.02 KET_QUA
+    - bởi vì
+    - do bởi
+    - nguyên nhân
+    - nguyên do
+    - xuất phát từ
+    - bắt nguồn từ
+    - gây ra bởi
+    - dẫn đến bởi
+    - do hậu quả
+    - do ảnh hưởng
+    - do tác động
+  03.02 RESULT
     - dẫn đến
-    - gây ra
     - khiến
-  03.03 DIEU_KIEN
+    - làm
+    - gây
+    - gây ra
+    - gây nên
+    - khiến cho
+    - làm cho
+    - kết quả
+    - hậu quả
+    - hệ quả
+    - dẫn tới
+    - đưa đến
+    - tạo ra
+    - sinh ra
+  03.03 CONDITION
     - nếu
-    - khi
+    - nếu như
     - trong trường hợp
-  03.04 THOI_GIAN
+    - khi
+    - miễn là
+    - với điều kiện
+    - điều kiện
+    - chỉ khi
+    - trừ khi
+    - trường hợp
+  03.04 TIME_REL
+    - khi
+    - trong khi
+    - trong lúc
     - sau khi
     - trước khi
-    - đồng thời
-  03.05 DOI_LAP
+    - ngay khi
+    - vừa
+    - vừa mới
+    - đang
+    - đang diễn ra
+    - đã
+    - đã xảy ra
+    - sẽ
+    - sẽ diễn ra
+    - sắp
+    - sắp tới
+    - trong thời gian
+    - trong khoảng
+    - kể từ
+    - từ
+    - đến
+    - cho đến
+    - đến nay
+    - hiện nay
+  03.05 CONTRAST
     - nhưng
     - tuy nhiên
+    - thế nhưng
     - mặc dù
-  03.06 MUC_DICH
+    - dù
+    - dù vậy
+    - trái lại
+    - ngược lại
+    - trong khi đó
+    - trong lúc đó
+    - đối lập
+    - mâu thuẫn
+  03.06 PURPOSE
     - để
     - nhằm
+    - nhằm mục đích
     - với mục đích
+    - vì mục đích
+    - để phục vụ
+    - để thực hiện
+    - để đảm bảo
+    - để ngăn chặn
+    - để bảo vệ
+    - để hỗ trợ
 
 04 ACTOR
-  04.01 CO_QUAN
+  04.01 AGENCY
+    - cơ quan
+    - cơ quan chức năng
+    - lực lượng
+    - lực lượng chức năng
+    - công an
+    - cảnh sát
+    - quân đội
     - bộ
     - sở
+    - ban
+    - ngành
     - ủy ban
+    - hội đồng
+    - chính phủ
+    - nhà nước
     - tòa án
-  04.02 CA_NHAN
-    - nghi phạm
-    - bị can
-    - đối tượng
+    - viện kiểm sát
+    - thanh tra
+    - kiểm toán
+    - hải quan
+  04.02 PERSON
+    - người
+    - cá nhân
+    - công dân
     - nạn nhân
-  04.03 TO_CHUC
+    - bị cáo
+    - bị can
+    - nghi phạm
+    - thủ phạm
+    - đối tượng
+    - lãnh đạo
+    - quan chức
+    - cán bộ
+    - nhân viên
+    - công nhân
+    - học sinh
+    - sinh viên
+    - bác sĩ
+    - y tá
+    - tài xế
+    - lái xe
+  04.03 ORGANIZATION
+    - tổ chức
+    - doanh nghiệp
     - công ty
     - tập đoàn
     - ngân hàng
-  04.04 NHOM_NGUOI
+    - trường
+    - bệnh viện
+    - đơn vị
+    - cơ sở
+    - hãng
+    - nhà máy
+    - xí nghiệp
+    - hội
+    - hiệp hội
+  04.04 GROUP
+    - nhóm
+    - đoàn
+    - đoàn người
+    - đám đông
     - người dân
-    - hành khách
-    - băng nhóm
+    - cư dân
+    - dân cư
+    - cộng đồng
+    - lực lượng
+    - đội
+    - đội cứu hộ
+    - đội cứu nạn
+    - nhóm đối tượng
 
 05 TARGET
-  05.01 DOI_TUONG_CHIU_TAC_DONG
+  05.01 AFFECTED
+    - nạn nhân
+    - bị hại
+    - người bị
+    - đối tượng
     - tài sản
-    - dự án
+    - nhà
+    - nhà cửa
+    - xe
+    - phương tiện
     - công trình
+    - cầu
+    - đường
+    - cây
+    - rừng
+    - đất
+    - nước
+    - môi trường
+    - hệ thống
+    - dịch vụ
+    - cơ sở
+    - doanh nghiệp
+    - công ty
+    - người dân
 
 06 LOCATION
-  06.01 DIA_DIEM
+  06.01 PLACE
     - tại
     - ở
-    - hiện trường
-    - trụ sở
-  06.02 PLATFORM
+    - tại khu vực
     - trên
-    - mạng xã hội
-    - nền tảng
+    - dưới
+    - trong
+    - ngoài
+    - gần
+    - quanh
+    - dọc
+    - dọc theo
+    - khu vực
+    - vùng
+    - địa bàn
+    - hiện trường
+    - hiện trường vụ
+    - nơi
+    - chỗ
+  06.02 PLATFORM
+    - trên mạng
+    - trên mạng xã hội
+    - trên Facebook
+    - trên Twitter
+    - trên X
+    - trên TikTok
+    - trên YouTube
+    - trên website
+    - trên cổng thông tin
+    - qua mạng
+    - trực tuyến
+    - online
 
 07 TIME
-  07.01 MOC_THOI_GIAN_CO_GIA_TRI
-    - vào lúc
-    - rạng sáng
+  07.01 TIME_MARKER
+    - hôm nay
+    - hôm qua
+    - sáng nay
+    - chiều nay
+    - tối qua
+    - đêm qua
+    - sáng sớm
+    - đêm
+    - tuần này
+    - tuần trước
+    - tuần tới
+    - tháng này
+    - tháng trước
+    - tháng tới
+    - năm nay
+    - năm trước
+    - năm tới
     - vừa qua
+    - gần đây
     - sắp tới
+    - trong tương lai
+    - trước đây
+    - hiện nay
+    - hiện tại
+    - lúc
+    - vào lúc
+    - vào thời điểm
+    - trong ngày
+    - trong tuần
+    - trong tháng
+    - trong năm
+    - từ ngày
+    - đến ngày
+    - kể từ
+    - cho đến
 
 08 CLAIM
-  08.01 PHAT_NGON
-    - cho biết
+  08.01 STATEMENT
     - nói
+    - cho biết
+    - khẳng định
+    - tuyên bố
+    - phát biểu
+    - chia sẻ
     - thông báo
-  08.02 PHU_NHAN
+    - công bố
+    - tiết lộ
+    - nêu
+    - cho hay
+    - cho rằng
+  08.02 DENIAL
     - phủ nhận
     - bác bỏ
-    - không có chuyện
-  08.03 CAO_BUOC
+    - từ chối
+    - không thừa nhận
+    - không đồng ý
+    - không xác nhận
+    - bác
+  08.03 ACCUSATION
     - cáo buộc
     - tố cáo
-    - lên án
-  08.04 KHANG_DINH
+    - tố giác
+    - buộc tội
+    - kết tội
+    - nghi ngờ
+    - nghi vấn
+    - cáo
+  08.04 AFFIRMATION
     - khẳng định
-    - nhấn mạnh
+    - xác nhận
     - cam kết
+    - hứa
+    - đảm bảo
+    - bảo đảm
 
 09 SIGNAL
-  09.01 TU_BAO_HIEU_BAT_THUONG
+  09.01 ABNORMAL
+    - bất thường
     - bất ngờ
     - đột ngột
-    - bất thường
-    - nghi vấn
-  09.02 TU_BAO_HIEU_MUC_DO
     - nghiêm trọng
-    - dữ dội
-    - hàng loạt
+    - nguy hiểm
+    - nguy kịch
+    - khẩn cấp
+    - cấp bách
+    - đặc biệt
+    - hiếm gặp
+    - lần đầu
+    - chưa từng
+    - chưa từng có
     - kỷ lục
-  09.03 TU_BAO_HIEU_THAY_DOI
+    - cao nhất
+    - thấp nhất
+    - lớn nhất
+    - nhỏ nhất
+    - đáng chú ý
+  09.02 DEGREE
+    - nghiêm trọng
+    - nặng
+    - nhẹ
+    - rất
+    - cực kỳ
+    - hết sức
+    - vô cùng
+    - đáng kể
+    - mạnh
+    - yếu
+    - cao
+    - thấp
+    - lớn
+    - nhỏ
+    - nhiều
+    - ít
+    - tăng mạnh
+    - giảm mạnh
+    - tăng vọt
+    - lao dốc
     - đột biến
+    - sâu
+    - rõ rệt
+  09.03 CHANGE_SIGNAL
+    - thay đổi
+    - biến đổi
     - chuyển biến
-    - leo thang
+    - tăng
+    - giảm
+    - tăng lên
+    - giảm xuống
+    - tăng mạnh
+    - giảm mạnh
+    - tăng vọt
+    - lao dốc
+    - tăng đột biến
+    - giảm sâu
+    - cải thiện
+    - xấu đi
+    - trở nên
+    - chuyển sang
+    - từ ... sang
+    - thay vì
