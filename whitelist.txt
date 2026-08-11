@@ -1,193 +1,72 @@
-ROOT
-└── CLAUSE (01)
-    ├── S (02) - SUBJECT
-    │   └── N (02-01) - NOUN_PHRASE
-    │       ├── tổ chức (02-01-001)
-    │       │   └── KEEP_SELF
-    │       ├── doanh nghiệp (02-01-002)
-    │       │   └── KEEP_SELF
-    │       ├── cơ quan (02-01-003)
-    │       │   └── KEEP_SELF
-    │       ├── cá nhân (02-01-004)
-    │       │   └── KEEP_SELF
-    │       ├── nhóm (02-01-005)
-    │       │   └── KEEP_SELF
-    │       └── hệ thống (02-01-006)
-    │           └── KEEP_SELF
-    │
-    ├── P (03) - PREDICATE
-    │   ├── V (03-01) - VERB
-    │   │   ├── xảy ra (03-01-001)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── nổ (03-01-002)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── sập (03-01-003)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── đình chỉ (03-01-004)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── thực thi (03-01-005)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── thay đổi (03-01-006)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── diễn ra (03-01-007)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── rơi (03-01-008)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── giảm (03-01-009)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── tăng (03-01-010)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── phát sinh (03-01-011)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── xuất hiện (03-01-012)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── áp dụng (03-01-013)
-    │   │   │   └── KEEP_PATH
-    │   │   └── kết thúc (03-01-014)
-    │   │       └── KEEP_PATH
-    │   │
-    │   ├── MOD (03-02) - MODIFIER
-    │   │   ├── bất thường (03-02-001)
-    │   │   │   └── KEEP_PARENT
-    │   │   ├── đặc biệt (03-02-002)
-    │   │   │   └── KEEP_PARENT
-    │   │   ├── nghiêm trọng (03-02-003)
-    │   │   │   └── KEEP_PARENT
-    │   │   ├── nguy hiểm (03-02-004)
-    │   │   │   └── KEEP_PARENT
-    │   │   ├── quan trọng (03-02-005)
-    │   │   │   └── KEEP_PARENT
-    │   │   ├── tích cực (03-02-006)
-    │   │   │   └── CONDITIONAL
-    │   │   ├── tiêu cực (03-02-007)
-    │   │   │   └── KEEP_PARENT
-    │   │   └── khẩn cấp (03-02-008)
-    │   │       └── KEEP_PATH
-    │   │
-    │   └── PASS (03-03) - PASSIVE MARKER
-    │       ├── bị (03-03-001)
-    │       │   └── KEEP_SELF
-    │       └── được (03-03-002)
-    │           └── CONDITIONAL
-    │
-    ├── O (04) - OBJECT
-    │   └── N (04-01) - NOUN_PHRASE
-    │       ├── hoạt động (04-01-001)
-    │       │   └── KEEP_CHILD
-    │       ├── quy định (04-01-002)
-    │       │   └── KEEP_CHILD
-    │       ├── hệ thống (04-01-003)
-    │       │   └── KEEP_SELF
-    │       ├── tài liệu (04-01-004)
-    │       │   └── KEEP_SELF
-    │       ├── thông tin (04-01-005)
-    │       │   └── KEEP_SELF
-    │       ├── dữ liệu (04-01-006)
-    │       │   └── KEEP_SELF
-    │       ├── người (04-01-007)
-    │       │   └── KEEP_SELF
-    │       └── đối tượng (04-01-008)
-    │           └── KEEP_SELF
-    │
-    ├── REL (05) - RELATION
-    │   ├── CAUSE (05-01)
-    │   │   ├── marker (05-01-01)
-    │   │   │   ├── vì (05-01-01-001)
-    │   │   │   │   └── KEEP_SIBLING
-    │   │   │   ├── do (05-01-01-002)
-    │   │   │   │   └── KEEP_SIBLING
-    │   │   │   ├── bởi (05-01-01-003)
-    │   │   │   │   └── KEEP_SIBLING
-    │   │   │   └── tại (05-01-01-004)
-    │   │   │       └── KEEP_SIBLING
-    │   │   └── clause (05-01-02)
-    │   │       └── KEEP_CHILD
-    │   │
-    │   ├── COND (05-02) - CONDITION
-    │   │   ├── nếu (05-02-001)
-    │   │   │   └── KEEP_SIBLING
-    │   │   └── khi (05-02-002)
-    │   │       └── KEEP_SIBLING
-    │   │
-    │   ├── TIME (05-03)
-    │   │   ├── marker (05-03-01)
-    │   │   │   ├── lúc (05-03-01-001)
-    │   │   │   │   └── KEEP_SIBLING
-    │   │   │   ├── trong (05-03-01-002)
-    │   │   │   │   └── KEEP_SIBLING
-    │   │   │   └── sau (05-03-01-003)
-    │   │   │       └── KEEP_SIBLING
-    │   │   └── value (05-03-02)
-    │   │       ├── hôm qua (05-03-02-001)
-    │   │       │   └── KEEP_SIBLING
-    │   │       ├── hôm nay (05-03-02-002)
-    │   │       │   └── KEEP_SIBLING
-    │   │       ├── ngày mai (05-03-02-003)
-    │   │       │   └── KEEP_SIBLING
-    │   │       └── vừa qua (05-03-02-004)
-    │   │           └── KEEP_SIBLING
-    │   │
-    │   ├── OPP (05-04) - OPPOSITION
-    │   │   ├── nhưng (05-04-001)
-    │   │   │   └── KEEP_SIBLING
-    │   │   └── tuy (05-04-002)
-    │   │       └── KEEP_SIBLING
-    │   │
-    │   └── PURP (05-05) - PURPOSE
-    │       ├── để (05-05-001)
-    │       │   └── KEEP_SIBLING
-    │       └── nhằm (05-05-002)
-    │           └── KEEP_SIBLING
-    │
-    ├── LOC (06) - LOCATION
-    │   ├── marker (06-01)
-    │   │   ├── tại (06-01-001)
-    │   │   │   └── KEEP_SIBLING
-    │   │   ├── ở (06-01-002)
-    │   │   │   └── KEEP_SIBLING
-    │   │   └── trên (06-01-003)
-    │   │       └── KEEP_SIBLING
-    │   └── value (06-02)
-    │       ├── Hà Nội (06-02-001)
-    │       │   └── KEEP_SIBLING
-    │       ├── TP.HCM (06-02-002)
-    │       │   └── KEEP_SIBLING
-    │       ├── tỉnh (06-02-003)
-    │       │   └── KEEP_SIBLING
-    │       └── khu vực (06-02-004)
-    │           └── KEEP_SIBLING
-    │
-    ├── QUOTE (07) - QUOTE/CLAIM
-    │   ├── marker (07-01)
-    │   │   ├── nói (07-01-001)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── cho biết (07-01-002)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── khẳng định (07-01-003)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── phủ nhận (07-01-004)
-    │   │   │   └── KEEP_PATH
-    │   │   ├── cáo buộc (07-01-005)
-    │   │   │   └── KEEP_PATH
-    │   │   └── tuyên bố (07-01-006)
-    │   │       └── KEEP_PATH
-    │   └── content (07-02)
-    │       └── KEEP_CHILD
-    │
-    └── LEVEL (08) - LEVEL MARKER
-        ├── mức độ (08-01)
-        │   ├── rất (08-01-001)
-        │   │   └── KEEP_PARENT
-        │   ├── hơi (08-01-002)
-        │   │   └── KEEP_PARENT
-        │   ├── cực kỳ (08-01-003)
-        │   │   └── KEEP_PARENT
-        │   └── đặc biệt (08-01-004)
-        │       └── KEEP_PARENT
-        └── thay đổi (08-02)
-            ├── đột ngột (08-02-001)
-            │   └── KEEP_PARENT
-            ├── từ từ (08-02-002)
-            │   └── KEEP_PARENT
-            └── nhanh chóng (08-02-003)
-                └── KEEP_PARENT
+tổ chức
+doanh nghiệp
+cơ quan
+cá nhân
+nhóm
+hệ thống
+xảy ra
+nổ
+sập
+đình chỉ
+thực thi
+thay đổi
+diễn ra
+rơi
+giảm
+tăng
+phát sinh
+xuất hiện
+áp dụng
+kết thúc
+bất thường
+đặc biệt
+nghiêm trọng
+nguy hiểm
+quan trọng
+tích cực
+tiêu cực
+khẩn cấp
+bị
+được
+hoạt động
+quy định
+tài liệu
+thông tin
+dữ liệu
+người
+đối tượng
+vì
+do
+bởi
+tại
+nếu
+khi
+lúc
+trong
+sau
+hôm qua
+hôm nay
+ngày mai
+vừa qua
+nhưng
+tuy
+để
+nhằm
+ở
+trên
+Hà Nội
+TP.HCM
+tỉnh
+khu vực
+nói
+cho biết
+khẳng định
+phủ nhận
+cáo buộc
+tuyên bố
+rất
+hơi
+cực kỳ
+đột ngột
+từ từ
+nhanh chóng
