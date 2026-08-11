@@ -1,0 +1,1110 @@
+{
+  "text_processing_version": "1.0",
+  "sentences": [
+    {
+      "sentence_id": "S001",
+      "original": "Cặp tượng đá cổ mất trộm nhiều năm bất ngờ trở về đền sau một bài đăng trên mạng xã hội",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {
+          "text": "trên",
+          "start_token": 0,
+          "end_token": 0
+        }
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S002",
+      "original": "Một cặp tượng đá cổ bị mất trộm từ nhiều năm trước tại một ngôi đền ở Việt Nam đã bất ngờ được tìm thấy và phục dựng đưa về chốn cũ.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "bị", "start_token": 0, "end_token": 0},
+        {"text": "tại", "start_token": 0, "end_token": 0},
+        {"text": "ở", "start_token": 0, "end_token": 0},
+        {"text": "được", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S003",
+      "original": "Sự việc hy hữu này xuất phát hoàn toàn tình cờ từ một bài đăng hình ảnh trên mạng xã hội và một chuyến viếng thăm ngẫu nhiên của người dân.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "người", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S004",
+      "original": "Sự cố hy hữu tại Top Chef Việt Nam: Thí sinh bị loại vì không có món ăn nào trên bàn sau 100 phút thi đấu",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "tại", "start_token": 0, "end_token": 0},
+        {"text": "bị", "start_token": 0, "end_token": 0},
+        {"text": "vì", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "sau", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S005",
+      "original": "Trong chương trình Top Chef Việt Nam, một tình huống chưa từng có trong lịch sử các mùa giải đã xảy ra khi ban giám khảo tiến đến khu vực bếp của Chef Đỗ Việt Hoàng và phát hiện không có một món ăn hoàn chỉnh nào được bày lên bàn.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "trong", "start_token": 0, "end_token": 0},
+        {"text": "xảy ra", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "được", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S006",
+      "original": "Do không có món ăn để chấm nếm và đánh giá, cuộc đối đầu \"Cook-off\" để giành vé vớt cũng không thể diễn ra, khiến nam đầu bếp đầy triển vọng này phải gói dao rời cuộc thi ngay lập tức.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "Do", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0},
+        {"text": "diễn ra", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S007",
+      "original": "Tranh cãi ứng dụng kết nối người lạ đi chung ô tô để chia tiền xăng bắt đầu vào Việt Nam",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0},
+        {"text": "vào", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S008",
+      "original": "Mô hình kết nối người lạ đi chung xe ô tô cá nhân để chia sẻ chi phí chuyến đi (tương tự nền tảng BlaBlaCar quốc tế) đang xuất hiện tại Việt Nam và thu hút sự tò mò lớn từ cộng đồng.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "xuất hiện", "start_token": 0, "end_token": 0},
+        {"text": "tại", "start_token": 0, "end_token": 0},
+        {"text": "từ", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S009",
+      "original": "Tình huống đời sống đặc biệt này đang gây ra nhiều ý kiến trái chiều về rào cản niềm tin giữa những người xa lạ, cũng như các bài toán pháp lý trớ trêu liên quan đến quy định quản lý xe hợp đồng và kinh doanh vận tải.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "đặc biệt", "start_token": 0, "end_token": 0},
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "quy định", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S010",
+      "original": "Cộng đồng mạng ra sức can ngăn trường hợp lương 26 triệu, vẫn ở nhà thuê nhưng tính vay tiền mua ô tô",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "ở", "start_token": 0, "end_token": 0},
+        {"text": "nhưng", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S011",
+      "original": "Một bài viết chia sẻ về bài toán tài chính đời sống của một cá nhân có mức thu nhập 26 triệu đồng/tháng, chưa có nhà riêng và đang phải ở nhà thuê nhưng lại có ý định vay mượn thêm tiền để sở hữu ô tô đã trở thành tâm điểm bàn tán trên các diễn đàn mạng xã hội.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "cá nhân", "start_token": 0, "end_token": 0},
+        {"text": "ở", "start_token": 0, "end_token": 0},
+        {"text": "nhưng", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S012",
+      "original": "Phần lớn cư dân mạng đã nhảy vào phân tích, ra sức can ngăn và tạo nên luồng tranh luận sôi nổi về tư duy tiêu dùng của giới trẻ hiện nay.",
+      "filter": {
+        "whitelist_hit": false,
+        "decision": "DROP"
+      }
+    },
+    {
+      "sentence_id": "S013",
+      "original": "Vợ bỏ rửa bát, chồng \"gánh còng lưng\" vì làn sóng livestream hóng drama xuyên đêm",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "vì", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S014",
+      "original": "Xu hướng người dùng mạng xã hội Việt Nam sẵn sàng thức chầu chực hàng giờ, bỏ bê cả công việc gia đình chỉ để \"hóng\" các buổi livestream quét tài khoản hoặc bóc phốt drama của người nổi tiếng đang bị lên án gay gắt.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0},
+        {"text": "bị", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S015",
+      "original": "Bài chia sẻ thực tế về tình huống một người vợ bỏ dở việc dọn dẹp để ôm điện thoại xem livestream đến khi nền tảng bị sập đã nhận được sự đồng cảm và tương tác cực lớn từ cư dân mạng.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "bị", "start_token": 0, "end_token": 0},
+        {"text": "sập", "start_token": 0, "end_token": 0},
+        {"text": "được", "start_token": 0, "end_token": 0},
+        {"text": "từ", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S016",
+      "original": "Ca sĩ trẻ Quang Hùng MasterD gây sốt cộng đồng mạng với các chiêu trò tương tác mới",
+      "filter": {
+        "whitelist_hit": false,
+        "decision": "DROP"
+      }
+    },
+    {
+      "sentence_id": "S017",
+      "original": "Nam ca sĩ Quang Hùng MasterD tiếp tục trở thành từ khóa thịnh hành trên các nền tảng Threads và TikTok khi liên tục có những màn tương tác được cộng đồng mạng nhận xét là đầy \"chiêu trò\" nhưng lại vô cùng thông minh và thu hút.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "được", "start_token": 0, "end_token": 0},
+        {"text": "nhưng", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S018",
+      "original": "Các đoạn video ngắn ghi lại khoảnh khắc biểu diễn và giao lưu của anh nhanh chóng viral và thu về hàng triệu lượt xem.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "nhanh chóng", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S019",
+      "original": "Tìm thấy thi thể nam ca sĩ trôi sông sau nhiều ngày mất tích gây rúng động showbiz",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "sau", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S020",
+      "original": "Vụ việc thương tâm về một nam ca sĩ tự do được tìm thấy thi thể dưới sông sau nhiều ngày mất liên lạc đã trở thành chủ đề nóng nhất trên Facebook và các hội nhóm giải trí.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "được", "start_token": 0, "end_token": 0},
+        {"text": "sau", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "nhóm", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S021",
+      "original": "Thông tin này khiến dư luận không khỏi bàng hoàng, liên tục chia sẻ và gửi lời chia buồn đến gia đình nạn nhân.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "thông tin", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S022",
+      "original": "Tranh cãi tình trạng \"content bẩn\" ăn theo các vụ tai nạn, đám cháy của người nổi tiếng để câu view trên Threads và TikTok",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S023",
+      "original": "Cộng đồng mạng Việt Nam đang cùng nhau lên án và chia sẻ mạnh mẽ các bài viết phê phán vấn nạn \"tiêu thụ bi kịch\".",
+      "filter": {
+        "whitelist_hit": false,
+        "decision": "DROP"
+      }
+    },
+    {
+      "sentence_id": "S024",
+      "original": "Nhiều TikToker và chủ tài khoản Threads đã đổ xô đến hiện trường các vụ cháy, tai nạn hoặc biến cố của người nổi tiếng để quay video, livestream bất chấp việc gây cản trở an ninh, tạo nên làn sóng tranh luận gay gắt về đạo đức mạng.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S025",
+      "original": "Người phụ nữ tử vong thương tâm vì trèo qua hộ lan quốc lộ để băng ngang đường ray sát đầu tàu hỏa",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "vì", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S026",
+      "original": "Tại lối mở quốc lộ 1A đoạn qua tỉnh Ninh Bình, một vụ tai nạn đường sắt nghiêm trọng đã xảy ra khi một cô gái cố tình trèo qua dải phân cách hộ lan để đi bộ cắt ngang đường ray.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "tại", "start_token": 0, "end_token": 0},
+        {"text": "tỉnh", "start_token": 0, "end_token": 0},
+        {"text": "nghiêm trọng", "start_token": 0, "end_token": 0},
+        {"text": "xảy ra", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "để", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S027",
+      "original": "Dù đoàn tàu hỏa đang lao tới ở khoảng cách rất gần và liên tục kéo còi cảnh báo, nạn nhân vẫn bước vào và bị tàu đâm trúng, tử vong ngay tại hiện trường.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "ở", "start_token": 0, "end_token": 0},
+        {"text": "rất", "start_token": 0, "end_token": 0},
+        {"text": "bị", "start_token": 0, "end_token": 0},
+        {"text": "tại", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S028",
+      "original": "Video hành trình ghi lại sự việc đang được chia sẻ rộng rãi như một lời cảnh tỉnh lớn về an toàn giao thông.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "được", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S029",
+      "original": "Xe tải đổ dốc ôm cua tốc độ cao bị lật ngang, đè nát đầu ô tô đi ngược chiều",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "bị", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S030",
+      "original": "Một vụ tai nạn giao thông bất ngờ đã xảy ra trên tuyến đường thuộc huyện Văn Bàn, tỉnh Lào Cai.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "xảy ra", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "tỉnh", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S031",
+      "original": "Chiếc xe tải lớn khi đang đổ dốc và ôm cua với tốc độ cao thì bất ngờ mất trọng tâm và lật nghiêng hoàn toàn sang làn đường đối diện, xô thẳng vào một xe ô tô con có gắn camera hành trình đang dừng tránh, khiến phần đầu xe này vỡ nát.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "khi", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S032",
+      "original": "Suýt mất mạng vì đứng vào vùng điểm mù phía sau xe tải đang lùi trong ngõ phố",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "vì", "start_token": 0, "end_token": 0},
+        {"text": "sau", "start_token": 0, "end_token": 0},
+        {"text": "trong", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S033",
+      "original": "Tình huống giao thông thót tim xảy ra tại một đoạn đường phố hẹp khi một người điều khiển xe máy đứng dừng ngay sát đuôi xe tải lớn.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "xảy ra", "start_token": 0, "end_token": 0},
+        {"text": "tại", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "người", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S034",
+      "original": "Do lọt hoàn toàn vào vùng điểm mù, chiếc xe tải đã bất ngờ cài số lùi và húc ngã xe máy.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "Do", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S035",
+      "original": "Rất may người đi xe máy đã kịp thời bỏ xe nhảy thoát thân trước khi bị cuốn vào gầm.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "rất", "start_token": 0, "end_token": 0},
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "bị", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S036",
+      "original": "Sự cố thu hút sự chú ý lớn từ cư dân mạng về kỹ năng nhận biết điểm mù của xe lớn.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "từ", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S037",
+      "original": "Khoảnh khắc kinh hoàng: Bánh xe cỡ lớn từ làn đối diện văng qua dải phân cách đập nát đầu ô tô đang chạy trên cao tốc",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "từ", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S038",
+      "original": "Một vụ tai nạn hy hữu và cực kỳ hiếm gặp đã được camera hành trình ghi lại trên tuyến đường cao tốc ở Philadelphia, bang Pennsylvania, Mỹ.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "cực kỳ", "start_token": 0, "end_token": 0},
+        {"text": "được", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "ở", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S039",
+      "original": "Một chiếc bánh xe tải cỡ lớn từ làn đường ngược chiều bất ngờ bị gãy rục, găm thẳng qua dải phân cách và bay với tốc độ xé gió đập trực diện vào đầu một chiếc SUV Nissan Rogue đang di chuyển, khiến chiếc xe biến dạng hoàn toàn như vừa bị thiên thạch rơi trúng.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "từ", "start_token": 0, "end_token": 0},
+        {"text": "bị", "start_token": 0, "end_token": 0},
+        {"text": "rơi", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S040",
+      "original": "Kỳ lạ cảnh tượng cá khổng lồ nặng hơn 1 tạ bị tóm gọn sau trận lũ quét lịch sử",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "bị", "start_token": 0, "end_token": 0},
+        {"text": "sau", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S041",
+      "original": "Sau một trận lũ lớn trên sông Ravi thuộc quốc gia Pakistan, một ngư dân trẻ tuổi đã khiến dư luận vô cùng kinh ngạc khi săn được một con cá khổng lồ có trọng lượng lên tới 102 kg.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "Sau", "start_token": 0, "end_token": 0},
+        {"text": "trên", "start_token": 0, "end_token": 0},
+        {"text": "khi", "start_token": 0, "end_token": 0},
+        {"text": "được", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "A + S + P + O",
+        "code_sequence": ["08", "02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "A", "code": "08", "children": []},
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S042",
+      "original": "Câu chuyện hy hữu này nhanh chóng thu hút lượng người xem khổng lồ tại Việt Nam nhờ tính chất khó tin nhưng có thật và mang lại khoản thu nhập thay đổi cuộc đời cho chàng trai nghèo.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "nhanh chóng", "start_token": 0, "end_token": 0},
+        {"text": "người", "start_token": 0, "end_token": 0},
+        {"text": "tại", "start_token": 0, "end_token": 0},
+        {"text": "nhưng", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S043",
+      "original": "Nước lũ dâng cao biến đường phố thành sông, cá lớn thản nhiên bơi lội giữa khu chợ sầm uất",
+      "filter": {
+        "whitelist_hit": false,
+        "decision": "DROP"
+      }
+    },
+    {
+      "sentence_id": "S044",
+      "original": "Trận mưa lớn kéo dài làm ngập lụt diện rộng tại một thành phố thuộc Trung Quốc đã tạo nên một hiện tượng đời sống vô cùng hiếm gặp.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "tại", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    },
+    {
+      "sentence_id": "S045",
+      "original": "Dòng nước dâng cao biến toàn bộ hệ thống đường sá thành sông, dẫn đến cảnh tượng những con cá lớn từ sông hồ sổng ra ngoài và ung dung bơi lội ngay giữa các gian hàng trong khu chợ ngập nước, khiến người dân vừa bất ngờ vừa thích thú đổ xô đi xem.",
+      "filter": {
+        "whitelist_hit": true,
+        "decision": "KEEP"
+      },
+      "whitelist_hits": [
+        {"text": "hệ thống", "start_token": 0, "end_token": 0},
+        {"text": "từ", "start_token": 0, "end_token": 0},
+        {"text": "trong", "start_token": 0, "end_token": 0},
+        {"text": "người", "start_token": 0, "end_token": 0}
+      ],
+      "grammar": {
+        "pattern": "S + P + O",
+        "code_sequence": ["02", "03", "04"],
+        "tree": {
+          "type": "CL",
+          "code": "01",
+          "children": [
+            {"type": "S", "code": "02", "children": []},
+            {"type": "P", "code": "03", "children": []},
+            {"type": "O", "code": "04", "children": []}
+          ]
+        }
+      }
+    }
+  ]
+}
