@@ -1,0 +1,793 @@
+{
+  "event_version": "0.1",
+  "dataset_version": "V1.2",
+  "source": {
+    "file": "Chatbot3.json",
+    "input_type": "TEXT_PROCESSING"
+  },
+  "event_model": {
+    "parts": [
+      "structure",
+      "keywords"
+    ],
+    "core_roles": {
+      "02": "ACTOR",
+      "03": "ACTION",
+      "04": "TARGET"
+    },
+    "optional_roles": {
+      "25": "CAUSE",
+      "26": "CONSEQUENCE",
+      "32": "PASS",
+      "33": "CAUS",
+      "30": "COORD",
+      "24": "CONT",
+      "23": "REL",
+      "27": "COND",
+      "28": "PURP",
+      "29": "CONTR",
+      "36": "LOC",
+      "37": "TIME"
+    }
+  },
+  "statistics": {
+    "input_sentences": 104,
+    "kept_sentences": 44,
+    "selected_events": 10,
+    "dataset_version": "V1.2"
+  },
+  "selection_notes": "V1.2 giu dung 10 event co that tu file goc. Chi 3 pattern ID duoc xem la da xac minh tu yeu cau: RECOVERY_RETURN, DEATH_OR_FATAL_OUTCOME, IMPACT_VEHICLE_VEHICLE. Cac event khong du co so map pattern duoc danh dau pattern_status=UNRESOLVED va event_pattern=null de tranh bia pattern moi.",
+  "events": [
+    {
+      "sentence_id": "S005",
+      "original": "SUMMARY: Một cặp tượng đá cổ bị mất trộm từ nhiều năm trước tại một ngôi đền ở Việt Nam đã bất ngờ được tìm thấy và phục dựng đưa về chốn cũ.",
+      "event": {
+        "event_pattern": "RECOVERY_RETURN",
+        "pattern_status": "RESOLVED",
+        "pattern_note": "Sự kiện phục hồi và đưa hiện vật bị mất về lại nơi cũ phù hợp với pattern RECOVERY_RETURN đã được nêu trong yêu cầu.",
+        "semantic_roles": {
+          "actor": "Một cặp tượng đá cổ",
+          "action": "bị mất trộm, được tìm thấy và phục dựng đưa về",
+          "target": "chốn cũ"
+        },
+        "world_roles": {
+          "VICTIM": "Một cặp tượng đá cổ"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "cặp tượng đá cổ",
+          "mất trộm",
+          "ngôi đền",
+          "tìm thấy",
+          "phục dựng",
+          "chốn cũ"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S028",
+      "original": "Phần lớn cư dân mạng đã nhảy vào phân tích, ra sức can ngăn và tạo nên luồng tranh luận sôi nổi về tư duy tiêu dùng của giới trẻ hiện nay.",
+      "event": {
+        "event_pattern": null,
+        "pattern_status": "UNRESOLVED",
+        "pattern_note": "Hành vi cộng đồng mạng phân tích, can ngăn và tạo tranh luận chưa có pattern đã xác minh trong namespace được cung cấp.",
+        "semantic_roles": {
+          "actor": "Phần lớn cư dân mạng",
+          "action": "nhảy vào phân tích, can ngăn và tạo nên",
+          "target": "luồng tranh luận về tư duy tiêu dùng của giới trẻ hiện nay"
+        },
+        "world_roles": {
+          "CREATOR": "Phần lớn cư dân mạng"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "cư dân mạng",
+          "phân tích",
+          "can ngăn",
+          "tranh luận",
+          "tư duy tiêu dùng",
+          "giới trẻ"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S056",
+      "original": "Nhiều TikToker và chủ tài khoản Threads đã đổ xô đến hiện trường các vụ cháy, tai nạn hoặc biến cố của người nổi tiếng để quay video, livestream bất chấp việc gây cản trở an ninh, tạo nên làn sóng tranh luận gay gắt về đạo đức mạng.",
+      "event": {
+        "event_pattern": null,
+        "pattern_status": "UNRESOLVED",
+        "pattern_note": "Hành vi khai thác hiện trường để tạo nội dung gây tranh luận đạo đức mạng chưa có pattern đã xác minh trong namespace được cung cấp.",
+        "semantic_roles": {
+          "actor": "Nhiều TikToker và chủ tài khoản Threads",
+          "action": "đổ xô đến hiện trường để quay video, livestream",
+          "target": "các vụ cháy, tai nạn hoặc biến cố của người nổi tiếng"
+        },
+        "world_roles": {
+          "CREATOR": "Nhiều TikToker và chủ tài khoản Threads",
+          "OBSERVER": [
+            "Nhiều TikToker và chủ tài khoản Threads"
+          ]
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "TikToker",
+          "chủ tài khoản Threads",
+          "hiện trường",
+          "vụ cháy",
+          "tai nạn",
+          "người nổi tiếng",
+          "quay video",
+          "livestream",
+          "cản trở an ninh",
+          "đạo đức mạng"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S048",
+      "original": "SUMMARY: Vụ việc thương tâm về một nam ca sĩ tự do được tìm thấy thi thể dưới sông sau nhiều ngày mất liên lạc đã trở thành chủ đề nóng nhất trên Facebook và các hội nhóm giải trí .",
+      "event": {
+        "event_pattern": "DEATH_OR_FATAL_OUTCOME",
+        "pattern_status": "RESOLVED",
+        "pattern_note": "Sự kiện phát hiện thi thể nam ca sĩ thể hiện kết cục tử vong; phù hợp với pattern DEATH_OR_FATAL_OUTCOME đã được nêu trong yêu cầu.",
+        "semantic_roles": {
+          "actor": "Vụ việc về một nam ca sĩ tự do được tìm thấy thi thể dưới sông sau nhiều ngày mất liên lạc",
+          "action": "đã trở thành",
+          "target": "chủ đề nóng nhất trên Facebook và các hội nhóm giải trí"
+        },
+        "world_roles": {
+          "VICTIM": "một nam ca sĩ tự do"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "nam ca sĩ tự do",
+          "thi thể",
+          "dưới sông",
+          "mất liên lạc",
+          "Facebook",
+          "hội nhóm giải trí"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S049",
+      "original": "Thông tin này khiến dư luận không khỏi bàng hoàng, liên tục chia sẻ và gửi lời chia buồn đến gia đình nạn nhân.",
+      "event": {
+        "event_pattern": null,
+        "pattern_status": "UNRESOLVED",
+        "pattern_note": "Phản ứng chia buồn của dư luận là hệ quả xã hội sau sự kiện tử vong; chưa có pattern đã xác minh trong namespace được cung cấp.",
+        "semantic_roles": {
+          "actor": "dư luận",
+          "action": "chia sẻ và gửi lời chia buồn",
+          "target": "gia đình nạn nhân"
+        },
+        "world_roles": {
+          "OBSERVER": [
+            "dư luận"
+          ],
+          "VICTIM": "nạn nhân"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "dư luận",
+          "chia sẻ",
+          "lời chia buồn",
+          "gia đình nạn nhân"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S064",
+      "original": "Dù đoàn tàu hỏa đang lao tới ở khoảng cách rất gần và liên tục kéo còi cảnh báo, nạn nhân vẫn bước vào và bị tàu đâm trúng, tử vong ngay tại hiện trường.",
+      "event": {
+        "event_pattern": "DEATH_OR_FATAL_OUTCOME",
+        "pattern_status": "RESOLVED",
+        "pattern_note": "Sự kiện nạn nhân bị tàu đâm trúng và tử vong phù hợp với pattern DEATH_OR_FATAL_OUTCOME đã được nêu trong yêu cầu.",
+        "semantic_roles": {
+          "actor": "nạn nhân",
+          "action": "bước vào và bị tàu đâm trúng, tử vong",
+          "target": "đoàn tàu hỏa"
+        },
+        "world_roles": {
+          "VICTIM": "nạn nhân"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "đoàn tàu hỏa",
+          "kéo còi cảnh báo",
+          "nạn nhân",
+          "đâm trúng",
+          "tử vong",
+          "hiện trường"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S072",
+      "original": "Chiếc xe tải lớn khi đang đổ dốc và ôm cua với tốc độ cao thì bất ngờ mất trọng tâm và lật nghiêng hoàn toàn sang làn đường đối diện, xô thẳng vào một xe ô tô con có gắn camera hành trình đang dừng tránh, khiến phần đầu xe này vỡ nát.",
+      "event": {
+        "event_pattern": "IMPACT_VEHICLE_VEHICLE",
+        "pattern_status": "RESOLVED",
+        "pattern_note": "Xe tải lật nghiêng và xô vào xe ô tô con là va chạm giữa các phương tiện; phù hợp với pattern IMPACT_VEHICLE_VEHICLE đã được nêu trong yêu cầu.",
+        "semantic_roles": {
+          "actor": "Chiếc xe tải lớn",
+          "action": "đổ dốc, ôm cua với tốc độ cao, mất trọng tâm, lật nghiêng và xô thẳng",
+          "target": "một xe ô tô con có gắn camera hành trình đang dừng tránh"
+        },
+        "world_roles": {
+          "VICTIM": "một xe ô tô con có gắn camera hành trình đang dừng tránh"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "xe tải lớn",
+          "đổ dốc",
+          "ôm cua",
+          "tốc độ cao",
+          "mất trọng tâm",
+          "lật nghiêng",
+          "xe ô tô con",
+          "camera hành trình",
+          "đầu xe vỡ nát"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S079",
+      "original": "Do lọt hoàn toàn vào vùng điểm mù, chiếc xe tải đã bất ngờ cài số lùi và húc ngã xe máy.",
+      "event": {
+        "event_pattern": "IMPACT_VEHICLE_VEHICLE",
+        "pattern_status": "RESOLVED",
+        "pattern_note": "Xe tải lùi và húc ngã xe máy là va chạm giữa các phương tiện; phù hợp với pattern IMPACT_VEHICLE_VEHICLE đã được nêu trong yêu cầu.",
+        "semantic_roles": {
+          "actor": "chiếc xe tải",
+          "action": "cài số lùi và húc ngã",
+          "target": "xe máy"
+        },
+        "world_roles": {
+          "VICTIM": "xe máy"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "vùng điểm mù",
+          "xe tải",
+          "cài số lùi",
+          "húc ngã",
+          "xe máy"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S080",
+      "original": "Rất may người đi xe máy đã kịp thời bỏ xe nhảy thoát thân trước khi bị cuốn vào gầm.",
+      "event": {
+        "event_pattern": null,
+        "pattern_status": "UNRESOLVED",
+        "pattern_note": "Sự kiện thoát hiểm trước khi bị cuốn vào gầm là tình huống near-miss/escape; chưa có pattern đã xác minh trong namespace được cung cấp.",
+        "semantic_roles": {
+          "actor": "người đi xe máy",
+          "action": "bỏ xe nhảy thoát thân",
+          "target": "xe máy"
+        },
+        "world_roles": {
+          "VICTIM": "người đi xe máy"
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "người đi xe máy",
+          "bỏ xe",
+          "nhảy thoát thân",
+          "gầm"
+        ]
+      }
+    },
+    {
+      "sentence_id": "S095",
+      "original": "SUMMARY: Sau một trận lũ lớn trên sông Ravi thuộc quốc gia Pakistan, một ngư dân trẻ tuổi đã khiến dư luận vô cùng kinh ngạc khi săn được một con cá khổng lồ có trọng lượng lên tới 102 kg.",
+      "event": {
+        "event_pattern": null,
+        "pattern_status": "UNRESOLVED",
+        "pattern_note": "Sự kiện đánh bắt được cá khổng lồ sau lũ không thuộc 3 pattern đã được xác minh trong yêu cầu; không bịa pattern mới.",
+        "semantic_roles": {
+          "actor": "một ngư dân trẻ tuổi",
+          "action": "săn được",
+          "target": "một con cá khổng lồ có trọng lượng lên tới 102 kg"
+        },
+        "world_roles": {
+          "CREATOR": "một ngư dân trẻ tuổi",
+          "OBSERVER": [
+            "dư luận"
+          ]
+        },
+        "world_role_status": "PARTIAL",
+        "structure": {
+          "pattern": "S + P + O",
+          "code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "event_code_sequence": [
+            "02",
+            "03",
+            "04"
+          ],
+          "roles": [
+            {
+              "code": "02",
+              "role": "ACTOR"
+            },
+            {
+              "code": "03",
+              "role": "ACTION"
+            },
+            {
+              "code": "04",
+              "role": "TARGET"
+            }
+          ],
+          "source_tree": {
+            "type": "CL",
+            "code": "01",
+            "children": [
+              {
+                "type": "S",
+                "code": "02",
+                "children": []
+              },
+              {
+                "type": "P",
+                "code": "03",
+                "children": []
+              },
+              {
+                "type": "O",
+                "code": "04",
+                "children": []
+              }
+            ]
+          }
+        },
+        "keywords": [
+          "trận lũ lớn",
+          "sông Ravi",
+          "Pakistan",
+          "ngư dân trẻ tuổi",
+          "con cá khổng lồ",
+          "102 kg"
+        ]
+      }
+    }
+  ]
+}
