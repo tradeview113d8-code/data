@@ -1,0 +1,344 @@
+HỘI ĐỒNG VÒNG 1
+Thiết kế tree-event-path-emotions-actions
+0. Vai trò và nguyên tắc của vòng họp
+Người dùng: Chủ trì / quyết định cuối cùng.
+Chatbot Hội đồng: Chỉ đưa ra ý kiến phản biện, đề xuất, phát hiện lỗ hổng và câu hỏi.
+Chatbot không được tự ý chốt schema, không được tự nhận vai trò Lead, không được viết bản hoàn chỉnh cuối cùng.
+ChatGPT hiện tại: Thư ký trong lúc nhận ý kiến; sau khi đủ ý kiến của vòng, chuyển sang vai trò Lead để: 1. Tổng hợp các ý kiến. 2. Phân loại điểm đồng thuận / bất đồng. 3. Loại bỏ đề xuất không phù hợp với lộ trình. 4. Sửa tree-event-path-emotions-actions. 5. Xuất bản thiết kế sau vòng họp để Chủ trì duyệt.
+Mục tiêu của vòng 1 chưa phải sinh JSON.
+Mục tiêu là xác định đúng mô hình dữ liệu và nguyên tắc vận hành trước khi sinh JSON.
+1. Bối cảnh đã xác lập
+Kiến trúc đang chuyển từ mô hình vòng lặp phẳng sang Interaction Tree.
+Luồng nền tảng:
+GLOBAL EVENT
+      ↓
+CHARACTER
+      ↓
+EMOTION
+      ↓
+ACTION
+      ↓
+SOCIAL INTERACTION
+      ↓
+TARGET CHARACTER
+      ↓
+EMOTION
+      ↓
+ACTION
+      ↓
+...
+Điểm quan trọng:
+GLOBAL EVENT không biến mất ở L1.
+Ở các tầng sau, character vẫn chịu tác động đồng thời của:
+GLOBAL EVENT
++
+LOCAL INTERACTION
++
+BRANCH STATE
+Mục tiêu của cây là tạo ra nhiều đường tương tác khác nhau mà không cần tăng character pool quá mức.
+2. Những thành phần hiện đã được thử nghiệm
+Layer A --- Event → Emotion
+Trả lời:
+Một event tạo ra những cảm xúc nào theo role?
+Ví dụ:
+{
+  "IMPACT_VEHICLE_VEHICLE": {
+    "CREATOR": {
+      "guilt": 0.8,
+      "fear": 0.6,
+      "panic": 0.5
+    },
+    "TARGET": {
+      "shock": 0.9,
+      "anger": 0.8,
+      "fear": 0.7
+    },
+    "OBSERVER": {
+      "surprise": 0.7,
+      "concern": 0.8
+    }
+  }
+}
+Layer B --- Emotion → Action Distribution
+Một emotion không ép một action duy nhất.
+Ví dụ:
+guilt
+ ├── apologize
+ ├── help
+ └── withdraw
+với các trọng số khác nhau.
+Đây là nguồn tạo đa dạng hành động.
+Layer C --- Action → Social Interaction
+Action không chỉ là hành vi của character.
+Nó phải mô tả:
+ACTION
+ ↓
+SOCIAL EFFECT
+ ↓
+TARGET
+ ↓
+TARGET EMOTION
+Ví dụ:
+A --apologize--> B
+                  ↓
+          relief / guilt / surprise
+Layer D --- Character → Preference
+Character không thay đổi dictionary chung.
+Character có:
+emotion_sensitivity
+action_affinity
+Những thuộc tính này làm thay đổi xác suất character chọn emotion/action.
+3. State hiện tại
+Prototype đã thử:
+branch_state
+State được kế thừa theo nhánh.
+Ví dụ:
+ROOT
+ ├── A → B
+ │    └── B → A
+ │         └── A → B
+ │
+ └── D → B
+      └── B → D
+Hai nhánh không được dùng chung state runtime.
+Điều này nhằm tránh:
+Branch A
+    ↓
+làm thay đổi
+    ↓
+Branch B
+4. Dual Context
+Ở tầng L2+:
+GLOBAL EVENT
+     +
+LOCAL INTERACTION
+     +
+CHARACTER PROFILE
+     +
+BRANCH STATE
+     ↓
+NEW EMOTION
+     ↓
+NEW ACTION
+Prototype hiện dùng tỷ lệ thử nghiệm:
+Global Context = 40%
+Local Context  = 60%
+Lưu ý: đây chỉ là tham số Engine đang thử nghiệm, chưa được coi là dữ liệu cố định của JSON.
+5. Những câu hỏi lớn của Hội đồng Vòng 1
+Hội đồng chỉ cần trả lời / phản biện các câu hỏi sau.
+Q1 --- Node là gì?
+Một node nên đại diện cho:
+Phương án A
+Character + Emotion + Action
+hay:
+Phương án B
+Interaction
+hay:
+Phương án C
+Character reaction
+Hãy nêu ưu/nhược điểm.
+Q2 --- Cấu trúc một path
+Path tối thiểu có nên là:
+EVENT
+→ CHARACTER
+→ EMOTION
+→ ACTION
+→ TARGET
+→ EMOTION
+→ ACTION
+→ TARGET
+hay cần thêm một thành phần trung gian:
+ACTION
+→ SOCIAL EFFECT
+→ TARGET
+Hãy giải thích.
+Q3 --- Một action có nên có nhiều outcome?
+Ví dụ:
+A apologize → B
+có thể:
+accepted
+rejected
+ignored
+misunderstood
+Hội đồng đánh giá: - Có cần đưa outcome vào phiên bản nền móng không? - Hay chỉ giữ lại cho phiên bản sau?
+Q4 --- Action có cần Preconditions?
+Ví dụ:
+fear → seek_help
+nhưng không phải character nào cũng có người để cầu cứu.
+Hội đồng đánh giá: - Có cần preconditions ngay trong tree dictionary? - Hay để Engine xử lý ở tầng khác?
+Q5 --- Target Resolution
+Một action có thể nhắm:
+TARGET
+SOURCE
+CREATOR
+OBSERVER
+SPECIFIC_CHARACTER
+NONE
+Có nên chuẩn hóa thành target_rule?
+Nếu có, đề xuất tập rule tối thiểu.
+Q6 --- Global Event ở L2+
+Hội đồng đánh giá mô hình:
+L1:
+GLOBAL EVENT → EMOTION
+
+L2:
+GLOBAL EVENT + LOCAL ACTION → EMOTION
+
+L3:
+GLOBAL EVENT + LOCAL ACTION + BRANCH STATE → EMOTION
+Có đúng về mặt kiến trúc không?
+Có cần thêm context nào trước khi khóa nền móng không?
+Q7 --- Branch State
+Có nên giữ:
+branch_state
+trong mỗi node/path?
+Hay state nên là runtime object bên ngoài JSON?
+Đặc biệt đánh giá nguy cơ nếu lưu state vào dictionary.
+Q8 --- Emotion → Action
+Có nên để:
+emotion → action distribution
+hoàn toàn độc lập với character?
+Hay dictionary nên cho phép:
+emotion + role/context → action distribution
+Hãy phản biện.
+Q9 --- Character Action Affinity
+Hiện đang có:
+action_affinity
+Hội đồng đánh giá công thức:
+final_action_score
+=
+emotion_action_weight
+×
+character_action_affinity
+Có đủ không?
+Có cần thêm yếu tố nào mà không làm phình hệ thống quá sớm?
+Q10 --- Giới hạn độ sâu
+Interaction Tree có thể phát triển vô hạn.
+Hội đồng đề xuất: - max_layers - điều kiện dừng - branch pruning - duplicate-path detection
+Nhưng chỉ đề xuất ở mức cần thiết cho nền móng.
+6. Những vấn đề KHÔNG được tự ý đưa vào Vòng 1
+Không được biến vòng này thành một dự án mới.
+Không tự ý đưa vào schema nền móng nếu chưa có lý do mạnh:
+LLM
+memory database
+relationship graph đầy đủ
+intent engine
+perception engine
+emotion decay
+multi-emotion blending
+advanced planning
+world simulation
+dialogue generation
+storyboard
+camera
+TTS
+Các vấn đề trên có thể được ghi vào:
+FUTURE EXTENSIONS
+nếu Hội đồng thấy cần.
+7. Tiêu chí đánh giá đề xuất
+Mỗi đề xuất nên được đánh giá theo 5 tiêu chí:
+Tiêu chí        Câu hỏi
+Correctness     Có mô hình hóa đúng interaction không? Simplicity      Có giữ hệ thống nhỏ và dễ debug không? Diversity       Có tạo khác biệt thực sự giữa character/path không? Determinism     Có thể reproduce kết quả không? Extensibility   Sau này có mở rộng được không?
+Ưu tiên:
+Correctness
+>
+Simplicity
+>
+Debuggability
+>
+Diversity
+>
+Extensibility
+8. Yêu cầu bắt buộc đối với chatbot Hội đồng
+Mỗi chatbot chỉ được gửi Ý KIẾN.
+Không được:
+tự tuyên bố quyết định cuối cùng;
+tự đóng vai Lead;
+viết JSON hoàn chỉnh;
+coi đề xuất của mình là specification đã được chốt;
+sửa trực tiếp kiến trúc mà không giải thích lý do;
+mở rộng phạm vi ngoài các câu hỏi của vòng.
+Format khuyến nghị:
+[COUNCIL MEMBER]
+
+1. Nhận định
+2. Vấn đề phát hiện
+3. Đề xuất
+4. Lý do
+5. Rủi ro
+6. Điểm chưa chắc chắn
+7. Câu hỏi gửi lại Hội đồng
+9. Vai trò Thư ký
+Trong vòng thu thập ý kiến, Thư ký phải giữ nguyên:
+OPINION
+không biến thành:
+DECISION
+Thư ký cần ghi:
+A đề xuất X
+B phản đối X
+C đồng ý X nhưng thêm điều kiện Y
+Sau khi vòng thu thập kết thúc, mới chuyển sang:
+LEAD SYNTHESIS
+10. Nhiệm vụ Lead sau Vòng 1
+Sau khi nhận đủ ý kiến, Lead phải tạo:
+A. Decision Matrix
+Question
+→ Council opinions
+→ Agreement
+→ Disagreement
+→ Decision
+→ Reason
+B. Final Architecture
+Xác định chính xác:
+ROOT
+NODE
+PATH
+EMOTION
+ACTION
+SOCIAL EFFECT
+TARGET RULE
+BRANCH STATE
+C. Data Ownership
+Xác định cái gì thuộc:
+tree-event-path-emotions-actions
+và cái gì thuộc:
+json-actions-character
+D. Runtime vs Dictionary
+Tách rõ:
+STATIC KNOWLEDGE
+khỏi:
+RUNTIME STATE
+E. Chưa sinh JSON
+Kết quả của Vòng 1 chỉ là:
+TREE SPECIFICATION
+JSON sẽ được tạo ở vòng sau, sau khi Chủ trì duyệt specification.
+11. Câu hỏi trung tâm của Vòng 1
+Làm thế nào để một Event tạo ra một Interaction Tree đủ giàu để tạo nhiều path khác nhau, nhưng không biến tree-event-path-emotions-actions thành một story generator?
+Mọi ý kiến của Hội đồng nên quay về câu hỏi này.
+12. Trạng thái khởi đầu
+STATUS: ROUND 1 — OPEN
+
+EVENT → EMOTION              ✓
+EMOTION → ACTION              ✓
+ACTION → SOCIAL INTERACTION   ✓
+CHARACTER → PREFERENCE        ✓
+GLOBAL + LOCAL CONTEXT        ✓
+BRANCH STATE                  ✓
+INTERACTION TREE              ✓
+
+ACTION OUTCOME                ?
+PRECONDITION                  ?
+RELATIONSHIP                  ?
+MEMORY                        ?
+PERCEPTION                    ?
+INTENT                        ?
+DECAY                         ?
+Không được coi các mục ? là bắt buộc. Hội đồng phải đánh giá chúng.
+Lệnh gửi cho từng chatbot Hội đồng
+Bạn là thành viên Hội đồng phản biện kiến trúc tree-event-path-emotions-actions.
+Chỉ đưa ra Ý KIẾN. Không được tự chốt specification, không được đóng vai Lead, không được viết JSON hoàn chỉnh.
+Hãy phản biện 12 mục của Vòng 1, tập trung vào việc xác định cấu trúc nền móng cho Interaction Tree.
+Mục tiêu là tìm ra những gì bắt buộc phải có, những gì nên để runtime, và những gì chưa nên xây.
+Không mở rộng sang screenplay, storyboard, TTS hoặc các hệ thống ngoài Interaction Engine.
+Trình bày: 1. Nhận định 2. Điểm đúng 3. Lỗ hổng 4. Đề xuất 5. Rủi ro 6. Những thứ nên loại khỏi V1 7. Kết luận ý kiến cá nhân
+Đây chỉ là ý kiến gửi Thư ký. Quyết định cuối cùng thuộc Chủ trì/Lead sau khi tổng hợp.
