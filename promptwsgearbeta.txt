@@ -1,0 +1,132 @@
+PROMPT — WORLD SIMULATOR BETA / INPUT COMPLETION TEST
+MỤC TIÊU
+Hoàn thiện hai input thật để chúng chạy được với world_simulator_beta.py.
+Không viết storyline. Không tự tạo trace. Không dùng LLM để quyết định diễn biến.
+SOURCE OF TRUTH:
+JSON input thực tế.
+Source Python world_simulator_beta.py.
+Output thực tế khi Python chạy.
+LUỒNG
+Bước 1 — NEWS-GEAR
+Input:
+Event.json
++
+NEWS-GEAR-SKELETON
+Output:
+NEWS-GEAR.json
+Chỉ chuyển Event thành machine-readable parameters cho Python.
+Không được:
+chọn character;
+chọn actor/target;
+chọn action;
+viết storyline;
+dự đoán Actual Path.
+Nếu field không có đủ dữ liệu: ghi INPUT GAP, không bịa.
+Bước 2 — CHARACTER-GEAR
+Input:
+Tree / World data
++
+CHARACTER-SKELETON
+Output:
+CHARACTER-GEAR.json
+Character-Gear phải cung cấp tối thiểu:
+identity;
+emotion sensitivity/profile;
+behavior bias và/hoặc action affinity;
+resilience nếu skeleton yêu cầu.
+Không tạo runtime state.
+Không tạo interaction path.
+Không tạo storyline.
+Bước 3 — VALIDATE
+Kiểm tra:
+NEWS-GEAR:
+  - valid JSON
+  - event identity
+  - emotion impacts
+  - numeric values
+
+CHARACTER-GEAR:
+  - >= 2 characters
+  - unique IDs
+  - emotion sensitivity
+  - usable behavior bias/action affinity
+Không silently repair lỗi logic.
+Bước 4 — CHẠY PYTHON THẬT
+Chạy:
+python world_simulator_beta.py \
+  --news-gear NEWS-GEAR.json \
+  --character-gear CHARACTER-GEAR.json \
+  --seed 42 \
+  --steps 35
+Nếu lỗi, báo nguyên văn lỗi và phân loại:
+INPUT ERROR
+hoặc:
+BETA CODE ERROR
+Không tuyên bố PASS.
+Bước 5 — DETERMINISM
+Chạy cùng lệnh seed 42 hai lần.
+So sánh world_simulator_beta_trace.json.
+Chỉ ghi:
+PASS
+nếu output thực tế giống nhau.
+Bước 6 — VARIANCE
+Chạy:
+python world_simulator_beta.py \
+  --news-gear NEWS-GEAR.json \
+  --character-gear CHARACTER-GEAR.json \
+  --seed 7 \
+  --steps 35
+Nếu path/output khác seed 42:
+PASS
+Nếu giống:
+FAIL
+Không tăng noise hoặc sửa code chỉ để làm PASS.
+Bước 7 — KIỂM TRA CƠ CHẾ
+Chỉ kết luận từ output Python:
+Same NEWS → different initial states?
+Current state → action selection?
+Action → target impact?
+Target state có ảnh hưởng interaction tiếp theo?
+Có reactive chain thực tế không?
+Same seed → same path?
+Different seed → different path?
+Bước 8 — OUTPUT
+Trả đúng:
+1. NEWS-GEAR.json
+2. CHARACTER-GEAR.json
+3. INPUT VALIDATION
+4. PYTHON EXECUTION RESULT
+5. ACTUAL PATH
+6. METRICS
+7. TEST VERDICT
+8. INPUT GAPS còn lại
+Không viết lại Actual Path thành truyện.
+CẤM
+Không bịa kết quả Python.
+Không nói “PASS” nếu chưa chạy.
+Không tự tạo actor/target/action.
+Không dùng fixture thay input thật.
+Không sửa Python để che lỗi input.
+Không sửa input để che lỗi Python.
+Không biến source code thành claim rằng runtime đã thực hiện điều đó.
+Không dùng LLM để quyết định diễn biến.
+LLM chỉ làm:
+DATA CONSTRUCTION
++
+INPUT NORMALIZATION
++
+TEST REPORTING
+Python làm:
+STATE COMPUTATION
++
+PAIR SELECTION
++
+ACTION SELECTION
++
+IMPACT
++
+NEW STATE
++
+ACTUAL PATH
++
+TRACE
