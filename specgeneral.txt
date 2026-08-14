@@ -1,100 +1,343 @@
+# WORLD SIMULATOR
+# SPECGENERAL v3.1
+## General System Map — Data, State Transition and Narrative Production
+
+> Revision purpose:
+> - giữ nguyên các dữ liệu và cấu trúc đã được xây dựng;
+> - dùng thuật ngữ kỹ thuật chính xác hơn;
+> - giải thích rõ các tên gọi như GEAR / GEARBOX;
+> - không biến bài test 3 tầng thành kiến trúc cố định;
+> - xác định Interaction Loop linh hoạt là mục tiêu cuối của Social Simulation;
+> - phân biệt rõ phần đã thực thi, đã kiểm chứng và phần còn dang dở.
+
+---
+
+# 0. SYSTEM IDENTITY
+
 WORLD SIMULATOR
-DATA EVOLUTION TREE — GENERAL V2
-From Real World Input → Worker Execution → Episode Production
-0. SYSTEM IDENTITY
-WORLD SIMULATOR
-│
-├── REPOSITORY 1 — STATIC WORLD EVOLUTION
-│
-├── REPOSITORY 2 — DYNAMIC WORLD EVOLUTION
-│
-└── REPOSITORY 3 — NARRATIVE EVOLUTION
-Goal
-Build an autonomous fantasy world from real-world data.
-The system does not directly transform real-world data into a story.
-It evolves data through successive states:
+
+├── REPOSITORY 1 — STATIC WORLD DATA
+├── REPOSITORY 2 — DYNAMIC WORLD DATA
+└── REPOSITORY 3 — STATE SIMULATION + NARRATIVE PRODUCTION
+
+## Mục tiêu
+
+World Simulator không phải là:
+
+```text
+REAL NEWS → LLM → STORY
+```
+
+Mà là:
+
+```text
 REAL WORLD
     ↓
-WORLD DNA
+WORLD DATA
     ↓
-LIVING WORLD
+DYNAMIC EVENT DATA
     ↓
-SOCIAL / EVENT SIMULATION
+NEWS-GEAR
+    +
+CHARACTER-GEAR
+    ↓
+PYTHON STATE-TRANSITION ENGINE
+    ↓
+CHARACTER STATES
+    ↓
+CHARACTER ACTIONS
+    ↓
+INTERACTION
+    ↓
+ACTUAL PATH / TRACE
     ↓
 MICROSCENES
     ↓
+NARRATIVE PRODUCTION
+    ↓
 EPISODE
-    ↓
-SCRIPT / STORYBOARD
-    ↓
-MEDIA PRODUCTION
-1. FUNDAMENTAL DATA EVOLUTION
+```
+
+Bản chất của hệ thống là một **state-transition simulation** có xác suất:
+
+```text
+STATE(t)
+   +
+INPUT / ACTION
+   +
+CHARACTER PARAMETERS
+   ↓
+DELTA
+   ↓
+STATE(t+1)
+```
+
+và tiếp tục lặp khi còn điều kiện tương tác.
+
+---
+
+# 1. THUẬT NGỮ CỐT LÕI
+
+Các thuật ngữ như `NEWS-GEAR`, `CHARACTER-GEAR`, `GEARBOX` là **domain language / metaphor** dùng để mô tả các thành phần của hệ thống.
+
+Chúng không phải các cấu trúc dữ liệu đặc biệt.
+
+## 1.1 NEWS-GEAR
+
+**Technical meaning:**
+
+```text
+Structured Event Parameters
+```
+
+NEWS-GEAR là dữ liệu sự kiện đã được chuyển thành dạng mà Python có thể sử dụng để tính state.
+
+Nó có thể chứa:
+
+```text
+event
+actors / affected roles
+actions
+emotion impact
+polarity
+magnitude
+affected dimensions
+other event parameters
+```
+
+NEWS-GEAR không phải engine.
+
+NEWS-GEAR không tự chạy.
+
+```text
+RAW NEWS
+   ↓
+LLM + Prompt + NEWS-GEAR Skeleton
+   ↓
+NEWS-GEAR JSON
+   ↓
+Python
+```
+
+---
+
+## 1.2 CHARACTER-GEAR
+
+**Technical meaning:**
+
+```text
+Character Parameter Set / Behavioral Coefficient Vector
+```
+
+Character-Gear là tập các hệ số tương đối ổn định của một nhân vật.
+
+Ví dụ:
+
+```text
+emotion sensitivity
+behavior bias
+action affinity
+risk tolerance
+aggression baseline
+trust baseline
+empathy
+fear sensitivity
+pride
+social response tendencies
+...
+```
+
+Character-Gear không phải một worker.
+
+Nó không chứa engine.
+
+Nó không tự chuyển động.
+
+Nó là **các hệ số khiến cùng một tác động tạo ra state khác nhau ở các nhân vật khác nhau**.
+
+Ví dụ:
+
+```text
+NEWS IMPACT = +1.0 fear
+
+CHAR_A sensitivity = 1.0
+→ Δfear = +1.0
+
+CHAR_B sensitivity = 0.4
+→ Δfear = +0.4
+
+CHAR_C sensitivity = 0.1
+→ Δfear = +0.1
+```
+
+Vì vậy metaphor "bánh răng" chỉ có nghĩa:
+
+> Mỗi nhân vật có bộ hệ số khác nhau, giống như các bánh răng có kích thước/tỷ lệ truyền khác nhau.
+
+---
+
+## 1.3 GEARBOX
+
+**Technical meaning:**
+
+```text
+Python State-Transition Engine
+```
+
+GEARBOX không phải một file dữ liệu.
+
+GEARBOX là code Python thực hiện:
+
+```text
+read input
+→ calculate delta
+→ update state
+→ select action
+→ resolve target
+→ apply impact
+→ update another state
+→ repeat
+```
+
+Lõi toán học:
+
+```text
+S(t+1) = S(t) + Δ
+```
+
+Trong đó:
+
+```text
+Δ = f(
+    input/action,
+    character parameters,
+    current state,
+    target,
+    interaction rules,
+    randomness
+)
+```
+
+GEARBOX là phần **quay các dữ liệu GEAR**.
+
+---
+
+## 1.4 ACTUAL PATH
+
+**Technical meaning:**
+
+```text
+Ordered Execution Trace
+```
+
+Actual Path là chuỗi kết quả thực tế mà engine đã thực hiện.
+
+Ví dụ:
+
+```text
+A received event
+→ A felt fear
+→ A chose confront
+→ B received impact
+→ B felt anger
+→ B chose withdraw
+→ ...
+```
+
+Về implementation, nó có thể chỉ là:
+
+```python
+[
+    step_0,
+    step_1,
+    step_2,
+    ...
+]
+```
+
+Tên `Actual Path` được giữ vì đây là dữ liệu đầu ra dùng cho narrative layer.
+
+---
+
+## 1.5 MICROSCENE
+
+**Technical meaning:**
+
+```text
+Narrative rendering of an interaction segment
+```
+
+Microscene không phải một state.
+
+Không phải một node của behavior tree.
+
+Không phải một nhánh cứng của gearbox.
+
+Nó là cách biểu diễn bằng ngôn ngữ của một đoạn Actual Path.
+
+---
+
+# 2. DATA EVOLUTION
+
+```text
 EARTH / REAL WORLD
-        │
-        ▼
-┌─────────────────────────────┐
-│ REPOSITORY 1                │
-│ STATIC WORLD EVOLUTION      │
-│                             │
-│ Build immutable World DNA   │
-└──────────────┬──────────────┘
-               │
-               ▼
-          MongoDB1
-      IMMUTABLE WORLD
-           LIBRARY
-               │
-               │
-               + < REAL WORLD SIGNALS
-               │
-               ▼
-┌─────────────────────────────┐
-│ REPOSITORY 2                │
-│ DYNAMIC WORLD EVOLUTION     │
-│                             │
-│ Transform World DNA +       │
-│ real-world signals into     │
-│ Today's Living World        │
-└──────────────┬──────────────┘
-               │
-               ▼
-          MongoDB2
-       TODAY'S LIVING
-           WORLD
-               │
-               ▼
-┌─────────────────────────────┐
-│ REPOSITORY 3                │
-│ NARRATIVE EVOLUTION         │
-│                             │
-│ Transform living world into │
-│ simulated interactions,     │
-│ micro-scenes and episodes   │
-└──────────────┬──────────────┘
-               │
-               ▼
-          MongoDB3
-       WORLD HISTORY /
-       EPISODE LIBRARY
-2. REPOSITORY 1 — STATIC WORLD EVOLUTION
-Purpose
-Build immutable world DNA.
-INPUT
-│
-├── Earth
-├── Human Ideas
-└── Chatbot Knowledge
-│
-▼
-EVOLUTION
-│
-├── Human
-├── Multi-Chatbot
-└── Loopback
-│
-▼
+        ↓
+REPO 1
+        ↓
+IMMUTABLE WORLD DATA
+        ↓
+MongoDB1
+        +
+REAL-WORLD SIGNALS
+        ↓
+REPO 2
+        ↓
+DYNAMIC EVENT DATA
+        ↓
+MongoDB2
+        ↓
+REPO 3
+        ↓
+STATE SIMULATION
+        ↓
+NARRATIVE PRODUCTION
+        ↓
+MongoDB3
+```
+
+---
+
+# 3. REPOSITORY 1 — STATIC WORLD DATA
+
+**STATUS: IMPLEMENTED / DATA FOUNDATION**
+
+## Purpose
+
+Build immutable World DNA.
+
+## Input
+
+```text
+Earth
+Human Ideas
+Chatbot Knowledge
+```
+
+## Evolution
+
+```text
+Human
+  +
+Multi-Chatbot
+  +
+Loopback
+  ↓
 WORLD DNA
-2.1 Data Evolution
+```
+
+## Existing artifact flow
+
+```text
 Earth
   ↓
 TreeDataEarth
@@ -114,898 +357,1296 @@ Final JSONData
 World Prefab Library
   ↓
 MongoDB1
-2.2 Execution Structure
-REPO 1
-│
-├── INPUT / SOURCE ACQUISITION
-│
-├── PATTERN / KNOWLEDGE EXTRACTION
-│
-├── TREE / SCHEMA CONSTRUCTION
-│
-├── JSON DATA GENERATION
-│
-├── COMPLETENESS / QUALITY VALIDATION
-│
-├── WORLD PREFAB CONSTRUCTION
-│
-└── PUBLISH TO MongoDB1
-Execution rule
-Every executable group is represented by the actual source file(s) inside Repo 1.
-SPEC
-  ↓
-EXECUTION FILE
-  ↓
-ARTIFACT
-The TreeGeneral records the execution responsibility and file location.
-It does not duplicate implementation code.
-2.3 Static Data Owned by Repo 1
-DATA — HUMAN + CHATBOT
+```
 
-├── Planet Library
-├── Species Library
-├── Visual Blueprint
-├── Rule Library
-├── Translation Hints
-├── World Schema
-└── World Prefab Library
-These are knowledge/data artifacts, not runtime workers.
-2.4 Output
-MongoDB1
-│
-└── Immutable World Library
-MongoDB1 is the source of truth for Repo 1 output.
-3. REPOSITORY 2 — DYNAMIC WORLD EVOLUTION
-Purpose
-Transform immutable world DNA and current real-world signals into today's living world.
+This flow is preserved from the existing specification. fileciteturn123file0L41-L80
+
+## Static data
+
+```text
+Planet Library
+Species Library
+Visual Blueprint
+Rule Library
+Translation Hints
+World Schema
+World Prefab Library
+```
+
+These are data artifacts, not runtime workers. fileciteturn123file8L1008-L1015
+
+---
+
+# 4. REPOSITORY 2 — DYNAMIC WORLD DATA
+
+**STATUS: PARTIALLY IMPLEMENTED**
+
+## Purpose
+
+Combine immutable World DNA with current real-world signals.
+
+```text
 MongoDB1
     +
 REAL WORLD
-    │
-    ├── News
-    ├── People
-    ├── Weather
-    ├── Economy
-    ├── Science
-    ├── Sports
-    ├── Entertainment
-    └── Other Sources
-    │
-    ▼
-REPO 2
-    │
-    ▼
-MongoDB2
-3.1 Data Evolution
-Real Sources
     ↓
-Source Library
+Repo 2
     ↓
-Tree Library
-    ↓
-JSON Library
-    ↓
-Action Library
-    ↓
-World Reaction
-    ↓
-Today's World State
+Today's Dynamic World Data
     ↓
 MongoDB2
-3.2 Execution Structure
-REPO 2
-│
-├── REALITY ACQUISITION
-│
-├── SOURCE NORMALIZATION
-│
-├── EVENT / SIGNAL EXTRACTION
-│
-├── FILTERING
-│
-├── SCORING
-│
-├── DUPLICATE DETECTION
-│
-├── TRANSLATION
-│
-├── NARRATIVE TENSION / WORLD MOOD
-│
-├── KNOWLEDGE PACKAGE CONSTRUCTION
-│
-├── QUALITY GATE
-│
-└── PUBLISH TO MongoDB2
-Each executable group must map to actual Repo 2 source file(s).
-SPEC
-  ↓
-SOURCE FILE
-  ↓
-WORKER
-  ↓
-ARTIFACT
-  ↓
-QUALITY GATE
-  ↓
-MongoDB2
-3.3 Static Data Used by Repo 2
-DATA — HUMAN + CHATBOT
+```
 
-├── Translation Dictionary
-├── Translation Templates
-├── Grammar Library
-├── World Rules
-├── Action Library
-├── Filtering Rules
-└── Scoring Rules
-3.4 Output
-MongoDB2
-│
-└── Today's Living World
-    │
-    ├── Knowledge Packages
-    ├── Translated Events
-    ├── World Mood
-    ├── Conflict Seeds
-    └── Event Memory / History
-4. REPOSITORY 3 — NARRATIVE EVOLUTION
-Purpose
-Transform Today's Living World into simulated social events, micro-scenes, episode plans and production-ready narrative artifacts.
-MongoDB2
-    │
-    ▼
-REPO 3
-    │
-    ├── EVENT UNDERSTANDING
-    ├── SOCIAL SIMULATION
-    ├── MICROSCENE GENERATION
-    ├── NARRATIVE ASSEMBLY
-    ├── SCRIPT
-    ├── STORYBOARD
-    └── MEDIA PRODUCTION
-    │
-    ▼
+The original design already defines the main acquisition, normalization, extraction, filtering, scoring, translation, mood, package and quality-gate stages. fileciteturn123file8L1058-L1093
+
+---
+
+# 5. RAW NEWS → EVENT → NEWS-GEAR
+
+## 5.1 RAW-NEWS
+
+**STATUS: IMPLEMENTED**
+
+Raw-news is source material obtained from the real world.
+
+```text
+PROMPT 1
+   ↓
+SEARCH / AGENT
+   ↓
+RAW-NEWS
+```
+
+---
+
+## 5.2 EVENT.JSON
+
+**STATUS: IMPLEMENTED / UNDER REFINEMENT**
+
+Event data represents the real-world event before it becomes simulation input.
+
+```text
+RAW-NEWS
+   ↓
+EVENT EXTRACTION
+   ↓
+EVENT.JSON
+```
+
+At this boundary the news is still **external-world information**.
+
+---
+
+## 5.3 NEWS-GEAR
+
+**STATUS: TESTED**
+
+```text
+EVENT.JSON
+   +
+PROMPT 2
+   +
+NEWS-GEAR-SKELETON
+   ↓
+NEWS-GEAR
+```
+
+The LLM constructs structured parameters.
+
+Python consumes them.
+
+This preserves the critical boundary:
+
+```text
+LLM = data construction
+Python = state computation
+```
+
+---
+
+# 6. CHARACTER DATA
+
+**STATUS: CHARACTER-GEAR IMPLEMENTED / CHARACTER WORKER IMPLEMENTED**
+
+## Character composition
+
+```text
+SPECIES / WORLD DATA
+        +
+IMAGE / VISUAL DATA
+        +
+CORE PERSONALITY
+        +
+SECONDARY PERSONALITY
+        ↓
+CHARACTER-GEAR
+        ↓
+CHARACTER-POOL
+```
+
+Character-Gear is the stable parameter set.
+
+Character Pool is the collection of actual characters available to the simulation.
+
+The pool is not architecturally limited to the dry-run size.
+
+Possible scale:
+
+```text
+8
+→ 80
+→ 800+
+```
+
+The previous dry-run character pool is therefore a test fixture, not the production scale.
+
+## Future, deliberately deferred
+
+```text
+long-term memory
+persistent relationship graph
+multi-episode character history
+permanent psychological history
+```
+
+These are future extensions, not requirements of the current World Simulator.
+
+---
+
+# 7. THE STATE-TRANSITION MODEL
+
+**STATUS: CORE DESIGN VALIDATED**
+
+The central mechanism is:
+
+```text
+INPUT
+ ↓
+CHARACTER STATE
+ ↓
+DELTA CALCULATION
+ ↓
+NEW STATE
+ ↓
+ACTION
+ ↓
+IMPACT ON OTHER CHARACTER
+ ↓
+OTHER CHARACTER STATE
+ ↓
+ACTION
+ ↓
+...
+```
+
+The fundamental causal law is:
+
+```text
+NHẬN GÌ?
+    ↓
+CẢM THẤY GÌ?
+    ↓
+HÀNH ĐỘNG GÌ?
+    ↓
+TÁC ĐỘNG ĐẾN AI?
+    ↓
+NGƯỜI ĐÓ NHẬN GÌ?
+    ↓
+CẢM THẤY GÌ?
+    ↓
+HÀNH ĐỘNG GÌ?
+```
+
+This is the actual "gearbox" logic.
+
+---
+
+# 8. LAYER 1 — EXTERNAL NEWS IMPACT
+
+**STATUS: TESTED**
+
+Layer 1 is special because its input comes from outside the character system.
+
+```text
+NEWS-GEAR
+    ↓
+CHAR_A → STATE_A
+CHAR_B → STATE_B
+CHAR_C → STATE_C
+CHAR_D → STATE_D
+CHAR_E → STATE_E
+```
+
+The same news is applied to multiple characters.
+
+Different Character-Gear parameters produce different state changes.
+
+The dry-run explicitly demonstrated this: the same NEWS-GEAR generated different emotion states for the five characters because of different sensitivity parameters. fileciteturn123file6L794-L812
+
+Therefore:
+
+```text
+SAME NEWS
++
+DIFFERENT CHARACTER PARAMETERS
+=
+DIFFERENT STATES
+```
+
+---
+
+# 9. LAYER 2+ — INTERNAL INTERACTION LOOP
+
+**STATUS: TESTED IN LIMITED DRY-RUN / FINAL FLEXIBLE FORM PENDING**
+
+From this point the input is no longer external news.
+
+The new input is a character action.
+
+```text
+CHARACTER A ACTION
+       ↓
+IMPACT
+       ↓
+CHARACTER B STATE CHANGE
+       ↓
+CHARACTER B ACTION
+       ↓
+IMPACT
+       ↓
+CHARACTER A / C / D / E STATE CHANGE
+       ↓
+...
+```
+
+Therefore:
+
+> At Layer 1, "news" means the real-world event.  
+> From Layer 2 onward, a character's action becomes the next effective input.
+
+This is the mechanism that allows an event to evolve into an interaction rather than remaining a static event replay.
+
+---
+
+# 10. THE THREE-LAYER DRY-RUN IS NOT THE FINAL ARCHITECTURE
+
+**STATUS: TEST SCENARIO ONLY**
+
+The previously executed:
+
+```text
+Layer 1
+Layer 2
+Layer 3
+```
+
+was a **data validation scenario**.
+
+It proved:
+
+```text
+same news
+→ different states
+→ character interaction
+→ state changes
+```
+
+It does NOT mean the final system must stop at three layers.
+
+The final engine is:
+
+```text
+while interaction_is_valid:
+    select actor
+    calculate current state
+    select action
+    select target
+    apply impact
+    update target state
+    continue / terminate
+```
+
+The number of interactions is determined by the simulation state and termination rules.
+
+Therefore:
+
+```text
+3 layers ≠ architecture
+3 layers = current test depth
+```
+
+---
+
+# 11. FLEXIBLE INTERACTION SELECTION
+
+**STATUS: TARGET DESIGN / PARTIALLY IMPLEMENTED**
+
+The final system should not contain a fixed script such as:
+
+```text
+A → B
+B → A
+A → B
+```
+
+Instead Python should be able to determine from the current state:
+
+```text
+WHO should interact?
+WHAT action is available?
+WHO should be affected?
+HOW strong is the effect?
+SHOULD another character enter?
+SHOULD an existing conflict reverse direction?
+SHOULD the interaction stop?
+```
+
+Possible decision inputs:
+
+```text
+current emotional states
+emotion polarity
+state intensity
+character coefficients
+action affinity
+target compatibility
+current interaction context
+previous actions
+loop guards
+random seed
+```
+
+This allows:
+
+```text
+A attacks B
+→ C intervenes
+
+or
+
+B withdraws
+→ A redirects attention to C
+
+or
+
+C unexpectedly supports B
+→ A changes state
+
+or
+
+a seemingly resolved conflict
+→ another character reactivates it
+```
+
+These are not pre-written story branches.
+
+They emerge from the interaction state and the selection rules.
+
+### Important boundary
+
+Python determines:
+
+```text
+who interacts
+what action occurs
+what target is selected
+what state changes
+what causal consequence follows
+```
+
+LLM later determines:
+
+```text
+how the interaction is expressed in language
+what words are spoken
+how the scene is described
+```
+
+Thus "dialogue selection" in the simulation means Python can determine the **dialogue/action intent**, while LLM renders the actual spoken language.
+
+---
+
+# 12. RANDOMNESS AND UNEXPECTED TURNS
+
+**STATUS: TESTED**
+
+Randomness is part of the simulation mechanism.
+
+It does not mean uncontrolled randomness.
+
+```text
+STATIC RULES
++
+CHARACTER PARAMETERS
++
+CURRENT STATE
++
+SEEDED RANDOMNESS
+=
+ONE VALID PATH
+```
+
+Same:
+
+```text input
++
+characters
++
+seed
+```
+
+should reproduce the same path.
+
+Different seed may produce a different valid path.
+
+The dry-run demonstrated deterministic replay and variance between seeds.
+
+Therefore unexpected turns can emerge without LLM inventing the causal structure.
+
+---
+
+# 13. WHAT "CREATIVE" MEANS IN THE SIMULATOR
+
+The simulator's creativity is not:
+
+```text
+LLM invents a plot.
+```
+
+It is:
+
+```text
+many valid states
++
+many valid actions
++
+different character parameters
++
+target selection
++
+weighted randomness
++
+interaction feedback
+=
+many possible paths
+```
+
+The resulting path may contain a turn that was not explicitly written beforehand.
+
+That is the intended form of computational emergence.
+
+---
+
+# 14. ACTUAL PATH
+
+**STATUS: TESTED**
+
+The engine records the executed sequence:
+
+```text
+step 0
+step 1
+step 2
+...
+```
+
+Each step may contain:
+
+```text
+actor
+state/emotion
+action
+target
+impact
+target state
+result
+```
+
+This is the source material for narrative production.
+
+It is not a separate simulation engine.
+
+It is the ordered execution trace.
+
+---
+
+# 15. MICROSCENE
+
+**STATUS: PARTIAL**
+
+The Actual Path is converted into narrative units:
+
+```text
+ACTUAL PATH SEGMENT
+        ↓
+MICROSCENE
+```
+
+The previous 3-layer dry-run should NOT be interpreted as the final microscene architecture.
+
+The final objective is a flexible set of interaction-derived microscene candidates.
+
+The engine may generate:
+
+```text
+different actors
+different targets
+different action chains
+different emotional reversals
+different intervention points
+different endings
+```
+
+depending on the state.
+
+---
+
+# 16. MICROSCENE SCORING
+
+**STATUS: PENDING**
+
+After simulation:
+
+```text
+MICROSCENE CANDIDATES
+        ↓
+SCORING
+        ↓
+KEEP / REJECT / RANK
+```
+
+The scoring system is not yet finalized.
+
+Do not treat an unapproved scoring formula as production logic.
+
+---
+
+# 17. MICROSCENE → RAW SCRIPT
+
+**STATUS: PENDING**
+
+Selected microscene material is assembled:
+
+```text
+MICROSCENE
+   ↓
+MICROSCENE
+   ↓
+MICROSCENE
+   ↓
+...
+   ↓
+RAW SCRIPT
+```
+
+The raw script preserves the simulated causal material.
+
+It is not yet polished narration.
+
+---
+
+# 18. REAL NEWS RE-INSERTION
+
+**STATUS: PENDING**
+
+The original real-world event is brought back into the narrative construction stage.
+
+```text
+RAW SCRIPT
+   +
+ORIGINAL REAL NEWS
+   ↓
+CONTEXTUALIZED RAW SCRIPT
+```
+
+The purpose is to retain the connection between the fictionalized world event and its real-world source.
+
+Exact worker contract remains to be finalized.
+
+---
+
+# 19. WORLD + CHARACTER CONTEXT PACKAGE
+
+**STATUS: PENDING**
+
+The contextualized raw script is combined with:
+
+```text
+WORLD DATA
++
+PLANET / ENVIRONMENT DATA
++
+CHARACTER DATA
++
+RAW SCRIPT
+```
+
+Result:
+
+```text
+NARRATIVE CONTEXT PACKAGE
+```
+
+This becomes the source for final language generation.
+
+---
+
+# 20. THREE CANDIDATES
+
+**STATUS: PENDING**
+
+The narrative layer produces:
+
+```text
+CANDIDATE A
+CANDIDATE B
+CANDIDATE C
+```
+
+The candidates may differ in:
+
+```text
+selected interaction path
+scene selection
+ordering
+narrative emphasis
+presentation
+```
+
+The human then selects one.
+
+```text
+A / B / C
+   ↓
+HUMAN
+   ↓
+ONE SELECTED VERSION
+```
+
+---
+
+# 21. LLM MICROSCENE WRITING
+
+**STATUS: PENDING**
+
+After human selection:
+
+```text
+SELECTED NARRATIVE CONTEXT
+        ↓
+LLM × 15
+        ↓
+15 WRITTEN MICROSCENES
+```
+
+Each LLM receives the appropriate:
+
+```text
+world context
+planet context
+character context
+raw scene / interaction result
+style instructions
+```
+
+LLM is responsible for language realization.
+
+It must not silently change:
+
+```text
+actual actor
+actual action
+actual target
+actual emotional result
+causal outcome
+```
+
+unless a future design explicitly grants such authority.
+
+---
+
+# 22. 15-MICROSCENE NARRATIVE UNIFICATION
+
+**STATUS: PENDING**
+
+A separate LLM receives the fifteen written microscene texts.
+
+Its role:
+
+```text
+15 MICROSCENES
+       ↓
+CONTINUITY
+       ↓
+STYLE
+       ↓
+TRANSITIONS
+       ↓
+NARRATIVE FLOW
+       ↓
+ONE AUDIO-READY STORY
+```
+
+It should unify presentation, not invent an unrelated causal path.
+
+The final narration style remains a future user decision.
+
+---
+
+# 23. MEDIA PRODUCTION
+
+**STATUS: PARTIAL / DOWNSTREAM**
+
+```text
+AUDIO-READY STORY
+        ↓
+IMAGE GENERATION
+        +
+TTS
+        +
+MUSIC / SFX
+        ↓
+VIDEO ASSEMBLY
+        ↓
+EPISODE PACKAGE
+        ↓
 MongoDB3
-5. REPO 3 — COMPLETE EXECUTION TREE
-MongoDB2
-    │
-    ▼
-KNOWLEDGE PACKAGE
-    │
-    ▼
-┌────────────────────────────────────────────┐
-│ A. EVENT UNDERSTANDING                     │
-└──────────────────────┬─────────────────────┘
-                       │
-                       ▼
-                 TEXT PROCESSING
-                       │
-                       ├── Grammar Tree
-                       └── Grammar Whitelist
-                       │
-                       ▼
-                 EVENT EXTRACTION
-                       │
-                       ▼
-                 WEL / EVENT DATA
-                       │
-                       ▼
-┌────────────────────────────────────────────┐
-│ B. SOCIAL SIMULATION                       │
-└──────────────────────┬─────────────────────┘
-                       │
-                       ▼
-              EVENT ROLE ASSIGNMENT
-                       │
-             ┌─────────┼──────────┐
-             ▼         ▼          ▼
-          CREATOR   VICTIM      OBSERVER(S)
-                     /TARGET
-             │         │          │
-             └─────────┼──────────┘
-                       ▼
-             EVENT → EMOTION
-                       │
-                       ▼
-          CHARACTER EMOTION PROFILE
-                       │
-                       ▼
-              EMOTION SELECTION
-                   / DICE
-                       │
-                       ▼
-             ACTUAL EMOTION
-                       │
-                       ▼
-             REACTION GENERATION
-                       │
-                       ▼
-             EMOTION + ROLE
-                       │
-                       ▼
-              ACTION DISTRIBUTION
-                       │
-                       ▼
-          CHARACTER ACTION AFFINITY
-                       │
-                       ▼
-              ACTION SELECTION
-                       │
-                       ▼
-               ACTUAL ACTION
-                       │
-                       ▼
-                SOCIAL EFFECT
-                       │
-                       ▼
-              TARGET RESOLUTION
-                       │
-                       ▼
-              TARGET CHARACTER
-                       │
-                       ▼
-          TARGET EMOTION DISTRIBUTION
-                       │
-                       ▼
-          TARGET CHARACTER SENSITIVITY
-                       │
-                       ▼
-            TARGET EMOTION DICE
-                       │
-                       ▼
-          ACTUAL TARGET EMOTION
-                       │
-                       ▼
-             NEW SOCIAL EVENT
-                       │
-                       └──────────────────┐
-                                          │
-                                          ▼
-                               EVENT → EMOTION
-                                          │
-                                          ▼
-                                     REPEAT LOOP
-                                          │
-                                          ▼
-                               TERMINATION / PRUNE
-                                          │
-                                          ▼
-┌────────────────────────────────────────────┐
-│ C. MICROSCENE                              │
-└──────────────────────┬─────────────────────┘
-                       │
-                       ▼
-                  MICROSCENE
-                       │
-                       ▼
-┌────────────────────────────────────────────┐
-│ D. NARRATIVE ASSEMBLY                      │
-└──────────────────────┬─────────────────────┘
-                       │
-                       ▼
-                  SCENE POOL
-                       │
-                       ▼
-              EPISODE CANDIDATES
-                       │
-                       ▼
-              15-SCENE EPISODE PLAN
-                       │
-                       ▼
-┌────────────────────────────────────────────┐
-│ E. LANGUAGE / SCRIPT                       │
-└──────────────────────┬─────────────────────┘
-                       │
-                       ▼
-               SCRIPT GENERATION
-                       │
-                       ▼
-                    SCRIPT
-                       │
-                       ▼
-┌────────────────────────────────────────────┐
-│ F. VISUAL                                  │
-└──────────────────────┬─────────────────────┘
-                       │
-                       ▼
-                  STORYBOARD
-                       │
-                       ▼
-          CHARACTER / VISUAL CONSISTENCY
-                       │
-                       ▼
-             CONSISTENCY VALIDATION
-                       │
-                       ▼
-┌────────────────────────────────────────────┐
-│ G. PRODUCTION                              │
-└──────────────────────┬─────────────────────┘
-                       │
-             ┌─────────┼──────────┐
-             ▼         ▼          ▼
-           IMAGE      TTS      MUSIC / SFX
-             │         │          │
-             └─────────┼──────────┘
-                       ▼
-                 EPISODE PACKAGE
-                       │
-                       ▼
-                    MongoDB3
-6. REPO 3 — DATA / LOGIC BOUNDARY
-The interaction system is deliberately separated into static possibility data and runtime execution.
+```
+
+---
+
+# 24. COMPLETE CURRENT FLOW
+
+```text
+REAL WORLD
+    ↓
+RAW-NEWS
+    ↓
+EVENT.JSON
+    ↓
+NEWS-GEAR
+    +
+CHARACTER-POOL
+    ↓
+┌───────────────────────────────────────┐
+│ PYTHON STATE-TRANSITION ENGINE        │
+│                                       │
+│ External event                        │
+│       ↓                               │
+│ Character state calculation           │
+│       ↓                               │
+│ Action selection                      │
+│       ↓                               │
+│ Target selection                      │
+│       ↓                               │
+│ State impact                          │
+│       ↓                               │
+│ New actor / target selection          │
+│       ↓                               │
+│ Repeat until termination               │
+└──────────────────┬────────────────────┘
+                   ↓
+              ACTUAL PATH
+                   ↓
+            MICROSCENE POOL
+                   ↓
+          MICROSCENE SCORING
+                   ↓
+               RAW SCRIPT
+                   ↓
+             REAL NEWS
+             RE-INSERTION
+                   ↓
+        WORLD + PLANET + CHARACTER
+                   +
+              RAW SCRIPT
+                   ↓
+             3 CANDIDATES
+                   ↓
+             HUMAN SELECTS 1
+                   ↓
+             LLM × 15
+                   ↓
+       15 WRITTEN MICROSCENES
+                   ↓
+        CONSISTENCY / NARRATIVE LLM
+                   ↓
+          AUDIO-READY STORY
+                   ↓
+               PRODUCTION
+                   ↓
+              MongoDB3
+```
+
+---
+
+# 25. REPOSITORY 3 — DATA / LOGIC BOUNDARY
+
+**STATUS: CORE DESIGN ESTABLISHED**
+
+Static data contains possibilities.
+
+Python creates actual state.
+
+```text
 STATIC DATA
 │
 ├── events
 ├── emotion_actions
 ├── actions
 ├── social_effects
-├── character-emotion profiles
+├── character profiles
+├── character-gar
 └── character-pool
         │
         ▼
-      ENGINE
-        │
-        ├── context
-        ├── scoring
-        ├── weighted selection
-        ├── target resolution
-        ├── state
-        ├── seed
-        └── loop / termination
+PYTHON ENGINE
+│
+├── scoring
+├── arithmetic
+├── weighted selection
+├── target selection
+├── state update
+├── randomness
+├── loop control
+└── termination
         │
         ▼
 ACTUAL PATH
-6.1 Interaction Data
+```
+
+The existing specification explicitly separates static possibility data from runtime execution and identifies the engine responsibilities as context, scoring, weighted selection, target resolution, state, seed and loop/termination. fileciteturn123file4L638-L661
+
+---
+
+# 26. STATIC INTERACTION DICTIONARY
+
+**STATUS: IMPLEMENTED / TESTED**
+
+The current four-zone structure remains valid:
+
+```text
 events
-│
-└── Event
-    └── Role
-        └── Emotion Distribution
 emotion_actions
-│
-└── Emotion
-    └── Context Role
-        └── Action Distribution
-The same Action may appear under many different emotions.
-This is intentional.
-guilt
-├── apologize
-├── help
-└── withdraw
-
-fear
-├── withdraw
-├── seek_help
-└── confront
-
-anger
-├── confront
-├── blame
-└── withdraw
-Action duplication across emotion contexts is acceptable.
-The system prioritizes clarity of each emotion's action set over deduplicating the data.
 actions
-│
-└── Action
-    ├── social_effect_id
-    └── target_rule
 social_effects
-│
-└── Social Effect
-    └── Target Emotion Distribution
-7. REPO 3 — RUNTIME EVOLUTION
-The static dictionaries do not contain Actual State.
-STATIC POSSIBILITY
-        │
-        ▼
-RUNTIME ENGINE
-        │
-        ├── Global Event Context
-        ├── Character Profile
-        ├── Character State
-        ├── Branch / Session State
-        ├── Random Seed
-        └── Current Interaction Context
-        │
-        ▼
-ACTUAL EMOTION
-        │
-        ▼
-ACTUAL ACTION
-        │
-        ▼
-TARGET
-        │
-        ▼
-TARGET ACTUAL EMOTION
-        │
-        ▼
-NEW SOCIAL EVENT
-The runtime-generated Path is therefore:
-Path = actual runtime interaction sequence
-It is not pre-written in the static data.
-8. INTERACTION LOOP
-GLOBAL EVENT
-     │
-     ▼
-ROLE
-     │
-     ▼
-EVENT EMOTION DISTRIBUTION
-     │
-     ▼
-CHARACTER SENSITIVITY
-     │
-     ▼
-EMOTION DICE
-     │
-     ▼
-ACTUAL EMOTION
-     │
-     ▼
-EMOTION + ROLE
-     │
-     ▼
-ACTION DISTRIBUTION
-     │
-     ▼
-CHARACTER AFFINITY
-     │
-     ▼
-ACTION DICE
-     │
-     ▼
-ACTUAL ACTION
-     │
-     ▼
-SOCIAL EFFECT
-     │
-     ▼
-TARGET RULE
-     │
-     ▼
-TARGET RESOLUTION
-     │
-     ▼
-TARGET EMOTION DISTRIBUTION
-     │
-     ▼
-TARGET SENSITIVITY
-     │
-     ▼
-TARGET EMOTION DICE
-     │
-     ▼
-ACTUAL TARGET EMOTION
-     │
-     ▼
-NEW SOCIAL EVENT
-     │
-     └───────────────────────→ LOOP
-9. RUNTIME STOP CONDITIONS
-The Interaction Loop does not run indefinitely.
-STOP
-│
-├── max_depth reached
-├── no valid action
-├── terminal / termination signal
-├── loop protection
-└── engine-specific pruning
-Runtime owns these decisions.
-Static data does not contain branch state.
-10. MULTI-CHARACTER EXECUTION
-The static data does not create one hardcoded branch for every possible character.
-EVENT
-│
-├── Character A
-├── Character B
-├── Character C
-└── Character D
-Runtime resolves actual participants.
-TARGET RULE
-     │
-     ▼
-TARGET RESOLUTION
-     │
-     ▼
-ACTUAL CHARACTER
-Therefore:
-STATIC
-INTERACTOR
-can become at runtime:
-CHAR_A
-CHAR_B
-CHAR_C
-...
-without duplicating the dictionary.
-11. REPO 3 — EXECUTION GROUPS
-Each group below must be backed by actual source file(s) in Repo 3.
-REPO 3
-│
-├── 01_EVENT_PROCESSING
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 02_EVENT_EXTRACTION
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 03_ROLE_ASSIGNMENT
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 04_EVENT_EMOTION
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 05_CHARACTER_PROFILE
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 06_EMOTION_SELECTION
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 07_REACTION_GENERATION
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 08_INTERACTION_ENGINE
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 09_TARGET_RESOLUTION
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 10_SOCIAL_EVENT_GENERATION
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 11_MICROSCENE
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 12_SCENE_POOL
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 13_EPISODE_PLAN
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 14_SCRIPT
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 15_STORYBOARD
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-├── 16_CONSISTENCY
-│   ├── SPEC
-│   └── SOURCE FILE(S)
-│
-└── 17_PRODUCTION
-    ├── SPEC
-    └── SOURCE FILE(S)
-Rule
-If an execution group has no implemented source file yet:
-STATUS = SPEC ONLY
-Do not pretend it is implemented.
-If a real source file exists:
-STATUS = IMPLEMENTED
-SOURCE = <actual repo file>
-12. DATA RESPONSIBILITY
-Data is not forced into the execution specification.
-DATA — HUMAN + CHATBOT
-means:
-Human
-  +
-Chatbot
-  ↓
-Knowledge / Data Construction
-  ↓
-Validation
-  ↓
-Static Data Artifact
-Examples:
-WORLD DATA
-├── Planet
-├── Species
-├── Visual Blueprint
-└── World Rules
+```
 
-SIMULATION DATA
-├── Event Dictionary
-├── Emotion Dictionary
-├── Emotion → Action
-├── Action Dictionary
-├── Social Effect Dictionary
-├── Character Emotion Profile
-└── Character Pool
+## events
 
-NARRATIVE DATA
-├── Story Library
-├── Archetype Frames
-├── Scene Rules
-└── Presentation Rules
-The TreeGeneral only records:
-WHAT DATA EXISTS
-WHY IT EXISTS
-WHO USES IT
-WHO MAINTAINS IT
-STATUS
-The detailed data schema belongs to the corresponding data artifact.
-13. CROSS-REPOSITORY CONTRACT
-REPO 1
-   │
-   │ MongoDB1
-   ▼
-REPO 2
-   │
-   │ MongoDB2
-   ▼
-REPO 3
-   │
-   │ MongoDB3
-   ▼
-WORLD HISTORY
-Rules:
-Repo 1 → writes MongoDB1
-Repo 2 → reads MongoDB1, writes MongoDB2
-Repo 3 → reads MongoDB2, writes MongoDB3
-No repository bypasses the contract by reading another repository's private runtime files.
-14. ARTIFACT EVOLUTION
-EARTH
- │
- ▼
-TreeDataEarth
- │
- ▼
-JSONDataEarth
- │
- ▼
-TreeData
- │
- ▼
-JSONData Schema
- │
- ▼
-Source JSONData
- │
- ▼
-Complete JSONData
- │
- ▼
-Final JSONData
- │
- ▼
-World Prefab Library
- │
- ▼
-MongoDB1
- │
- ▼
-REAL-WORLD SIGNALS
- │
- ▼
-Source Library
- │
- ▼
-Translated / Filtered Events
- │
- ▼
-World Reaction
- │
- ▼
-Today's World State
- │
- ▼
-MongoDB2
- │
- ▼
-Event Simulation
- │
- ▼
-Interaction Paths
- │
- ▼
-MicroScenes
- │
- ▼
-Scene Pool
- │
- ▼
-15-Scene Episode Plan
- │
- ▼
-Script
- │
- ▼
-Storyboard
- │
- ▼
-Visual / Character Consistency
- │
- ▼
-Image / Audio Assets
- │
- ▼
-Episode Package
- │
- ▼
-MongoDB3
-15. THREE LEVELS OF TRUTH
-The project uses three distinct truth levels.
-LEVEL 1 — TREEGENERAL
-SYSTEM MAP
-Answers:
-What happens to the data?
-LEVEL 2 — SPEC
-EXECUTION CONTRACT
-Answers:
-What must this execution group do?
-LEVEL 3 — SOURCE CODE
-RUNTIME TRUTH
-Answers:
-What does the system actually execute?
-16. DATA IS A FOURTH CATEGORY
-TREEGENERAL
-    │
-    ├── SPEC
-    │      │
-    │      ▼
-    │   SOURCE CODE
-    │
-    └── DATA
-           │
-           └── HUMAN + CHATBOT
-Data is not execution code.
-Source code is not a substitute for data.
-Spec is not a duplicate of source code.
-TreeGeneral is not a duplicate of Spec.
-17. COMPLETE WORLD SIMULATOR
-REAL WORLD
-                             │
-                             ▼
-                    ┌────────────────┐
-                    │   REPO 1       │
-                    │ STATIC EVOLVE  │
-                    └───────┬────────┘
-                            │
-                            ▼
-                         MongoDB1
-                     IMMUTABLE WORLD
-                            │
-                            +
-                     REAL-WORLD SIGNALS
-                            │
-                            ▼
-                    ┌────────────────┐
-                    │   REPO 2       │
-                    │ DYNAMIC EVOLVE │
-                    └───────┬────────┘
-                            │
-                            ▼
-                         MongoDB2
-                     LIVING WORLD
-                            │
-                            ▼
-                    ┌────────────────┐
-                    │   REPO 3       │
-                    │ NARRATIVE      │
-                    │ EVOLUTION      │
-                    └───────┬────────┘
-                            │
-                            ▼
-                 EVENT UNDERSTANDING
-                            │
-                            ▼
-                 SOCIAL SIMULATION
-                            │
-                  ┌─────────┴─────────┐
-                  │                   │
-                  ▼                   │
-            MICROSCENE                │
-                  │                   │
-                  ▼                   │
-              SCENE POOL              │
-                  │                   │
-                  ▼                   │
-           15-SCENE EPISODE           │
-                  │                   │
-                  ▼                   │
-                SCRIPT                │
-                  │                   │
-                  ▼                   │
-             STORYBOARD               │
-                  │                   │
-                  ▼                   │
-       CHARACTER / VISUAL CHECK       │
-                  │                   │
-                  ▼                   │
-          MEDIA PRODUCTION            │
-                  │                   │
-                  ▼                   │
-               EPISODE                │
-                  │                   │
-                  ▼                   │
-               MongoDB3               │
-                  │                   │
-                  ▼                   │
-            WORLD HISTORY             │
-18. FINAL PRINCIPLE
-The World Simulator is not:
-REAL WORLD → LLM → STORY
-It is:
-REAL WORLD
-    ↓
-DATA EVOLUTION
-    ↓
-WORLD DNA
-    ↓
-LIVING WORLD
-    ↓
-EVENT
-    ↓
-ROLE
-    ↓
-EMOTION
-    ↓
+```text
+Event
+ └── Role
+      └── Emotion Distribution
+```
+
+## emotion_actions
+
+```text
+Emotion
+ └── Context Role
+      └── Action Distribution
+```
+
+The same action may intentionally occur under multiple emotions.
+
+This duplication is accepted because clarity of each emotion's action set is more important than data deduplication. fileciteturn123file4L662-L690
+
+## actions
+
+```text
+Action
+ ├── social_effect_id
+ └── target_rule
+```
+
+## social_effects
+
+```text
+Social Effect
+ └── Target Emotion Distribution
+```
+
+This static dictionary defines **possibility space**.
+
+It does not contain the actual path of a particular run.
+
+---
+
+# 27. CHARACTER-POOL AND CHARACTER-GEAR
+
+**STATUS: IMPLEMENTED / TESTED**
+
+Character Pool supplies the actors.
+
+Character-Gear supplies their parameters.
+
+```text
 CHARACTER
-    ↓
-ACTION
-    ↓
-SOCIAL EFFECT
-    ↓
-TARGET
-    ↓
-NEW SOCIAL EVENT
-    ↓
-INTERACTION LOOP
-    ↓
+├── identity
+├── world/species reference
+├── visual reference
+└── CHARACTER-GEAR
+       ├── emotion coefficients
+       ├── behavioral coefficients
+       ├── action affinity
+       └── other static parameters
+```
+
+Runtime state must remain separate from these static parameters.
+
+---
+
+# 28. RUNTIME
+
+**STATUS: IMPLEMENTED IN DRY-RUN / REFINED TERMINOLOGY**
+
+Runtime means:
+
+```text
+current execution state of the Python simulation
+```
+
+It is not:
+
+```text
+NEWS-GEAR
+CHARACTER-GEAR
+ACTUAL PATH
 MICROSCENE
-    ↓
-NARRATIVE ASSEMBLY
-    ↓
-EPISODE
-    ↓
-PRESENTATION
-    ↓
-MEDIA
-The central simulator loop is therefore:
-EVENT
+```
+
+A runtime instance contains the temporary state required to execute one simulation:
+
+```text
+current actors
+current states
+current targets
+current actions
+depth / step
+seed / RNG state
+loop guards
+context
+history
+```
+
+The runtime is an implementation concept.
+
+It should not be mistaken for another static data library.
+
+---
+
+# 29. WHAT THE DRY-RUN PROVED
+
+**STATUS: TEST EVIDENCE**
+
+The dry-run demonstrated:
+
+```text
+same NEWS-GEAR
++
+different Character-Gear
+=
+different initial states
+```
+
+It also demonstrated that character actions can modify other characters' states, allowing the simulation to continue across interaction steps. fileciteturn123file6L794-L812
+
+The important conclusion is not:
+
+```text
+"three layers work"
+```
+
+but:
+
+```text
+NEWS
+  ↓
+STATE DIFFERENTIATION
+  ↓
+ACTION
+  ↓
+STATE IMPACT
+  ↓
+FURTHER ACTION
+```
+
+This validates the core coupling between the News side and Character side.
+
+---
+
+# 30. WHAT REMAINS UNPROVEN
+
+The following must not be presented as solved:
+
+```text
+final flexible interaction selection
+final emergent microscene quality
+microscene scoring
+raw-script selection
+real-news reinsertion
+world-context narrative package
+three-candidate editorial workflow
+LLM ×15 writing quality
+15-scene narrative consistency
+narration style
+audio quality
+final episode quality
+```
+
+The existing General specification correctly requires an execution group to be marked `SPEC ONLY` when no real source exists and `IMPLEMENTED` only when a real source file exists. fileciteturn123file7L823-L851
+
+---
+
+# 31. PROJECT STATUS MATRIX
+
+| Component | Status |
+|---|---|
+| Repo 1 World DNA | **IMPLEMENTED / DATA** |
+| Planet / Species / Visual data | **DATA** |
+| Repo 2 acquisition foundation | **PARTIAL / IMPLEMENTED COMPONENTS** |
+| Raw-News | **IMPLEMENTED** |
+| Event extraction | **IMPLEMENTED / REFINEMENT** |
+| EVENT.JSON | **IMPLEMENTED / DATA** |
+| NEWS-GEAR Skeleton | **IMPLEMENTED** |
+| NEWS-GEAR generation | **TESTED** |
+| Character Skeleton | **IMPLEMENTED** |
+| Character-Gear | **IMPLEMENTED** |
+| Character worker | **IMPLEMENTED** |
+| Character Pool | **IMPLEMENTED / TEST SCALE** |
+| Static interaction dictionary | **IMPLEMENTED** |
+| State-transition engine | **TESTED** |
+| Layer 1 test | **PASS** |
+| Character interaction test | **PASS / LIMITED** |
+| Seed determinism | **PASS** |
+| State trace / Actual Path | **PASS** |
+| Flexible interaction engine | **IN DEVELOPMENT** |
+| Microscene generation | **PARTIAL** |
+| Microscene scoring | **PENDING** |
+| Raw Script | **PENDING** |
+| Real-news reinsertion | **PENDING** |
+| World + Character context package | **PENDING** |
+| 3 narrative candidates | **PENDING** |
+| Human 1/3 selection | **PENDING** |
+| LLM ×15 microscene writing | **PENDING** |
+| 15-scene consistency LLM | **PENDING** |
+| Narration style | **USER DECISION / PENDING** |
+| TTS | **PARTIAL** |
+| Image generation | **PARTIAL** |
+| Video assembly | **PARTIAL** |
+| MongoDB3 episode package | **PENDING** |
+
+---
+
+# 32. THREE LEVELS OF TRUTH
+
+## LEVEL 1 — TREEGENERAL
+
+Answers:
+
+```text
+WHAT HAPPENS TO THE DATA?
+```
+
+## LEVEL 2 — SPEC
+
+Answers:
+
+```text
+WHAT MUST A WORKER DO?
+```
+
+## LEVEL 3 — SOURCE CODE
+
+Answers:
+
+```text
+WHAT DOES THE WORKER ACTUALLY EXECUTE?
+```
+
+## DATA
+
+Answers:
+
+```text
+WHAT KNOWLEDGE / PARAMETERS DOES THE WORKER USE?
+```
+
+The existing project already establishes this separation between TreeGeneral, SPEC, source execution files and Human + Chatbot data construction. fileciteturn123file7L845-L892
+
+---
+
+# 33. CROSS-REPOSITORY CONTRACT
+
+```text
+REPO 1
+  │
+  │ MongoDB1
+  ▼
+REPO 2
+  │
+  │ MongoDB2
+  ▼
+REPO 3
+  │
+  │ MongoDB3
+  ▼
+EPISODE LIBRARY
+```
+
+Rules remain:
+
+```text
+Repo 1 → writes MongoDB1
+
+Repo 2 → reads MongoDB1
+         writes MongoDB2
+
+Repo 3 → reads MongoDB2
+         writes MongoDB3
+```
+
+No repository bypasses the data contract. fileciteturn123file7L893-L911
+
+---
+
+# 34. CURRENT WORLD SIMULATOR IN ONE SENTENCE
+
+> **World Simulator receives real-world events, converts them into structured event parameters, applies those parameters to characters with different behavioral coefficients, lets Python repeatedly calculate state → action → impact transitions, records the resulting path, and only then turns selected interaction paths into narrative.**
+
+---
+
+# 35. FINAL DESIGN PRINCIPLE
+
+The system is intentionally simple at its mechanical core.
+
+```text
+INPUT
  ↓
-EMOTION
+STATE
+ ↓
+DELTA
  ↓
 ACTION
  ↓
-SOCIAL EFFECT
+IMPACT
  ↓
-TARGET
+NEW STATE
  ↓
-NEW EVENT
- └──────────────→ REPEAT
-while the surrounding system evolves the resulting data from immutable World DNA into living World State and finally into World History.
-STATUS MODEL
-Every item in the TreeGeneral should carry one of these statuses when maintained in the project:
+ACTION
+ ↓
+...
+ ↓
+TRACE
+ ↓
+NARRATIVE
+```
+
+The complexity does not come from adding more architectural layers.
+
+It comes from the **combination space**:
+
+```text
+many characters
+×
+many states
+×
+many actions
+×
+many targets
+×
+different coefficients
+×
+different interaction contexts
+×
+seeded randomness
+```
+
+That combination can produce paths that were not manually scripted.
+
+The final goal is therefore **not a fixed three-layer story**.
+
+The three-layer dry-run was only a proof-of-mechanism.
+
+The intended final system is a flexible interaction engine in which Python can select:
+
+```text
+WHO interacts
+WHAT they feel
+WHAT they do
+WHO receives the action
+HOW the receiver changes
+WHETHER another character enters
+WHETHER the direction reverses
+WHEN the interaction stops
+```
+
+The LLM subsequently renders the selected causal path into:
+
+```text
+dialogue
+description
+emotion expression
+scene language
+narration
+```
+
+Thus:
+
+```text
+PYTHON
+= determines the evolving causal path
+
+LLM
+= expresses that path as language
+```
+
+And the final narrative is not pre-written.
+
+It is the result of:
+
+```text
+REAL NEWS
++
+WORLD DATA
++
+CHARACTER PARAMETERS
++
+STATE TRANSITIONS
++
+CHARACTER INTERACTIONS
++
+WEIGHTED RANDOMNESS
++
+NARRATIVE RENDERING
+```
+
+---
+
+# 36. STATUS DEFINITIONS
+
+```text
 IMPLEMENTED
-    = executable source file exists and has been tested
-
-SPECIFIED
-    = execution contract exists but source is not yet implemented
-
-DATA
-    = knowledge/configuration artifact maintained by Human + Chatbot
+= source exists and is operational
 
 TESTED
-    = implementation has an observed successful execution
+= an executable test has produced observable results
+
+DATA
+= knowledge/configuration artifact maintained by Human + Chatbot
+
+SPECIFIED
+= execution contract exists
+
+PARTIAL
+= some implementation exists but complete worker is unfinished
+
+IN DEVELOPMENT
+= architecture is established and implementation is being expanded
 
 PENDING
-    = identified but not yet specified/implemented
-The TreeGeneral itself is the map.
-The SPEC defines the contract.
-The source file executes the contract.
-The data supplies the knowledge.
-The runtime produces the actual evolving world.
+= identified work not yet implemented
+```
+
+The General specification must never claim that a `SPECIFIED`, `PENDING`, or `IN DEVELOPMENT` component is already production-ready.
