@@ -1,0 +1,1010 @@
+{
+  "version": "2.0",
+  "name": "TREE_PATTERN_WORLD_SIMULATOR",
+  "purpose": "Upgrade the event-emotion dictionary into a layered possibility knowledge tree: L1 models reality/news; L2 first character reaction; L3-L5 emergent interaction and micro-scene formation.",
+  "source_basis": {
+    "source_file": "EVENT_EMOTION_DICTIONARY_v1.1-unified.json",
+    "preserved_layer": "The original 14 event patterns and role/emotion maps are retained.",
+    "design_extension": "L2-L5 patterns are a new design layer for runtime creativity, not claims extracted from the source file."
+  },
+  "world_simulator_boundary": {
+    "L1_REALITY": "News / Knowledge Package -> event extraction -> event pattern. News influence ends here.",
+    "L2_CHARACTER_REACTION": "Event pattern -> role -> candidate emotions -> character profile -> actual emotion/action.",
+    "L3_INTERACTION": "Action -> social effect -> target resolution -> target reaction -> new social event.",
+    "L4_INTERACTION_EVOLUTION": "New social events may escalate, deescalate, reverse roles, reveal information, or recruit third parties.",
+    "L5_MICROSCENE": "A linked interaction sequence stabilizes into a micro-scene, twist, or aftermath."
+  },
+  "principles": [
+    "Tree Pattern is a possibility map, not a story outline.",
+    "No pattern prescribes a fixed next scene.",
+    "Python selects and combines patterns using runtime state, character profile and seed.",
+    "The same event can enter different interaction patterns for different characters.",
+    "New social events are first-class runtime outputs and can re-enter the tree.",
+    "L3-L5 are creative evolution over the L1 event, not additional news facts.",
+    "LLM may review or expand knowledge, but runtime selection remains Python-controlled."
+  ],
+  "roles": [
+    "CREATOR",
+    "TARGET",
+    "OBSERVER"
+  ],
+  "minimum_values": 62,
+  "patterns": {
+    "IMPACT_PERSON_PERSON": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "One person/entity physically or directly impacts another.",
+      "roles": {
+        "CREATOR": {
+          "fear": 0.55,
+          "guilt": 0.8,
+          "panic": 0.65,
+          "defensiveness": 0.35
+        },
+        "TARGET": {
+          "shock": 0.9,
+          "fear": 0.85,
+          "anger": 0.65,
+          "relief": 0.2
+        },
+        "OBSERVER": {
+          "surprise": 0.75,
+          "concern": 0.65,
+          "anger": 0.45,
+          "curiosity": 0.3
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "LOSS_OR_THEFT": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "An entity/property is lost, stolen, or removed from its expected place.",
+      "roles": {
+        "CREATOR": {
+          "fear": 0.55,
+          "guilt": 0.35,
+          "greed": 0.35
+        },
+        "TARGET": {
+          "fear": 0.65,
+          "anger": 0.75,
+          "sadness": 0.7,
+          "helplessness": 0.6
+        },
+        "OBSERVER": {
+          "surprise": 0.45,
+          "concern": 0.55,
+          "curiosity": 0.4
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "RECOVERY_RETURN": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "A lost entity/property is found, restored, or returned.",
+      "roles": {
+        "CREATOR": {
+          "relief": 0.65,
+          "guilt": 0.35,
+          "hope": 0.5
+        },
+        "TARGET": {
+          "relief": 0.9,
+          "joy": 0.75,
+          "gratitude": 0.55,
+          "sadness": 0.2
+        },
+        "OBSERVER": {
+          "surprise": 0.45,
+          "joy": 0.55,
+          "curiosity": 0.5
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "EXCLUSION_OR_REMOVAL": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "A person/entity is removed from a contest, group, system, or opportunity.",
+      "roles": {
+        "CREATOR": {
+          "guilt": 0.35,
+          "relief": 0.25,
+          "indifference": 0.25
+        },
+        "TARGET": {
+          "sadness": 0.75,
+          "anger": 0.6,
+          "shame": 0.55,
+          "fear": 0.4
+        },
+        "OBSERVER": {
+          "surprise": 0.45,
+          "sympathy": 0.6,
+          "anger": 0.35,
+          "curiosity": 0.35
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "FAILURE_OR_ABSENCE": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "An expected object/action/result is missing, causing an intended activity to fail.",
+      "roles": {
+        "CREATOR": {
+          "frustration": 0.75,
+          "guilt": 0.55,
+          "panic": 0.45
+        },
+        "TARGET": {
+          "sadness": 0.45,
+          "frustration": 0.7,
+          "helplessness": 0.6
+        },
+        "OBSERVER": {
+          "surprise": 0.55,
+          "curiosity": 0.5,
+          "concern": 0.45
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "EMERGENCE_NEW_PRESENCE": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "A new model, trend, person, event, or phenomenon appears.",
+      "roles": {
+        "CREATOR": {
+          "pride": 0.45,
+          "hope": 0.45,
+          "excitement": 0.55,
+          "anxiety": 0.25
+        },
+        "TARGET": {
+          "curiosity": 0.65,
+          "excitement": 0.45,
+          "uncertainty": 0.45
+        },
+        "OBSERVER": {
+          "curiosity": 0.75,
+          "surprise": 0.55,
+          "excitement": 0.45,
+          "skepticism": 0.35
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "PUBLIC_ATTENTION": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "An event/person/content attracts unusually strong public attention.",
+      "roles": {
+        "CREATOR": {
+          "pride": 0.6,
+          "excitement": 0.65,
+          "anxiety": 0.4,
+          "greed": 0.3
+        },
+        "TARGET": {
+          "excitement": 0.55,
+          "pride": 0.5,
+          "anxiety": 0.45
+        },
+        "OBSERVER": {
+          "curiosity": 0.75,
+          "excitement": 0.55,
+          "envy": 0.25,
+          "skepticism": 0.35
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "SOCIAL_DEBATE": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "An event produces competing opinions, arguments, or public debate.",
+      "roles": {
+        "CREATOR": {
+          "anxiety": 0.45,
+          "defensiveness": 0.6,
+          "pride": 0.35
+        },
+        "TARGET": {
+          "anger": 0.55,
+          "shame": 0.4,
+          "defensiveness": 0.6,
+          "frustration": 0.55
+        },
+        "OBSERVER": {
+          "curiosity": 0.7,
+          "anger": 0.5,
+          "skepticism": 0.6,
+          "amusement": 0.25
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "CRITICISM_OR_CONDEMNATION": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "A person/group is criticized, condemned, or publicly judged.",
+      "roles": {
+        "CREATOR": {
+          "shame": 0.65,
+          "anger": 0.65,
+          "defensiveness": 0.75,
+          "fear": 0.4
+        },
+        "TARGET": {
+          "anger": 0.7,
+          "shame": 0.65,
+          "sadness": 0.5,
+          "defensiveness": 0.7
+        },
+        "OBSERVER": {
+          "anger": 0.45,
+          "sympathy": 0.5,
+          "curiosity": 0.45,
+          "skepticism": 0.55
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "PUBLIC_APPROVAL_OR_SYMPATHY": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "A person/event receives sympathy, support, or positive public response.",
+      "roles": {
+        "CREATOR": {
+          "joy": 0.55,
+          "relief": 0.5,
+          "pride": 0.65
+        },
+        "TARGET": {
+          "relief": 0.6,
+          "gratitude": 0.7,
+          "joy": 0.65,
+          "hope": 0.55
+        },
+        "OBSERVER": {
+          "joy": 0.45,
+          "sympathy": 0.65,
+          "hope": 0.45
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "DEATH_OR_FATAL_OUTCOME": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "An event results in death or discovery of a fatal outcome.",
+      "roles": {
+        "CREATOR": {
+          "guilt": 0.75,
+          "fear": 0.7,
+          "panic": 0.6,
+          "sadness": 0.7
+        },
+        "TARGET": {
+          "sadness": 1.0,
+          "fear": 0.9
+        },
+        "OBSERVER": {
+          "shock": 0.95,
+          "sadness": 0.85,
+          "fear": 0.65,
+          "concern": 0.7
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "DANGER_OR_RISK": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "A person knowingly or unknowingly enters a dangerous situation.",
+      "roles": {
+        "CREATOR": {
+          "fear": 0.7,
+          "panic": 0.55,
+          "regret": 0.55
+        },
+        "TARGET": {
+          "fear": 0.9,
+          "panic": 0.75,
+          "shock": 0.75
+        },
+        "OBSERVER": {
+          "fear": 0.65,
+          "concern": 0.85,
+          "anger": 0.35
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "TRAGEDY_EXPLOITATION": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "Someone uses a tragedy/disaster/death event to obtain attention, views, or engagement.",
+      "roles": {
+        "CREATOR": {
+          "greed": 0.75,
+          "excitement": 0.45,
+          "shame": 0.3,
+          "indifference": 0.45
+        },
+        "TARGET": {
+          "anger": 0.65,
+          "sadness": 0.65,
+          "helplessness": 0.55
+        },
+        "OBSERVER": {
+          "anger": 0.75,
+          "disgust": 0.7,
+          "curiosity": 0.45,
+          "skepticism": 0.6
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "DISCOVERY_OR_REVELATION": {
+      "layer": 1,
+      "kind": "EVENT_PATTERN",
+      "description": "Previously unknown information or a significant fact becomes known.",
+      "roles": {
+        "CREATOR": {
+          "surprise": 0.45,
+          "fear": 0.35,
+          "relief": 0.35
+        },
+        "TARGET": {
+          "surprise": 0.7,
+          "fear": 0.45,
+          "relief": 0.4
+        },
+        "OBSERVER": {
+          "curiosity": 0.8,
+          "surprise": 0.75,
+          "skepticism": 0.45
+        }
+      },
+      "runtime_handoff": "L1 ends here; the news/event itself does not write the later interaction path."
+    },
+    "FIRST_REACTION": {
+      "layer": "L2",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Immediate character response before deliberate action.",
+      "action_hints": [
+        "acknowledge",
+        "freeze",
+        "deny",
+        "react"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "FEAR_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Fear converts an external event into protective or avoidant behavior.",
+      "action_hints": [
+        "withdraw",
+        "seek_help",
+        "warn",
+        "flee"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "GUILT_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Guilt creates an opportunity for repair, confession, avoidance, or compensation.",
+      "action_hints": [
+        "apologize",
+        "help",
+        "confess",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "ANGER_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Perceived harm converts into confrontation, accusation, retaliation, or boundary setting.",
+      "action_hints": [
+        "confront",
+        "accuse",
+        "warn",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "SHOCK_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Shock delays interpretation and creates observation, freezing, questioning, or sudden action.",
+      "action_hints": [
+        "freeze",
+        "question",
+        "observe",
+        "seek_help"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "RELIEF_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Relief reduces immediate threat and opens prosocial or mundane interaction.",
+      "action_hints": [
+        "comfort",
+        "thank",
+        "help",
+        "deescalate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "CURIOSITY_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Uncertainty becomes investigation and can reveal a second-order event.",
+      "action_hints": [
+        "investigate",
+        "question",
+        "observe",
+        "follow"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "SUSPICION_RESPONSE": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An ambiguous clue turns curiosity into distrust and social testing.",
+      "action_hints": [
+        "question",
+        "test",
+        "confront",
+        "observe"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "DEFENSIVE_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A threatened character protects status, reputation, or intent.",
+      "action_hints": [
+        "deny",
+        "justify",
+        "counterattack",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "SYMPATHY_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Observation of another's suffering creates support or intervention.",
+      "action_hints": [
+        "comfort",
+        "help",
+        "protect",
+        "approach"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "SHAME_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Public exposure produces concealment, apology, denial, or counterattack.",
+      "action_hints": [
+        "withdraw",
+        "apologize",
+        "deny",
+        "confront"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "GRATITUDE_RESPONSE": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Received assistance creates reciprocal or affiliative interaction.",
+      "action_hints": [
+        "thank",
+        "help",
+        "approach",
+        "offer"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "ENVY_RESPONSE": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Another's success creates comparison, challenge, imitation, or sabotage pressure.",
+      "action_hints": [
+        "challenge",
+        "criticize",
+        "observe",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "PRIDE_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Recognition strengthens status-seeking and creates an opportunity for social display.",
+      "action_hints": [
+        "boast",
+        "help",
+        "challenge",
+        "celebrate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "FRUSTRATION_RESPONSE": {
+      "layer": "L2-L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Failure creates pressure to retry, blame, seek assistance, or change strategy.",
+      "action_hints": [
+        "retry",
+        "complain",
+        "seek_help",
+        "blame"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "HELP_SEEKING": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A character transfers part of the problem to another character.",
+      "action_hints": [
+        "seek_help",
+        "ask",
+        "approach",
+        "warn"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "HELP_RECEIVED": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A character receiving help must reinterpret the helper's intent.",
+      "action_hints": [
+        "thank",
+        "trust",
+        "question",
+        "reject"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "OFFER_OF_HELP": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An unsolicited intervention creates gratitude, suspicion, or dependency.",
+      "action_hints": [
+        "accept",
+        "thank",
+        "question",
+        "reject"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "REJECTION_OF_HELP": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Refused assistance creates a social consequence rather than ending the interaction.",
+      "action_hints": [
+        "withdraw",
+        "confront",
+        "persist",
+        "observe"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "APOLOGY_OFFERED": {
+      "layer": "L3",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An apology creates a new decision point for the recipient.",
+      "action_hints": [
+        "forgive",
+        "question",
+        "reject",
+        "accept"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "APOLOGY_REJECTED": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Rejected repair attempts convert repair into conflict, distance, or proof-seeking.",
+      "action_hints": [
+        "confront",
+        "withdraw",
+        "justify",
+        "investigate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "TRUST_FORMATION": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A successful interaction increases willingness to cooperate.",
+      "action_hints": [
+        "approach",
+        "help",
+        "share",
+        "protect"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "TRUST_BREAK": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Contradiction or betrayal converts an existing relation into suspicion.",
+      "action_hints": [
+        "confront",
+        "withdraw",
+        "investigate",
+        "accuse"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "MISUNDERSTANDING": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "The same action is interpreted differently by source and target.",
+      "action_hints": [
+        "question",
+        "defend",
+        "accuse",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "MISINTERPRETATION": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A target assigns a different social meaning to an action than intended.",
+      "action_hints": [
+        "confront",
+        "suspect",
+        "withdraw",
+        "clarify"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "ESCALATION": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A local disagreement amplifies into a stronger social conflict.",
+      "action_hints": [
+        "confront",
+        "accuse",
+        "challenge",
+        "retaliate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "DEESCALATION": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A character deliberately reduces the social temperature.",
+      "action_hints": [
+        "apologize",
+        "comfort",
+        "withdraw",
+        "negotiate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "COUNTERACTION": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A target responds to an action with an action of its own.",
+      "action_hints": [
+        "confront",
+        "challenge",
+        "defend",
+        "help"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "RECIPROCAL_HELP": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "One helpful act creates another, producing a cooperation chain.",
+      "action_hints": [
+        "help",
+        "thank",
+        "protect",
+        "approach"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "RECIPROCAL_HOSTILITY": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "One hostile act creates another, producing an adversarial loop.",
+      "action_hints": [
+        "confront",
+        "accuse",
+        "challenge",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "THIRD_PARTY_INTERVENTION": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An observer enters an interaction and changes its direction.",
+      "action_hints": [
+        "intervene",
+        "warn",
+        "support",
+        "separate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "OBSERVER_TAKES_SIDE": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An observer chooses one participant, changing the local power balance.",
+      "action_hints": [
+        "support",
+        "accuse",
+        "defend",
+        "confront"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "OBSERVER_CHALLENGES_BOTH": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An observer rejects both interpretations and forces clarification.",
+      "action_hints": [
+        "question",
+        "challenge",
+        "investigate",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "HIDDEN_MOTIVE_SIGNAL": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "An action contains a clue suggesting that the visible motive is incomplete.",
+      "action_hints": [
+        "observe",
+        "question",
+        "investigate",
+        "suspect"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "SECOND_ORDER_DISCOVERY": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Interaction reveals information unrelated to the surface event.",
+      "action_hints": [
+        "investigate",
+        "question",
+        "share",
+        "confront"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "FALSE_RESOLUTION": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Characters believe the interaction is resolved, but a contradiction remains.",
+      "action_hints": [
+        "observe",
+        "suspect",
+        "withdraw",
+        "investigate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "ROLE_REVERSAL": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "The apparent creator/target relationship flips through a new discovery or response.",
+      "action_hints": [
+        "confront",
+        "help",
+        "question",
+        "protect"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "POWER_SHIFT": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A social action changes who has leverage in the interaction.",
+      "action_hints": [
+        "challenge",
+        "negotiate",
+        "withdraw",
+        "assert"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "UNEXPECTED_ALLIANCE": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Previously opposed characters cooperate because a new common pressure appears.",
+      "action_hints": [
+        "help",
+        "protect",
+        "approach",
+        "negotiate"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "COMMON_THREAT": {
+      "layer": "L3-L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A shared external danger temporarily overrides a local conflict.",
+      "action_hints": [
+        "warn",
+        "help",
+        "protect",
+        "flee"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "MORAL_SPLIT": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Characters agree on the facts but disagree on what should be done.",
+      "action_hints": [
+        "debate",
+        "accuse",
+        "justify",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "PUBLIC_EXPOSURE": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A private interaction becomes visible to others and changes behavior.",
+      "action_hints": [
+        "deny",
+        "justify",
+        "confront",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "REPUTATION_SHIFT": {
+      "layer": "L4",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A character's perceived social standing changes after an interaction.",
+      "action_hints": [
+        "defend",
+        "challenge",
+        "support",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "CONTRADICTION_APPEARS": {
+      "layer": "L4-L5",
+      "kind": "INTERACTION_PATTERN",
+      "description": "New evidence conflicts with the interpretation produced by the previous interaction.",
+      "action_hints": [
+        "question",
+        "investigate",
+        "suspect",
+        "confront"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "PATTERN_BREAK": {
+      "layer": "L4-L5",
+      "kind": "INTERACTION_PATTERN",
+      "description": "The next reaction violates the most likely local expectation and redirects the path.",
+      "action_hints": [
+        "observe",
+        "question",
+        "help",
+        "withdraw"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "QUIET_AFTERMATH": {
+      "layer": "L5",
+      "kind": "INTERACTION_PATTERN",
+      "description": "The interaction loses intensity but leaves a state change that can influence later scenes.",
+      "action_hints": [
+        "reflect",
+        "withdraw",
+        "observe",
+        "approach"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "MICROSCENE_FORMATION": {
+      "layer": "L5",
+      "kind": "INTERACTION_PATTERN",
+      "description": "Several linked reactions stabilize into a coherent short social situation.",
+      "action_hints": [
+        "continue",
+        "resolve",
+        "withdraw",
+        "reframe"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    },
+    "MICROSCENE_TWIST": {
+      "layer": "L5",
+      "kind": "INTERACTION_PATTERN",
+      "description": "A late interaction changes the interpretation of the original event.",
+      "action_hints": [
+        "reveal",
+        "confront",
+        "investigate",
+        "reverse"
+      ],
+      "runtime_role": "Guide Python toward a new social event; never prescribe a fixed storyline.",
+      "reentry": "The resulting social event is fed back into the reaction engine."
+    }
+  },
+  "runtime_cycle": [
+    "L1_EVENT",
+    "L2_REACTION",
+    "L3_INTERACTION",
+    "NEW_SOCIAL_EVENT",
+    "L3_REACTION",
+    "L4_EVOLUTION",
+    "L5_MICROSCENE",
+    "FEEDBACK_OR_TERMINATION"
+  ]
+}
