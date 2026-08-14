@@ -1,0 +1,268 @@
+CHARACTER
+│
+├── 01 IDENTITY
+│   ├── 01.01 character_id
+│   ├── 01.02 character_version
+│   └── 01.03 status
+│
+├── 02 WORLD
+│   ├── 02.01 world_id
+│   ├── 02.02 planet_id
+│   └── 02.03 civilization_id
+│
+├── 03 SPECIES
+│   ├── 03.01 species_id
+│   ├── 03.02 species_variant
+│   └── 03.03 species_role
+│
+├── 04 VISUAL
+│   ├── 04.01 visual_blueprint_id
+│   ├── 04.02 body_form
+│   ├── 04.03 material
+│   ├── 04.04 primary_visual_trait
+│   └── 04.05 visual_variant
+│
+├── 05 CORE_PERSONALITY
+│   ├── 05.01 core_trait_01
+│   ├── 05.02 core_trait_02
+│   └── 05.03 core_trait_03
+│
+├── 06 SECONDARY_PERSONALITY
+│   ├── 06.01 secondary_trait_01
+│   ├── 06.02 secondary_trait_02
+│   ├── 06.03 secondary_trait_03
+│   └── 06.04 secondary_trait_04
+│
+├── 07 EMOTION_PROFILE
+│   │
+│   ├── 07.01 fear
+│   ├── 07.02 guilt
+│   ├── 07.03 panic
+│   ├── 07.04 defensiveness
+│   ├── 07.05 shock
+│   ├── 07.06 anger
+│   ├── 07.07 relief
+│   ├── 07.08 surprise
+│   ├── 07.09 concern
+│   ├── 07.10 curiosity
+│   ├── 07.11 sadness
+│   ├── 07.12 helplessness
+│   ├── 07.13 shame
+│   ├── 07.14 frustration
+│   ├── 07.15 pride
+│   ├── 07.16 hope
+│   ├── 07.17 excitement
+│   ├── 07.18 anxiety
+│   ├── 07.19 sympathy
+│   ├── 07.20 skepticism
+│   ├── 07.21 amusement
+│   ├── 07.22 envy
+│   ├── 07.23 regret
+│   ├── 07.24 greed
+│   ├── 07.25 indifference
+│   ├── 07.26 gratitude
+│   ├── 07.27 joy
+│   ├── 07.28 disgust
+│   └── 07.29 uncertainty
+│
+├── 08 BEHAVIOR_BIAS
+│   ├── 08.01 escalate
+│   ├── 08.02 deescalate
+│   ├── 08.03 withdraw
+│   ├── 08.04 confront
+│   └── 08.05 help
+│
+├── 09 SOCIAL_RESPONSE
+│   ├── 09.01 trust_response
+│   ├── 09.02 harm_response
+│   ├── 09.03 help_response
+│   ├── 09.04 rejection_response
+│   └── 09.05 cooperation_response
+│
+├── 10 INTERNAL_DRIVES
+│   ├── 10.01 survival
+│   ├── 10.02 security
+│   ├── 10.03 belonging
+│   ├── 10.04 status
+│   ├── 10.05 achievement
+│   ├── 10.06 curiosity
+│   └── 10.07 autonomy
+│
+├── 11 VALUES
+│   ├── 11.01 responsibility
+│   ├── 11.02 loyalty
+│   ├── 11.03 fairness
+│   ├── 11.04 freedom
+│   ├── 11.05 compassion
+│   └── 11.06 order
+│
+├── 12 FEARS
+│   ├── 12.01 failure
+│   ├── 12.02 loss
+│   ├── 12.03 rejection
+│   ├── 12.04 humiliation
+│   └── 12.05 helplessness
+│
+├── 13 DESIRES
+│   ├── 13.01 recognition
+│   ├── 13.02 safety
+│   ├── 13.03 connection
+│   ├── 13.04 achievement
+│   └── 13.05 discovery
+│
+├── 14 STRENGTHS
+│   ├── 14.01 emotional
+│   ├── 14.02 social
+│   ├── 14.03 cognitive
+│   └── 14.04 practical
+│
+├── 15 WEAKNESSES
+│   ├── 15.01 emotional
+│   ├── 15.02 social
+│   ├── 15.03 cognitive
+│   └── 15.04 practical
+│
+├── 16 DECISION_TENDENCY
+│   ├── 16.01 cautious
+│   ├── 16.02 impulsive
+│   ├── 16.03 analytical
+│   ├── 16.04 opportunistic
+│   └── 16.05 intuitive
+│
+├── 17 CONFLICT_TENDENCY
+│   ├── 17.01 avoid
+│   ├── 17.02 negotiate
+│   ├── 17.03 confront
+│   ├── 17.04 retaliate
+│   └── 17.05 surrender
+│
+├── 18 COOPERATION_TENDENCY
+│   ├── 18.01 assist
+│   ├── 18.02 reciprocate
+│   ├── 18.03 lead
+│   ├── 18.04 follow
+│   └── 18.05 share
+│
+├── 19 COMMUNICATION_STYLE
+│   ├── 19.01 directness
+│   ├── 19.02 openness
+│   ├── 19.03 emotionality
+│   └── 19.04 verbosity
+│
+├── 20 OBSERVATION_STYLE
+│   ├── 20.01 detail_focus
+│   ├── 20.02 people_focus
+│   ├── 20.03 threat_focus
+│   └── 20.04 opportunity_focus
+│
+├── 21 RISK_PROFILE
+│   ├── 21.01 risk_tolerance
+│   ├── 21.02 uncertainty_tolerance
+│   └── 21.03 danger_response
+│
+├── 22 RESPONSIBILITY_PROFILE
+│   ├── 22.01 self_responsibility
+│   ├── 22.02 other_responsibility
+│   └── 22.03 blame_tendency
+│
+├── 23 TRUST_PROFILE
+│   ├── 23.01 trust_initial
+│   ├── 23.02 trust_gain
+│   ├── 23.03 trust_loss
+│   └── 23.04 trust_recovery
+│
+├── 24 EMPATHY_PROFILE
+│   ├── 24.01 emotional_empathy
+│   ├── 24.02 cognitive_empathy
+│   └── 24.03 compassion
+│
+├── 25 AGGRESSION_PROFILE
+│   ├── 25.01 aggression_baseline
+│   ├── 25.02 aggression_trigger
+│   └── 25.03 aggression_control
+│
+├── 26 CURIOSITY_PROFILE
+│   ├── 26.01 curiosity_baseline
+│   ├── 26.02 novelty_response
+│   └── 26.03 investigation_tendency
+│
+├── 27 ADAPTATION_PROFILE
+│   ├── 27.01 flexibility
+│   ├── 27.02 learning_speed
+│   └── 27.03 resistance_to_change
+│
+├── 28 EMOTION_INERTIA
+│   └── 28.01 value
+│
+├── 29 EMOTION_DECAY
+│   └── 29.01 value
+│
+├── 30 EMOTION_THRESHOLD
+│   ├── 30.01 activation_threshold
+│   └── 30.02 expression_threshold
+│
+├── 31 ACTION_AFFINITY
+│   ├── 31.01 apologize
+│   ├── 31.02 help
+│   ├── 31.03 withdraw
+│   ├── 31.04 confront
+│   ├── 31.05 deescalate
+│   ├── 31.06 escalate
+│   └── 31.07 [additional action keys]
+│
+├── 32 REACTION_PRIORITY
+│   ├── 32.01 self_preservation
+│   ├── 32.02 relationship
+│   ├── 32.03 status
+│   └── 32.04 goal
+│
+├── 33 SOCIAL_SENSITIVITY
+│   ├── 33.01 criticism
+│   ├── 33.02 praise
+│   ├── 33.03 rejection
+│   └── 33.04 approval
+│
+├── 34 SOCIAL_INFLUENCE
+│   ├── 34.01 leadership
+│   ├── 34.02 persuasion
+│   └── 34.03 conformity
+│
+├── 35 GROUP_BEHAVIOR
+│   ├── 35.01 cooperation
+│   ├── 35.02 competition
+│   └── 35.03 conformity
+│
+├── 36 ISOLATION_BEHAVIOR
+│   ├── 36.01 withdrawal
+│   ├── 36.02 self_reliance
+│   └── 36.03 reapproach
+│
+├── 37 ESCALATION_BEHAVIOR
+│   ├── 37.01 trigger
+│   ├── 37.02 speed
+│   └── 37.03 persistence
+│
+├── 38 DEESCALATION_BEHAVIOR
+│   ├── 38.01 trigger
+│   ├── 38.02 speed
+│   └── 38.03 persistence
+│
+├── 39 HELPING_BEHAVIOR
+│   ├── 39.01 willingness
+│   ├── 39.02 sacrifice
+│   └── 39.03 reciprocity
+│
+├── 40 WITHDRAWAL_BEHAVIOR
+│   ├── 40.01 tendency
+│   ├── 40.02 speed
+│   └── 40.03 return_probability
+│
+├── 41 CONFRONTATION_BEHAVIOR
+│   ├── 41.01 tendency
+│   ├── 41.02 intensity
+│   └── 41.03 persistence
+│
+└── 42 FORGIVENESS_BEHAVIOR
+    ├── 42.01 willingness
+    ├── 42.02 speed
+    └── 42.03 permanence
