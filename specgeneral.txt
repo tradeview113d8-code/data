@@ -1,6 +1,6 @@
 # WORLD SIMULATOR
-# SPECGENERAL v3.1
-## General System Map — Data, State Transition and Narrative Production
+# SPECGENERAL v3.2
+## General System Map — Data, State Transition, Loop-Gear and Narrative Production
 
 > Revision purpose:
 > - giữ nguyên các dữ liệu và cấu trúc đã được xây dựng;
@@ -8,7 +8,13 @@
 > - giải thích rõ các tên gọi như GEAR / GEARBOX;
 > - không biến bài test 3 tầng thành kiến trúc cố định;
 > - xác định Interaction Loop linh hoạt là mục tiêu cuối của Social Simulation;
+> - formalize Loop-Gear as a closed-loop causal selection mechanism;
+> - distinguish INTERNAL THOUGHT from EXTERNAL ACTION;
+> - forbid selected external actions that terminate the causal loop unless an explicit terminal rule is active;
+> - treat the 27 story frames as macro narrative grammar, not as the action-selection engine;
 > - phân biệt rõ phần đã thực thi, đã kiểm chứng và phần còn dang dở.
+>
+> v3.2 critical amendment: Loop-Gear is now a causal continuation mechanism, not merely a state→action selector. It explicitly separates internal thought from the selected external action and introduces a hard open-loop/dead-end gate.
 
 ---
 
@@ -628,6 +634,601 @@ This is the mechanism that allows an event to evolve into an interaction rather 
 
 ---
 
+# 10A. CRITICAL DESIGN CORRECTION — LOOP-GEAR
+
+**STATUS: TARGET CORE DESIGN / MUST BE ENFORCED IN THE NEXT ENGINE REVISION**
+
+The previous dry-run established the basic chain:
+
+```text
+STATE → ACTION → IMPACT → NEW STATE
+```
+
+The final system requires a stricter mechanism. A Loop-Gear iteration is not merely an action selector. It is a **causal continuation selector**.
+
+Its job is to answer two separate questions:
+
+```text
+1. What does the actor internally experience / think because of the current state?
+2. What external action should actually be shown and allowed to affect the world?
+```
+
+These two outputs must not be conflated.
+
+## 10A.1 TWO PRODUCTS OF A LOOP-GEAR ITERATION
+
+For each action candidate considered by the engine, the simulation may derive:
+
+```text
+ACTION CANDIDATE
+       ↓
+   ┌───┴──────────────┐
+   ↓                  ↓
+INTERNAL EFFECT    EXTERNAL EFFECT
+(emotion/state)     (observable action)
+```
+
+### Product A — INTERNAL THOUGHT
+
+When an action candidate is considered but is **not selected as the externally manifested action**, its associated emotional/psychological consequence may be retained as an internal narrative product.
+
+Canonical name:
+
+```text
+INTERNAL_THOUGHT
+```
+
+It may represent:
+
+```text
+emotion
+impulse
+private hesitation
+private desire
+private fear
+private interpretation
+private regret
+private temptation
+private alternative response
+```
+
+It does **not** automatically become an external event.
+
+It does not create a target impact merely because it exists.
+
+It may influence the actor's next state, subject to the runtime rules.
+
+### Product B — EXTERNAL ACTION
+
+One selected candidate becomes the externally manifested action:
+
+```text
+EXTERNAL_ACTION / ACTION_TO_SHOW
+```
+
+This is the action that actually enters the interaction graph and may affect another character.
+
+```text
+ACTION_TO_SHOW
+   ↓
+TARGET
+   ↓
+SOCIAL EFFECT
+   ↓
+TARGET STATE CHANGE
+   ↓
+NEW ACTION CANDIDATES
+```
+
+Only this selected action advances the external causal chain.
+
+## 10A.2 NON-SELECTED ACTIONS ARE NOT LOST
+
+The engine should not treat rejected candidates as nonexistent. They may become internal narrative material.
+
+Example:
+
+```text
+A is angry at B
+
+Candidates:
+  confront(B)
+  withdraw()
+  ask(C)
+  forgive(B)
+
+Selected external action:
+  confront(B)
+
+Internal thought material may include:
+  "I could walk away."
+  "Maybe C would understand."
+  "Perhaps I should forgive B."
+```
+
+The engine therefore separates:
+
+```text
+WHAT THE CHARACTER COULD DO / FEELS
+            ≠
+WHAT THE CHARACTER ACTUALLY DOES
+```
+
+The narrative layer may later render this distinction as internal thought versus observable action.
+
+## 10A.3 THE SELECTED ACTION MUST REMAIN CAUSALLY OPEN
+
+The selected external action must not be evaluated only by local plausibility or emotional fit.
+
+It must also be evaluated by whether its simulated consequence leaves the interaction system capable of producing a meaningful continuation.
+
+Hard rule:
+
+> **An external action that creates a dead-end resolution must not be selected during an open interaction loop, unless the active termination policy explicitly permits termination at that step.**
+
+Therefore the engine must distinguish:
+
+```text
+PLAUSIBLE ACTION
+GOOD ACTION
+NARRATIVELY OPEN ACTION
+```
+
+These are not synonyms.
+
+A plausible action can still be a bad simulation action if it closes all future interactions.
+
+## 10A.4 DEAD-END ACTION
+
+An action is a `DEAD_END_ACTION` when, after simulation, it produces no valid continuation under the current interaction rules.
+
+Conceptually:
+
+```text
+ACTION
+  ↓
+SIMULATE IMPACT
+  ↓
+NEW STATE
+  ↓
+GENERATE NEXT ACTIONS
+  ↓
+NO VALID CONTINUATION
+  ↓
+DEAD_END
+```
+
+Typical causes:
+
+```text
+all relevant characters become inactive
+no legal target remains
+all candidate actions are forbidden
+state reaches a terminal condition
+interaction context becomes unrecoverable
+all continuation actions are below the validity threshold
+loop guard blocks every continuation
+```
+
+The exact reason must be recorded, not hidden.
+
+Suggested runtime fields:
+
+```text
+dead_end: bool
+dead_end_reason: enum|string
+continuation_count: int
+continuation_candidates: list
+```
+
+## 10A.5 OPEN LOOP
+
+An action is `OPEN_LOOP` when its simulated consequence leaves at least one valid continuation and preferably creates meaningful new causal possibilities.
+
+Minimum condition:
+
+```text
+continuation_count > 0
+```
+
+Preferred condition:
+
+```text
+continuation_count > 0
+AND
+state_changed_meaningfully = true
+```
+
+A stronger action may additionally satisfy:
+
+```text
+multiple actors affected
+OR
+new target becomes relevant
+OR
+conflict direction changes
+OR
+emotional polarity changes
+OR
+new action class becomes available
+OR
+existing problem is transformed rather than erased
+```
+
+## 10A.6 FALSE RESOLUTION IS ALLOWED; DEAD-END RESOLUTION IS NOT
+
+The system must distinguish two concepts:
+
+```text
+FALSE / TEMPORARY RESOLUTION
+        vs
+DEAD-END RESOLUTION
+```
+
+A temporary resolution is acceptable because it changes the state while leaving a causal mechanism that can generate another problem.
+
+A dead-end resolution closes the causal graph.
+
+Therefore:
+
+```text
+PROBLEM
+  ↓
+ACTION
+  ↓
+TEMPORARY RELIEF
+  ↓
+HIDDEN CONSEQUENCE
+  ↓
+NEW PROBLEM
+```
+
+is valid, while:
+
+```text
+PROBLEM
+  ↓
+ACTION
+  ↓
+COMPLETE RESOLUTION
+  ↓
+NO CONSEQUENCE
+  ↓
+STOP
+```
+
+is invalid unless the simulation is intentionally terminating.
+
+This is consistent with the 27-frame narrative material, where `False Resolution` repeatedly acts as a temporary safety state before a twist, failure, renewed resolve or cliffhanger.
+
+## 10A.7 LOOK-AHEAD REQUIREMENT
+
+The engine should not select an external action solely from:
+
+```text
+current_state → candidate_action → local_score
+```
+
+Instead:
+
+```text
+current_state
+    ↓
+action candidates
+    ↓
+for each candidate:
+    simulate impact
+    ↓
+    derive resulting states
+    ↓
+    generate next-action candidates
+    ↓
+    validate continuation
+    ↓
+    score causal openness
+    ↓
+select one valid external action
+```
+
+This is a **look-ahead of at least one causal step**.
+
+A deeper look-ahead may be introduced later, but the one-step continuation test is the minimum architectural requirement for preventing obvious dead ends.
+
+## 10A.8 ACTION SELECTION SCORE
+
+The exact numerical formula remains pending, but the conceptual score must contain at least two classes of criteria.
+
+### Local validity
+
+```text
+emotion fit
+action affinity
+context compatibility
+target compatibility
+behavioral plausibility
+```
+
+### Continuation quality
+
+```text
+open_loop
+continuation_count
+state_change magnitude
+number of affected actors
+new interaction opportunities
+conflict transformation
+reversal potential
+non-repetition
+```
+
+A candidate with excellent local fit but zero continuation must lose to a valid open candidate.
+
+The system must therefore not allow:
+
+```text
+local_score = 0.95
+continuation = 0
+→ SELECT
+```
+
+while a valid alternative exists.
+
+## 10A.9 HARD GATE BEFORE SCORING
+
+Recommended execution order:
+
+```text
+GENERATE CANDIDATES
+        ↓
+VALIDATE CANDIDATE
+        ↓
+SIMULATE CONSEQUENCE
+        ↓
+CHECK CONTINUATION
+        ↓
+┌───────────────┐
+│ DEAD END ?    │
+└───────┬───────┘
+    YES │ NO
+        │  ↓
+     REJECT  SCORE
+             ↓
+          RANK
+             ↓
+          SELECT
+```
+
+This ordering is important.
+
+`DEAD_END` should normally be a **hard rejection**, not merely a negative score component.
+
+## 10A.10 EXCEPTION — INTENTIONAL TERMINAL ACTION
+
+The system may eventually support explicit terminal actions.
+
+Example:
+
+```text
+TERMINAL_ACTION = true
+TERMINATION_POLICY = allow
+```
+
+Only then may a dead-end action be selected.
+
+This prevents accidental termination from being mistaken for intentional story closure.
+
+---
+
+# 10B. LOOP-GEAR FORMAL MODEL
+
+A Loop-Gear iteration can be represented as:
+
+```text
+L_t = (S_t, C_t, R_t, A_t)
+```
+
+where:
+
+```text
+S_t = current runtime state
+C_t = current interaction context
+R_t = available rules / dictionaries
+A_t = action candidate set
+```
+
+For every candidate `a_i`:
+
+```text
+(S_t, a_i)
+    ↓
+SIMULATE
+    ↓
+S'_i
+    ↓
+GENERATE NEXT ACTIONS
+    ↓
+N_i
+```
+
+where `N_i` is the set of valid next actions.
+
+Then:
+
+```text
+if |N_i| == 0
+    candidate = DEAD_END
+else
+    candidate = OPEN_LOOP
+```
+
+Selection is then:
+
+```text
+a* = argmax Score(a_i)
+```
+subject to:
+
+```text
+valid(a_i) = true
+open_loop(a_i) = true
+```
+unless a terminal policy explicitly overrides the open-loop requirement.
+
+## 10B.1 INTERNAL THOUGHT FORMALIZATION
+
+For non-selected candidates, the engine may preserve an internal representation:
+
+```text
+thought_i = f(emotion_i, impulse_i, rejected_action_i, context)
+```
+
+The selected external action is:
+
+```text
+a* = selected candidate
+```
+
+Therefore one simulation step can output:
+
+```text
+STEP_RESULT
+├── internal_thoughts[]
+├── selected_action
+├── target
+├── impact
+├── resulting_state
+├── continuation_status
+└── trace metadata
+```
+
+This is the canonical separation for future implementation.
+
+## 10B.2 IMPORTANT: INTERNAL THOUGHT DOES NOT EQUAL SIMULATION BRANCH
+
+The presence of an internal thought must not cause the engine to execute that rejected action.
+
+```text
+thought = "I should run away"
+
+DO NOT automatically execute:
+run_away()
+```
+
+The thought is narrative/state material.
+The selected external action is causal execution material.
+
+This distinction prevents the narrative layer from accidentally rewriting the actual path.
+
+## 10B.3 ACTION-TO-SHOW CONTRACT
+
+The selected action must be recorded explicitly:
+
+```text
+action_to_show
+```
+
+Minimum fields:
+
+```text
+action_id
+actor_id
+target_id
+context
+pre_state_snapshot
+selection_reason
+local_score
+continuation_score
+open_loop
+simulated_post_state
+impact
+```
+
+The narrative renderer receives this action as an observed causal fact.
+
+---
+
+# 10C. LOOP-GEAR VS 27 STORY FRAMES
+
+The 27 story frames and Loop-Gear operate at different abstraction levels.
+
+```text
+LOOP-GEAR
+= generates causal events
+
+27 STORY FRAMES
+= organizes / interprets causal events into a narrative macro-arc
+```
+
+The 27 frames must not prescribe:
+
+```text
+which character acts
+which target is chosen
+which action is executed
+which emotion must occur
+which causal consequence must occur
+```
+
+Instead, the simulation produces an actual path. The narrative layer can then map or select path segments that satisfy the required macro functions.
+
+## 10C.1 COMMON STORY CORE
+
+The recurring narrative mechanism can be abstracted as:
+
+```text
+PROBLEM
+   ↓
+ATTEMPT / ACTION
+   ↓
+TEMPORARY CHANGE
+   ↓
+CONSEQUENCE / FAILURE / REVELATION
+   ↓
+NEW PROBLEM
+   ↓
+NEW ATTEMPT
+   ↓
+...
+```
+
+This is compatible with the recurring `False Resolution → Twist / Failure → New Resolve → Cliffhanger` structure present in the existing 27-frame material.
+
+Therefore the simulator should optimize for **causal continuation**, while the narrative layer optimizes for **macro narrative placement**.
+
+## 10C.2 DO NOT CONFUSE SOLUTION WITH TERMINATION
+
+A character may attempt to solve a problem.
+The action can succeed locally.
+The action can even reduce the current emotion.
+
+That does not require the interaction loop to terminate.
+
+Example:
+
+```text
+Problem: A distrusts B
+
+Action:
+A confronts B
+
+Local result:
+B explains the situation
+A trust increases
+
+But:
+C overhears the conversation
+C interprets it differently
+C acts against B
+
+Therefore:
+local resolution = TRUE
+causal closure = FALSE
+```
+
+This is a valid open loop.
+
+---
+
 # 10. THE THREE-LAYER DRY-RUN IS NOT THE FINAL ARCHITECTURE
 
 **STATUS: TEST SCENARIO ONLY**
@@ -679,7 +1280,7 @@ Therefore:
 
 # 11. FLEXIBLE INTERACTION SELECTION
 
-**STATUS: TARGET DESIGN / PARTIALLY IMPLEMENTED**
+**STATUS: TARGET DESIGN / IN DEVELOPMENT — LOOP-GEAR CORE REFINEMENT REQUIRED**
 
 The final system should not contain a fixed script such as:
 
@@ -1135,11 +1736,19 @@ CHARACTER-POOL
 │       ↓                               │
 │ Character state calculation           │
 │       ↓                               │
-│ Action selection                      │
+│ Generate action candidates             │
 │       ↓                               │
-│ Target selection                      │
+│ Internal-thought derivation            │
 │       ↓                               │
-│ State impact                          │
+│ Simulate candidate consequences        │
+│       ↓                               │
+│ Continuation / dead-end gate           │
+│       ↓                               │
+│ Select external action-to-show         │
+│       ↓                               │
+│ Target selection                       │
+│       ↓                               │
+│ State impact                           │
 │       ↓                               │
 │ New actor / target selection          │
 │       ↓                               │
@@ -1421,8 +2030,8 @@ The existing General specification correctly requires an execution group to be m
 | Character interaction test | **PASS / LIMITED** |
 | Seed determinism | **PASS** |
 | State trace / Actual Path | **PASS** |
-| Flexible interaction engine | **IN DEVELOPMENT** |
-| Microscene generation | **PARTIAL** |
+| Flexible interaction engine | **IN DEVELOPMENT — LOOP-GEAR OPEN-LOOP GATE REQUIRED** |
+| Microscene generation | **PARTIAL — MUST CONSUME ACTUAL PATH, NOT INVENT CAUSAL ACTIONS** |
 | Microscene scoring | **PENDING** |
 | Raw Script | **PENDING** |
 | Real-news reinsertion | **PENDING** |
@@ -1513,7 +2122,7 @@ No repository bypasses the data contract. fileciteturn123file7L893-L911
 
 # 34. CURRENT WORLD SIMULATOR IN ONE SENTENCE
 
-> **World Simulator receives real-world events, converts them into structured event parameters, applies those parameters to characters with different behavioral coefficients, lets Python repeatedly calculate state → action → impact transitions, records the resulting path, and only then turns selected interaction paths into narrative.**
+> **World Simulator receives real-world events, converts them into structured event parameters, applies those parameters to characters with different behavioral coefficients, lets Python repeatedly calculate state → candidate actions → consequence simulation → open-loop validation → selected external action → impact → new state transitions, records the resulting path, and only then turns selected interaction paths into narrative.**
 
 ---
 
@@ -1621,6 +2230,296 @@ WEIGHTED RANDOMNESS
 +
 NARRATIVE RENDERING
 ```
+
+---
+
+# 35A. NON-NEGOTIABLE LOOP-GEAR INVARIANTS
+
+The following rules are now part of SPECGENERAL and must be treated as architectural invariants for future implementation.
+
+### INVARIANT 1 — TWO OUTPUT CLASSES
+
+Every Loop-Gear decision distinguishes:
+
+```text
+INTERNAL_THOUGHT
+vs
+EXTERNAL_ACTION_TO_SHOW
+```
+
+### INVARIANT 2 — ONLY THE SELECTED EXTERNAL ACTION ENTERS THE SOCIAL GRAPH
+
+Rejected action candidates may become internal thought/state material, but they do not automatically execute.
+
+### INVARIANT 3 — NO ACCIDENTAL DEAD-END
+
+An external action must pass a continuation test before selection whenever the loop is expected to continue.
+
+### INVARIANT 4 — OPEN LOOP IS A HARD REQUIREMENT
+
+If a valid open candidate exists, a dead-end candidate must not win merely because it has a higher local emotional score.
+
+### INVARIANT 5 — FALSE RESOLUTION IS VALID
+
+A local solution is allowed when it transforms the state but leaves a causal consequence or continuation opportunity.
+
+### INVARIANT 6 — 27 FRAMES DO NOT DRIVE PYTHON ACTION SELECTION
+
+The 27 frames are narrative grammar. Loop-Gear is causal simulation.
+
+### INVARIANT 7 — PYTHON OWNS CAUSALITY
+
+Python determines:
+
+```text
+actor
+action
+target
+impact
+state transition
+continuation
+termination
+```
+
+LLM determines language realization only, unless a future explicit contract grants additional authority.
+
+### INVARIANT 8 — ACTUAL PATH IS AUTHORITATIVE
+
+Once an external action has been executed, the Actual Path is the authoritative record of what happened. Narrative generation must not silently replace it with a more convenient action.
+
+### INVARIANT 9 — TERMINATION MUST BE EXPLICIT
+
+The engine must distinguish:
+
+```text
+NATURAL TERMINATION
+RULE-BASED TERMINATION
+DEAD-END
+MAX-DEPTH STOP
+BUDGET STOP
+ERROR STOP
+```
+
+These must never be collapsed into one generic `stop=true`.
+
+### INVARIANT 10 — REPLAYABILITY
+
+Given identical:
+
+```text
+input package
+character parameters
+static dictionaries
+configuration
+seed
+```
+
+the same simulation path should be reproducible.
+
+---
+
+# 35B. RECOMMENDED RUNTIME OBJECT MODEL
+
+The exact implementation language/schema remains open, but the conceptual runtime objects should be separated.
+
+```text
+SimulationRun
+├── run_id
+├── seed
+├── input_event
+├── character_pool
+├── configuration
+├── runtime_state
+├── steps[]
+├── termination
+└── actual_path
+```
+
+Each step:
+
+```text
+InteractionStep
+├── step_id
+├── actor_id
+├── pre_state
+├── candidate_actions[]
+├── internal_thoughts[]
+├── selected_action
+├── target_id
+├── impact
+├── post_state
+├── continuation_analysis
+└── trace_metadata
+```
+
+Each candidate:
+
+```text
+ActionCandidate
+├── action_id
+├── actor_id
+├── target_id / target_candidates
+├── source_emotion
+├── local_score
+├── simulated_impact
+├── simulated_post_state
+├── continuation_count
+├── open_loop
+├── dead_end
+├── rejection_reason
+└── internal_thought_projection
+```
+
+This is a conceptual contract, not yet a required database schema.
+
+---
+
+# 35C. LOOP-GEAR EXECUTION PSEUDOCODE
+
+The target behavior can be expressed as:
+
+```python
+while interaction_is_valid:
+    actor = select_actor(runtime_state)
+
+    candidates = generate_action_candidates(
+        actor=actor,
+        state=runtime_state,
+        context=interaction_context,
+    )
+
+    evaluated = []
+    internal_thoughts = []
+
+    for candidate in candidates:
+        simulation = simulate_candidate(
+            candidate,
+            runtime_state,
+            interaction_context,
+        )
+
+        continuation = evaluate_continuation(
+            simulation.post_state,
+            interaction_context,
+        )
+
+        candidate.continuation_count = continuation.count
+        candidate.open_loop = continuation.is_open
+        candidate.dead_end = not continuation.is_open
+
+        if candidate.dead_end:
+            internal_thoughts.append(
+                derive_internal_thought(candidate, simulation)
+            )
+            continue
+
+        candidate.score = score_candidate(
+            candidate,
+            simulation,
+            continuation,
+        )
+        evaluated.append(candidate)
+
+    selected = select_external_action(evaluated)
+
+    if selected is None:
+        terminate_with_reason(runtime_state)
+        break
+
+    apply_action(selected)
+    record_step(
+        internal_thoughts=internal_thoughts,
+        selected_action=selected,
+    )
+```
+
+The pseudocode is illustrative. It is not source code and must not be mistaken for an already implemented worker.
+
+---
+
+# 35D. QA REQUIREMENTS FOR LOOP-GEAR
+
+Before Loop-Gear is considered validated, tests must cover at minimum:
+
+```text
+1. same state + same seed → same path
+2. same news + different characters → different states
+3. rejected action → internal thought only
+4. selected action → external state impact
+5. dead-end candidate is rejected
+6. open candidate beats dead-end candidate
+7. false resolution can continue through consequence
+8. target can change dynamically
+9. third character can enter dynamically
+10. interaction direction can reverse
+11. termination reason is explicit
+12. maximum depth prevents infinite loops
+13. repeated actions are controlled by loop guards
+14. actual path contains only executed external actions
+15. narrative layer cannot mutate causal facts
+```
+
+A test that only demonstrates `A → B → A` is insufficient to validate the final architecture.
+
+---
+
+# 35E. RELATIONSHIP TO NARRATIVE QUALITY
+
+The engine is not required to guarantee that every generated path is a good story.
+
+Its responsibility is narrower and more fundamental:
+
+```text
+produce valid, causally connected, replayable interaction paths
+```
+
+Narrative scoring then evaluates whether a path contains useful material such as:
+
+```text
+problem
+response
+change
+consequence
+escalation
+reversal
+false resolution
+new problem
+cliffhanger potential
+```
+
+This separation prevents the state engine from becoming a hidden LLM story writer.
+
+---
+
+# 35F. UPDATED SYSTEM PRINCIPLE
+
+The World Simulator is therefore best understood as a system with two distinct creative mechanisms:
+
+```text
+MECHANICAL EMERGENCE
+====================
+Python
+state transitions
+action selection
+target selection
+weighted randomness
+open-loop continuation
+actual path
+
+NARRATIVE INTERPRETATION
+========================
+LLM
+internal-thought language
+dialogue
+description
+scene rendering
+macro-arc arrangement
+narrative unification
+```
+
+The causal path must exist before the final language rendering.
+
+The narrative layer may interpret the path, but must not retroactively fabricate the causal path.
 
 ---
 
