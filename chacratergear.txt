@@ -1,0 +1,204 @@
+{
+  "version": "1.0",
+  "name": "CHARACTER_EMOTION",
+  "purpose": "Fixed emotional-response profile for a World Simulator character. It is combined with EVENT_EMOTION at runtime; it does not represent the character's current emotion.",
+  "source_basis": {
+    "event_emotion_dictionary": "EVENT_EMOTION_DICTIONARY_v1",
+    "rule": "Use the same emotion keys as EVENT_EMOTION_DICTIONARY so Python can match identical keys without understanding their natural-language meaning."
+  },
+  "schema": {
+    "character_id": "string",
+    "emotion_profile": {
+      "<emotion_key>": {
+        "sensitivity": "0.0-1.0",
+        "expression": "0.0-1.0"
+      }
+    },
+    "behavior_bias": {
+      "escalate": "0.0-1.0",
+      "deescalate": "0.0-1.0",
+      "withdraw": "0.0-1.0",
+      "confront": "0.0-1.0",
+      "help": "0.0-1.0"
+    }
+  },
+  "emotion_keys": [
+    "fear",
+    "guilt",
+    "panic",
+    "defensiveness",
+    "shock",
+    "anger",
+    "relief",
+    "surprise",
+    "concern",
+    "curiosity",
+    "sadness",
+    "helplessness",
+    "shame",
+    "frustration",
+    "pride",
+    "hope",
+    "excitement",
+    "anxiety",
+    "sympathy",
+    "skepticism",
+    "amusement",
+    "envy",
+    "regret",
+    "greed",
+    "indifference",
+    "gratitude",
+    "joy",
+    "disgust",
+    "uncertainty"
+  ],
+  "demo_characters": [
+    {
+      "character_id": "CHAR_A",
+      "description": "Calm, responsible, empathetic character. Tends to accept responsibility and de-escalate conflict.",
+      "emotion_profile": {
+        "fear": {
+          "sensitivity": 0.3,
+          "expression": 0.25
+        },
+        "guilt": {
+          "sensitivity": 0.85,
+          "expression": 0.8
+        },
+        "panic": {
+          "sensitivity": 0.2,
+          "expression": 0.15
+        },
+        "defensiveness": {
+          "sensitivity": 0.2,
+          "expression": 0.2
+        },
+        "shock": {
+          "sensitivity": 0.45,
+          "expression": 0.3
+        },
+        "anger": {
+          "sensitivity": 0.2,
+          "expression": 0.15
+        },
+        "relief": {
+          "sensitivity": 0.75,
+          "expression": 0.7
+        },
+        "surprise": {
+          "sensitivity": 0.4,
+          "expression": 0.3
+        },
+        "concern": {
+          "sensitivity": 0.85,
+          "expression": 0.8
+        },
+        "curiosity": {
+          "sensitivity": 0.55,
+          "expression": 0.5
+        },
+        "sadness": {
+          "sensitivity": 0.6,
+          "expression": 0.55
+        },
+        "helplessness": {
+          "sensitivity": 0.3,
+          "expression": 0.25
+        },
+        "shame": {
+          "sensitivity": 0.65,
+          "expression": 0.55
+        },
+        "frustration": {
+          "sensitivity": 0.35,
+          "expression": 0.3
+        },
+        "pride": {
+          "sensitivity": 0.4,
+          "expression": 0.35
+        },
+        "hope": {
+          "sensitivity": 0.7,
+          "expression": 0.65
+        },
+        "excitement": {
+          "sensitivity": 0.35,
+          "expression": 0.3
+        },
+        "anxiety": {
+          "sensitivity": 0.25,
+          "expression": 0.2
+        },
+        "sympathy": {
+          "sensitivity": 0.9,
+          "expression": 0.85
+        },
+        "skepticism": {
+          "sensitivity": 0.35,
+          "expression": 0.3
+        },
+        "amusement": {
+          "sensitivity": 0.4,
+          "expression": 0.4
+        },
+        "envy": {
+          "sensitivity": 0.1,
+          "expression": 0.1
+        },
+        "regret": {
+          "sensitivity": 0.75,
+          "expression": 0.7
+        },
+        "greed": {
+          "sensitivity": 0.05,
+          "expression": 0.05
+        },
+        "indifference": {
+          "sensitivity": 0.15,
+          "expression": 0.15
+        },
+        "gratitude": {
+          "sensitivity": 0.75,
+          "expression": 0.7
+        },
+        "joy": {
+          "sensitivity": 0.6,
+          "expression": 0.6
+        },
+        "disgust": {
+          "sensitivity": 0.2,
+          "expression": 0.15
+        },
+        "uncertainty": {
+          "sensitivity": 0.4,
+          "expression": 0.35
+        }
+      },
+      "behavior_bias": {
+        "escalate": 0.1,
+        "deescalate": 0.9,
+        "withdraw": 0.35,
+        "confront": 0.2,
+        "help": 0.85
+      }
+    }
+  ],
+  "runtime_formula": {
+    "candidate_score": "EVENT_EMOTION[role][emotion] * CHARACTER_EMOTION[emotion].sensitivity",
+    "expression_score": "candidate_score * CHARACTER_EMOTION[emotion].expression",
+    "note": "The resulting score is a selection weight, not a claim about a universal human reaction."
+  },
+  "runtime_state_separation": {
+    "fixed": [
+      "emotion_profile",
+      "behavior_bias"
+    ],
+    "variable": [
+      "selected_emotion",
+      "emotion_intensity",
+      "reaction",
+      "event_id"
+    ]
+  }
+}
