@@ -1,0 +1,495 @@
+{
+  "metadata": {
+    "description": "World Simulator JSONData V7 - Arrakis Deep Erg Dune Environment (Dune)",
+    "version": "7.0",
+    "tree_schema": "TreeData V7",
+    "template": "Scene_Master_Template",
+    "author": "Data Acquisition Worker",
+    "created_at": "2026-08-22",
+    "updated_at": "2026-08-22",
+    "notes": "Processed through Step 3, Step 4 (Logic Inference), and Step 5 (Biological Humanization)."
+  },
+
+  "Scene.Cosmology_Worldbuilding.Universe_Type": "Sci-Fi Universe[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span)",
+  "Scene.Cosmology_Worldbuilding.Multiverse_Structure": "Single Universe[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span)",
+  "Scene.Cosmology_Worldbuilding.Dimension_Count": "3-Dimensional Space[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)",
+  "Scene.Cosmology_Worldbuilding.Reality_Layer": "Physical Material[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)",
+
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Gravity_Type": "Standard Terrestrial[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span)",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Time_Flow_Rate": "Linear Standard[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Space_Dimension": "Euclidean 3D[span_12](start_span)[span_12](end_span)[span_13](start_span)[span_13](end_span)",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Energy_Source_Primary": "Solar & Melange[span_14](start_span)[span_14](end_span)[span_15](start_span)[span_15](end_span)",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Thermodynamic_Rule": "Conservation of Energy[span_16](start_span)[span_16](end_span)[span_17](start_span)[span_17](end_span)",
+  "Scene.Cosmology_Worldbuilding.Physics_Law.Causality_Type": "Deterministic[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)",
+
+  "Scene.Cosmology_Worldbuilding.Magic_System.Magic_Type": "Psionic & Spice-induced Awareness[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span)",
+  "Scene.Cosmology_Worldbuilding.Magic_Source": "Melange Spice[span_22](start_span)[span_22](end_span)[span_23](start_span)[span_23](end_span)",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Casting_Method": "Mental Discipline & Voice Modulation[span_24](start_span)[span_24](end_span)[span_25](start_span)[span_25](end_span)",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Spell_Visual": "Blue-in-Blue Eyes Shimmer[span_26](start_span)[span_26](end_span)[span_27](start_span)[span_27](end_span)",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Cost_Consequence": "Severe Addiction[span_28](start_span)[span_28](end_span)[span_29](start_span)[span_29](end_span)",
+  "Scene.Cosmology_Worldbuilding.Magic_System.Limitation_Rule": "Genetic Vulnerability[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span)",
+
+  "Scene.Cosmology_Worldbuilding.Civilization.Society_Type": "Feudal Interstellar Empire[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Tech_Level": "Advanced Spacefaring (Butlerian Jihad constraints)[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Culture": "Desert Nomadic & Imperial Court[span_36](start_span)[span_36](end_span)[span_37](start_span)[span_37](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Religion_Belief": "Zensunni Catholicism[span_38](start_span)[span_38](end_span)[span_39](start_span)[span_39](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Language_Script": "Chakobsa & Galach[span_40](start_span)[span_40](end_span)[span_41](start_span)[span_41](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Economy_System": "Spice Monopoly[span_42](start_span)[span_42](end_span)[span_43](start_span)[span_43](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Political_Structure": "Imperium & Great Houses[span_44](start_span)[span_44](end_span)[span_45](start_span)[span_45](end_span)",
+  "Scene.Cosmology_Worldbuilding.Civilization.Architecture_Style": "Utilitarian Brutalist Sietch[span_46](start_span)[span_46](end_span)[span_47](start_span)[span_47](end_span)",
+
+  "Scene.Cosmology_Worldbuilding.History_Lore.Era": "Imperial Era[span_48](start_span)[span_48](end_span)[span_49](start_span)[span_49](end_span)",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Epoch": "Arrakis Dune Phase[span_50](start_span)[span_50](end_span)[span_51](start_span)[span_51](end_span)",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Mythic_Event": "The Butlerian Jihad[span_52](start_span)[span_52](end_span)[span_53](start_span)[span_53](end_span)",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Legend": "The Lisan al-Gaib[span_54](start_span)[span_54](end_span)[span_55](start_span)[span_55](end_span)",
+  "Scene.Cosmology_Worldbuilding.History_Lore.Prophecy": "The Kwisatz Haderach Awakening[span_56](start_span)[span_56](end_span)[span_57](start_span)[span_57](end_span)",
+
+  "Scene.Cosmology_Worldbuilding.Ecology.Biome": "Hyper-Arid Desert[span_58](start_span)[span_58](end_span)[span_59](start_span)[span_59](end_span)",
+  "Scene.Cosmology_Worldbuilding.Ecology.Food_Web": "Sandworm-centric Desert Trophic Web[span_60](start_span)[span_60](end_span)[span_61](start_span)[span_61](end_span)",
+  "Scene.Cosmology_Worldbuilding.Ecology.Species_Diversity": "Extremely Low (Extreme Adaptation)[span_62](start_span)[span_62](end_span)[span_63](start_span)[span_63](end_span)",
+  "Scene.Cosmology_Worldbuilding.Ecology.Evolutionary_Stage": "Extreme Desert Specialization[span_64](start_span)[span_64](end_span)[span_65](start_span)[span_65](end_span)",
+  "Scene.Cosmology_Worldbuilding.Ecology.Symbiosis_Type": "Sandtrout-Spice Cycle[span_66](start_span)[span_66](end_span)[span_67](start_span)[span_67](end_span)",
+
+  "Scene.Subject.Group_Dynamic.Group_Size": "Sietch Tribe Squad (12 individuals)",
+  "Scene.Subject.Group_Dynamic.Formation": "V-Line Desert March",
+  "Scene.Subject.Group_Dynamic.Relationship": "Blood Oath Brothers",
+  "Scene.Subject.Group_Dynamic.Hierarchy": "Naib Led Command",
+  "Scene.Subject.Group_Dynamic.Interaction_Type": "Tactical Hand Signs",
+
+  "Scene.Subject.Creature.Identity": "Fremen Warrior",
+  "Scene.Subject.Creature.Breed": "Zensunni Human Strain",
+  "Scene.Subject.Creature.Species_Class": "Humanoid",
+  "Scene.Subject.Creature.Ethnicity_Culture": "Arrakis Desert Native",
+  "Scene.Subject.Creature.State_Condition": "Vigorous Survival Alertness",
+  "Scene.Subject.Creature.Pose_Action": "Bipedal Crouch on Sand Dune Crest",
+  "Scene.Subject.Creature.Expression": "Stoic Intensity",
+  "Scene.Subject.Creature.Emotion": "Resolute Focus",
+
+  "Scene.Subject.Creature.Head.Skull.Shape": "Dolichocephalic",
+  "Scene.Subject.Creature.Head.Skull.Width": "Medium",
+  "Scene.Subject.Creature.Head.Skull.Height": "Standard Bipedal",
+  "Scene.Subject.Creature.Head.Skull.Depth": "Balanced Proportional",
+
+  "Scene.Subject.Creature.Head.Hair.Style": "Tightly Braided",
+  "Scene.Subject.Creature.Head.Hair.Length": "Mid-Back",
+  "Scene.Subject.Creature.Head.Hair.Density": "High",
+  "Scene.Subject.Creature.Head.Hair.Flow_Direction": "Backward Downward",
+
+  "Scene.Subject.Creature.Head.Horn.Attach_Position": null,
+  "Scene.Subject.Creature.Head.Horn.Growth_Direction": null,
+  "Scene.Subject.Creature.Head.Horn.Curvature": null,
+  "Scene.Subject.Creature.Head.Horn.Length": null,
+  "Scene.Subject.Creature.Head.Horn.Thickness": null,
+  "Scene.Subject.Creature.Head.Horn.Symmetry": null,
+
+  "Scene.Subject.Creature.Head.Crest.Attach_Position": null,
+  "Scene.Subject.Creature.Head.Crest.Growth_Direction": null,
+  "Scene.Subject.Creature.Head.Crest.Shape": null,
+  "Scene.Subject.Creature.Head.Crest.Length": null,
+  "Scene.Subject.Creature.Head.Crest.Thickness": null,
+
+  "Scene.Subject.Creature.Head.Decoration": "Filtered Nose Plug Line",
+
+  "Scene.Subject.Creature.Head.Face.Face_Shape": "Lean Angular",
+  "Scene.Subject.Creature.Head.Face.Face_Depth": "Deep Set Features",
+
+  "Scene.Subject.Creature.Head.Forehead": "Weathered Smooth",
+
+  "Scene.Subject.Creature.Head.Eye.Eye_Shape": "Almond Piercing",
+  "Scene.Subject.Creature.Head.Eye.Eye_Size": "Standard Human",
+  "Scene.Subject.Creature.Head.Eye.Eye_Spacing": "Standard",
+  "Scene.Subject.Creature.Head.Eye.Eye_Depth": "Socketed Deep",
+
+  "Scene.Subject.Creature.Head.Eyebrow": "Thin Dark Arch",
+  "Scene.Subject.Creature.Head.Eyelash": "Short Dark",
+
+  "Scene.Subject.Creature.Head.Nose.Nose_Profile": "Straight Aquiline",
+  "Scene.Subject.Creature.Head.Nose.Nose_Length": "Medium Long",
+  "Scene.Subject.Creature.Head.Nose.Nose_Width": "Narrow",
+
+  "Scene.Subject.Creature.Head.Mouth.Mouth_Width": "Medium",
+  "Scene.Subject.Creature.Head.Mouth.Lip_Profile": "Thin Firm",
+
+  "Scene.Subject.Creature.Head.Teeth": "Complete Uniform White",
+  "Scene.Subject.Creature.Head.Tongue": "Standard Human",
+
+  "Scene.Subject.Creature.Head.Ear.Attach_Position": "Mid-Head Level",
+  "Scene.Subject.Creature.Head.Ear.Ear_Direction": "Lateral Flat",
+  "Scene.Subject.Creature.Head.Ear.Ear_Length": "Compact",
+
+  "Scene.Subject.Creature.Head.Beard": "Clean Shaven",
+  "Scene.Subject.Creature.Head.Marking_Scar": "Minor Windburn Lines",
+  "Scene.Subject.Creature.Head.Prosthetic_Implant": null,
+
+  "Scene.Subject.Creature.Neck.Length": "Medium",
+  "Scene.Subject.Creature.Neck.Thickness": "Muscular Compact",
+
+  "Scene.Subject.Creature.Torso.Back": "Straight Erect",
+
+  "Scene.Subject.Creature.Torso.Shoulder.Width": "Broad Athletic",
+  "Scene.Subject.Creature.Torso.Shoulder.Slope": "Slightly Sloped",
+
+  "Scene.Subject.Creature.Torso.Chest.Width": "Wide Expandable",
+  "Scene.Subject.Creature.Torso.Chest.Depth": "Deep Barrel",
+
+  "Scene.Subject.Creature.Torso.Abdomen": "Toned Lean Muscle",
+
+  "Scene.Subject.Creature.Torso.Hip.Width": "Balanced Bipedal",
+
+  "Scene.Subject.Creature.Torso.Marking_Tattoo": "Sietch Clan Brand",
+
+  "Scene.Subject.Creature.Arm.Length": "Proportional Long",
+  "Scene.Subject.Creature.Arm.Thickness": "Wiry Strong",
+  "Scene.Subject.Creature.Arm.Attach_Position": "High Shoulder Joint",
+  "Scene.Subject.Creature.Arm.Hand": "Dexterous Palm",
+  "Scene.Subject.Creature.Arm.Finger": "Long Articulate Digits",
+  "Scene.Subject.Creature.Arm.Gesture": "Ready Grip",
+
+  "Scene.Subject.Creature.Leg.Length": "Long Stride",
+  "Scene.Subject.Creature.Leg.Thickness": "Lean Muscular",
+  "Scene.Subject.Creature.Leg.Attach_Position": "Low Pelvic Joint",
+  "Scene.Subject.Creature.Leg.Foot": "Flat Stable Arch",
+  "Scene.Subject.Creature.Leg.Toe": "Balanced Gripping",
+  "Scene.Subject.Creature.Leg.Gait": "Thumper Rhythm Walk",
+
+  "Scene.Subject.Creature.Tail.Attach_Position": null,
+  "Scene.Subject.Creature.Tail.Growth_Direction": null,
+  "Scene.Subject.Creature.Tail.Length": null,
+  "Scene.Subject.Creature.Tail.Curvature": null,
+  "Scene.Subject.Creature.Tail.Thickness": null,
+
+  "Scene.Subject.Creature.Wing.Wing_Type": null,
+  "Scene.Subject.Creature.Wing.Wing_State": null,
+  "Scene.Subject.Creature.Wing.Attach_Position": null,
+  "Scene.Subject.Creature.Wing.Wing_Span": null,
+  "Scene.Subject.Creature.Wing.Fold_Direction": null,
+
+  "Scene.Subject.Creature.Fin.Attach_Position": null,
+  "Scene.Subject.Creature.Fin.Shape": null,
+
+  "Scene.Subject.Creature.Shell.Coverage": null,
+  "Scene.Subject.Creature.Shell.Thickness": null,
+
+  "Scene.Subject.Creature.Spike.Attach_Position": null,
+  "Scene.Subject.Creature.Spike.Growth_Direction": null,
+  "Scene.Subject.Creature.Spike.Length": null,
+
+  "Scene.Subject.Creature.Tentacle.Attach_Position": null,
+  "Scene.Subject.Creature.Tentacle.Length": null,
+  "Scene.Subject.Creature.Tentacle.Flexibility": null,
+
+  "Scene.Subject.Creature.Root": null,
+  "Scene.Subject.Creature.InternalStructure": "Bipedal Endoskeleton",
+  "Scene.Subject.Creature.Aura_Field": null,
+  "Scene.Subject.Creature.Size_Scale": "Human Scale (1.8m)",
+  "Scene.Subject.Creature.Mass_Density": "High Lean Mass",
+  "Scene.Subject.Creature.Body_Proportion": "Athletic Bipedal",
+  "Scene.Subject.Creature.Bilateral_Symmetry": "Symmetrical",
+
+  "Scene.Subject.Object_Prop.Type": "Thumper",
+  "Scene.Subject.Object_Prop.Material": "Metal and Spring Wood",
+  "Scene.Subject.Object_Prop.State": "Operational",
+  "Scene.Subject.Object_Prop.Function": "Rhythmic Worm Attraction",
+  "Scene.Subject.Object_Prop.Age_Condition": "Worn Weathered",
+  "Scene.Subject.Object_Prop.Scale": "Portable Handheld",
+  "Scene.Subject.Object_Prop.Shape": "Cylindrical Rod",
+  "Scene.Subject.Object_Prop.Proportion": "Standard Tool",
+  "Scene.Subject.Object_Prop.Orientation": "Vertical Implanted",
+
+  "Scene.Subject.Clothing.Type": "Stillsuit",
+  "Scene.Subject.Clothing.Material": "Recycling Micro-sandwich Fabric",
+  "Scene.Subject.Clothing.Condition": "Sealed Airtight",
+  "Scene.Subject.Clothing.Pattern": "Matte Desert Gray-Black",
+  "Scene.Subject.Clothing.Footwear": "Sandboots",
+  "Scene.Subject.Clothing.EmbeddedLight": null,
+  "Scene.Subject.Clothing.Cultural_Origin": "Fremen Desert Culture",
+  "Scene.Subject.Clothing.Fit": "Form-Fitting Body Suit",
+  "Scene.Subject.Clothing.Layering": "Single Sealed Layer with Tubing",
+  "Scene.Subject.Clothing.Coverage": "Full Body Except Face",
+
+  "Scene.Subject.Armor.Type": "Light Hide Shield",
+  "Scene.Subject.Armor.Material": "Chitin Scales",
+  "Scene.Subject.Armor.Coverage": "Partial Torso",
+  "Scene.Subject.Armor.Damage_State": "Scratched",
+  "Scene.Subject.Armor.Ornament": "Clan Insignia",
+  "Scene.Subject.Armor.Thickness": "Thin Durable",
+
+  "Scene.Subject.Equipment.Tool": "Maker Hook",
+  "Scene.Subject.Equipment.Device": "Water Recycling Catchpocket",
+  "Scene.Subject.Equipment.Gadget": "Windtrap Filter",
+  "Scene.Subject.Equipment.Power_Source": "Kinetic Spring",
+  "Scene.Subject.Equipment.Carry_Position": "Belt Holstered",
+
+  "Scene.Subject.Accessory.Jewelry": null,
+  "Scene.Subject.Accessory.Amulet": "Sietch Talisman",
+  "Scene.Subject.Accessory.Mask": "Stillsuit Nose Filter Flap",
+  "Scene.Subject.Accessory.Headwear": "Desert Hood",
+  "Scene.Subject.Accessory.Attach_Position": "Head and Neck",
+
+  "Scene.Subject.Weapon.Type": "Crysknife",
+  "Scene.Subject.Weapon.Material": "Sandworm Tooth",
+  "Scene.Subject.Weapon.Enchantment": null,
+  "Scene.Subject.Weapon.State": "Unsheathed",
+  "Scene.Subject.Weapon.Energy_Emission": null,
+  "Scene.Subject.Weapon.Carry_Position": "Thigh Sheath",
+
+  "Scene.Subject.Vehicle.Type": "None (Foot Travel in Deep Erg)",
+  "Scene.Subject.Vehicle.Propulsion": null,
+  "Scene.Subject.Vehicle.Condition": null,
+  "Scene.Subject.Vehicle.Scale": null,
+  "Scene.Subject.Vehicle.Emission_Trail": null,
+  "Scene.Subject.Vehicle.Orientation": null,
+
+  "Scene.Subject.Structure_Built.Type": "Windtrap Installation",
+  "Scene.Subject.Structure_Built.Material": "Basalt Stone and Composite Polymer",
+  "Scene.Subject.Structure_Built.Style": "Arrakeen Functional",
+  "Scene.Subject.Structure_Built.Condition": "Weathered",
+  "Scene.Subject.Structure_Built.Scale": "Monumental",
+  "Scene.Subject.Structure_Built.Ornament": "None",
+  "Scene.Subject.Structure_Built.Layout": "Terraced Basin",
+
+  "Scene.Surface.Skin.Thickness": "Medium",
+  "Scene.Surface.Skin.Roughness": "Sun-Tanned Fine",
+  "Scene.Surface.Skin.Elasticity": "Firm",
+
+  "Scene.Surface.Fur.Length": null,
+  "Scene.Surface.Fur.Density": null,
+  "Scene.Surface.Fur.Growth_Direction": null,
+
+  "Scene.Surface.Feather.Length": null,
+  "Scene.Surface.Feather.Density": null,
+  "Scene.Surface.Feather.Arrangement": null,
+
+  "Scene.Surface.Scale.Size": null,
+  "Scene.Surface.Scale.Layering": null,
+  "Scene.Surface.Scale.Pattern": null,
+
+  "Scene.Surface.Bark": null,
+  "Scene.Surface.Leaf": null,
+  "Scene.Surface.Moss": null,
+
+  "Scene.Surface.Crystal.Growth_Direction": null,
+  "Scene.Surface.Crystal.Facet_Shape": null,
+
+  "Scene.Surface.Rock": "Wind-Scoured Sandstone",
+
+  "Scene.Surface.Metal.Oxidation": "Low due to dryness",
+  "Scene.Surface.Metal.Reflectivity": "Matte Anti-Glare",
+
+  "Scene.Surface.Lava": null,
+
+  "Scene.Surface.Ice.Transparency": null,
+  "Scene.Surface.Ice.Fracture_Pattern": null,
+
+  "Scene.Surface.Liquid.Viscosity": "Low (Water scarcity)",
+  "Scene.Surface.Liquid.Color": "Clear",
+  "Scene.Surface.Liquid.Reflectivity": "High",
+
+  "Scene.Surface.Gas": "Dry Nitrogen-Oxygen Mix",
+
+  "Scene.Surface.Energy.Plasma": null,
+  "Scene.Surface.Energy.Arc": null,
+  "Scene.Surface.Energy.Field": "Personal Holtzman Shield Generator Field",
+
+  "Scene.Surface.Translucency": "Low",
+  "Scene.Surface.Wetness": "Zero (Desiccated)",
+
+  "Scene.Surface.Fabric.Weave_Pattern": "Tight Synthetic Micro-Weave",
+  "Scene.Surface.Fabric.Fold_Behavior": "Rigid Flexible",
+
+  "Scene.Surface.Wood": null,
+  "Scene.Surface.Glass": null,
+  "Scene.Surface.Glass.Translucency": null,
+  "Scene.Surface.Ceramic": null,
+  "Scene.Surface.Bone": null,
+  "Scene.Surface.Flesh": "Sun-Hardened",
+  "Scene.Surface.Dust": "Fine Silica Sand",
+  "Scene.Surface.Sand": "Ultra-Fine Siliceous",
+  "Scene.Surface.Rust": "Minimal",
+  "Scene.Surface.Corrosion": "None",
+  "Scene.Surface.Bioluminescent_Coating": null,
+
+  "Scene.Environment.TimeOfDay": "Midday Peak",
+  "Scene.Environment.Season": "Eternal Summer",
+  "Scene.Environment.Era_Temporal": "Arrakis Imperial Cycle",
+  "Scene.Environment.Celestial_Alignment": "Dual Sun Conjunction",
+
+  "Scene.Environment.Terrain.Ground.Texture": "Ripple Sand Dunes",
+  "Scene.Environment.Terrain.Ground.Elevation": "High Ridge Erg",
+  "Scene.Environment.Terrain.Ground.Fracture_Type": "Wind-Carved Crests",
+  "Scene.Environment.Terrain.Ground.Slope": "Steep Slipface",
+  "Scene.Environment.Terrain.Ground.Hardness": "Loose Granular",
+
+  "Scene.Environment.Terrain.Water.Type": "Subterranean Reserve",
+  "Scene.Environment.Terrain.Water.Depth": "Deep Aquifer",
+  "Scene.Environment.Terrain.Water.Clarity": "Pure",
+  "Scene.Environment.Terrain.Water.Motion": "Stagnant Sealed",
+  "Scene.Environment.Terrain.Water.Flow_Direction": "Downward Basin",
+
+  "Scene.Environment.Terrain.Vegetation.Flora": "None in Deep Erg",
+  "Scene.Environment.Terrain.Vegetation.Fungi": "Sietch Cultivated Crypt-Fungus",
+  "Scene.Environment.Terrain.Vegetation.Coral": null,
+  "Scene.Environment.Terrain.Vegetation.Alien_Flora": null,
+  "Scene.Environment.Terrain.Vegetation.Density": "Sparse",
+
+  "Scene.Environment.Terrain.Mountain.Height": "Massive Bedrock Outcrops",
+  "Scene.Environment.Terrain.Mountain.Ridge_Profile": "Jagged Shield Wall",
+
+  "Scene.Environment.Terrain.Cave": "Deep Sietch Cavern",
+  "Scene.Environment.Terrain.Depth_Zone": "Surface Desert",
+  "Scene.Environment.Terrain.Desert": "Deep Erg Sand Sea",
+  "Scene.Environment.Terrain.Tundra": null,
+  "Scene.Environment.Terrain.Swamp": null,
+  "Scene.Environment.Terrain.Volcano": null,
+  "Scene.Environment.Terrain.Canyon": "Wind-Carved Sietch Gorge",
+  "Scene.Environment.Terrain.Plain": "Flat Salt Pan",
+  "Scene.Environment.Terrain.Floating_Island": null,
+  "Scene.Environment.Terrain.Abyssal_Trench": null,
+
+  "Scene.Environment.Sky.CelestialBody": "Dual White Suns",
+  "Scene.Environment.Sky.Sky_Color": "Pale Yellow-White Glare",
+  "Scene.Environment.Sky.Sky_Phenomena": "Solar Halo",
+  "Scene.Environment.Sky.Cloud_Type": "None (Cloudless Atmosphere)",
+
+  "Scene.Environment.Structure.Architecture": "Subterranean Rock-Cut Sietch",
+  "Scene.Environment.Structure.Signage": "Chemical Marker Cairns",
+  "Scene.Environment.Structure.Monument": "Ancient Fremen Basin",
+  "Scene.Environment.Structure.Ruin": "Abandoned Harkonnen Outpost",
+  "Scene.Environment.Structure.Infrastructure": "Deep Windtrap Network",
+  "Scene.Environment.Structure.Artifact": "Maker Hook Relic",
+
+  "Scene.Environment.Medium_Atmosphere.Fog": null,
+  "Scene.Environment.Medium_Atmosphere.Mist": null,
+  "Scene.Environment.Medium_Atmosphere.Dust": "Suspended Micro-Sand",
+  "Scene.Environment.Medium_Atmosphere.Smoke": null,
+  "Scene.Environment.Medium_Atmosphere.Steam": null,
+  "Scene.Environment.Medium_Atmosphere.Ash": null,
+  "Scene.Environment.Medium_Atmosphere.Particle": "Fine Silica Dust",
+  "Scene.Environment.Medium_Atmosphere.Cloud": null,
+  "Scene.Environment.Medium_Atmosphere.Rain": null,
+  "Scene.Environment.Medium_Atmosphere.Snow": null,
+  "Scene.Environment.Medium_Atmosphere.Ember": null,
+  "Scene.Environment.Medium_Atmosphere.Petal": null,
+  "Scene.Environment.Medium_Atmosphere.Spore": null,
+  "Scene.Environment.Medium_Atmosphere.Energy_Mote": null,
+  "Scene.Environment.Medium_Atmosphere.Flow_Direction": "Horizontal Wind Drift",
+  "Scene.Environment.Medium_Atmosphere.Density": "Low Haze",
+
+  "Scene.Environment.Anomaly_Zone.Spatial_Rift": null,
+  "Scene.Environment.Anomaly_Zone.Gravity_Well": null,
+  "Scene.Environment.Anomaly_Zone.Time_Distortion_Field": null,
+  "Scene.Environment.Anomaly_Zone.Reality_Fracture": null,
+  "Scene.Environment.Anomaly_Zone.Dimensional_Breach": null,
+  "Scene.Environment.Anomaly_Zone.Void_Zone": null,
+  "Scene.Environment.Anomaly_Zone.Mana_Storm": null,
+  "Scene.Environment.Anomaly_Zone.Radiation_Field": null,
+
+  "Scene.Lighting.MainLight.Source": "Dual Suns",
+  "Scene.Lighting.MainLight.Direction": "Direct Overhead Zenith",
+  "Scene.Lighting.MainLight.Color": "Blinding White-Yellow",
+  "Scene.Lighting.MainLight.Intensity": "Extreme Maximum",
+  "Scene.Lighting.MainLight.Temperature": "6500K",
+
+  "Scene.Lighting.AmbientLight.Color": "Sand-Reflected Gold",
+  "Scene.Lighting.AmbientLight.Intensity": "High Diffuse",
+
+  "Scene.Lighting.Shadow.Hardness": "Sharp Definitive",
+  "Scene.Lighting.Shadow.Opacity": "Dense Dark",
+  "Scene.Lighting.Shadow.Direction": "Vertical Downward",
+
+  "Scene.Lighting.Reflection.Intensity": "Blinding Sand Glare",
+  "Scene.Lighting.Reflection.Roughness": "Diffuse Granular",
+
+  "Scene.Lighting.Emission.Color": null,
+  "Scene.Lighting.Emission.Intensity": null,
+
+  "Scene.Lighting.VolumetricLight.Density": "Dust-Choked Rays",
+  "Scene.Lighting.VolumetricLight.Color": "Warm Amber",
+
+  "Scene.Lighting.Neon.Color": null,
+  "Scene.Lighting.Neon.Intensity": null,
+
+  "Scene.Lighting.Bioluminescent_Light.Color": null,
+  "Scene.Lighting.Bioluminescent_Light.Intensity": null,
+
+  "Scene.Lighting.Magical_Light.Color": null,
+  "Scene.Lighting.Magical_Light.Intensity": null,
+
+  "Scene.Weather_Phenomena.Rain.Type": null,
+  "Scene.Weather_Phenomena.Rain.Intensity": null,
+  "Scene.Weather_Phenomena.Rain.Direction": null,
+
+  "Scene.Weather_Phenomena.Snow.Type": null,
+  "Scene.Weather_Phenomena.Snow.Density": null,
+  "Scene.Weather_Phenomena.Snow.Direction": null,
+
+  "Scene.Weather_Phenomena.Storm.Type": "Corinthian Dust Storm",
+  "Scene.Weather_Phenomena.Storm.Intensity": "Severe Gale",
+
+  "Scene.Weather_Phenomena.Wind.Direction": "Easterly Prevailing",
+  "Scene.Weather_Phenomena.Wind.Speed": "Moderate Steady",
+
+  "Scene.Weather_Phenomena.Lightning.Frequency": "Low",
+  "Scene.Weather_Phenomena.Lightning.Color": "Pale Violet",
+
+  "Scene.Weather_Phenomena.Sandstorm.Density": "High Particle Saturation",
+  "Scene.Weather_Phenomena.Sandstorm.Direction": "Horizontal Sweep",
+
+  "Scene.Weather_Phenomena.Volcanic.Ash_Density": null,
+  "Scene.Weather_Phenomena.Volcanic.Lava_Emission": null,
+
+  "Scene.Weather_Phenomena.Meteor_Shower.Density": null,
+  "Scene.Weather_Phenomena.Meteor_Shower.Direction": null,
+
+  "Scene.Camera_Prompt_Tags.Shot_Type": "Wide Cinematic Landscape",
+  "Scene.Camera_Prompt_Tags.Angle": "Low Angle Tracking",
+  "Scene.Camera_Prompt_Tags.Depth_Of_Field": "Deep Focus Horizon",
+  "Scene.Camera_Prompt_Tags.Motion": "Slow Pan",
+
+  "Scene.Visual_Effect.Glow.Color": null,
+  "Scene.Visual_Effect.Glow.Intensity": null,
+
+  "Scene.Visual_Effect.Bloom.Intensity": "High Solar Bloom",
+
+  "Scene.Visual_Effect.Fire.Color": null,
+  "Scene.Visual_Effect.Fire.Intensity": null,
+
+  "Scene.Visual_Effect.Explosion.Scale": null,
+  "Scene.Visual_Effect.Explosion.Intensity": null,
+
+  "Scene.Visual_Effect.Aura.Color": null,
+  "Scene.Visual_Effect.Aura.Intensity": null,
+
+  "Scene.Visual_Effect.Magic.Type": null,
+  "Scene.Visual_Effect.Magic.Color": null,
+
+  "Scene.Visual_Effect.Bioluminescence.Color": null,
+  "Scene.Visual_Effect.Bioluminescence.Intensity": null,
+
+  "Scene.Visual_Effect.Hologram.Color": null,
+  "Scene.Visual_Effect.Hologram.Distortion": null,
+
+  "Scene.Visual_Effect.Distortion.Type": "Heat Haze Mirage",
+  "Scene.Visual_Effect.Distortion.Strength": "Moderate Wave",
+
+  "Scene.Visual_Effect.Energy_Wave.Direction": null,
+  "Scene.Visual_Effect.Energy_Wave.Intensity": null,
+
+  "Scene.Visual_Effect.Portal_Effect.Shape": null,
+  "Scene.Visual_Effect.Portal_Effect.Color": null,
+
+  "Scene.Visual_Effect.Dissolve_Particle.Density": null,
+  "Scene.Visual_Effect.Dissolve_Particle.Direction": null,
+
+  "Scene.Narrative_Emotion.Mood": "Desolate Survival",
+  "Scene.Narrative_Emotion.Tone": "Epic Gritty",
+  "Scene.Narrative_Emotion.Atmosphere": "Oppressive Heat",
+  "Scene.Narrative_Emotion.Theme": "Man Against Harsh Nature",
+
+  "Scene.Render.Style": "Photorealistic Cinematic",
+  "Scene.Render.Rendering_Engine": "Path Traced",
+  "Scene.Render.ColorPalette": "Monochromatic Ochre and Amber",
+  "Scene.Render.Rendering_Quality": "Ultra-High 8K",
+  "Scene.Render.Detail_Level": "Micro-Texture Sand Grain",
+  "Scene.Render.Stylization": "Raw Naturalism"
+}
