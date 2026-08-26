@@ -1,0 +1,379 @@
+BỘ KHUNG SCRIPT QUẢNG CÁO AI
+
+Mục tiêu thử nghiệm sáng tạo
+
+QUY TẮC CHUNG
+
+- Mỗi video dài khoảng 30–50 giây.
+- Gồm 4–5 shot.
+- Mỗi shot khoảng 8–10 giây.
+- Mỗi shot chỉ có một hành động chính.
+- Không chia hành động theo từng giây.
+- Không yêu cầu nhân vật thực hiện chuỗi động tác phức tạp trong cùng một shot.
+- Sản phẩm phải có vai trò thực sự trong câu chuyện.
+- Nhân vật phải có lý do hợp lý để tương tác với sản phẩm.
+- Ưu tiên những hành động mà AI video có khả năng render ổn định.
+- Không phụ thuộc vào thoại để giải thích những gì hình ảnh có thể thể hiện.
+- Có thể có TTS, nhưng TTS phục vụ hình ảnh chứ không thay thế hình ảnh.
+- Shot cuối phải tạo được cảm giác kết thúc hoặc điểm nhớ.
+
+---
+
+FRAMEWORK 01 — PROBLEM → SOLUTION
+
+Cấu trúc:
+
+1. HOOK — Nhân vật gặp một vấn đề.
+2. PROBLEM — Cách giải quyết thông thường thất bại.
+3. DISCOVERY — Sản phẩm xuất hiện.
+4. SOLUTION — Nhân vật sử dụng sản phẩm.
+5. PAYOFF — Kết quả bất ngờ hoặc đáng nhớ.
+
+Logic:
+
+"Vấn đề → thất bại → sản phẩm → giải pháp → payoff"
+
+Phù hợp:
+Đồ gia dụng, công cụ, đồ outdoor, phụ kiện, sản phẩm giải quyết vấn đề.
+
+---
+
+FRAMEWORK 02 — CHARACTER COMEDY
+
+Cấu trúc:
+
+1. CHARACTER — Giới thiệu một tình huống đặc trưng của nhân vật.
+2. FAILURE — Nhân vật gặp một vấn đề rất đời thường.
+3. PRODUCT — Sản phẩm xuất hiện.
+4. SUCCESS — Sản phẩm giải quyết vấn đề.
+5. TWIST — Nhân vật phản ứng theo cách hài hước/bất ngờ.
+
+Logic:
+
+"Nhân vật mạnh/bất thường → vấn đề rất bình thường → sản phẩm → giải quyết → nghịch lý hài"
+
+Ví dụ:
+
+Một Dragonborn cực kỳ đáng sợ lại không chịu nổi thời tiết lạnh.
+
+---
+
+FRAMEWORK 03 — BEFORE → AFTER
+
+Cấu trúc:
+
+1. BEFORE — Trạng thái ban đầu không tốt.
+2. PROBLEM — Vấn đề được thể hiện rõ.
+3. PRODUCT — Sản phẩm được đưa vào.
+4. TRANSFORMATION — Kết quả thay đổi.
+5. AFTER — Hero shot của sản phẩm + kết quả.
+
+Logic:
+
+"Trước → vấn đề → sản phẩm → thay đổi → sau"
+
+Phù hợp:
+Mỹ phẩm, đồ vệ sinh, đồ gia dụng, công cụ, phụ kiện.
+
+---
+
+FRAMEWORK 04 — FAILED ATTEMPTS
+
+Cấu trúc:
+
+1. HOOK — Nhân vật muốn đạt một mục tiêu.
+2. ATTEMPT — Thử cách thông thường.
+3. FAILURE — Cách đó thất bại.
+4. PRODUCT — Sản phẩm xuất hiện.
+5. PAYOFF — Mục tiêu được giải quyết.
+
+Logic:
+
+"Muốn → thử → thất bại → sản phẩm → thành công"
+
+Điểm mạnh:
+
+Tạo nhu cầu đối với sản phẩm mà không cần nói trực tiếp rằng sản phẩm tốt.
+
+---
+
+FRAMEWORK 05 — MYSTERY PRODUCT
+
+Cấu trúc:
+
+1. MYSTERY — Nhân vật nhìn thấy một vật thể lạ.
+2. DISCOVERY — Nhân vật tiếp cận sản phẩm.
+3. INSPECTION — Nhân vật quan sát/cầm sản phẩm.
+4. ACTIVATION — Nhân vật sử dụng nó.
+5. PAYOFF — Tính năng của sản phẩm tạo ra kết quả bất ngờ.
+
+Logic:
+
+"Cái gì đây? → khám phá → tìm hiểu → sử dụng → bất ngờ"
+
+Phù hợp:
+
+Sản phẩm có thiết kế đẹp, độc đáo hoặc tính năng dễ tạo hiệu ứng hình ảnh.
+
+---
+
+FRAMEWORK 06 — CHALLENGE
+
+Cấu trúc:
+
+1. CHALLENGE — Nhân vật đối mặt với thử thách.
+2. ATTEMPT — Nhân vật cố vượt qua.
+3. OBSTACLE — Thử thách trở nên khó khăn.
+4. PRODUCT — Sản phẩm trở thành công cụ giải quyết.
+5. VICTORY — Nhân vật vượt qua thử thách.
+
+Logic:
+
+"Thử thách → cố gắng → khó khăn → sản phẩm → chiến thắng"
+
+Phù hợp:
+
+Outdoor, thể thao, công cụ, thiết bị, sản phẩm sinh tồn.
+
+---
+
+FRAMEWORK 07 — WORLD × PRODUCT
+
+Cấu trúc:
+
+1. WORLD — Đưa nhân vật vào một thế giới đặc biệt.
+2. CONFLICT — Quy luật của thế giới tạo ra vấn đề.
+3. PRODUCT — Sản phẩm xuất hiện như một vật thể bình thường trong thế giới đó.
+4. USE — Nhân vật sử dụng sản phẩm.
+5. PAYOFF — Sản phẩm tạo ra một kết quả phù hợp với thế giới giả tưởng.
+
+Logic:
+
+"Thế giới → xung đột → sản phẩm → sử dụng → fantasy payoff"
+
+Phù hợp đặc biệt:
+
+Dragonborn, Elf, Robot, Alien, Samurai, Monster và các nhân vật giả tưởng.
+
+---
+
+FRAMEWORK 08 — PRODUCT AS LEGENDARY OBJECT
+
+Cấu trúc:
+
+1. SETUP — Nhân vật đang sử dụng một vật thể/quyền năng quen thuộc.
+2. FAILURE — Vật thể/quyền năng đó không giải quyết được vấn đề.
+3. DISCOVERY — Sản phẩm xuất hiện.
+4. USE — Nhân vật sử dụng sản phẩm.
+5. LEGEND — Sản phẩm được đối xử như một vật phẩm huyền thoại.
+
+Logic:
+
+"Vũ khí/quyền năng thất bại → vật phẩm nhỏ xuất hiện → giải quyết → biến thành huyền thoại"
+
+Điểm mạnh:
+
+Rất phù hợp với quảng cáo fantasy.
+
+---
+
+FRAMEWORK 09 — CONTRAST
+
+Cấu trúc:
+
+1. CONTRAST — Một nhân vật/cảnh cực kỳ hoành tráng.
+2. ORDINARY PROBLEM — Một vấn đề cực kỳ đời thường xuất hiện.
+3. PRODUCT — Sản phẩm trở thành giải pháp.
+4. USE — Nhân vật sử dụng.
+5. COMEDIC PAYOFF — Sự tương phản được đẩy lên cao nhất.
+
+Logic:
+
+"Epic → đời thường → sản phẩm → giải quyết → hài"
+
+Ví dụ:
+
+Một chiến binh rồng vừa chiến đấu với quái vật khổng lồ nhưng lại không mở được một chiếc hộp.
+
+---
+
+FRAMEWORK 10 — ESCALATION
+
+Cấu trúc:
+
+1. SMALL PROBLEM — Một vấn đề nhỏ.
+2. BIGGER PROBLEM — Vấn đề trở nên nghiêm trọng.
+3. EXTREME PROBLEM — Tình huống vượt ngoài dự kiến.
+4. PRODUCT — Sản phẩm xuất hiện.
+5. RESOLUTION — Một giải pháp đơn giản giải quyết tất cả.
+
+Logic:
+
+"Nhỏ → lớn → cực đoan → sản phẩm → giải quyết"
+
+Điểm mạnh:
+
+Tạo cảm giác câu chuyện tăng dần mà không cần nhiều shot.
+
+---
+
+FRAMEWORK 11 — CHARACTER NEEDS PRODUCT
+
+Cấu trúc:
+
+1. CHARACTER — Cho thấy một đặc điểm của nhân vật.
+2. NEED — Đặc điểm đó tạo ra một nhu cầu.
+3. SEARCH — Nhân vật tìm giải pháp.
+4. PRODUCT — Sản phẩm đáp ứng đúng nhu cầu.
+5. PAYOFF — Nhân vật trở lại trạng thái lý tưởng.
+
+Logic:
+
+"Đặc điểm nhân vật → nhu cầu → tìm kiếm → sản phẩm → payoff"
+
+Mục đích:
+
+Đảm bảo nhân vật không chỉ là “người đứng cạnh sản phẩm”.
+
+---
+
+FRAMEWORK 12 — PRODUCT REVEAL
+
+Cấu trúc:
+
+1. ACTION — Một hành động hấp dẫn xảy ra.
+2. CONSEQUENCE — Hành động tạo ra một vấn đề/kết quả.
+3. REVEAL — Sản phẩm được đưa vào khung hình.
+4. DEMONSTRATION — Sản phẩm thực hiện chức năng chính.
+5. HERO — Kết thúc bằng hình ảnh sản phẩm đáng nhớ.
+
+Logic:
+
+"Action → consequence → reveal → demonstration → hero"
+
+Phù hợp:
+
+Quảng cáo thiên về cinematic/product photography.
+
+---
+
+FRAMEWORK 13 — EXPECTATION VS REALITY
+
+Cấu trúc:
+
+1. EXPECTATION — Nhân vật nghĩ rằng vấn đề sẽ được giải quyết dễ dàng.
+2. REALITY — Thực tế hoàn toàn khác.
+3. FAILURE — Cách giải quyết thất bại.
+4. PRODUCT — Sản phẩm xuất hiện.
+5. TWIST — Kết quả trái với dự đoán.
+
+Logic:
+
+"Tưởng dễ → thực tế → thất bại → sản phẩm → bất ngờ"
+
+---
+
+FRAMEWORK 14 — HERO'S SECRET
+
+Cấu trúc:
+
+1. HERO — Nhân vật xuất hiện cực kỳ mạnh mẽ.
+2. MYSTERY — Có một điều khiến nhân vật gặp khó khăn.
+3. SECRET — Sản phẩm được hé lộ.
+4. USE — Nhân vật sử dụng sản phẩm.
+5. REVEAL — Hé lộ lý do sản phẩm quan trọng với nhân vật.
+
+Logic:
+
+"Hero → mystery → secret → product → reveal"
+
+---
+
+FRAMEWORK 15 — SIMPLE SOLUTION
+
+Cấu trúc:
+
+1. COMPLEX PROBLEM — Tình huống trông rất khó giải quyết.
+2. COMPLICATION — Nhân vật làm mọi thứ trở nên phức tạp hơn.
+3. PRODUCT — Một sản phẩm rất đơn giản xuất hiện.
+4. SIMPLE ACTION — Chỉ một hành động đơn giản với sản phẩm.
+5. PAYOFF — Vấn đề biến mất.
+
+Logic:
+
+"Phức tạp → phức tạp hơn → sản phẩm → một hành động → giải quyết"
+
+Điểm mạnh:
+
+Rất phù hợp với quảng cáo AI vì không cần nhiều hành động trong một shot.
+
+---
+
+QUY TRÌNH THỬ NGHIỆM CHATBOT
+
+Cùng một chatbot nhận:
+
+PRODUCT
+
+- Ảnh sản phẩm.
+- Tên sản phẩm.
+- Nếu có: 3–5 đặc điểm chính.
+
+CHARACTER
+
+- Ảnh nhân vật hoặc lựa chọn nhân vật.
+- Tính cách.
+- Thế giới/bối cảnh.
+
+CONSTRAINTS
+
+- 4 hoặc 5 shot.
+- Mỗi shot khoảng 10 giây.
+- Một shot chỉ có một hành động chính.
+- Ưu tiên hành động vật lý đơn giản.
+- Không thay đổi thiết kế sản phẩm.
+- Không thay đổi nhân vật.
+- Không teleport.
+- Không biến hình sản phẩm.
+- Không yêu cầu nhiều hành động liên tiếp trong một shot.
+
+TASK
+
+Với mỗi framework được cung cấp, hãy tạo 5–10 ý tưởng quảng cáo khác nhau.
+
+Mỗi idea chỉ cần mô tả:
+
+1. Tên idea.
+2. Ý tưởng cốt lõi.
+3. Vai trò của sản phẩm.
+4. 4–5 shot.
+5. Một hành động chính của từng shot.
+6. Điểm twist/payoff.
+7. Câu TTS/CTA dự kiến.
+
+KHÔNG viết prompt image/video ở giai đoạn này.
+
+Mục tiêu của thử nghiệm là đo khả năng sáng tạo ý tưởng quảng cáo trong một khung vật lý và sản xuất được bằng AI video.
+
+---
+
+TIÊU CHÍ ĐÁNH GIÁ IDEA
+
+Mỗi idea chấm 0–10:
+
+- Hook
+- Product integration
+- Character fit
+- Visual impact
+- Physical feasibility
+- Continuity
+- Memorability
+- Comedy/emotion
+- Ease of AI rendering
+- Commercial value
+
+Tổng tối đa: 100 điểm.
+
+Chỉ những idea đạt mức điểm cao mới được chuyển sang bước:
+
+"IDEA → SHOT PLAN → IMAGE PROMPT → VIDEO PROMPT → TTS → EDIT".
