@@ -1,875 +1,1497 @@
-AI AD CREATIVE COMPILER — PRODUCTION V4
+# PHẦN A — ARCHITECTURE AUDIT
 
-┌─────────────────────────────┐
-                           │       PRODUCT INPUT         │
-                           └──────────────┬──────────────┘
-                                          │
-                                          ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 0 — CREATIVE INTELLIGENCE                                    │
-│                                                                     │
-│ W01 PRODUCT FACT EXTRACTOR                                          │
-│     │                                                               │
-│     ├── PRODUCT_RECORD                                               │
-│     ├── EVIDENCE_MAP                                                 │
-│     └── ALLOWED_CLAIMS                                               │
-│                                                                     │
-│     ▼                                                               │
-│ W02 CUSTOMER / PAIN ENGINE                                           │
-│     └── PAIN_MAP                                                     │
-│                                                                     │
-│     ▼                                                               │
-│ W03 CREATIVE IDEA + PERFORMANCE SCORER                               │
-│     └── IDEA_POOL                                                    │
-│                                                                     │
-│     ▼                                                               │
-│ GATE #1 — IDEA TOURNAMENT                                            │
-│     └── CORE_IDEA + VARIANTS                                        │
-└──────────────────────────────────┬──────────────────────────────────┘
-                                   │
-                                   ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 1 — CREATIVE FOUNDATION                                       │
-│                                                                     │
-│ W03.5 VISUAL DIRECTOR                                                │
-│     ├── CORE_VISUAL_BIBLE  [LOCKED]                                 │
-│     ├── DERIVED_VISUAL_BIBLE                                        │
-│     └── STYLE_ANCHOR                                                 │
-│                                                                     │
-│ W04 MASTER SCRIPT ENGINE                                             │
-│     └── MASTER_SCRIPT                                                │
-│             │                                                        │
-│             ├──────────────────────┐                                 │
-│             ▼                      ▼                                 │
-│       W13 TTS ENGINE        CLAIM FIREWALL                            │
-│             │                      │                                 │
-│             ▼                      │                                 │
-│       VOICE_TRACK                  │                                 │
-│             │                      │                                 │
-│             ▼                      │                                 │
-│       W04.5 AUDIO PACING            │                                 │
-│             │                      │                                 │
-│             ▼                      │                                 │
-│       AUDIO_TIMELINE               │                                 │
-└────────────────────────────────────┬────────────────────────────────┘
-                                     │
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 2 — GLOBAL NARRATIVE COMPILATION                              │
-│                                                                     │
-│ W05 GLOBAL NARRATIVE / SHOT PLANNER                                  │
-│     │                                                               │
-│     ▼                                                               │
-│ W05.5 SPATIAL-TEMPORAL GRAPH ENGINE                                 │
-│                                                                     │
-│     CONTEXT GRAPH                                                    │
-│     ├── CHARACTER_STATE                                              │
-│     ├── PRODUCT_STATE                                                │
-│     ├── ENVIRONMENT_STATE                                            │
-│     ├── LIGHTING_STATE                                               │
-│     ├── CAMERA_AXIS                                                  │
-│     ├── SPATIAL_RELATION                                             │
-│     ├── TEMPORAL_STATE                                               │
-│     └── CAUSAL_DEPENDENCY                                            │
-│                                                                     │
-│     ▼                                                               │
-│ SHOT_PLAN + STATE_GRAPH                                              │
-└────────────────────────────────────┬────────────────────────────────┘
-                                     │
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 3 — MOTION COMPILATION                                        │
-│                                                                     │
-│ W06 MOTION ANALYZER                                                  │
-│     │                                                               │
-│     ▼                                                               │
-│ W06.5 PHYSICS / MODEL FEASIBILITY                                   │
-│     │                                                               │
-│     ├── MODEL_CAPABILITY_MATRIX                                     │
-│     ├── MOTION_RISK                                                  │
-│     └── FALLBACK_STRATEGY                                            │
-│                                                                     │
-│     ▼                                                               │
-│ W07 MOTION CONSTRAINT COMPILER                                       │
-│     │                                                               │
-│     ▼                                                               │
-│ MOTION_CONSTRAINT_SET                                                │
-│                                                                     │
-│     ▼                                                               │
-│ W08 KEYFRAME / STATE PLANNER                                         │
-│     │                                                               │
-│     └── START_STATE ← STATE_GRAPH                                   │
-│     └── END_STATE   ← STATE_GRAPH                                   │
-│                                                                     │
-└────────────────────────────────────┬────────────────────────────────┘
-                                     │
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 4 — IMAGE COMPILATION                                         │
-│                                                                     │
-│ W09 CONTROL / REFERENCE COMPILER                                    │
-│     ├── IP-ADAPTER                                                   │
-│     ├── CONTROLNET                                                   │
-│     ├── DEPTH / CANNY / POSE                                        │
-│     ├── SEED                                                         │
-│     └── REFERENCE_CHAIN                                              │
-│                                                                     │
-│     ▼                                                               │
-│ PICTURE_RENDER_SPEC                                                  │
-│                                                                     │
-│     ▼                                                               │
-│ W09.5 RESOURCE / DEDUP GATE                                         │
-│                                                                     │
-│     ├── BUDGET RESERVATION                                           │
-│     ├── DUPLICATE CHECK                                              │
-│     ├── SHOT COUNT                                                   │
-│     └── MODEL AVAILABILITY                                           │
-│                                                                     │
-│     ▼                                                               │
-│ W10 PICTURE FACTORY                                                  │
-│     └── PARALLEL SHOT RENDER                                        │
-│                                                                     │
-│     ▼                                                               │
-│ W10.5 IMAGE PREFLIGHT                                                │
-│     │                                                               │
-│     └── VLM ADVERSARIAL CRITIC                                       │
-│             │                                                        │
-│             ├── PASS ──────────────────────┐                         │
-│             │                               │                         │
-│             └── CORRECTION_HINT             │                         │
-│                     │                       │                         │
-│                     ▼                       │                         │
-│              AUTO-REPAIR LOOP               │                         │
-│              max_auto_retry = 2              │                         │
-│                     │                       │                         │
-│                     └───────────────────────┘                         │
-│                                                                     │
-│     ▼                                                               │
-│ IMAGE_REVIEW_PACKAGE                                                 │
-│                                                                     │
-│     ▼                                                               │
-│ GATE #2 — BATCH STORYBOARD REVIEW                                   │
-└────────────────────────────────────┬────────────────────────────────┘
-                                     │
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 5 — VIDEO GENERATION                                         │
-│                                                                     │
-│ W11 VIDEO MOTION COMPILER                                           │
-│     └── VIDEO_RENDER_SPEC                                            │
-│                                                                     │
-│     ▼                                                               │
-│ W12 MOTION FACTORY                                                   │
-│     └── PARALLEL SHOT VIDEO                                         │
-│                                                                     │
-│     ▼                                                               │
-│ W12.5 VIDEO PREFLIGHT                                                │
-│     │                                                               │
-│     └── VLM ADVERSARIAL CRITIC                                       │
-│             │                                                        │
-│             ├── PASS                                                 │
-│             │                                                        │
-│             └── ERROR_DELTA_SPEC                                     │
-│                     │                                                │
-│                     ▼                                                │
-│              AUTO-REPAIR                                             │
-│              max_auto_retry = 2                                      │
-│                     │                                                │
-│                     └── W11 / W12                                    │
-│                                                                     │
-│     ▼                                                               │
-│ VIDEO_REVIEW_PACKAGE                                                 │
-│                                                                     │
-│     ▼                                                               │
-│ GATE #3 — BATCH VIDEO REVIEW                                        │
-└────────────────────────────────────┬────────────────────────────────┘
-                                     │
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 6 — AUDIO / ASSEMBLY                                          │
-│                                                                     │
-│              VOICE_TRACK                                             │
-│                   │                                                  │
-│ AUDIO_TIMELINE ──┼── MUSIC/SFX                                      │
-│                   │                                                  │
-│ SHOT_VIDEOS ─────┼── CAPTIONS                                      │
-│                   │                                                  │
-│ BRAND_RULES ─────┼── CTA                                            │
-│                   │                                                  │
-│                   ▼                                                  │
-│ W15 ASSEMBLY ENGINE                                                  │
-│                                                                     │
-│     ├── FINAL_TIMELINE                                               │
-│     ├── CAPTION_TIMELINE                                             │
-│     ├── AUDIO_MIX                                                    │
-│     ├── TRANSITIONS                                                  │
-│     └── PROJECT_MANIFEST                                             │
-│                                                                     │
-│     ▼                                                               │
-│ DRAFT_AD                                                             │
-│                                                                     │
-│     ▼                                                               │
-│ FINAL HUMAN GATE                                                     │
-└────────────────────────────────────┬────────────────────────────────┘
-                                     │
-                                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│ PHASE 7 — DISTRIBUTION & EVOLUTION                                  │
-│                                                                     │
-│ W16 MULTI-PLATFORM DISTRIBUTION                                     │
-│     ├── META                                                          │
-│     ├── TIKTOK                                                        │
-│     ├── YOUTUBE                                                       │
-│     └── OTHER CHANNELS                                                │
-│                                                                     │
-│     ▼                                                               │
-│ PERFORMANCE DATA                                                     │
-│     ├── CTR                                                           │
-│     ├── HOLD / RETENTION                                              │
-│     ├── CVR                                                           │
-│     ├── CPA                                                           │
-│     └── ROAS                                                          │
-│                                                                     │
-│     ▼                                                               │
-│ W17 PERFORMANCE INGESTION                                            │
-│                                                                     │
-│     ▼                                                               │
-│ CREATIVE MEMORY BANK                                                 │
-│     ├── CREATIVE MEMORY                                               │
-│     ├── TECHNICAL MEMORY                                              │
-│     ├── MODEL CAPABILITY MEMORY                                      │
-│     └── BUSINESS PERFORMANCE MEMORY                                  │
-│                                                                     │
-│     ▼                                                               │
-│ W03 / W04 / W06 / W09 / W11                                         │
-│        ↑          LEARNED SIGNALS                                    │
-└─────────────────────────────────────────────────────────────────────┘
+## CRITICAL
 
-Điểm thay đổi quan trọng nhất
+### ISSUE 1 — Deterministic validation bị hiểu nhầm thành semantic enforcement
 
-1. VLM không còn là QA cuối — trở thành Self-Healing Layer
+[BƯỚC 1 — PHẢN BIỆN]  
+Tài liệu dùng các thuật ngữ “compiler”, “contract enforcement”, “deterministic contract validator” nhưng không định nghĩa ranh giới giữa validation cấu trúc và đúng sai ngữ nghĩa. Validator chỉ kiểm schema, reference, version, duration, claims, Bible, stale flags, retry, budget. Tuy nhiên, hệ thống vẫn có nguy cơ vận hành như thể artifact `VALID` là đã đúng về hình ảnh, motion, vật lý, identity, thẩm mỹ. Đây là lỗi kiến trúc nghiêm trọng vì deterministic validation không thể enforce output của image/video model.
 
-Luồng đúng phải là:
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Logical evidence**: Section 3 nói “không coi output LLM là compiler IR deterministic”, nhưng ngay sau đó artifact đi qua “deterministic contract validator” rồi vào factory. Nếu không định nghĩa rõ, `VALID` sẽ bị hiểu nhầm là semantic truth.  
+- **Technical evidence**: Image/video diffusion models có stochastic behavior; không có validator deterministic nào bảo đảm vật lý đúng, tay không lỗi, product không biến dạng, character nhất quán, motion không drift.  
+- **Operational evidence**: Nếu team vận hành tin rằng `VALID = đúng`, hệ thống sẽ bỏ sót lỗi và giảm chất lượng human review.
 
-GENERATE
-   ↓
-VLM CRITIC
-   ↓
-PASS ───────────────► REVIEW
-   │
-   └─ FAIL
-       ↓
-ERROR_DELTA_SPEC
-       ↓
-PROMPT / PARAMETER REWRITE
-       ↓
-RENDER
-       ↓
-VLM CRITIC
-       │
-       ├─ PASS → REVIEW
-       └─ FAIL → HUMAN
-
-Giới hạn cứng:
-
-AUTO_RETRY ≤ 2
-
-Sau đó mới tới Human Gate.
-
-Điều này tránh việc VLM tự chữa vô hạn và đốt budget.
-
+[BƯỚC 3 — GIẢI PHÁP]  
+- Giữ thuật ngữ “compiler” chỉ cho các bước biến đổi deterministic từ artifact đã approved sang render spec, không dùng để hứa semantic correctness.  
+- Đổi “contract enforcement” thành **Artifact Validation** với authority giới hạn: schema, lineage, version, duration arithmetic, claim policy reference, budget, resource state, dependency.  
+- Thêm 3 lớp tách bạch:  
+  1. **Deterministic Validation**: pass/fail theo rule.  
+  2. **Probabilistic Risk QA**: risk score, không phải truth.  
+  3. **Human Judgment**: approval cuối cho creative/brand/semantic quality.  
+- Artifact phải có trạng thái riêng: `VALID` khác `APPROVED`. `VALID` chỉ đủ điều kiện kỹ thuật để đi tiếp; `APPROVED` là đã qua human gate hoặc policy cho phép.  
+- Mọi probabilistic QA chỉ tạo risk signal và route tới repair/human, không tự kết luận semantic truth.
 
 ---
 
-2. Spatial-Temporal Graph trở thành xương sống
+### ISSUE 2 — Duration reconciliation thiếu model capability, tolerance và cơ chế xử lý thực tế
 
-Không nên chỉ lưu:
+[BƯỚC 1 — PHẢN BIỆN]  
+Pipeline yêu cầu tổng shot duration khớp Audio Timeline, nhưng không định nghĩa tolerance, duration quantization, model-supported duration, min/max duration, hoặc cơ chế trim/pad/time-stretch an toàn. Video models thường chỉ hỗ trợ duration rời rạc hoặc khoảng giới hạn. Nếu Shot Planner tạo duration liên tục theo audio, kế hoạch có thể không render được.
 
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Technical evidence**: Nhiều video model hỗ trợ duration theo chunk cố định hoặc range, không phải arbitrary millisecond.  
+- **Structural evidence**: `DURATION_INFEASIBLE` chỉ route về Shot Planner để re-cut trong vùng pause/silence nhưng không đổi tổng duration. Nếu không có pause đủ dài hoặc model không hỗ trợ duration cần thiết, không có exit path.  
+- **Operational evidence**: Retry duration có thể tạo loop giữa Shot Planner, Motion Factory, Post Assembly nếu không có tolerance và fallback.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Thêm **Model Capability Registry** làm input bắt buộc của Shot Planner và Video Compiler: supported durations, min/max, FPS, aspect ratios, control modes, cost.  
+- Định nghĩa tolerance chuẩn, ví dụ:  
+  - shot duration tolerance: ±250ms;  
+  - final ad tolerance: ±500ms;  
+  - max audio-safe time stretch: 2%.  
+- Shot Planner phải tạo shot duration dựa trên audio phrase boundary + model duration capability.  
+- Nếu không khớp, ưu tiên:  
+  1. re-cut trong pause/silence;  
+  2. merge/split shot;  
+  3. trim/pad visual tail;  
+  4. audio-safe stretch trong giới hạn;  
+  5. escalate `DURATION_FAILURE` tới Human Gate.  
+- Post Assembly có quyền trim/pad/time-stretch trong giới hạn đã khai báo, nhưng không được thay đổi total duration ngoài tolerance nếu không có human approval.
+
+---
+
+### ISSUE 3 — Core Visual Bible được anchor nhưng thiếu Human Gate bảo vệ initial anchor
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Tài liệu nói Core Visual Bible immutable sau anchor và chỉ đổi qua RE-ANCHOR. Nhưng pipeline có Human Gate #1 trước khi Visual Director tạo Core Bible. Như vậy không có human gate nào phê duyệt initial anchor của Core Identity. Worker Visual Director có thể khóa một core identity chưa được human xác nhận.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Structural evidence**: Human Gate #1 nằm sau Creative Ideas; Visual Director nằm ở Phase 1 sau đó. Không có gate nào giữa Visual Director và production cho Core Bible.  
+- **Logical evidence**: Stable Core yêu cầu Core Identity không trôi, nhưng initial anchor không có approval thì immutable chỉ bảo vệ sau khi rủi ro đã xảy ra.  
+- **Operational evidence**: Nếu Core Bible sai về logo, product shape, character identity, toàn bộ image/video sẽ phải rework với chi phí lớn.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Thêm **Human Gate Creative Lock** sau khi có Script, Audio Timeline, Core Visual Bible, Derived Visual Bible baseline, Context Graph và Shot Plan.  
+- Core Visual Bible có state `DRAFT` cho tới khi được Creative Lock Gate approve.  
+- Sau approval, Core Bible chuyển sang `ANCHORED`, version `CORE_v1`.  
+- Mọi thay đổi Core Bible bắt buộc đi qua `RE-ANCHOR` với: impact analysis, human approval, core_version increment, invalidation report.  
+- Auto-repair, prompt rewrite, image QA, video QA không được sửa Core Bible.
+
+---
+
+### ISSUE 4 — Resource Gate đặt sau các bước có thể phát sinh chi phí reference/control generation
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Control/Reference Compiler có thể cần tạo reference image, identity reference, mask, control input. Nếu các bước này gọi model tốn phí trước Resource Gate, hệ thống vi phạm nguyên tắc reserve-before-call. Resource Gate chỉ xuất hiện trước Picture Factory là chưa đủ.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Structural evidence**: W09.5/W10 tạo control/reference trước W10.5 Resource Gate. Nếu reference generation là paid API call, đã có cost trước reservation.  
+- **Operational evidence**: Reference generation hàng loạt cho nhiều shot có thể gây retry explosion, quota exhaustion, cost overrun.  
+- **Logical evidence**: Invariant “API tốn tài nguyên phải reserve-before-call” mâu thuẫn với pipeline.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Resource Manager phải là interceptor bắt buộc trước mọi paid model call, bao gồm: TTS, reference generation, image generation, video generation, VLM critic nếu tính phí, music/SFX generation nếu dùng paid model.  
+- Control/Render Compiler chỉ tạo spec và `paid_task_manifest`, không trực tiếp gọi model nếu chưa có reservation.  
+- Mỗi paid task phải có: estimated_cost, model_id, priority, concurrency_class, reservation_id, fallback_policy.  
+- Nếu không reserve được, task chuyển `WAITING_RESOURCE` hoặc `RESOURCE_BLOCKED`, không được tự gọi model.
+
+---
+
+### ISSUE 5 — Retry policy mâu thuẫn và thiếu counter semantics
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Image/VLM auto-repair ghi `max_auto_retry = 2`, nhưng Retry Manager shot-level ghi `image.max = 3`. Không rõ 2 auto-repair có nằm trong 3 image retry hay không. Ngoài ra, thiếu retry policy cho audio, script, context graph, resource, distribution, model failure. Retry không có owner rõ ràng dễ gây infinite loop hoặc double-count.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Logical evidence**: Hai rule retry mâu thuẫn trực tiếp.  
+- **Structural evidence**: Không có retry state cho TTS failure, resource wait, distribution failure.  
+- **Operational evidence**: Nếu auto-repair và human retry không được count thống nhất, hệ thống có thể retry vượt budget hoặc deadlock vì không biết ai sở hữu counter.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Tạo **Unified Retry Policy** do Retry Manager sở hữu.  
+- Phân biệt:  
+  - `initial_attempt`;  
+  - `auto_retry`;  
+  - `human_authorized_retry`;  
+  - `resource_retry/backoff`;  
+  - `model_failover`.  
+- Ví dụ policy:  
+  - image: initial + 2 auto-repair = 3 attempts; human override tối đa +1; hard cap 4;  
+  - video: initial + 2 auto-repair = 3 attempts; human override tối đa +1; hard cap 4;  
+  - script/claim: max 3 attempts;  
+  - duration reconcile: max 2 replans;  
+  - motion plan: max 2 revisions;  
+  - resource wait: backoff bounded, không tính là creative retry.  
+- Mọi retry phải có iteration_id mới, lineage về artifact cũ, reason_code và escalation route khi vượt cap.
+
+---
+
+### ISSUE 6 — Context/State Graph thiếu owner, version, update loop và deterministic validation
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Spatial-Temporal Graph được nêu là theo dõi character state, product state, environment state, lighting, camera axis, object location, action causality. Nhưng artifact này không có schema, version, owner rõ ràng, không nói ai cập nhật sau Shot Plan/Motion Plan/Video, và không có validator deterministic cho transition. Các worker sau nhận `CONTEXT_GRAPH` nhưng không có cơ chế biết graph đã stale hay chưa.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Structural evidence**: Artifact envelope chung không đủ nếu không có `context_graph_version` và `state_graph_hash`.  
+- **Logical evidence**: Nếu W12 Video Motion Compiler nhận Context Graph nhưng graph không phản ánh shot plan mới, output có thể phá continuity.  
+- **Technical evidence**: State continuity giữa các shot là vấn đề khó; nếu không có deterministic preflight, lỗi object permanence/state transition sẽ chỉ được phát hiện muộn ở QA.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Tạo worker/service **Context Graph Builder** sở hữu `CONTEXT_GRAPH`.  
+- Artifact phải có: `context_graph_version`, `state_hash`, `parent_artifact_id`, `shot_refs`, `transition_rules`, `validation_report`.  
+- Context Graph được cập nhật bởi:  
+  - Script/Shot Intent: high-level state sequence;  
+  - Shot Planner: shot boundaries, timing;  
+  - Motion Planner: action transitions;  
+  - Video Compiler: stale check.  
+- Deterministic validator kiểm tra: object permanence, valid state transition, spatial relation consistency, camera axis rule, lighting/time-of-day continuity.  
+- Khi Core/Derived Bible hoặc Shot Plan đổi, Context Graph nhận `stale=true` và phải được revalidate trước production.
+
+---
+
+## HIGH
+
+### ISSUE 7 — Claim Firewall chủ yếu kiểm tra textual script, thiếu implied visual/audio claims
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Claim Firewall kiểm tra script claims so với `ALLOWED_CLAIMS`. Nhưng quảng cáo có thể tạo claim ngầm bằng hình ảnh before/after, biểu đồ, caption, VO intonation, product placement, hoặc visual exaggeration. Nếu chỉ kiểm script, hệ thống bỏ sót claim risk ở image, video, caption, platform metadata.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Legal/technical evidence**: Claim risk trong advertising thường nằm ở implied meaning, không chỉ câu chữ.  
+- **Structural evidence**: Image QA có OCR nhưng không gắn với claim policy; video QA không có visual claim risk.  
+- **Operational evidence**: Nếu image/video tạo implied claim chưa được phép, rủi ro pháp lý/brand safety xuất hiện sau khi đã tốn chi phí render.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Mở rộng Claim Safety thành multimodal service:  
+  - script/VO text: deterministic check với `ALLOWED_CLAIMS`;  
+  - OCR/on-screen text: deterministic check;  
+  - visual content: probabilistic `implied_claim_risk` từ VLM;  
+  - caption/metadata platform: deterministic + heuristic check.  
+- Explicit claim không có trong `ALLOWED_CLAIMS` bị block. Implied claim risk cao phải route tới Human Gate hoặc Legal Review, không được auto-approve.  
+- Thêm artifact `CLAIM_RISK_REPORT` gắn với script, image, video, caption, platform metadata.
+
+---
+
+### ISSUE 8 — Auto-repair thiếu permission matrix và guardrail chống thay đổi creative intent
+
+[BƯỚC 1 — PHẢN BIỆN]  
+VLM Auto-Repair nhận image, tạo error delta, rewrite prompt/param rồi render lại. Nhưng tài liệu không định nghĩa rõ repair được phép sửa field nào, không được sửa field nào, correction_hint từ đâu, và threshold nào bắt buộc human. Nếu không có permission matrix, repair có thể thay đổi product shape, character identity, style, claim visual, hoặc creative concept.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Technical evidence**: Prompt rewrite có thể thay đổi composition, identity, lighting, product visibility.  
+- **Logical evidence**: Worker QA/repair không phải owner của Core Bible, Script, Claim, Creative Concept nhưng có thể gián tiếp thay đổi chúng qua prompt.  
+- **Operational evidence**: Auto-repair lặp lại có thể làm asset drift xa creative intent ban đầu.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Tạo **Repair Router** với permission matrix:  
+  - Được phép sửa: prompt wording không liên quan claim, negative prompt, seed, sampler, control strength, mask nhỏ, inpainting region, camera path smoothing, motion strength.  
+  - Không được sửa: Product Truth, Allowed Claims, Core Bible, character identity anchor, script, audio timeline, creative concept, shot duration total, legal/policy constraints.  
+- Mỗi repair phải có `correction_hint`, `reason_code`, `scope`, `iteration_id`, `lineage`.  
+- Nếu risk thuộc nhóm identity, product truth, claim, legal, core style → không auto-repair, route tới Human Gate.  
+- Auto-repair chỉ chạy khi retry budget còn và artifact mới phải được validate lại từ đầu.
+
+---
+
+### ISSUE 9 — State machine thiếu failure routes cho resource, model, audio, distribution và timeout
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Tài liệu có route cho motion, image, video, duration, creative concept, nhưng thiếu các trạng thái và route cho: resource reservation failure, model adapter failure, TTS failure, caption/music/SFX failure, distribution failure, review timeout. Nếu API quota hết, model timeout, reviewer không phản hồi, pipeline có thể deadlock.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Operational evidence**: Production thực tế gặp quota limit, latency spike, model outage, human review delay.  
+- **Structural evidence**: Không có state `WAITING_RESOURCE`, `MODEL_FALLBACK`, `REVIEW_TIMEOUT`, `DISTRIBUTION_FAILED`.  
+- **Logical evidence**: Nếu mọi failure chỉ route về creative worker, resource failure sẽ bị tính nhầm thành creative retry.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Thêm states: `WAITING_RESOURCE`, `RESOURCE_BLOCKED`, `MODEL_FALLBACK`, `REVIEW_PENDING`, `REVIEW_TIMEOUT`, `DISTRIBUTION_PENDING`, `DISTRIBUTION_FAILED`, `ESCALATED`, `ABORTED`.  
+- Resource failure route tới Resource Manager: backoff, alternate model, reduce concurrency, budget top-up request, hoặc stop. Không tính vào creative retry.  
+- Model failure route tới Model Adapter failover; nếu không có fallback, escalate.  
+- Audio failure route về Audio Timeline worker; distribution failure route về Distribution Packager; review timeout escalate theo SLA.  
+- Mọi state phải có exit: retry bounded, fallback, human escalation, abort.
+
+---
+
+### ISSUE 10 — Human Gate thiếu Creative Lock Gate và reason codes chưa đủ
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Human Gate #1 chỉ duyệt creative ideas trước khi script/audio/visual bible/shot plan tồn tại. Các gate sau chủ yếu ở image/video. Thiếu một gate khóa toàn bộ creative baseline trước khi tốn chi phí production. Reject reasons hiện tại thiếu các nhóm quan trọng: claim, audio, duration, identity, state continuity, resource, model, platform.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Operational evidence**: Nếu script/audio/core bible/shot plan chưa được human lock, image/video failure có thể do lỗi baseline, gây rework tốn kém.  
+- **Structural evidence**: Không có gate nào approve đồng thời script + audio timeline + core bible + shot plan.  
+- **Logical evidence**: Reject không có reason code đầy đủ sẽ không route đúng worker, gây retry sai chỗ.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Thêm **Human Gate Creative Lock** trước production. Gate này approve: Product Truth, Allowed Claims, Master Script, Audio Timeline, Core Visual Bible, Derived Bible baseline, Context Graph, Shot Plan, Budget Estimate.  
+- Mở rộng reason codes: `CLAIM`, `TRUTH`, `STYLE`, `COMPOSITION`, `CHARACTER`, `PRODUCT`, `IDENTITY`, `MOTION_INTENT`, `MOTION_EXECUTION`, `AUDIO`, `DURATION`, `STATE`, `RESOURCE`, `MODEL`, `PLATFORM`, `CREATIVE`, `LEGAL`.  
+- Mỗi reject phải có: reason_code, scope, shot_id nếu liên quan, iteration_id, target_worker, comment, recommended_action.  
+- Gates nên batch UI nhưng decision phải per-shot/per-artifact khi cần.
+
+---
+
+## MEDIUM
+
+### ISSUE 11 — Trùng lặp trách nhiệm giữa các motion workers
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Motion Analyzer, Motion Feasibility, Motion Constraints, Physics/Contract Preflight có vùng chồng lấn: motion complexity, model capability, feasibility, object interaction, state transition. Nếu không tách rõ deterministic/probabilistic, sẽ có nhiều worker cùng ra risk nhưng không ai chịu trách nhiệm cuối.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Logical evidence**: W07.5 kiểm tra model capability, estimated retry, recommended motion; W08.5 cũng kiểm tra motion complexity, model capability, impossible interaction.  
+- **Operational evidence**: Nhiều artifacts trùng thông tin gây version drift và khó debug.  
+- **Structural evidence**: Không rõ worker nào sở hữu `MOTION_PLAN` cuối cùng.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Merge logic motion vào một **Motion Planner** với các sub-steps rõ ràng:  
+  1. Motion Analysis: phân tích action, camera, interaction.  
+  2. Feasibility Scoring: probabilistic, dùng Motion Memory và Model Capability.  
+  3. Motion Constraint Compilation: tạo constraints advisory.  
+  4. Physics/State Preflight: deterministic check với Context Graph.  
+- Output duy nhất: `MOTION_PLAN` gồm motion_intent, constraints, feasibility_score, risk_level, fallback_motion, model_recommendation.  
+- Constraints phải được ghi rõ là advisory/control guidance, không phải model guarantee.
+
+---
+
+### ISSUE 12 — Distribution variants thiếu QA và approval cho generative adaptation
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Publisher tạo platform variants và nói không sửa source asset. Nhưng crop, resize, outpaint, caption burn-in, thumbnail generation có thể làm mất logo, product, thay đổi composition hoặc tạo implied claim. Nếu không có QA/approval, distribution asset có thể vi phạm brand/claim policy.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Technical evidence**: Auto-crop có thể cắt product hoặc text quan trọng. Outpaint có thể sinh background không kiểm soát.  
+- **Legal/brand evidence**: Platform metadata và caption cũng có thể tạo claim.  
+- **Structural evidence**: Distribution asset có platform/format nhưng thiếu QA report và lineage tới final approved asset.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Distribution Packager phân loại:  
+  - **Deterministic transform**: resize, crop an toàn theo safe area, format conversion → deterministic validation.  
+  - **Generative transform**: outpaint, background extension, generative thumbnail, text overlay phức tạp → tạo artifact mới, phải qua QA và human approval nếu ảnh hưởng identity/claim.  
+- Mọi platform variant phải có: platform, format, creative_id, publish_version, source_asset_id, transform_spec, QA report, publish_status.  
+- Source approved asset immutable; variant chỉ kế thừa, không ghi đè.
+
+---
+
+### ISSUE 13 — Memory/learning thiếu data quality threshold và write protection
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Performance memory feeding back W02/W03 là đúng, nhưng thiếu threshold về sample_size, confidence, statistical significance. Nếu performance noise ảnh hưởng creative scoring, hệ thống tối ưu sai. Tài liệu nói performance không sửa Product Truth nhưng thiếu cơ chế enforcement.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Operational evidence**: Campaign nhỏ có CTR/ROAS biến động mạnh; dùng ngay sẽ gây creative drift.  
+- **Logical evidence**: Nếu Memory service có quyền ghi vào Product Truth hoặc Claim Policy, invariant bị vi phạm.  
+- **Structural evidence**: Thiếu fields `confidence`, `sample_size`, `min_threshold`, `recommendation_only`.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Memory service lưu: impressions, clicks, views, retention, conversion, ROAS, sample_size, confidence, time_window, platform, audience.  
+- Learning chỉ tạo recommendation hoặc scoring update khi sample_size/confidence đạt threshold cấu hình.  
+- Performance data chỉ được ghi vào: Creative Memory, Motion Memory, Image Memory, Budget Estimator, Model Ranking.  
+- Performance data không có quyền ghi vào: Product Truth, Allowed Claims, Core Identity, Claim Policy, Legal Rules.  
+- Thay đổi policy hoặc allowed claims phải qua human/legal approval.
+
+---
+
+## LOW
+
+### ISSUE 14 — Thiếu observability, idempotency và event schema chuẩn
+
+[BƯỚC 1 — PHẢN BIỆN]  
+Tài liệu có audit log nhưng thiếu event schema, trace_id, idempotency key, metrics, alerts. Trong pipeline nhiều worker song song và retry, nếu thiếu idempotency có thể tạo duplicate generation hoặc khó reconstruct lineage.
+
+[BƯỚC 2 — BẰNG CHỨNG]  
+- **Operational evidence**: Retry do timeout có thể tạo duplicate API call nếu không có idempotency key.  
+- **Structural evidence**: Audit log được nêu chung chung, không có event types, actor, artifact_id, reservation_id.  
+- **Technical evidence**: Multi-worker pipeline cần tracing để debug failure propagation.
+
+[BƯỚC 3 — GIẢI PHÁP]  
+- Thêm Observability service với: event log, metrics, tracing, alerts.  
+- Mỗi event có: event_id, trace_id, campaign_id, shot_id, worker_id, artifact_id, iteration_id, state_from, state_to, reason_code, actor, timestamp, cost, reservation_id.  
+- Mọi paid call phải có idempotency_key.  
+- Metrics bắt buộc: retry_rate, auto_repair_rate, human reject rate, cost_per_asset, model_success_rate, queue_time, gate latency.
+
+---
+
+# PHẦN B — DECISION SUMMARY
+
+| Issue | Severity | Root Cause | Decision | Affected Workers |
+|---|---:|---|---|---|
+| 1 | CRITICAL | Nhầm deterministic validation với semantic truth | MODIFY | All workers, QA, Control Plane |
+| 2 | CRITICAL | Thiếu model duration capability và tolerance | MODIFY | Shot Planner, Video Compiler, Post Assembly |
+| 3 | CRITICAL | Core Bible anchor không có human approval | ADD | Visual Identity Director, Human Gates |
+| 4 | CRITICAL | Paid reference/control generation trước resource gate | RESTRUCTURE | Control/Reference Compiler, Resource Manager |
+| 5 | CRITICAL | Retry policy mâu thuẫn, thiếu semantics | RESTRUCTURE | Retry Manager, QA/Repair, all loops |
+| 6 | CRITICAL | Context Graph thiếu owner/version/validation | MODIFY | Context Graph Builder, Shot Planner, Motion Planner |
+| 7 | HIGH | Claim check chỉ textual | MODIFY | Claim Safety, Script, Image/Video QA, Distribution |
+| 8 | HIGH | Auto-repair thiếu permission guardrails | MODIFY | Repair Router, Image/Video QA |
+| 9 | HIGH | State machine thiếu resource/model/audio/distribution routes | ADD | State Machine, Resource Manager, Model Adapter |
+| 10 | HIGH | Thiếu Creative Lock Gate và reason codes | ADD | Human Gates, Script, Audio, Visual Bible, Shot Planner |
+| 11 | MEDIUM | Motion workers trùng trách nhiệm | MERGE | Motion Analyzer/Feasibility/Constraints/Preflight |
+| 12 | MEDIUM | Distribution variants thiếu QA | MODIFY | Distribution Packager, QA |
+| 13 | MEDIUM | Learning thiếu data quality/write protection | MODIFY | Memory, Performance Ingestion |
+| 14 | LOW | Thiếu observability/idempotency | ADD | Control Plane, Audit/Observability |
+
+---
+
+# PHẦN C — FINAL ARCHITECTURE
+
+# AI AD CREATIVE PRODUCTION SYSTEM — IMPLEMENTATION SPECIFICATION
+
+## 1. PURPOSE
+
+Hệ thống sản xuất quảng cáo AI theo pipeline: Truth → Creative → Creative Lock → Production Planning → Image → Video → Post → Distribution → Learning.
+
+Mục tiêu:
+
+- Tạo ad creative có kiểm soát từ Product Truth và Allowed Claims.
+- Bảo vệ stable core: truth, claims, identity, version, budget, audit.
+- Cho phép thay thế model AI mà không phá control plane.
+- Giảm human review thừa nhưng tăng chất lượng gate.
+- Đảm bảo lineage, retry bounded, resource reservation, failure isolation.
+
+## 2. DESIGN PRINCIPLES
+
+1. AI tạo intent, không phải nguồn sự thật.
+2. Product Truth và Allowed Claims là stable core.
+3. Mọi output trung gian là structured artifact có schema, version, lineage.
+4. Deterministic validation chỉ kiểm tra cấu trúc, policy reference, arithmetic, dependency.
+5. Probabilistic QA chỉ tạo risk signal, không phải semantic truth.
+6. Human judgment quyết định creative, brand, legal, final quality.
+7. Constraint là hướng dẫn kiểm soát, không phải guarantee của model.
+8. Mọi model call tốn phí phải reserve-before-call.
+9. Retry bounded, có reason_code, scope, iteration_id, escalation.
+10. Local failure không làm restart toàn campaign.
+11. Core Identity immutable ngoài RE-ANCHOR.
+12. Derived structure versionable và có propagation/invalidation.
+13. Parallel processing dựa trên dependency graph và resource capacity.
+14. Performance feedback không được sửa Product Truth, Allowed Claims, Core Identity, policy.
+
+## 3. SYSTEM OVERVIEW
+
+```text
+CONTROL PLANE
+├── State Machine
+├── Artifact Validator
+├── Claim Safety Service
+├── Resource Manager
+├── Retry Manager
+├── Scope Manager
+├── Parallel Scheduler
+├── QA Risk Service
+├── Repair Router
+├── Memory Governor
+├── Observability / Audit
+└── Model Capability Registry
+
+PRODUCTION WORKERS
+├── W01 Product Truth
+├── W02 Audience Insight
+├── W03 Creative Concept
+├── W04 Script
+├── W05 Audio Timeline
+├── W06 Visual Identity Director
+├── W07 Context Graph Builder
+├── W08 Shot & Duration Planner
+├── W09 Motion Planner
+├── W10 Control / Render Compiler
+├── W11 Image Factory
+├── W12 Video Motion Compiler
+├── W13 Video Factory
+├── W14 Post Production & Assembly
+├── W15 Distribution Packager
+└── W16 Performance Ingestion
+
+MODEL ADAPTERS
+├── LLM
+├── TTS / Voice
+├── Image Generator
+├── Video Generator
+├── VLM Critic
+├── Music / SFX Generator
+└── Predictive Scorer
+```
+
+Control Plane không sinh creative content. Nó điều khiển lifecycle, validation, budget, retry, scope, audit.
+
+## 4. PHASES
+
+| Phase | Tên | Mục tiêu | Exit Gate |
+|---|---|---|---|
+| 0 | Truth & Concept | Xác lập truth, insight, creative ideas, claim preflight | HG1 |
+| 1 | Creative Lock | Khóa script, audio, visual identity, context graph, shot plan | HG2 |
+| 2 | Production Planning | Motion plan, control spec, render spec, resource estimate | Validation + Resource Gate |
+| 3 | Image Production | Tạo và duyệt image theo shot | HG3 |
+| 4 | Video Production | Tạo và duyệt video từ approved image | HG4 |
+| 5 | Post Production | Music/SFX/caption, assembly, final approval | HG5 |
+| 6 | Distribution & Learning | Publish variants, ingest performance, update memory | Post-release monitoring |
+
+## 5. COMPLETE PIPELINE
+
+```text
+PRODUCT_INPUT
+  ↓
+W01 Product Truth
+  ↓
+W02 Audience Insight
+  ↓
+W03 Creative Concept
+  ↓
+CLAIM_PREFLIGHT + BRAND_SAFETY + RANKING
+  ↓
+HG1 — TRUTH & CONCEPT GATE
+  ↓
+W04 Script
+  ↓
+CLAIM_FIREWALL
+  ↓
+W05 Audio Timeline  ───────────────┐
+  ↓                                 │
+W06 Visual Identity Director        │
+  ↓                                 │
+W07 Context Graph Builder           │
+  ↓                                 │
+W08 Shot & Duration Planner         │
+  ↓                                 │
+ARTIFACT_VALIDATION + BUDGET_ESTIMATE
+  ↓
+HG2 — CREATIVE LOCK GATE
+  ↓
+W09 Motion Planner
+  ↓
+W10 Control / Render Compiler
+  ↓
+RESOURCE_GATE
+  ↓
+W11 Image Factory
+  ↓
+IMAGE_QA → REPAIR_ROUTER (bounded)
+  ↓
+HG3 — IMAGE GATE
+  ↓
+W12 Video Motion Compiler
+  ↓
+RESOURCE_GATE
+  ↓
+W13 Video Factory
+  ↓
+VIDEO_QA → REPAIR_ROUTER (bounded)
+  ↓
+HG4 — VIDEO GATE
+  ↓
+W14 Post Production & Assembly
+  (music / SFX / captions / timeline assembly)
+  ↓
+HG5 — FINAL GATE
+  ↓
+FINAL_AD
+  ↓
+W15 Distribution Packager
+  ↓
+PUBLISH VARIANTS
+  ↓
+W16 Performance Ingestion
+  ↓
+MEMORY + LEARNING → W02 / W03
+```
+
+`RESOURCE_GATE` là interceptor của Control Plane. Không paid call nào được thực hiện nếu chưa có reservation.
+
+## 6. WORKER REFERENCE TABLE
+
+| ID | Worker | Type | Output chính | Gate liên quan |
+|---|---|---|---|---|
+| W01 | Product Truth | Production | PRODUCT_RECORD, FACTS, EVIDENCE, ALLOWED_CLAIMS | HG1 |
+| W02 | Audience Insight | Production | PAIN_MAP, DESIRE_MAP, INSIGHTS | HG1 |
+| W03 | Creative Concept | Production | CREATIVE_IDEAS, hooks, CTAs, predicted_score | HG1 |
+| W04 | Script | Production | MASTER_SCRIPT, VO_SCRIPT, CLAIM_REFS, SHOT_INTENT | HG2 |
+| W05 | Audio Timeline | Production | VOICE_TRACK, AUDIO_TIMELINE, phrase/word timestamps | HG2 |
+| W06 | Visual Identity Director | Production | CORE_VISUAL_BIBLE, DERIVED_VISUAL_BIBLE | HG2, RE-ANCHOR |
+| W07 | Context Graph Builder | Production | CONTEXT_GRAPH, transition rules | HG2 |
+| W08 | Shot & Duration Planner | Production | SHOT_PLAN, duration reconciliation | HG2 |
+| W09 | Motion Planner | Production | MOTION_PLAN, constraints, feasibility, fallback | HG2/HG3 nếu ảnh hưởng shot |
+| W10 | Control / Render Compiler | Production | CONTROL_SPEC, IMAGE_RENDER_SPEC, VIDEO_CONTROL_SPEC, paid_task_manifest | Resource Gate |
+| W11 | Image Factory | Factory | IMAGE_ASSET, REFERENCE_ASSET | HG3 |
+| W12 | Video Motion Compiler | Production | VIDEO_RENDER_SPEC, duration target | Resource Gate |
+| W13 | Video Factory | Factory | VIDEO_ASSET | HG4 |
+| W14 | Post Production & Assembly | Production | MUSIC_TRACK, SFX_TRACK, CAPTION_TIMELINE, DRAFT_AD, FINAL_AD | HG5 |
+| W15 | Distribution Packager | Distribution | PLATFORM_ASSETS, metadata, publish_version | HG5 / post-release QA |
+| W16 | Performance Ingestion | Learning | PERFORMANCE_RECORD, attribution, confidence | Không chặn production |
+
+## 7. INPUT / OUTPUT CONTRACT
+
+Tất cả output worker là structured artifact theo Artifact Envelope. Owner là worker tạo artifact. Version và lineage được lưu trong envelope.
+
+| Worker | Input | Output | Deterministic Validation | Resource Impact | Failure Route |
+|---|---|---|---|---|---|
+| W01 | Product docs, evidence, claims source | PRODUCT_RECORD, FACTS, EVIDENCE, ALLOWED_CLAIMS, UNKNOWN | evidence reference, claim schema, source hash | Low | CLAIM_FAILURE, TRUTH_FAILURE |
+| W02 | PRODUCT_RECORD | PAIN_MAP, DESIRE_MAP, INSIGHTS, EVIDENCE | no claim creation, insight schema | Low/Medium LLM | CREATIVE_FAILURE |
+| W03 | PRODUCT_RECORD, INSIGHTS, MEMORY | CREATIVE_IDEAS, hooks, proof_path, CTA, risk, predicted_score | claim preflight, schema, duplicate check | Medium LLM | CREATIVE_FAILURE |
+| W04 | Approved idea, ALLOWED_CLAIMS | MASTER_SCRIPT, VO_SCRIPT, CLAIM_REFS, SHOT_INTENT, CTA | Claim Firewall, phrase structure, schema | Medium LLM | SCRIPT_FAILURE, CLAIM_FAILURE |
+| W05 | Approved script, voice config | VOICE_TRACK, AUDIO_TIMELINE, phrase_boundaries, word_timestamps, total_duration | duration arithmetic, transcript match, silence detection | Paid TTS | AUDIO_FAILURE, TIMELINE_FAILURE |
+| W06 | PRODUCT_IDENTITY, creative concept, brand assets | CORE_VISUAL_BIBLE draft, DERIVED_VISUAL_BIBLE baseline, IDENTITY_ANCHOR | identity refs, palette/logo schema, versioning | Medium LLM/VLM | STYLE_FAILURE, IDENTITY_FAILURE |
+| W07 | Script, Visual Bible, Shot Intent | CONTEXT_GRAPH, states, transitions, spatial rules | object permanence, transition validity, shot refs | Medium | STATE_FAILURE |
+| W08 | AUDIO_TIMELINE, script, CONTEXT_GRAPH, Model Capability | SHOT_PLAN, shot durations, boundaries, tolerance, quantization | sum duration, phrase boundary, model duration feasibility | Low/Medium | DURATION_FAILURE, TIMELINE_FAILURE |
+| W09 | SHOT_PLAN, CONTEXT_GRAPH, Motion Memory, Model Capability | MOTION_PLAN, constraints, feasibility, fallback | capability check, context preflight, schema | Medium | MOTION_CONCEPT_FAILURE |
+| W10 | SHOT_PLAN, MOTION_PLAN, Bibles, CONTEXT_GRAPH | CONTROL_SPEC, IMAGE_RENDER_SPEC, VIDEO_CONTROL_SPEC, paid_task_manifest | refs, version pins, budget estimate, schema | Low; paid tasks separate | STYLE_FAILURE, STATE_FAILURE, RESOURCE_FAILURE |
+| W11 | Approved CONTROL_SPEC, RESOURCE_RESERVATION | IMAGE_ASSET, REFERENCE_ASSET, metadata | resolution, aspect, hash, OCR, duplicate, required fields | High image/reference API | IMAGE_FAILURE, MODEL_FAILURE, RESOURCE_FAILURE |
+| W12 | APPROVED_IMAGE, MOTION_PLAN, CONTROL_SPEC, AUDIO_TIMELINE, CONTEXT_GRAPH | VIDEO_RENDER_SPEC, duration_target, stale_check | duration target, model capability, refs | Low/Medium | MOTION_FAILURE, DURATION_FAILURE |
+| W13 | VIDEO_RENDER_SPEC, RESOURCE_RESERVATION | VIDEO_ASSET | duration, FPS, resolution, hash, metadata | High video API | VIDEO_FAILURE, MODEL_FAILURE, RESOURCE_FAILURE |
+| W14 | Approved videos, AUDIO_TIMELINE, caption base, music/SFX policy | MUSIC_TRACK, SFX_TRACK, CAPTION_TIMELINE, DRAFT_AD | final duration, loudness, caption sync, timeline determinism | Medium; music gen if paid | TIMELINE_FAILURE, AUDIO_FAILURE |
+| W15 | FINAL_AD, platform specs | PLATFORM_ASSETS, metadata, publish_version | aspect, duration, file size, safe area, caption policy | Medium if generative transform | DISTRIBUTION_FAILURE |
+| W16 | Platform metrics | PERFORMANCE_RECORD, attribution, confidence, sample_size | schema, source validation, confidence calculation | Low | PERFORMANCE_INGESTION_FAILURE |
+
+## 8. ARTIFACT ENVELOPE
+
+```json
 {
-  "shot_id": "S02",
-  "duration": 4
-}
-
-Mà phải có:
-
-{
-  "shot_id": "S02",
-
-  "audio": {
-    "start": 4.2,
-    "end": 8.1
-  },
-
-  "character_state": {
-    "position": "standing",
-    "hand": "left",
-    "apparel": "locked"
-  },
-
-  "product_state": {
-    "cap": "closed",
-    "orientation": "front"
-  },
-
-  "environment_state": {
-    "location": "studio",
-    "time_of_day": "evening"
-  },
-
-  "lighting_state": {
-    "direction": "45deg_right"
-  },
-
-  "camera_state": {
-    "axis": "180deg_locked"
-  },
-
-  "causal_parent": "S01"
-}
-
-Khi W08 tạo keyframe:
-
-S01 END_STATE
-      │
-      ▼
-S02 START_STATE
-      │
-      ▼
-S02 END_STATE
-      │
-      ▼
-S03 START_STATE
-
-Như vậy audio timeline quyết định WHEN, còn context graph quyết định WHAT STATE.
-
-Hai thứ không cạnh tranh nhau.
-
-
----
-
-3. Human Gate trở thành nơi quyết định, không phải nơi debugging
-
-Đây là thay đổi rất quan trọng.
-
-Trước đây
-
-Render
-  ↓
-Human
-  ↓
-"Lỗi tay"
-  ↓
-Developer/LLM tìm cách sửa
-  ↓
-Render lại
-
-V4
-
-Render
-  ↓
-VLM Critic
-  ↓
-Auto Repair × 2
-  ↓
-Human
-
-Human chỉ phải xử lý:
-
-UNKNOWN
-SEMANTIC
-AESTHETIC
-BRAND JUDGEMENT
-CONVERSION JUDGEMENT
-
-chứ không phải những lỗi máy có thể tự xử lý.
-
-
----
-
-4. Reject phải là một Contract
-
-Mỗi rejection không được chỉ là:
-
-REJECT
-
-Mà phải là:
-
-{
-  "decision": "REJECT",
-
-  "reason_code": "MOTION_ARTIFACT",
-
-  "scope": "LOCAL",
-
-  "target": {
-    "shot_id": "S04",
-    "artifact_id": "video_S04_v2"
-  },
-
-  "iteration_id": 2,
-
-  "correction": {
-    "type": "MOTION_SIMPLIFICATION",
-    "hint": "reduce hand rotation"
-  },
-
-  "route": "W11"
-}
-
-Router đọc contract này và biết chính xác phải đi đâu.
-
-
----
-
-5. Local / Derived Global / Core Global
-
-Đây là phần tôi cho rằng không nên bỏ từ V3.
-
-REJECT
-                    │
-          ┌─────────┼──────────┐
-          ▼         ▼          ▼
-        LOCAL     DERIVED      CORE
-          │        GLOBAL      GLOBAL
-          ▼          │           │
-      1 SHOT       AFFECTED     NEW
-      REBUILD       SHOTS      REVISION
-
-LOCAL
-
-Ví dụ:
-
-Sai tay ở S04
-
-→ chỉ S04 regenerate.
-
-DERIVED GLOBAL
-
-Ví dụ:
-
-Lighting direction không phù hợp
-
-→ tạo DERIVED_BIBLE_v2.
-
-Sau đó compatibility check:
-
-S01 compatible → KEEP
-S02 compatible → KEEP
-S03 incompatible → REGENERATE
-S04 compatible → KEEP
-
-Không phá toàn bộ pipeline.
-
-CORE GLOBAL
-
-Ví dụ:
-
-Đổi sản phẩm
-Đổi nhân vật
-Đổi brand identity
-Đổi claim policy
-
-→ revision mới.
-
-
----
-
-6. Performance Loop không được phép "tự sửa hệ thống"
-
-Đây là điểm cần phản biện đề xuất Yura/Omneky.
-
-Không nên:
-
-ROAS thấp
- ↓
-AI tự sửa W03
-
-Mà:
-
-ROAS / CTR
-   ↓
-PERFORMANCE ANALYSIS
-   ↓
-LEARNED SIGNAL
-   ↓
-CREATIVE MEMORY
-   ↓
-W03 SCORING
-
-Memory ảnh hưởng ranking, không có quyền phá policy.
-
-Ví dụ:
-
-{
-  "hook_pattern": "problem_first",
-  "sample_size": 142,
-
-  "performance": {
-    "ctr_mean": 0.031,
-    "retention_3s": 0.71
-  },
-
-  "confidence": 0.86,
-
-  "recommendation": "increase_priority"
-}
-
-W03 có thể dùng nó để ưu tiên, nhưng không được biến nó thành:
-
-"luôn dùng problem_first"
-
-
----
-
-7. Kiến trúc Contract giữa Worker
-
-Tôi khuyến nghị mọi worker đều dùng chung một envelope:
-
-┌────────────────────────────────────┐
-│ ARTIFACT CONTRACT                  │
-├────────────────────────────────────┤
-│ artifact_id                        │
-│ artifact_type                      │
-│ schema_version                     │
-│ project_id                         │
-│ creative_id                        │
-│ variant_id                         │
-│ shot_id                            │
-│ iteration_id                       │
-│ parent_artifact_ids[]              │
-│ core_bible_version                 │
-│ derived_bible_version              │
-│ state_graph_version                │
-│ audio_timeline_version             │
-│ model_spec                         │
-│ resource_budget                    │
-│ evidence_refs[]                    │
-│ constraints                        │
-│ validation                          │
-│ lineage                             │
-│ payload                             │
-└────────────────────────────────────┘
-
-Điều này biến pipeline thành dataflow system có lineage, thay vì một chuỗi prompt nối nhau.
-
-
----
-
-8. Worker nào được phép làm gì?
-
-Worker	Được phép	Không được phép
-
-W01	Extract facts	Tự bịa claims
-W02	Phân loại pain	Biến pain thành claim
-W03	Creative ideation	Override claim policy
-W03.5	Visual direction	Tự đổi CORE identity
-W04	Script	Tạo unsupported claim
-W13	TTS	Tự đổi script
-W04.5	Audio timing	Tự đổi nội dung VO
-W05	Shot planning	Phá audio duration
-W05.5	State graph	Tự sáng tạo state
-W06	Motion design	Override core state
-W06.5	Feasibility	Đảm bảo model chắc chắn thành công
-W07	Constraint compilation	Ép model video tuyệt đối
-W08	Keyframe planning	Phá STATE_GRAPH
-W09	Control/prompt compilation	Thay Core Bible
-W10	Image generation	Thay creative intent
-W10.5	Critique/repair	Tự approve semantic quality
-W11	Video prompt	Phá motion constraints
-W12	Video generation	Tự sửa story
-W12.5	Critique/repair	Tự quyết định aesthetics
-W15	Assembly	Viết lại claim/script
-W16	Distribution	Thay creative policy
-W17	Learn	Tự thay policy
-
-
-
----
-
-9. Kiến trúc thực sự nên được gọi là gì?
-
-Tôi sẽ không gọi nó đơn thuần là "LLM Compiler" nữa.
-
-Tên chính xác hơn:
-
-> AI Ad Creative Compiler — Graph-Orchestrated, Audio-First, Self-Healing Production System
-
-
-
-Vì nó thực chất gồm 6 lớp:
-
-┌─────────────────────┐
-                    │ PERFORMANCE MEMORY  │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │ CREATIVE INTELLIGENCE│
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │ NARRATIVE / STATE   │
-                    │ GRAPH               │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │ CONSTRAINT + MODEL  │
-                    │ CONTROL             │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │ GENERATION +        │
-                    │ SELF-HEALING        │
-                    └──────────┬──────────┘
-                               │
-                    ┌──────────▼──────────┐
-                    │ HUMAN + DISTRIBUTION│
-                    └─────────────────────┘
-
-Đây mới là điểm trưởng thành của V4: không cố biến AI thành một compiler deterministic. Thay vào đó, hệ thống deterministic hóa những gì có thể deterministic, quản lý phần xác suất bằng risk/retry/fallback, và dùng con người ở đúng nơi máy không thể quyết định đáng tin cậy.PRODUCT_INPUT
-PRODUCT_RECORD / EVIDENCE_MAP / ALLOWED_CLAIMS
-Không bịa spec.
-W02
-Pain grounding
-PRODUCT_RECORD + evidence
-PAIN_MAP
-Inferred pain phải được flag.
-W03
-Creative ideas
-Product + pain + memory
-IDEA_POOL
-Creative freedom; claim firewall vẫn áp dụng.
-W03.5
-Visual direction
-Product + target + idea
-CORE_BIBLE / DERIVED_BIBLE / ANCHOR
-Core identity lock.
-W04
-Script
-Idea + claims + pain
-MASTER_SCRIPT
-Chỉ dùng allowed claims.
-W13
-TTS
-MASTER_SCRIPT
-VOICE_TRACK / AUDIO_SEGMENTS
-Chạy trước shot planning.
-W04.5
-Audio pacing
-VOICE_TRACK
-AUDIO_TIMELINE
-Nguồn duration chính.
-W05
-Narrative/shot plan
-Script + audio + Bible
-SHOT_PLAN
-Causal + audio coverage.
-W06
-Motion analysis
-SHOT_PLAN
-MOTION_PLAN
-Dominant + secondary actions.
-W06.5
-Feasibility
-Motion + model matrix
-SAFE_MOTION_PLAN
-Risk + fallback.
-W07
-Constraint compile
-Safe motion
-MOTION_CONSTRAINT_SET
-Không coi prompt là enforcement.
-W08
-State/keyframes
-Shot + constraints + Bible
-KEYFRAME_PLAN
-Reference chain.
-W09
-Control compiler
-Keyframes + refs
-PICTURE_RENDER_SPEC
-Seed/model/control params.
-W09.5
-Resource gate
-Specs + budget
-APPROVED_RENDER_BATCH
-Reserve + dedup.
-W10
-Image factory
-Approved batch
-SHOT_IMAGES
-Parallel.
-W10.5
-Image preflight
-Images + Bible
-IMAGE_QA_REPORT
-Auto checks + risk flags.
-W11
-Video prompt compiler
-Image + constraints
-VIDEO_RENDER_SPEC
-Motion injection.
-W12
-Video factory
-Video specs
-SHOT_VIDEOS
-Parallel + iteration.
-W12.5
-Video preflight
-Videos + manifest
-VIDEO_QA_REPORT
-Technical + risk.
-W14
-Music/SFX
-Audio timeline
-AUDIO_BED
-Không che VO.
-W15
-Assembly
-Shots + audio + captions + brand rules
-DRAFT_AD / PROJECT_MANIFEST
-Không tự thay claim.
-W16
-Distribution/memory
-Final ad + performance
-PLATFORM_ASSETS / PERFORMANCE_RECORD
-Feedback loop.
-
-4. Contract Envelope
-Mọi artifact giữa worker phải có envelope thống nhất; payload chỉ là phần dữ liệu nghiệp vụ.
-{
-  "artifact_type": "SHOT_PLAN",
   "schema_version": "2.0",
-  "project_id": "...",
-  "creative_id": "...",
-  "variant_id": "...",
-  "shot_id": "...",
-  "iteration_id": 1,
-  "parent_artifact_ids": ["..."],
-  "visual_bible_version": "CORE-v1 / DERIVED-v3",
-  "audio_timeline_version": "AT-v2",
-  "model": {"name": "...", "version": "..."},
-  "constraints": {"must": [], "forbidden": [], "risk_flags": []},
-  "evidence_refs": [],
-  "budget": {"estimated": 0, "reserved": 0, "spent": 0},
-  "validation": {"schema": "PASS", "cross_contract": "PASS"},
+  "artifact_id": "ART_xxx",
+  "artifact_type": "IMAGE_ASSET",
+  "campaign_id": "C001",
+  "shot_id": "S003",
+  "iteration_id": "ITR_004",
+  "parent_artifact_ids": ["ART_yyy"],
+  "owner_worker": "W11",
+  "worker_version": "W11_v2",
+  "input_hash": "sha256...",
+  "content_hash": "sha256...",
+  "status": "APPROVED",
   "payload": {},
-  "created_at": "ISO-8601"
+  "validation": {
+    "deterministic": {},
+    "probabilistic_risk": {},
+    "human_review": {}
+  },
+  "version_refs": {
+    "core_bible_version": "CORE_v1",
+    "derived_bible_version": "DERIVED_v3",
+    "context_graph_version": "CTX_v2",
+    "audio_timeline_version": "AUD_v1",
+    "shot_plan_version": "SHOT_v2",
+    "motion_plan_version": "MOTION_v1",
+    "control_spec_version": "CTRL_v1",
+    "model_id": "video_model_a",
+    "model_version": "2026-05",
+    "prompt_version": "PRM_v7"
+  },
+  "resource": {
+    "reservation_id": "RES_xxx",
+    "estimated_cost": 12.5,
+    "actual_cost": 12.9
+  },
+  "risk": {
+    "identity_risk": 0.12,
+    "artifact_risk": 0.08,
+    "claim_risk": 0.01,
+    "motion_risk": 0.22
+  },
+  "lineage": {
+    "created_from": ["ART_parent"],
+    "repair_of": null,
+    "trigger_reason": null
+  },
+  "created_at": "2026-08-27T10:00:00Z"
 }
-5. Rejection taxonomy & routing
-reason_code
-route
-action
-CLAIM_UNSUPPORTED
-W04 / Claim Firewall
-Sửa script; không render.
-STYLE_LOCAL
-W09/W10
-Chỉ regenerate shot lỗi.
-STYLE_DERIVED_GLOBAL
-W03.5 → affected shots
-Version mới; compatibility check.
-STYLE_CORE_GLOBAL
-New pipeline revision
-Product/character/brand identity đổi = restart.
-COMPOSITION
-W08/W09/W10
-Sửa keyframe/control/prompt.
-MOTION_CONCEPT
-W06/W06.5
-Đơn giản hóa action hoặc đổi model.
-MOTION_ARTIFACT
-W11/W12
-Đổi prompt/seed/model theo retry policy.
-SOURCE_IMAGE_ARTIFACT
-W09/W10
-Sửa ảnh trước khi retry video.
-AUDIO_MISMATCH
-W04.5/W05
-Reconcile timeline; không tua hình để chữa audio.
-BUDGET_EXCEEDED
-W09.5
-Downgrade/fallback/reduce variants.
-GLOBAL_CONCEPT_FAILURE
-W03
-Idea mới; bounded restart.
+```
 
-6. Scope & versioning
-LOCAL: version mới cho đúng shot/artifact; shot đã approved không bị đụng.
-DERIVED_GLOBAL: đổi lighting/camera/mood. Không auto-migrate mù; đánh giá compatibility rồi regenerate phần cần thiết.
-CORE_GLOBAL: đổi product identity, character identity, brand palette hoặc claim policy. Tạo pipeline revision mới.
-Mỗi feedback bắt buộc: scope + reason_code + target_artifact_id + shot_id (nếu local) + iteration_id + requested_change.
-Visual Bible version được pin vào mọi shot; không có shot 'trôi nổi' không biết dùng Bible nào.
-7. Retry, escape hatch và deadlock prevention
-Image: tối đa 2–3 attempts/shot.
-Video: tối đa 2 attempts/model trước khi đổi strategy.
-Không retry cùng input + prompt + seed + model khi failure reason không đổi.
-Mỗi retry ghi failure event vào Creative Memory.
-Sau retry budget: alternate model → B-roll/static motion → human escalation → concept restart.
-Scheduler có trạng thái BLOCKED/ESCALATED; tuyệt đối không cho loop vô hạn.
-8. QA model
-Tầng
-Phạm vi
-Deterministic / auto
-Schema, required fields, duration arithmetic, audio coverage, file integrity, duplicate hash, OCR text, palette threshold, manifest.
-Heuristic / flag
-Optical-flow anomaly, embedding drift, fast motion, occlusion, liquid/cloth/particle risk.
-Human
-Product integrity tinh vi, identity theo nhận thức, physics plausibility, aesthetics, storytelling, conversion judgement.
+Status artifact:
 
-9. Parallel execution
-Scheduler vận hành theo dependency graph, không theo sơ đồ tuần tự.
-SHOT_PLAN tạo execution units theo shot.
-Image generation và video generation chạy song song giữa các shot khi dependency đã thỏa.
-Music/SFX preparation chạy song song với video.
-Gate #2 và Gate #3 là batch review để giảm context switching.
-Reject local chỉ re-run affected shot; không rebuild toàn bộ ad.
-10. Creative Memory & Learning
-Creative memory: hook, idea, script pattern, CTA, visual pattern, audience.
-Technical memory: model/version, prompt, motion type, attempts, failure reason, success rate.
-Business memory: CTR, hold rate, CVR, CPA/ROAS khi có dữ liệu đủ tin cậy.
-Capability matrix: success rate theo model × motion × product/style.
-Dynamic budget estimator dùng retry history để dự đoán chi phí.
-Memory cung cấp evidence/score; không được tự thay đổi policy hoặc claim.
-11. Variant architecture
-Sau Gate #1, một CORE IDEA có thể tạo N variants. Các variant chia sẻ PRODUCT_RECORD, ALLOWED_CLAIMS và CORE_BIBLE; thay đổi chủ yếu ở hook/script/derived treatment. Các nhánh chạy song song và được so sánh ở cuối.
-12. Cost & resource control
-Reserve budget trước mỗi external generation call.
-Estimated cost = shots × expected attempts × model unit cost + TTS + music/SFX + storage + assembly overhead.
-Budget Gate có quyền giảm shot count, giảm variant, đổi model hoặc fallback.
-Ledger lưu estimated, reserved, actual, retries, latency và artifact size.
-Không cho phép worker tự gọi model ngoài manifest/budget đã cấp.
-13. Final Assembly contract
-W15 phải nhận đủ: SHOT_VIDEOS[], VOICE_TRACK, AUDIO_TIMELINE, AUDIO_BED, CAPTION_PLAN, BRAND_RULES, CTA và PROJECT_MANIFEST. W15 chỉ assemble; không tự sáng tạo lại claim hoặc thay đổi Core Bible.
-Output: FINAL_AD, platform variants, captions/subtitles và manifest có lineage để tái dựng.
-14. State machine
-DRAFT
- → VALIDATED
- → APPROVED_FOR_RENDER
- → RENDERING
- → PREFLIGHT
- → HUMAN_REVIEW
-     ├─ APPROVE → LOCKED
-     └─ REJECT → ROUTED
-                    ├─ LOCAL_REPAIR
-                    ├─ DERIVED_GLOBAL_REPAIR
-                    ├─ MODEL_FALLBACK
-                    └─ CONCEPT_RESTART
- → ASSEMBLY
- → FINAL_REVIEW
- → PUBLISHED
- → PERFORMANCE_OBSERVED
-15. Pre-release checklist
-□ Fact/claim có evidence và ALLOWED_CLAIMS đã freeze?
-□ Inferred pain không thể lọt thành product claim?
-□ TTS có trước SHOT_PLAN?
-□ SHOT_PLAN reconcile AUDIO_TIMELINE?
-□ CORE_BIBLE đã lock và shot pin version?
-□ Motion feasibility/capability đã được đánh giá?
-□ Control/seed/model/reference được lưu?
-□ Budget đã reserve trước render?
-□ QA phân biệt auto-check và risk flag?
-□ Gate feedback có reason_code + scope + shot_id + iteration_id?
-□ Retry bounded + escape hatch?
-□ Parallel scheduler theo dependency graph?
-□ Manifest có lineage và reproduce information?
-□ Performance data được ghi vào Creative Memory?
+- `DRAFT`
+- `PENDING_VALIDATION`
+- `VALID`
+- `INVALID`
+- `RISK_REVIEW`
+- `PENDING_HUMAN`
+- `APPROVED`
+- `REJECTED`
+- `STALE`
+- `ARCHIVED`
+
+`VALID` không tương đương `APPROVED`.
+
+## 9. STATE MACHINE
+
+### Campaign states
+
+```text
+INIT
+→ TRUTH_READY
+→ INSIGHT_READY
+→ CONCEPT_PROPOSED
+→ CONCEPT_APPROVED          [HG1]
+→ SCRIPT_CLAIM_VALID
+→ AUDIO_LOCKED
+→ VISUAL_ANCHORED
+→ CREATIVE_LOCKED           [HG2]
+→ PRODUCTION_READY
+→ IMAGE_APPROVED
+→ VIDEO_APPROVED
+→ ASSEMBLED
+→ FINAL_APPROVED            [HG5]
+→ DISTRIBUTION_READY
+→ DISTRIBUTED
+→ LEARNING
+```
+
+Blocked/exception states:
+
+```text
+CLAIM_BLOCKED
+TRUTH_BLOCKED
+DURATION_BLOCKED
+RESOURCE_BLOCKED
+MODEL_BLOCKED
+REVIEW_PENDING
+REVIEW_TIMEOUT
+QA_FAILED
+REPAIR_LIMIT_REACHED
+ESCALATED
+ABORTED
+```
+
+Mọi blocked state có exit:
+
+- retry bounded;
+- fallback;
+- human decision;
+- abort.
+
+### Shot states
+
+```text
+PLANNED
+→ CONTROL_SPEC_READY
+→ RESOURCE_RESERVED
+→ IMAGE_GENERATING
+→ IMAGE_QA
+→ IMAGE_REPAIR
+→ IMAGE_REVIEW
+→ IMAGE_APPROVED
+→ VIDEO_SPEC_READY
+→ VIDEO_RESOURCE_RESERVED
+→ VIDEO_GENERATING
+→ VIDEO_QA
+→ VIDEO_REPAIR
+→ VIDEO_REVIEW
+→ VIDEO_APPROVED
+→ ASSEMBLED
+```
+
+Shot có thể nhận cờ `STALE` khi:
+
+- Derived Bible đổi;
+- Context Graph đổi;
+- Shot Plan đổi;
+- Motion Plan đổi;
+- Audio Timeline đổi.
+
+`STALE` không tự xóa approved final asset. Nó tạo integrity warning và human decision.
+
+### Scope invalidation
+
+| Scope | Ý nghĩa | Hành vi |
+|---|---|---|
+| LOCAL | Một shot/asset | Chỉ asset/shot đó bị ảnh hưởng |
+| DERIVED_GLOBAL | Derived Bible đổi | Các asset dùng derived version cũ bị đánh stale |
+| CORE_GLOBAL | Core Identity RE-ANCHOR | Asset phụ thuộc core cũ bị stale; final approved nhận integrity warning |
+| CAMPAIGN | Concept/script invalid | Controlled restart, bounded concept retry |
+
+## 10. FAILURE TAXONOMY
+
+| Failure Type | Mô tả |
+|---|---|
+| SCRIPT_FAILURE | Script lỗi cấu trúc, thiếu intent, không phù hợp concept |
+| CLAIM_FAILURE | Explicit/implicit claim không được phép hoặc thiếu proof |
+| TIMELINE_FAILURE | Audio timeline, caption timing, final assembly timing lỗi |
+| STYLE_FAILURE | Sai derived style, lighting, mood, composition |
+| STATE_FAILURE | Context graph mất continuity, object permanence, spatial relation |
+| MOTION_CONCEPT_FAILURE | Motion intent không phù hợp creative/feasibility |
+| IMAGE_FAILURE | Image lỗi artifact, identity, composition, product |
+| VIDEO_FAILURE | Video lỗi temporal drift, artifact, motion execution |
+| DURATION_FAILURE | Duration không reconcile với audio/model capability |
+| RESOURCE_FAILURE | Không reserve được budget/quota/compute |
+| MODEL_FAILURE | Model adapter error, timeout, output invalid |
+| HUMAN_REVIEW_FAILURE | Reviewer thiếu, timeout, decision không đủ thông tin |
+| CREATIVE_FAILURE | Concept/hook/promise không phù hợp |
+| DISTRIBUTION_FAILURE | Platform asset không đạt spec, publish lỗi |
+
+## 11. ROUTING TABLE
+
+| Failure | Scope | Target Worker / Service | Retry Policy | Fallback | Escalation |
+|---|---|---|---|---|---|
+| SCRIPT_FAILURE | LOCAL/CAMPAIGN | W04 | max 3 attempts | Human rewrite | HG2 |
+| CLAIM_FAILURE | LOCAL/CAMPAIGN | Claim Safety + W04 | max 3 claim-safe rewrites | Remove/replace claim | Legal/HG1 |
+| TIMELINE_FAILURE | LOCAL/CAMPAIGN | W05/W08/W14 | max 2 replans | Trim/pad/stretch trong giới hạn | HG2/HG5 |
+| STYLE_FAILURE | LOCAL/DERIVED_GLOBAL | W06/W10/W11 | max 2 auto repair | Style preset fallback | HG2 |
+| STATE_FAILURE | LOCAL/DERIVED_GLOBAL | W07/W08/W09 | max 2 graph revisions | Simplify scene | HG2 |
+| MOTION_CONCEPT_FAILURE | LOCAL/CAMPAIGN | W09 | max 2 revisions | Production-safe motion | HG2/HG1 |
+| IMAGE_FAILURE | LOCAL | W10/W11 | initial + 2 auto; human +1 optional | Simpler image/static | HG3 |
+| VIDEO_FAILURE | LOCAL | W12/W13 | initial + 2 auto; human +1 optional | Pan-zoom/image motion | HG4 |
+| DURATION_FAILURE | LOCAL/CAMPAIGN | W08/W12/W14 | max 2 reconciliations | Merge shots/trim/pad | HG2 |
+| RESOURCE_FAILURE | LOCAL/GLOBAL | Resource Manager | bounded backoff | Alternate model, lower cost, queue | Ops/budget owner |
+| MODEL_FAILURE | LOCAL/GLOBAL | Model Adapter | failover max 2 | Alternate model | Ops |
+| HUMAN_REVIEW_FAILURE | ANY | Ops/Gate Manager | SLA reminder | Delegate reviewer | Campaign owner |
+| CREATIVE_FAILURE | CAMPAIGN | W03 | max 1 concept restart | Use approved backup concept | HG1 |
+| DISTRIBUTION_FAILURE | PLATFORM | W15 | max 3 pack/publish retries | Manual export | Ops |
+
+## 12. RETRY POLICY
+
+Retry Manager sở hữu toàn bộ counter.
+
+| Category | Auto Retry | Hard Cap | Human Override | Notes |
+|---|---:|---:|---:|---|
+| Script/claim rewrite | 2 | 3 attempts | Có, audit | Claim phải pass deterministic firewall |
+| TTS/audio regen | 1 | 3 attempts | Có | Nếu duration đổi > tolerance, re-plan |
+| Duration reconcile | 0 auto, 2 replans | 2 | Có | Không sửa total ngoài tolerance nếu chưa approve |
+| Context graph revision | 1 | 2 | Có | Nếu ảnh hưởng shot plan, revalidate |
+| Motion plan | 1 | 2 | Có | Fallback production-safe nếu feasibility thấp |
+| Image generation | 2 | 3 attempts | +1 tối đa | Sau đó HG3 |
+| Video generation | 2 | 3 attempts | +1 tối đa | Sau đó HG4 |
+| Post asset generation | 1 | 2 | Có | Ưu tiên licensed/deterministic assets |
+| Distribution pack | 2 | 3 | Có | Generative variants cần QA |
+| Resource wait/backoff | 5 backoff steps | Bounded | Budget approval | Không tính creative retry |
+| Model failover | 2 | 2 | Ops | Alternate model phải compatible |
+| Campaign concept restart | 0 | 1 | HG1 | Chỉ khi creative invalid |
+
+Mọi retry phải có:
+
+```json
+{
+  "reason_code": "IMAGE_FAILURE",
+  "scope": "LOCAL",
+  "shot_id": "S002",
+  "iteration_id": "ITR_003",
+  "retry_count": 2,
+  "max_retry": 2,
+  "target_worker": "W11",
+  "escalation_route": "HG3"
+}
+```
+
+## 13. AUTO-REPAIR POLICY
+
+Auto-repair chỉ chạy khi:
+
+1. Failure thuộc permission đã định nghĩa.
+2. QA tạo `correction_hint` đủ cụ thể.
+3. Retry budget còn.
+4. Artifact mới có iteration_id mới.
+5. Lineage trỏ về artifact cũ.
+6. Artifact mới phải được validate lại từ đầu.
+7. Không sửa stable core.
+
+Được phép sửa:
+
+- prompt wording không liên quan claim;
+- negative prompt;
+- seed;
+- sampler/generation parameters;
+- control strength;
+- mask/inpaint region cục bộ;
+- camera path smoothing;
+- motion strength;
+- local composition hints.
+
+Không được phép sửa:
+
+- Product Truth;
+- Allowed Claims;
+- Core Visual Bible;
+- identity anchor;
+- script;
+- audio timeline total duration;
+- creative concept;
+- legal/policy constraints;
+- shot plan total duration ngoài tolerance;
+- approved final asset.
+
+Nếu risk cao ở các nhóm sau, không auto-repair:
+
+- identity_risk;
+- product_truth_risk;
+- claim_risk;
+- legal_risk;
+- core_style_risk.
+
+Route bắt buộc: Human Gate.
+
+## 14. HUMAN GATE POLICY
+
+| Gate | Tên | Entry Criteria | Approves | Reject Targets |
+|---|---|---|---|---|
+| HG1 | Truth & Concept Gate | Product Truth, Insight, Ideas, Claim Preflight valid | Product record, allowed claims, selected concept, risk acceptance | W01/W02/W03 |
+| HG2 | Creative Lock Gate | Script, Claim Firewall, Audio Timeline, Core Bible, Derived baseline, Context Graph, Shot Plan, Budget Estimate valid | Creative baseline trước production | W04/W05/W06/W07/W08 |
+| HG3 | Image Gate | Image QA + bounded repair complete | Per-shot images | W10/W11/W09 nếu motion intent sai |
+| HG4 | Video Gate | Video QA + bounded repair complete | Per-shot videos | W12/W13/W09/W08 nếu duration/state sai |
+| HG5 | Final & Distribution Gate | Draft ad, captions, platform variants, QA reports complete | FINAL_AD and distribution variants | W14/W15 |
+
+Reject payload bắt buộc:
+
+```json
+{
+  "gate_id": "HG3",
+  "campaign_id": "C001",
+  "shot_id": "S002",
+  "iteration_id": "ITR_004",
+  "decision": "REJECT",
+  "reason_code": "IMAGE_FAILURE",
+  "scope": "LOCAL",
+  "target_worker": "W11",
+  "comment": "Product label bị méo",
+  "recommended_action": "INPAINT_LABEL"
+}
+```
+
+Reason codes hợp lệ:
+
+`TRUTH`, `CLAIM`, `CREATIVE`, `SCRIPT`, `AUDIO`, `DURATION`, `STYLE`, `COMPOSITION`, `CHARACTER`, `PRODUCT`, `IDENTITY`, `STATE`, `MOTION_INTENT`, `MOTION_EXECUTION`, `IMAGE`, `VIDEO`, `RESOURCE`, `MODEL`, `PLATFORM`, `LEGAL`.
+
+Human gates nhận batch nhưng decision phải gắn từng shot/asset khi cần.
+
+## 15. CORE / DERIVED BIBLE
+
+### CORE_VISUAL_BIBLE
+
+Bao gồm:
+
+- PRODUCT_IDENTITY;
+- CHARACTER_IDENTITY;
+- BRAND_PALETTE;
+- LOGO;
+- PRODUCT_SHAPE;
+- IDENTITY_ANCHOR;
+- mandatory visual constraints.
+
+Rules:
+
+- State `DRAFT` cho tới HG2.
+- Sau HG2: `ANCHORED`.
+- Immutable ngoài `RE-ANCHOR`.
+- RE-ANCHOR yêu cầu:
+  - impact analysis;
+  - human approval;
+  - core_version increment;
+  - invalidation report.
+- Auto-repair không được sửa Core Bible.
+
+### DERIVED_VISUAL_BIBLE
+
+Bao gồm:
+
+- lighting;
+- camera;
+- environment;
+- mood;
+- composition;
+- cinematography;
+- style presets;
+- render hints.
+
+Rules:
+
+- Versionable.
+- Có thể sửa bởi human hoặc repair trong phạm vi DERIVED scope.
+- Khi đổi, Scope Manager đánh dấu asset phụ thuộc là `STALE`.
+- Derived change không được sửa Core Identity.
+
+## 16. CONTEXT / STATE GRAPH
+
+`CONTEXT_GRAPH` theo dõi:
+
+- CHARACTER_STATE;
+- PRODUCT_STATE;
+- ENVIRONMENT_STATE;
+- LIGHTING_STATE;
+- TIME_OF_DAY;
+- CAMERA_AXIS;
+- SPATIAL_RELATION;
+- OBJECT_LOCATION;
+- ACTION_CAUSALITY;
+- SHOT_TRANSITION_RULES.
+
+Owner: W07 Context Graph Builder.
+
+Inputs:
+
+- MASTER_SCRIPT;
+- SHOT_INTENT;
+- CORE/DERIVED_VISUAL_BIBLE;
+- SHOT_PLAN;
+- MOTION_PLAN.
+
+Deterministic validation:
+
+- object permanence;
+- valid state transitions;
+- spatial continuity;
+- camera axis consistency;
+- lighting/time continuity;
+- shot refs hợp lệ.
+
+Context Graph không phải bằng chứng render đúng. Nó là planning artifact và preflight signal.
+
+Versioning:
+
+- `context_graph_version`;
+- `state_hash`;
+- `stale` flag.
+
+Khi Shot Plan, Motion Plan, Derived Bible hoặc Core Bible đổi, Context Graph phải được revalidate.
+
+## 17. AUDIO TIMELINE
+
+Nguồn:
+
+```text
+APPROVED_SCRIPT
+→ TTS
+→ VOICE_TRACK
+→ phrase_boundaries
+→ pause_points
+→ word_timestamps
+→ AUDIO_TIMELINE
+```
+
+`AUDIO_TIMELINE.total_duration` là nguồn sự thật cho final duration.
+
+Rules:
+
+- Không cắt xuyên phrase boundary trừ khi có pause/silence hợp lệ.
+- Shot Planner phải reconcile với Audio Timeline.
+- TTS regeneration làm thay đổi total_duration > tolerance phải trigger Shot Plan revalidation.
+- Caption baseline được tạo từ word_timestamps.
+- Music/SFX phải fit Audio Timeline.
+
+Tolerance chuẩn:
+
+- final ad: ±500ms;
+- shot: ±250ms;
+- audio-safe stretch: ≤ 2%.
+
+Nếu vượt tolerance: `DURATION_FAILURE`.
+
+## 18. MOTION SYSTEM
+
+Motion Planner output:
+
+```json
+{
+  "motion_plan_id": "MOT_xxx",
+  "shot_id": "S002",
+  "dominant_action": "product_rotate",
+  "secondary_actions": ["hand_enter", "label_highlight"],
+  "camera_motion": "slow_push_in",
+  "motion_complexity": "medium",
+  "feasibility_score": 0.78,
+  "risk_level": "medium",
+  "model_capability_match": true,
+  "recommended_motion": "controlled_rotation",
+  "fallback_motion": "static_product_with_camera_push",
+  "constraints": {
+    "semantic": [],
+    "object": [],
+    "temporal": [],
+    "spatial": [],
+    "identity": [],
+    "risk": []
+  }
+}
+```
+
+Rules:
+
+- Feasibility score là probabilistic.
+- Constraints là advisory/control guidance.
+- Physics preflight là deterministic check trên Context Graph, không phải guarantee render.
+- Nếu feasibility thấp, chọn fallback production-safe.
+- Motion Memory được dùng để tránh motion có success rate thấp.
+
+## 19. MODEL CONTROL
+
+Model Capability Registry lưu:
+
+```json
+{
+  "model_id": "video_model_a",
+  "model_version": "2026-05",
+  "modality": "image_to_video",
+  "supported_durations": [2, 4, 6, 8],
+  "min_duration": 2,
+  "max_duration": 8,
+  "supported_aspects": ["9:16", "1:1", "16:9"],
+  "control_modes": ["first_frame", "motion_strength", "camera_path"],
+  "max_resolution": "1080p",
+  "cost_unit": "credit_per_second",
+  "quota_limit": 1000,
+  "success_rate_30d": 0.83,
+  "mean_retry_30d": 1.4
+}
+```
+
+Model selection dựa trên:
+
+- capability match;
+- budget;
+- historical success rate;
+- retry rate;
+- latency;
+- platform requirement;
+- fallback availability.
+
+Model là replaceable intelligence. Stable Core không phụ thuộc model cụ thể.
+
+## 20. IMAGE PRODUCTION
+
+### Inputs
+
+- APPROVED_IMAGE_RENDER_SPEC;
+- CORE_VISUAL_BIBLE version;
+- DERIVED_VISUAL_BIBLE version;
+- CONTEXT_GRAPH version;
+- identity references;
+- RESOURCE_RESERVATION.
+
+### Image Factory behavior
+
+- Chạy song song theo shot nếu resource cho phép.
+- Reference generation chỉ chạy khi có reservation.
+- Mỗi asset có:
+  - campaign_id;
+  - shot_id;
+  - iteration_id;
+  - core_bible_version;
+  - derived_bible_version;
+  - prompt_version;
+  - model_id;
+  - model_version;
+  - seed;
+  - asset_id.
+
+### Deterministic QA
+
+- resolution;
+- aspect ratio;
+- file integrity;
+- metadata;
+- duplicate hash;
+- required fields;
+- OCR text presence;
+- claim-safe text check.
+
+### Probabilistic QA
+
+- identity_risk;
+- artifact_risk;
+- composition_risk;
+- style_risk;
+- product_visibility_risk;
+- implied_claim_risk.
+
+Probabilistic QA không tuyên bố semantic truth.
+
+### Repair
+
+- Max auto-repair: 2.
+- Sau đó human review.
+- Nếu identity/product/claim risk cao: route human ngay.
+
+## 21. VIDEO PRODUCTION
+
+### Inputs
+
+- APPROVED_IMAGE;
+- MOTION_PLAN;
+- CONTROL_SPEC;
+- CONTEXT_GRAPH;
+- AUDIO_TIMELINE segment;
+- Model Capability Registry;
+- RESOURCE_RESERVATION.
+
+### Video Motion Compiler
+
+- Kiểm tra `motion_constraints_stale`.
+- Nếu stale, route về Motion Planner/Context Graph trước.
+- Tạo duration target dựa trên audio segment và model supported duration.
+- Nếu duration target không feasible, route `DURATION_FAILURE`.
+
+### Video Factory
+
+- Chạy song song theo shot nếu resource cho phép.
+- Output asset có:
+  - shot_id;
+  - iteration_id;
+  - asset_id;
+  - model_id;
+  - model_version;
+  - render_spec_version;
+  - seed.
+
+### Deterministic QA
+
+- duration;
+- FPS;
+- resolution;
+- integrity;
+- metadata;
+- duplicate hash;
+- alignment với shot segment;
+- OCR nếu có text.
+
+### Probabilistic QA
+
+- artifact_risk;
+- structural_drift;
+- identity_similarity;
+- temporal_instability;
+- motion_risk;
+- implied_claim_risk.
+
+### Repair routing
+
+- MOTION_EXECUTION failure → W12/W13;
+- MOTION_CONCEPT failure → W09;
+- IMAGE_FAILURE → W10/W11;
+- DURATION_FAILURE → W08/W12/W14;
+- STATE_FAILURE → W07;
+- CREATIVE_FAILURE → W03/HG1.
+
+## 22. QA / PREFLIGHT
+
+Ba lớp QA:
+
+| Lớp | Bản chất | Authority |
+|---|---|---|
+| Deterministic Validation | Rule-based | Pass/fail technical |
+| Probabilistic Risk QA | Model-based estimation | Risk signal |
+| Human Review | Judgment | Approve/reject final semantic quality |
+
+Preflight bắt buộc trước expensive generation:
+
+- claim preflight;
+- duration feasibility;
+- model capability;
+- budget/resource;
+- context graph consistency;
+- reference availability;
+- Bible version validity;
+- stale flag check.
+
+Không một probabilistic metric đơn lẻ nào được tự động kết luận semantic truth hoặc block campaign ngoài policy threshold.
+
+## 23. RESOURCE MANAGER
+
+Resource Manager kiểm soát:
+
+- campaign budget;
+- shot budget;
+- worker budget;
+- model credit;
+- API quota;
+- concurrency;
+- reservation;
+- actual cost;
+- dedup cache.
+
+Rules:
+
+- Reserve-before-call.
+- Không reserve được → không gọi model.
+- Reservation có TTL.
+- Failure phải release reservation.
+- Actual cost ghi lại sau mỗi call.
+- Duplicate generation bị chặn nếu same:
+  - input_hash;
+  - control_hash;
+  - model_id;
+  - model_version;
+  - prompt_version;
+  - seed;
+  - render_spec_version.
+
+Dynamic budget estimator dùng:
+
+- historical retry;
+- model success rate;
+- motion type;
+- product type;
+- style;
+- shot complexity;
+- current credit.
+
+Nếu budget không đủ:
+
+1. downgrade model;
+2. dùng fallback production-safe;
+3. giảm concurrency;
+4. queue;
+5. request budget approval;
+6. stop có kiểm soát.
+
+## 24. PARALLEL SCHEDULER
+
+Dependency graph quyết định parallelism.
+
+Có thể chạy song song:
+
+- W05 Audio Timeline và W06 Visual Identity sau khi script approved, nếu W06 không cần audio.
+- Post asset preparation sau AUDIO_LOCKED.
+- Image production cho nhiều shot sau HG2.
+- Video production cho nhiều shot sau khi corresponding image approved.
+- Distribution packaging cho nhiều platform sau final approval.
+
+Không chạy song song nếu:
+
+- artifact dependency chưa valid;
+- context graph stale;
+- Bible version stale;
+- resource capacity không đủ;
+- ordering requirement bị phá.
+
+Scheduler phải tôn trọng:
+
+- state dependency;
+- resource reservation;
+- concurrency limit;
+- priority;
+- retry budget.
+
+## 25. VERSIONING
+
+| Entity | Version Field | Change Trigger |
+|---|---|---|
+| Campaign | campaign_version | Concept/script/platform major change |
+| Creative Idea | idea_version | Idea revision |
+| Script | script_version | Script rewrite |
+| Claim Set | claim_policy_version | Allowed claims/legal update |
+| Audio Timeline | audio_timeline_version | TTS regen/pacing change |
+| Core Bible | core_bible_version | RE-ANCHOR |
+| Derived Bible | derived_bible_version | Style/cinematography update |
+| Context Graph | context_graph_version | State/shot/motion update |
+| Shot Plan | shot_plan_version | Shot boundary/duration change |
+| Motion Plan | motion_plan_version | Motion revision |
+| Control Spec | control_spec_version | Prompt/control update |
+| Image Asset | iteration_id | Regeneration/repair |
+| Video Asset | iteration_id | Regeneration/repair |
+| Distribution Asset | publish_version | Platform variant update |
+
+Mọi version phải có hash và lineage.
+
+## 26. MEMORY
+
+### IMAGE MEMORY
+
+- product_type;
+- style;
+- model;
+- prompt_pattern;
+- control_mode;
+- success_rate;
+- retry_rate;
+- average_cost.
+
+### MOTION MEMORY
+
+- motion_type;
+- model;
+- success_rate;
+- failure_reason;
+- mean_retry;
+- feasibility_history.
+
+### CREATIVE MEMORY
+
+- hook;
+- concept;
+- CTA;
+- script_pattern;
+- audience_segment;
+- predicted_score;
+- performance_summary.
+
+### PERFORMANCE MEMORY
+
+- platform;
+- audience;
+- creative_pattern;
+- CTR;
+- 3s_retention;
+- completion_rate;
+- conversion;
+- CPA;
+- ROAS;
+- sample_size;
+- confidence;
+- time_window.
+
+Memory Governor đảm bảo performance chỉ ảnh hưởng scoring/ranking/recommendation, không ghi vào stable core.
+
+## 27. PERFORMANCE FEEDBACK
+
+Performance ingestion gắn với:
+
+- creative_id;
+- idea_version;
+- hook_version;
+- script_version;
+- visual_style;
+- motion_type;
+- platform;
+- audience;
+- publish_version.
+
+Data quality rules:
+
+- Chỉ cập nhật recommendation khi sample_size ≥ threshold cấu hình.
+- Confidence phải đạt threshold.
+- Dữ liệu nhỏ lẻ chỉ dùng để observation, không dùng để thay đổi scoring mạnh.
+- Không dùng performance để sửa:
+  - Product Truth;
+  - Allowed Claims;
+  - Core Identity;
+  - Claim Policy;
+  - Legal Rules.
+
+Learning loop:
+
+```text
+FINAL_AD
+→ DISTRIBUTION
+→ PERFORMANCE
+→ MEMORY
+→ CREATIVE / MOTION / IMAGE SCORING
+→ W02 / W03
+```
+
+## 28. DISTRIBUTION
+
+W15 tạo platform variants cho:
+
+- TikTok;
+- Meta;
+- YouTube;
+- Google Ads;
+- các platform khác.
+
+Mỗi distribution asset có:
+
+- platform;
+- format;
+- aspect_ratio;
+- duration;
+- creative_id;
+- source_asset_id;
+- transform_spec;
+- publish_version;
+- publish_status;
+- QA report.
+
+Transform types:
+
+| Type | Ví dụ | QA |
+|---|---|---|
+| Deterministic | resize, crop safe area, format conversion | Deterministic validation |
+| Generative | outpaint, generative thumbnail, background extension | QA + Human approval nếu ảnh hưởng identity/claim |
+
+Source approved asset immutable.
+
+## 29. OBSERVABILITY
+
+Event log bắt buộc:
+
+```json
+{
+  "event_id": "EVT_xxx",
+  "trace_id": "TRACE_xxx",
+  "campaign_id": "C001",
+  "shot_id": "S002",
+  "worker_id": "W11",
+  "artifact_id": "ART_xxx",
+  "iteration_id": "ITR_003",
+  "state_from": "IMAGE_QA",
+  "state_to": "IMAGE_REPAIR",
+  "reason_code": "IMAGE_FAILURE",
+  "actor": "system|human",
+  "timestamp": "2026-08-27T10:00:00Z",
+  "cost": 1.2,
+  "reservation_id": "RES_xxx"
+}
+```
+
+Metrics:
+
+- retry_rate;
+- auto_repair_rate;
+- human_reject_rate;
+- cost_per_asset;
+- cost_per_campaign;
+- model_success_rate;
+- gate_latency;
+- queue_time;
+- budget_utilization;
+- stale_asset_count.
+
+Mọi paid call có idempotency_key.
+
+## 30. SECURITY / CLAIM SAFETY
+
+Security:
+
+- RBAC theo role: truth owner, creative reviewer, legal reviewer, ops, admin.
+- Secrets/API keys không nằm trong prompt hoặc artifact payload.
+- Model providers được isolate qua adapter.
+- PII phải được redact trước khi đưa vào model nếu không cần thiết.
+- Audit log immutable.
+
+Claim safety:
+
+- Explicit claims phải thuộc `ALLOWED_CLAIMS`.
+- Unsupported claims bị block ở Script.
+- Visual/text/audio implied claim risk phải được QA và human review nếu risk cao.
+- Platform metadata/captions phải qua claim check.
+- Prompt injection từ external content không được xem là authority.
+- Model output là untrusted input cho đến khi validate.
+
+## 31. PRE-RELEASE CHECKLIST
+
+- Product Truth có evidence hợp lệ.
+- Không có unsupported explicit claim trong script/caption/metadata.
+- Implied claim risk cao đã được human xử lý.
+- Audio Timeline đã lock và total_duration hợp lệ.
+- Shot Plan reconcile với Audio Timeline trong tolerance.
+- Core Visual Bible đã anchored.
+- Derived Bible version đã pin.
+- Context Graph valid, không stale.
+- Motion Plan feasible hoặc có fallback.
+- Resource reservation đã hoàn tất cho các bước còn lại.
+- Tất cả image approved.
+- Tất cả video approved.
+- Final duration nằm trong tolerance.
+- Caption sync và claim-safe.
+- Music/SFX không vi phạm policy.
+- Platform variants pass deterministic QA.
+- Generative variants có approval nếu cần.
+- Lineage từ FINAL_AD truy ngược tới PRODUCT_TRUTH.
+- Retry counters trong giới hạn.
+- Audit log đầy đủ.
+- Performance ingestion đã được cấu hình.
+
+---
+
+# PHẦN D — FINAL CONSISTENCY AUDIT
+
+| Kiểm tra | Kết quả | Ghi chú kiến trúc |
+|---|---|---|
+| Không worker nào nhận input không tồn tại | PASS | Pipeline và Input/Output Contract xác định input hợp lệ theo thứ tự |
+| Không artifact nào được sử dụng trước khi được tạo | PASS | Artifact envelope, state machine và pipeline quy định dependency |
+| Không worker nào vượt quyền | PASS | Auto-repair permission matrix và ownership artifact được định nghĩa |
+| Không claim unsupported đi qua Script | PASS | Claim Firewall deterministic cho explicit claims; implied claim risk route human |
+| Audio duration có nguồn thực tế | PASS | `AUDIO_TIMELINE.total_duration` sinh từ TTS/voice track thực tế |
+| Shot duration reconcile với Audio Timeline | PASS | Shot & Duration Planner dùng tolerance, phrase boundary, model capability |
+| Core Bible không bị accidental mutation | PASS | Core Bible DRAFT đến HG2, immutable ngoài RE-ANCHOR |
+| State Graph không bị phá | PASS | Context Graph có owner, version, deterministic validator, stale flag |
+| Motion constraint không bị mô tả như model enforcement tuyệt đối | PASS | Motion constraints được khai báo advisory/control guidance |
+| Probabilistic QA không được xem là semantic truth | PASS | QA tách 3 lớp: deterministic, probabilistic risk, human judgment |
+| Auto-repair có permission | PASS | Repair Router có allowed/forbidden fields, correction_hint, bounded retry |
+| Retry bounded | PASS | Retry Policy có hard cap, escalation, iteration_id |
+| Có escalation | PASS | Routing table có fallback và escalation theo từng failure |
+| Local failure không phá toàn campaign | PASS | Scope LOCAL chỉ ảnh hưởng shot/asset; campaign restart chỉ cho CREATIVE_FAILURE có kiểm soát |
+| Global change có propagation/invalidation | PASS | DERIVED_GLOBAL, CORE_GLOBAL, STALE flags, Scope Manager |
+| API cost được reserve trước khi gọi | PASS | Resource Gate interceptor cho mọi paid call |
+| Deduplication tồn tại | PASS | Resource Manager dedup theo input/control hash và render spec |
+| Versioning đầy đủ | PASS | Versioning table bao gồm campaign, script, audio, Bible, context, shot, motion, control, distribution |
+| Lineage đầy đủ | PASS | Artifact envelope có parent_artifact_ids, lineage, repair_of |
+| Parallel processing không phá dependency | PASS | Parallel Scheduler dựa trên dependency graph, resource, stale state |
+| Assembly deterministic | PASS | W14 assembly dùng timeline deterministic, duration/loudness/caption checks |
+| Performance data không sửa Product Truth hoặc Claim Policy | PASS | Memory Governor giới hạn write scope; performance chỉ tạo recommendation |
+| Không có deadlock | PASS | Mọi blocked state có exit: retry bounded, fallback, human, abort |
+| Không có infinite loop | PASS | Retry hard cap, auto-repair cap, escalation route |
+| Không có worker chỉ tồn tại để thuyết minh | PASS | Mỗi worker có input, output, validation, resource impact, failure route |
