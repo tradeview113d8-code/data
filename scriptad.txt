@@ -1,1101 +1,379 @@
-AI AD CREATIVE COMPILER — PRODUCTION ARCHITECTURE V3
-
-┌─────────────────────────────┐
-                         │        PRODUCT INPUT        │
-                         │ images / docs / raw facts   │
-                         └──────────────┬──────────────┘
-                                        │
-                                        ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                         PHASE 0 — TRUTH                              │
-│                                                                     │
-│ W01 PRODUCT TRUTH ENGINE                                            │
-│      │                                                              │
-│      ├── PRODUCT_RECORD                                             │
-│      ├── FACTS + EVIDENCE                                           │
-│      ├── ALLOWED_CLAIMS                                             │
-│      ├── UNKNOWN / UNVERIFIED                                      │
-│      └── PRODUCT_IDENTITY                                           │
-│                    │                                                │
-│                    ▼                                                │
-│ W02 CUSTOMER INSIGHT ENGINE                                         │
-│      │                                                              │
-│      ├── PAIN_MAP                                                   │
-│      ├── DESIRE_MAP                                                 │
-│      ├── EVIDENCE                                                   │
-│      └── INFERRED vs OBSERVED                                       │
-│                    │                                                │
-│                    ▼                                                │
-│ W03 CREATIVE IDEA ENGINE                                            │
-│      │                                                              │
-│      └── IDEA_POOL                                                  │
-│                    │                                                │
-│                    ▼                                                │
-│             CLAIM FIREWALL                                          │
-│             BRAND SAFETY                                            │
-│             IDEA RANKING                                             │
-│                    │                                                │
-│                    ▼                                                │
-│              HUMAN GATE #1                                          │
-│           IDEA / VARIANT SELECT                                     │
-└────────────────────┬────────────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                     PHASE 1 — CREATIVE LOCK                         │
-│                                                                     │
-│ W04 SCRIPT ENGINE                                                   │
-│      │                                                              │
-│      ├── MASTER_SCRIPT                                              │
-│      ├── VO SCRIPT                                                  │
-│      ├── CLAIM REFERENCES                                           │
-│      └── SHOT INTENT                                                │
-│                    │                                                │
-│                    ▼                                                │
-│ W04.1 CLAIM VALIDATOR                                               │
-│      │                                                              │
-│      └── BLOCK unsupported claims                                   │
-│                    │                                                │
-│                    ▼                                                │
-│ W04.5 AUDIO FACTORY — EARLY TTS                                     │
-│      │                                                              │
-│      ├── VOICE_TRACK                                                │
-│      ├── WORD/CUE TIMESTAMPS                                        │
-│      └── ACTUAL_DURATION                                            │
-│                    │                                                │
-│                    ▼                                                │
-│ W04.6 AUDIO PACING ENGINE                                           │
-│      │                                                              │
-│      └── AUDIO_TIMELINE                                             │
-│                    │                                                │
-│                    ▼                                                │
-│ W05 VISUAL DIRECTOR                                                 │
-│      │                                                              │
-│      ├── CORE_VISUAL_BIBLE                                         │
-│      │      ├── product identity                                   │
-│      │      ├── character identity                                 │
-│      │      ├── brand palette                                      │
-│      │      └── immutable visual traits                             │
-│      │                                                              │
-│      └── DERIVED_STYLE_BIBLE                                       │
-│             ├── lighting                                            │
-│             ├── camera                                               │
-│             ├── environment                                         │
-│             └── mood                                                │
-│                    │                                                │
-│                    ▼                                                │
-│ W06 SHOT PLANNER                                                    │
-│      │                                                              │
-│      ├── AUDIO_TIMELINE                                             │
-│      ├── MASTER_SCRIPT                                              │
-│      └── VISUAL_BIBLE                                               │
-│                    │                                                │
-│                    ▼                                                │
-│                SHOT_PLAN                                             │
-│      duration derived from audio, NOT arbitrary 2–4s rule           │
-│                                                                     │
-│      HARD VALIDATION:                                               │
-│      Σ shot.duration ≈ AUDIO_TIMELINE.total_duration               │
-│      shot count within budget                                       │
-│      every shot has narrative purpose                               │
-└────────────────────┬────────────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                  PHASE 2 — PRE-VISUALIZATION                        │
-│                                                                     │
-│ W07 MOTION ANALYZER                                                 │
-│      │                                                              │
-│      ├── dominant_action                                             │
-│      ├── secondary_actions ≤ 2                                     │
-│      ├── object interactions                                        │
-│      ├── state transitions                                          │
-│      └── temporal complexity                                        │
-│                    │                                                │
-│                    ▼                                                │
-│ W07.5 MOTION FEASIBILITY ENGINE                                     │
-│      │                                                              │
-│      ├── model capability matrix                                    │
-│      ├── historical success rate                                    │
-│      ├── physics complexity                                         │
-│      └── retry expectation                                          │
-│                    │                                                │
-│             ┌──────┴─────────┐                                      │
-│             │                 │                                      │
-│           SAFE              UNSAFE                                  │
-│             │                 │                                      │
-│             │        simplify / alternate shot                      │
-│             │                 │                                      │
-│             └────────┬────────┘                                      │
-│                      ▼                                               │
-│ W08 MOTION RULE ENGINE                                               │
-│      │                                                              │
-│      └── MOTION_CONSTRAINTS                                         │
-│                                                                     │
-│ IMPORTANT:                                                          │
-│ Constraint ≠ guaranteed model behavior                              │
-│                    │                                                │
-│                    ▼                                                │
-│ W08.5 PHYSICS / CONTRACT PREFLIGHT                                  │
-│      │                                                              │
-│      ├── impossible transition?                                    │
-│      ├── excessive object interaction?                              │
-│      ├── liquid / particle / reflection risk?                       │
-│      ├── identity-critical motion?                                  │
-│      └── recommended fallback?                                      │
-│                    │                                                │
-│                    ▼                                                │
-│ W09 KEYFRAME DECOMPOSER                                              │
-│      │                                                              │
-│      ├── START_STATE                                                │
-│      ├── TRANSITION                                                 │
-│      ├── END_STATE                                                  │
-│      └── REFERENCE_RELATIONSHIPS                                   │
-│                    │                                                │
-│                    ▼                                                │
-│ W09.5 CONTROL / REFERENCE COMPILER                                  │
-│      │                                                              │
-│      ├── product reference                                          │
-│      ├── character reference                                        │
-│      ├── style anchor                                               │
-│      ├── depth / edge / pose control                                │
-│      ├── mask                                                        │
-│      └── structural conditioning                                    │
-│                    │                                                │
-│                    ▼                                                │
-│ W10 PICTURE RENDER SPEC                                              │
-│                    │                                                │
-│                    ▼                                                │
-│ W10.5 BUDGET + DEDUP + RESOURCE GATE                                │
-│      │                                                              │
-│      ├── shot budget                                                 │
-│      ├── retry budget                                                │
-│      ├── API quota                                                   │
-│      ├── duplicate keyframe                                         │
-│      └── concurrency capacity                                       │
-└────────────────────┬────────────────────────────────────────────────┘
-                     │
-                     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                       PICTURE FACTORY                               │
-│                              W11                                    │
-│                                                                     │
-│       image generation / reference conditioning / variants          │
-│                              │                                      │
-│                              ▼                                      │
-│                       SHOT_IMAGES                                   │
-│                              │                                      │
-│                              ▼                                      │
-│                   W11.5 IMAGE PREFLIGHT QA                           │
-│                                                                     │
-│       AUTOMATION ONLY:                                              │
-│       OCR / dimensions / palette / metadata / basic artifact        │
-│       detection / reference similarity / risk score                 │
-│                                                                     │
-│       NOT: "AI proves image is perfect"                             │
-│                              │                                      │
-│                              ▼                                      │
-│                    TELEGRAM GATE #2                                 │
-│                    IMAGE REVIEW                                     │
-└────────────────────────────┬────────────────────────────────────────┘
-                             │
-                ┌────────────┴─────────────┐
-                │                          │
-             APPROVE                    REJECT
-                │                          │
-                │                   ┌──────┴──────────────┐
-                │                   │                     │
-                │                 LOCAL                GLOBAL
-                │                   │                     │
-                │             route by reason       route by reason
-                │                   │                     │
-                │             ┌─────┼─────┐          W05/W06
-                │             │     │     │          if core/style
-                │             │     │     │          is fundamentally wrong
-                │             ▼     ▼     ▼
-                │            W09   W10   W11
-                │
-                ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                     PHASE 3 — MOTION PRODUCTION                     │
-│                                                                     │
-│ W12 VIDEO MOTION PROMPT COMPILER                                    │
-│      │                                                              │
-│      ├── approved image                                             │
-│      ├── motion constraints                                         │
-│      ├── audio timing                                               │
-│      ├── reference information                                      │
-│      ├── model capability                                           │
-│      └── negative/risk hints                                        │
-│                    │                                                │
-│                    ▼                                                │
-│ W13 MOTION FACTORY                                                  │
-│      │                                                              │
-│      ├── image → video                                              │
-│      ├── model selection                                            │
-│      └── generation                                                 │
-│                    │                                                │
-│                    ▼                                                │
-│                 SHOT_VIDEO                                          │
-│                    │                                                │
-│                    ▼                                                │
-│ W13.5 VIDEO PREFLIGHT QA                                            │
-│                                                                     │
-│      evidence / heuristic only:                                    │
-│      duration / frame integrity / OCR / optical flow /             │
-│      image-video similarity / artifact risk                         │
-│                    │                                                │
-│                    ▼                                                │
-│              TELEGRAM GATE #3                                       │
-│               MOTION REVIEW                                         │
-└──────────────────────┬──────────────────────────────────────────────┘
-                       │
-              ┌────────┴─────────┐
-              │                  │
-           APPROVE             REJECT
-              │                  │
-              │           route by reject_reason
-              │                  │
-              │       ┌──────────┼───────────────┐
-              │       │          │               │
-              │    MOTION      IMAGE          IDEA/
-              │    FAILURE     FAILURE        CONCEPT
-              │       │          │               │
-              │      W12       W11             W07
-              │       │          │               │
-              │       └────┬─────┘               │
-              │            │                     │
-              │            ▼                     │
-              │       bounded retry              │
-              │            │                     │
-              │         MAX_RETRY                 │
-              │            │                     │
-              │      ┌─────┴─────┐               │
-              │      │           │               │
-              │    retry       escalate          │
-              │                  │               │
-              └──────────────────┼───────────────┘
-                                 │
-                                 ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│                       FINAL ASSEMBLY                                 │
-│                                                                     │
-│ AUDIO BRANCH                                                        │
-│ W04.5 TTS                                                           │
-│      │                                                              │
-│      ├── VOICE_TRACK                                                │
-│      └── AUDIO_TIMELINE                                             │
-│                                                                     │
-│ MUSIC / SFX ENGINE                                                  │
-│      │                                                              │
-│      ├── MUSIC_TRACK                                                │
-│      ├── SFX_TRACK                                                  │
-│      └── DUCKING_PLAN                                               │
-│                                                                     │
-│ CAPTION ENGINE                                                      │
-│      │                                                              │
-│      └── CAPTION_TIMELINE                                           │
-│                                                                     │
-│                    ALL CONVERGE                                     │
-│                         │                                           │
-│                         ▼                                           │
-│                  W14 ASSEMBLY ENGINE                                │
-│                         │                                           │
-│              ┌──────────┼───────────┐                               │
-│              │          │           │                               │
-│          SHOT_VIDEO   VOICE       MUSIC/SFX                         │
-│              │          │           │                               │
-│              └──────────┼───────────┘                               │
-│                         │                                           │
-│                         ▼                                           │
-│                    DRAFT_AD                                         │
-│                         │                                           │
-│                         ▼                                           │
-│                  FINAL HUMAN GATE                                   │
-│                         │                                           │
-│                    APPROVE / REJECT                                 │
-│                         │                                           │
-│                         ▼                                           │
-│                      FINAL_AD                                       │
-└─────────────────────────────────────────────────────────────────────┘
-
-1. Contract giữa các Worker
-
-Đây mới là phần tôi cho rằng quan trọng hơn bản thân tree.
-
-Mỗi worker không giao tiếp với worker kế tiếp bằng kiểu:
-
-Worker A → "một đống JSON" → Worker B
-
-mà phải:
-
-Worker A
-   │
-   ▼
-OUTPUT ARTIFACT
-   │
-   ├── schema_version
-   ├── artifact_id
-   ├── campaign_id
-   ├── parent_artifact_id
-   ├── worker_version
-   ├── input_hash
-   ├── status
-   ├── payload
-   └── validation
-             │
-             ▼
-       CONTRACT VALIDATOR
-             │
-       ┌─────┴─────┐
-       │           │
-     VALID       INVALID
-       │           │
-       ▼           ▼
- Worker B       STOP/REPAIR
-
-Contract chuẩn
-
-Worker	Input	Output	Contract bắt buộc
-
-W01	Product input	PRODUCT_RECORD	Fact phải có evidence
-W02	Product Record	PAIN_MAP	Pain phân biệt observed/inferred
-W03	Product + Pain	IDEA_POOL	Không tạo unsupported claim
-W04	Selected Idea	MASTER_SCRIPT	Claim phải reference allowed claim
-W04.5	Master Script	VOICE_TRACK	Có duration thực tế
-W04.6	Voice Track	AUDIO_TIMELINE	Timestamp thực tế
-W05	Script + Audio	VISUAL_BIBLE	Core/Derived versioned
-W06	Audio + Script + Bible	SHOT_PLAN	Tổng duration khớp audio
-W07	Shot Plan	MOTION_PLAN	Dominant + secondary actions
-W07.5	Motion Plan	FEASIBILITY_REPORT	Risk/capability measurable
-W08	Motion Plan	MOTION_CONSTRAINTS	Structured, không chỉ text
-W08.5	Constraints	PREFLIGHT_REPORT	Physics/risk check
-W09	Motion + State	KEYFRAME_PLAN	State transition rõ
-W09.5	Keyframes	CONTROL_SPEC	Reference/control inputs
-W10	Control Spec	PICTURE_RENDER_SPEC	Renderable
-W10.5	Render Spec	RESOURCE_DECISION	Budget đủ
-W11	Render Spec	SHOT_IMAGE	Asset versioned
-W11.5	Image	IMAGE_QA_REPORT	Evidence/risk, không overclaim
-W12	Approved Image	VIDEO_RENDER_SPEC	Chỉ render approved asset
-W13	Video Spec	SHOT_VIDEO	shot_id + iteration_id
-W13.5	Shot Video	VIDEO_QA_REPORT	Heuristic/evidence
-W14	All approved assets	DRAFT_AD	Timeline deterministic
-Final Gate	Draft	FINAL_AD	Human approval
-
-
-
----
-
-2. Một thay đổi rất quan trọng: Contract ≠ Prompt
-
-Không nên gọi:
-
-{
-  "motion_contract": {
-    "forbidden": [
-      "second_ball",
-      "paddle_morphing"
-    ]
-  }
-}
-
-rồi nghĩ Video AI sẽ thực thi nó.
-
-Nên tách thành 3 tầng:
-
-MOTION_INTENT
-      │
-      ▼
-MOTION_CONSTRAINTS
-      │
-      ├── semantic constraints
-      ├── object constraints
-      ├── temporal constraints
-      └── risk constraints
-      │
-      ▼
-MODEL_CONTROL_SPEC
-      │
-      ├── prompt
-      ├── reference image
-      ├── mask
-      ├── control input
-      ├── camera path
-      └── model-specific parameters
-
-Sau đó:
-
-MODEL OUTPUT
-     │
-     ▼
-EVIDENCE / QA
-     │
-     ▼
-HUMAN
-
-Như vậy hệ thống không giả vờ rằng prompt có khả năng "enforce" vật lý.
-
-
----
-
-3. Hai loại QA phải được phân biệt
-
-Đây là điểm cần sửa mạnh so với kiến trúc cũ.
-
-Deterministic QA
-
-Có thể PASS/FAIL:
-
-resolution
-aspect_ratio
-duration
-file_integrity
-audio_duration
-OCR presence
-required metadata
-budget
-schema
-duplicate hash
-shot_id
-iteration_id
-
-Probabilistic QA
-
-Chỉ được:
-
-RISK_LOW
-RISK_MEDIUM
-RISK_HIGH
-
-hoặc:
-
-{
-  "identity_similarity": 0.87,
-  "reference_similarity": 0.91,
-  "motion_complexity": 0.74,
-  "artifact_risk": 0.68
-}
-
-Không được biến những con số này thành sự thật tuyệt đối.
-
-Ví dụ:
-
-VIDEO QA
-
-duration        PASS
-resolution      PASS
-OCR              PASS
-
-identity_risk   HIGH
-artifact_risk   MEDIUM
-motion_risk     HIGH
-
-              ↓
-
-HUMAN GATE
-
-Đây là kiến trúc thực tế hơn rất nhiều.
-
-
----
-
-4. State Machine của một Shot
-
-Mỗi shot phải độc lập.
-
-DRAFT
- │
- ▼
-IMAGE_RENDER_PENDING
- │
- ▼
-IMAGE_RENDERING
- │
- ▼
-IMAGE_REVIEW
- │
- ├── APPROVED ─────────────────────┐
- │                                │
- └── REJECTED                     │
-       │                          │
-       ▼                          │
-   ROUTE_REASON                   │
-       │                          │
-       ├── STYLE                  │
-       ├── COMPOSITION            │
-       ├── CHARACTER              │
-       ├── PRODUCT                │
-       └── MOTION_INTENT          │
-                                  │
-                                  ▼
-                         VIDEO_RENDER_PENDING
-                                  │
-                                  ▼
-                         VIDEO_RENDERING
-                                  │
-                                  ▼
-                           VIDEO_REVIEW
-                                  │
-                         ┌────────┴────────┐
-                         │                 │
-                      APPROVE            REJECT
-                         │                 │
-                         ▼                 ▼
-                       READY           ROUTER_REASON
-                                           │
-                          ┌────────────────┼──────────────┐
-                          │                │              │
-                       MOTION            IMAGE         CONCEPT
-                          │                │              │
-                         W12              W11            W07
-                          │                │              │
-                          └────────────────┴──────────────┘
-                                           │
-                                      RETRY_COUNT
-                                           │
-                                      MAX_RETRY?
-                                      /         \
-                                    NO           YES
-                                    │             │
-                                  RETRY        ESCALATE
-
-Quan trọng:
-
-> Reject Shot 3 không được làm restart Campaign.
-
-
-
-Trừ khi reviewer xác định:
-
-SCOPE = GLOBAL
-
-
----
-
-5. Local / Global Scope
-
-Tôi sẽ chuẩn hóa thành:
-
-{
-  "decision": "REJECT",
-  "scope": "LOCAL",
-  "reason_code": "PRODUCT_APPEARANCE",
-  "shot_id": "SHOT_003",
-  "iteration_id": 2,
-  "target_worker": "W11",
-  "feedback": "Product color differs from reference"
-}
-
-Hoặc:
-
-{
-  "decision": "REJECT",
-  "scope": "GLOBAL",
-  "reason_code": "STYLE_BIBLE_FAILURE",
-  "target_worker": "W05"
-}
-
-LOCAL
-
-Chỉ ảnh hưởng:
-
-SHOT_003
-
-GLOBAL
-
-Có thể ảnh hưởng:
-
-Visual Bible
-→ Shot Plan
-→ tất cả downstream shots
-
-Nhưng Core Bible không được tùy tiện sửa.
-
-
----
-
-6. Visual Bible phải chia làm 2
-
-Đây là một trong những thay đổi quan trọng nhất.
-
-CORE VISUAL BIBLE
-│
-├── PRODUCT_IDENTITY
-├── CHARACTER_IDENTITY
-├── BRAND_PALETTE
-├── LOGO / PRODUCT SHAPE
-└── IDENTITY ANCHOR
-       │
-       └── IMMUTABLE
-
-và:
-
-DERIVED VISUAL BIBLE
-│
-├── lighting
-├── camera
-├── environment
-├── mood
-├── composition
-└── cinematography
-       │
-       └── versionable
-
-Ví dụ:
-
-CORE v1
-   │
-   ├── Product = X
-   ├── Character = Y
-   └── Palette = Z
-
-DERIVED v1
-   │
-   └── warm / soft / 35mm
-
-DERIVED v2
-   │
-   └── slightly cooler / harder light
-
-Shot lưu:
-
-{
-  "core_bible_version": "CORE_v1",
-  "derived_bible_version": "DERIVED_v2"
-}
-
-Không được để một thay đổi style vô tình phá toàn bộ identity.
-
-
----
-
-7. Audio không còn là hậu kỳ
-
-Kiến trúc cuối cùng nên coi:
-
-MASTER_SCRIPT
-      │
-      ├──────────────► TTS
-      │                  │
-      │                  ▼
-      │             VOICE_TRACK
-      │                  │
-      │                  ▼
-      │             AUDIO_TIMELINE
-      │                  │
-      │                  ▼
-      └──────────────► SHOT_PLANNER
-
-Do đó:
-
-SHOT_DURATION
-
-không còn là:
-
-"LLM chọn 2–4 giây"
-
-mà là:
-
-AUDIO_TIMELINE
-       ↓
-SHOT BOUNDARY
-       ↓
-VISUAL PACING
-
-Ví dụ:
-
-00.00 ───── 03.20
-Hook
-
-03.20 ───── 07.80
-Problem
-
-07.80 ───── 14.10
-Product demonstration
-
-14.10 ───── 21.50
-Benefit
-
-21.50 ───── 27.00
-CTA
-
-Sau đó mới chia thành shot.
-
-
----
-
-8. Parallelism
-
-Pipeline logic vẫn là:
-
-Creative
-   ↓
-Plan
-
-nhưng production phải chuyển thành:
-
-┌── SHOT 01 ── Image ── Video ──┐
-                 │                                │
-SHOT_PLAN ───────┼── SHOT 02 ── Image ── Video ──┤
-                 │                                ├── Assembly
-                 ├── SHOT 03 ── Image ── Video ──┤
-                 │                                │
-                 └── SHOT 04 ── Image ── Video ──┘
-
-Human cũng không cần duyệt:
-
-Shot 1
-wait
-Shot 2
-wait
-Shot 3
-...
-
-mà:
-
-┌─────────────────────────────────┐
-│ AD #123 — IMAGE REVIEW          │
-│                                 │
-│ P1   P2   P3   P4               │
-│ P5   P6   P7   P8               │
-│                                 │
-│ [APPROVE ALL]                   │
-│ [REJECT SELECTED]               │
-└─────────────────────────────────┘
-
-Nhưng approve/reject vẫn lưu theo shot, không phải một boolean cho cả campaign.
-
-
----
-
-9. Resource/Budget Manager phải nằm ngang toàn hệ thống
-
-Không nên chỉ có:
-
-W10.5 Budget Gate
-
-mà phải có:
-
-RESOURCE MANAGER
-                           │
-       ┌───────────────────┼───────────────────┐
-       │                   │                   │
-     IMAGE               VIDEO               LLM
-       │                   │                   │
-   credits             credits             tokens
-   retries             retries             requests
-   concurrency         concurrency         rate-limit
-
-Nó quyết định:
-
-CAN_RUN(worker, shot)
-
-trước mỗi expensive operation.
-
-Ví dụ:
-
-Budget còn:
-Image = 20
-Video = 7
-
-Campaign cần:
-Image = 8
-Video = 8
-
-→ Image: ALLOW
-→ Video: BLOCK / RESERVE / FALLBACK
-
-Đặc biệt phải reserve budget trước khi gọi API, không phải gọi xong mới tính.
-
-
----
-
-10. Creative Memory
-
-Pipeline không nên "mất trí nhớ" sau mỗi quảng cáo.
-
-CREATIVE MEMORY BANK
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-     IMAGE MEMORY      MOTION MEMORY    CREATIVE MEMORY
-          │                │                │
-     product type      motion type       hook
-     style             model             CTA
-     prompt            success rate      concept
-     retry rate        failure reason    performance
-
-Ví dụ:
-
-motion_type = liquid_pour
-model = X
-
-success_rate = 23%
-mean_retry = 2.8
-
-Worker W07 lần sau không nên nói:
-
-> "Hãy thử rót nước."
-
-
-
-một cách mù quáng.
-
-Nó có thể quyết định:
-
-HIGH RISK
-
-OPTION A
-liquid pour
-success 23%
-
-OPTION B
-close-up condensation
-success 91%
-
-OPTION C
-hand holding cold bottle
-success 94%
-
-Sau đó chọn phương án có xác suất production tốt hơn.
-
-
----
-
-11. Kiến trúc Database
-
-Tôi khuyên không nhét toàn bộ lịch sử vào một document Shot duy nhất.
-
-Tách:
-
-CAMPAIGN
-   │
-   ├── campaign metadata
-   ├── product record
-   ├── creative decision
-   └── global state
-          │
-          ├──────────────┐
-          ▼              ▼
-        SHOTS          ARTIFACTS
-          │              │
-          │              ├── script
-          │              ├── audio
-          │              ├── image
-          │              ├── video
-          │              └── assembly
-          │
-          ▼
-       REVIEWS
-          │
-          ├── human feedback
-          ├── reason
-          ├── scope
-          ├── worker target
-          └── timestamp
-          │
-          ▼
-       RUN EVENTS
-          │
-          ├── API cost
-          ├── latency
-          ├── retry
-          ├── model
-          └── error
-
-Điều này tạo ra audit trail thực sự.
-
-
----
-
-12. Một Shot hoàn chỉnh
-
-Ví dụ:
-
-{
-  "shot_id": "S003",
-  "campaign_id": "C001",
-
-  "state": {
-    "status": "WAITING_VIDEO_APPROVAL",
-    "iteration": 2
-  },
-
-  "timing": {
-    "start": 7.8,
-    "end": 11.6,
-    "duration": 3.8
-  },
-
-  "script_ref": "SCRIPT_v3",
-
-  "visual": {
-    "core_bible": "CORE_v1",
-    "derived_bible": "DERIVED_v2",
-    "reference_image": "IMG_S003_v2"
-  },
-
-  "motion": {
-    "dominant_action": "pick_up_product",
-    "secondary_actions": [
-      "look_at_product"
-    ],
-    "constraints": {
-      "product_identity": "preserve",
-      "character_identity": "preserve"
-    }
-  },
-
-  "assets": {
-    "image": {
-      "asset_id": "IMG_S003_v2"
-    },
-    "video": {
-      "asset_id": "VID_S003_v2"
-    }
-  },
-
-  "review": {
-    "image": {
-      "decision": "APPROVED"
-    },
-    "video": {
-      "decision": "PENDING"
-    }
-  },
-
-  "retry": {
-    "image": 1,
-    "video": 1,
-    "max": 3
-  }
-}
-
-Điểm quan trọng nhất ở đây:
-
-shot_id
-iteration
-asset_id
-bible_version
-review
-retry
-
-đều độc lập.
-
-
----
-
-13. Toàn bộ hệ thống nhìn từ trên xuống
-
-Cuối cùng, nếu phải cô đọng thành một tree kiến trúc chuẩn để bắt tay code, tôi sẽ dùng cấu trúc này:
-
 AI AD CREATIVE COMPILER
-│
-├── 00 TRUTH LAYER
-│   ├── W01 Product Truth
-│   ├── W02 Customer Insight
-│   ├── W03 Creative Ideas
-│   ├── Claim Firewall
-│   └── Gate #1
-│
-├── 01 CREATIVE LOCK
-│   ├── W04 Script
-│   ├── W04.1 Claim Validator
-│   ├── W04.5 TTS
-│   ├── W04.6 Audio Pacing
-│   ├── W05 Visual Director
-│   └── W06 Shot Planner
-│
-├── 02 PREVIS
-│   ├── W07 Motion Analyzer
-│   ├── W07.5 Feasibility
-│   ├── W08 Motion Constraints
-│   ├── W08.5 Physics Preflight
-│   ├── W09 Keyframe Decomposer
-│   ├── W09.5 Control Compiler
-│   └── W10 Render Spec
-│
-├── 03 IMAGE PRODUCTION
-│   ├── W10.5 Budget/Dedup Gate
-│   ├── W11 Picture Factory
-│   ├── W11.5 Image Evidence QA
-│   └── Gate #2
-│
-├── 04 VIDEO PRODUCTION
-│   ├── W12 Video Motion Compiler
-│   ├── W13 Motion Factory
-│   ├── W13.5 Video Evidence QA
-│   └── Gate #3
-│
-├── 05 POST PRODUCTION
-│   ├── Music Engine
-│   ├── SFX Engine
-│   ├── Caption Engine
-│   ├── W14 Assembly
-│   └── Final Human Gate
-│
-├── 06 CONTROL PLANE
-│   ├── State Machine
-│   ├── Contract Validator
-│   ├── Feedback Router
-│   ├── Retry Manager
-│   ├── Scope Manager
-│   ├── Resource/Budget Manager
-│   ├── Concurrency Manager
-│   └── Webhook/Event Manager
-│
-└── 07 MEMORY / OBSERVABILITY
-    ├── Creative Memory
-    ├── Prompt Memory
-    ├── Model Success Rates
-    ├── Review History
-    ├── Cost History
-    ├── Retry History
-    └── Audit Log
+Production Architecture v2 — Audio-first, Constraint-driven, Self-healing
+Kiến trúc production thực tế: LLM tạo đề xuất có cấu trúc; validator, routing, budget, lineage và human gates kiểm soát tính khả thi.
+1. Nguyên tắc kiến trúc
+LLM không phải compiler deterministic: LLM là generator/planner xác suất; mọi ràng buộc quan trọng phải qua schema validation và deterministic cross-check.
+Audio-first: TTS chạy ngay sau MASTER_SCRIPT; VOICE_TRACK thực tế là nguồn thời lượng cho AUDIO_TIMELINE và SHOT_PLAN.
+Evidence-first: Fact/claim phải truy ngược được về evidence. Inferred pain không được tự động biến thành product claim.
+Visual Bible có version: CORE_BIBLE khóa sớm; DERIVED_BIBLE có thể tinh chỉnh. Mỗi shot lưu version đã sử dụng.
+Motion là xác suất: MOTION_CONSTRAINT_SET là constraint injection/risk specification, không phải lời hứa model video sẽ tuân thủ.
+QA phân tầng: Auto-reject chỉ dùng cho thứ đo được đáng tin; semantic/physics/identity chủ yếu là risk flag + human review.
+Local/Global loopback: Reject luôn có reason_code, scope, shot_id và iteration_id để sửa đúng phạm vi.
+Budget là state: Reserve budget trước render; retry bounded; estimator học từ lịch sử.
+Parallel by shot: Render ảnh/video song song khi dependency cho phép.
+Production memory: Lưu technical outcome và business performance để cải thiện prompt/model/idea/budget.
+2. Pipeline tổng thể
+PRODUCT INPUT
+  │
+  ▼
+P0 — PROJECT / BRAND CONFIG
+  │
+  ▼
+W01 — PRODUCT FACT EXTRACTOR
+  └─ PRODUCT_RECORD + EVIDENCE_MAP + ALLOWED_CLAIMS
+  │
+  ▼
+W02 — CUSTOMER / PAIN ENGINE
+  └─ PAIN_MAP (grounded / inferred)
+  │
+  ▼
+W03 — CREATIVE IDEA ENGINE + PREDICTIVE SCORING
+  └─ IDEA_POOL
+  │
+  ▼
+GATE #1 — IDEA TOURNAMENT
+  └─ CORE IDEA + N VARIANTS
+  │
+  ├──────────────► W03.5 — VISUAL DIRECTOR
+  │                  └─ CORE_BIBLE + DERIVED_BIBLE + STYLE_ANCHOR
+  │
+  ▼
+W04 — MASTER SCRIPT ENGINE
+  └─ MASTER_SCRIPT
+  │
+  ├──────────────► W13 — TTS ENGINE
+  │                  └─ VOICE_TRACK + AUDIO_SEGMENTS
+  │                           │
+  │                           ▼
+  │                  W04.5 — AUDIO PACING ENGINE
+  │                           └─ AUDIO_TIMELINE
+  │
+  ▼
+W05 — GLOBAL NARRATIVE + SHOT PLANNER
+  └─ SHOT_PLAN (audio-locked, causal)
+  │
+  ▼
+W06 — MOTION ANALYZER
+  │
+  ▼
+W06.5 — PHYSICS / FEASIBILITY PREFLIGHT
+  └─ SAFE_MOTION_PLAN + RISK FLAGS + FALLBACKS
+  │
+  ▼
+W07 — MOTION CONSTRAINT COMPILER
+  └─ MOTION_CONSTRAINT_SET
+  │
+  ▼
+W08 — KEYFRAME / STATE PLANNER
+  └─ KEYFRAME_PLAN
+  │
+  ▼
+W09 — CONTROLNET / IP-ADAPTER PROMPT COMPILER
+  └─ PICTURE_RENDER_SPEC
+  │
+  ▼
+W09.5 — BUDGET + DEDUP + DEPENDENCY GATE
+  │
+  ▼
+W10 — PICTURE FACTORY (PARALLEL BY SHOT)
+  └─ SHOT_IMAGES
+  │
+  ▼
+W10.5 — IMAGE PREFLIGHT
+  └─ deterministic checks + risk heatmap
+  │
+  ▼
+GATE #2 — BATCH STORYBOARD REVIEW
+  │
+  ▼
+W11 — VIDEO MOTION PROMPT COMPILER
+  └─ VIDEO_RENDER_SPEC
+  │
+  ▼
+W12 — MOTION FACTORY (PARALLEL BY SHOT)
+  └─ SHOT_VIDEOS
+  │
+  ▼
+W12.5 — VIDEO PREFLIGHT
+  └─ technical checks + semantic risk flags
+  │
+  ▼
+GATE #3 — BATCH VIDEO REVIEW
+  │
+  ├──────────────► W14 — MUSIC / SFX PREP (parallel)
+  │
+  ▼
+W15 — ASSEMBLY ENGINE
+  └─ DRAFT_AD + PROJECT_MANIFEST
+  │
+  ▼
+FINAL HUMAN GATE
+  │
+  ▼
+FINAL_AD
+  │
+  ▼
+W16 — DISTRIBUTION + PERFORMANCE INGEST
+  └─ PLATFORM_ASSETS + PERFORMANCE_RECORD
+              │
+              ▼
+       CREATIVE MEMORY BANK
+              └─ feedback → W03/W04/W09/W11/W12
+3. Worker registry & output contract
+Worker
+Vai trò
+Input
+Output
+Invariant
+W01
+Fact extraction
+PRODUCT_INPUT
+PRODUCT_RECORD / EVIDENCE_MAP / ALLOWED_CLAIMS
+Không bịa spec.
+W02
+Pain grounding
+PRODUCT_RECORD + evidence
+PAIN_MAP
+Inferred pain phải được flag.
+W03
+Creative ideas
+Product + pain + memory
+IDEA_POOL
+Creative freedom; claim firewall vẫn áp dụng.
+W03.5
+Visual direction
+Product + target + idea
+CORE_BIBLE / DERIVED_BIBLE / ANCHOR
+Core identity lock.
+W04
+Script
+Idea + claims + pain
+MASTER_SCRIPT
+Chỉ dùng allowed claims.
+W13
+TTS
+MASTER_SCRIPT
+VOICE_TRACK / AUDIO_SEGMENTS
+Chạy trước shot planning.
+W04.5
+Audio pacing
+VOICE_TRACK
+AUDIO_TIMELINE
+Nguồn duration chính.
+W05
+Narrative/shot plan
+Script + audio + Bible
+SHOT_PLAN
+Causal + audio coverage.
+W06
+Motion analysis
+SHOT_PLAN
+MOTION_PLAN
+Dominant + secondary actions.
+W06.5
+Feasibility
+Motion + model matrix
+SAFE_MOTION_PLAN
+Risk + fallback.
+W07
+Constraint compile
+Safe motion
+MOTION_CONSTRAINT_SET
+Không coi prompt là enforcement.
+W08
+State/keyframes
+Shot + constraints + Bible
+KEYFRAME_PLAN
+Reference chain.
+W09
+Control compiler
+Keyframes + refs
+PICTURE_RENDER_SPEC
+Seed/model/control params.
+W09.5
+Resource gate
+Specs + budget
+APPROVED_RENDER_BATCH
+Reserve + dedup.
+W10
+Image factory
+Approved batch
+SHOT_IMAGES
+Parallel.
+W10.5
+Image preflight
+Images + Bible
+IMAGE_QA_REPORT
+Auto checks + risk flags.
+W11
+Video prompt compiler
+Image + constraints
+VIDEO_RENDER_SPEC
+Motion injection.
+W12
+Video factory
+Video specs
+SHOT_VIDEOS
+Parallel + iteration.
+W12.5
+Video preflight
+Videos + manifest
+VIDEO_QA_REPORT
+Technical + risk.
+W14
+Music/SFX
+Audio timeline
+AUDIO_BED
+Không che VO.
+W15
+Assembly
+Shots + audio + captions + brand rules
+DRAFT_AD / PROJECT_MANIFEST
+Không tự thay claim.
+W16
+Distribution/memory
+Final ad + performance
+PLATFORM_ASSETS / PERFORMANCE_RECORD
+Feedback loop.
 
-Và nguyên tắc vận hành cuối cùng
+4. Contract Envelope
+Mọi artifact giữa worker phải có envelope thống nhất; payload chỉ là phần dữ liệu nghiệp vụ.
+{
+  "artifact_type": "SHOT_PLAN",
+  "schema_version": "2.0",
+  "project_id": "...",
+  "creative_id": "...",
+  "variant_id": "...",
+  "shot_id": "...",
+  "iteration_id": 1,
+  "parent_artifact_ids": ["..."],
+  "visual_bible_version": "CORE-v1 / DERIVED-v3",
+  "audio_timeline_version": "AT-v2",
+  "model": {"name": "...", "version": "..."},
+  "constraints": {"must": [], "forbidden": [], "risk_flags": []},
+  "evidence_refs": [],
+  "budget": {"estimated": 0, "reserved": 0, "spent": 0},
+  "validation": {"schema": "PASS", "cross_contract": "PASS"},
+  "payload": {},
+  "created_at": "ISO-8601"
+}
+5. Rejection taxonomy & routing
+reason_code
+route
+action
+CLAIM_UNSUPPORTED
+W04 / Claim Firewall
+Sửa script; không render.
+STYLE_LOCAL
+W09/W10
+Chỉ regenerate shot lỗi.
+STYLE_DERIVED_GLOBAL
+W03.5 → affected shots
+Version mới; compatibility check.
+STYLE_CORE_GLOBAL
+New pipeline revision
+Product/character/brand identity đổi = restart.
+COMPOSITION
+W08/W09/W10
+Sửa keyframe/control/prompt.
+MOTION_CONCEPT
+W06/W06.5
+Đơn giản hóa action hoặc đổi model.
+MOTION_ARTIFACT
+W11/W12
+Đổi prompt/seed/model theo retry policy.
+SOURCE_IMAGE_ARTIFACT
+W09/W10
+Sửa ảnh trước khi retry video.
+AUDIO_MISMATCH
+W04.5/W05
+Reconcile timeline; không tua hình để chữa audio.
+BUDGET_EXCEEDED
+W09.5
+Downgrade/fallback/reduce variants.
+GLOBAL_CONCEPT_FAILURE
+W03
+Idea mới; bounded restart.
 
-┌─────────────────────┐
-                 │       LLM/AI        │
-                 │   GENERATES INTENT  │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │ STRUCTURED ARTIFACT │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │ CONTRACT VALIDATOR  │
-                 │   DETERMINISTIC     │
-                 └──────────┬──────────┘
-                            │
-                     VALID? │
-                       ┌────┴────┐
-                      NO        YES
-                       │          │
-                    REPAIR       ▼
-                              FACTORY
-                                 │
-                                 ▼
-                            AI OUTPUT
-                                 │
-                                 ▼
-                         EVIDENCE / RISK
-                                 │
-                                 ▼
-                           HUMAN GATE
-                                 │
-                      ┌──────────┴──────────┐
-                      │                     │
-                   APPROVE                REJECT
-                      │                     │
-                      ▼                     ▼
-                  NEXT STATE          ROUTE + SCOPE
-                                            │
-                                     LOCAL / GLOBAL
-                                            │
-                                        MAX RETRY
-                                            │
-                                     ESCALATE/FALLBACK
+6. Scope & versioning
+LOCAL: version mới cho đúng shot/artifact; shot đã approved không bị đụng.
+DERIVED_GLOBAL: đổi lighting/camera/mood. Không auto-migrate mù; đánh giá compatibility rồi regenerate phần cần thiết.
+CORE_GLOBAL: đổi product identity, character identity, brand palette hoặc claim policy. Tạo pipeline revision mới.
+Mỗi feedback bắt buộc: scope + reason_code + target_artifact_id + shot_id (nếu local) + iteration_id + requested_change.
+Visual Bible version được pin vào mọi shot; không có shot 'trôi nổi' không biết dùng Bible nào.
+7. Retry, escape hatch và deadlock prevention
+Image: tối đa 2–3 attempts/shot.
+Video: tối đa 2 attempts/model trước khi đổi strategy.
+Không retry cùng input + prompt + seed + model khi failure reason không đổi.
+Mỗi retry ghi failure event vào Creative Memory.
+Sau retry budget: alternate model → B-roll/static motion → human escalation → concept restart.
+Scheduler có trạng thái BLOCKED/ESCALATED; tuyệt đối không cho loop vô hạn.
+8. QA model
+Tầng
+Phạm vi
+Deterministic / auto
+Schema, required fields, duration arithmetic, audio coverage, file integrity, duplicate hash, OCR text, palette threshold, manifest.
+Heuristic / flag
+Optical-flow anomaly, embedding drift, fast motion, occlusion, liquid/cloth/particle risk.
+Human
+Product integrity tinh vi, identity theo nhận thức, physics plausibility, aesthetics, storytelling, conversion judgement.
+
+9. Parallel execution
+Scheduler vận hành theo dependency graph, không theo sơ đồ tuần tự.
+SHOT_PLAN tạo execution units theo shot.
+Image generation và video generation chạy song song giữa các shot khi dependency đã thỏa.
+Music/SFX preparation chạy song song với video.
+Gate #2 và Gate #3 là batch review để giảm context switching.
+Reject local chỉ re-run affected shot; không rebuild toàn bộ ad.
+10. Creative Memory & Learning
+Creative memory: hook, idea, script pattern, CTA, visual pattern, audience.
+Technical memory: model/version, prompt, motion type, attempts, failure reason, success rate.
+Business memory: CTR, hold rate, CVR, CPA/ROAS khi có dữ liệu đủ tin cậy.
+Capability matrix: success rate theo model × motion × product/style.
+Dynamic budget estimator dùng retry history để dự đoán chi phí.
+Memory cung cấp evidence/score; không được tự thay đổi policy hoặc claim.
+11. Variant architecture
+Sau Gate #1, một CORE IDEA có thể tạo N variants. Các variant chia sẻ PRODUCT_RECORD, ALLOWED_CLAIMS và CORE_BIBLE; thay đổi chủ yếu ở hook/script/derived treatment. Các nhánh chạy song song và được so sánh ở cuối.
+12. Cost & resource control
+Reserve budget trước mỗi external generation call.
+Estimated cost = shots × expected attempts × model unit cost + TTS + music/SFX + storage + assembly overhead.
+Budget Gate có quyền giảm shot count, giảm variant, đổi model hoặc fallback.
+Ledger lưu estimated, reserved, actual, retries, latency và artifact size.
+Không cho phép worker tự gọi model ngoài manifest/budget đã cấp.
+13. Final Assembly contract
+W15 phải nhận đủ: SHOT_VIDEOS[], VOICE_TRACK, AUDIO_TIMELINE, AUDIO_BED, CAPTION_PLAN, BRAND_RULES, CTA và PROJECT_MANIFEST. W15 chỉ assemble; không tự sáng tạo lại claim hoặc thay đổi Core Bible.
+Output: FINAL_AD, platform variants, captions/subtitles và manifest có lineage để tái dựng.
+14. State machine
+DRAFT
+ → VALIDATED
+ → APPROVED_FOR_RENDER
+ → RENDERING
+ → PREFLIGHT
+ → HUMAN_REVIEW
+     ├─ APPROVE → LOCKED
+     └─ REJECT → ROUTED
+                    ├─ LOCAL_REPAIR
+                    ├─ DERIVED_GLOBAL_REPAIR
+                    ├─ MODEL_FALLBACK
+                    └─ CONCEPT_RESTART
+ → ASSEMBLY
+ → FINAL_REVIEW
+ → PUBLISHED
+ → PERFORMANCE_OBSERVED
+15. Pre-release checklist
+□ Fact/claim có evidence và ALLOWED_CLAIMS đã freeze?
+□ Inferred pain không thể lọt thành product claim?
+□ TTS có trước SHOT_PLAN?
+□ SHOT_PLAN reconcile AUDIO_TIMELINE?
+□ CORE_BIBLE đã lock và shot pin version?
+□ Motion feasibility/capability đã được đánh giá?
+□ Control/seed/model/reference được lưu?
+□ Budget đã reserve trước render?
+□ QA phân biệt auto-check và risk flag?
+□ Gate feedback có reason_code + scope + shot_id + iteration_id?
+□ Retry bounded + escape hatch?
+□ Parallel scheduler theo dependency graph?
+□ Manifest có lineage và reproduce information?
+□ Performance data được ghi vào Creative Memory?
+16. Kết luận
+Đây là kiến trúc production thay vì một chuỗi prompt. LLM đảm nhiệm phần sáng tạo và lập kế hoạch; schema/validator đảm nhiệm tính hợp lệ; constraint compiler và capability matrix quản lý giới hạn model; budget ledger quản lý kinh tế; scheduler quản lý song song; rejection router quản lý feedback; human gate xử lý những đánh giá khó định lượng; và Creative Memory đưa kết quả kỹ thuật lẫn kinh doanh trở lại vòng sinh creative. Điểm quan trọng nhất là không tuyên bố AI có khả năng đảm bảo những thứ mà model hiện tại không đảm bảo được.
