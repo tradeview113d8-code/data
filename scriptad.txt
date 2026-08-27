@@ -1,133 +1,631 @@
-AI AD CREATIVE COMPILER
-Production Architecture v2 — Audio-first, Constraint-driven, Self-healing
-Kiến trúc production thực tế: LLM tạo đề xuất có cấu trúc; validator, routing, budget, lineage và human gates kiểm soát tính khả thi.
-1. Nguyên tắc kiến trúc
-LLM không phải compiler deterministic: LLM là generator/planner xác suất; mọi ràng buộc quan trọng phải qua schema validation và deterministic cross-check.
-Audio-first: TTS chạy ngay sau MASTER_SCRIPT; VOICE_TRACK thực tế là nguồn thời lượng cho AUDIO_TIMELINE và SHOT_PLAN.
-Evidence-first: Fact/claim phải truy ngược được về evidence. Inferred pain không được tự động biến thành product claim.
-Visual Bible có version: CORE_BIBLE khóa sớm; DERIVED_BIBLE có thể tinh chỉnh. Mỗi shot lưu version đã sử dụng.
-Motion là xác suất: MOTION_CONSTRAINT_SET là constraint injection/risk specification, không phải lời hứa model video sẽ tuân thủ.
-QA phân tầng: Auto-reject chỉ dùng cho thứ đo được đáng tin; semantic/physics/identity chủ yếu là risk flag + human review.
-Local/Global loopback: Reject luôn có reason_code, scope, shot_id và iteration_id để sửa đúng phạm vi.
-Budget là state: Reserve budget trước render; retry bounded; estimator học từ lịch sử.
-Parallel by shot: Render ảnh/video song song khi dependency cho phép.
-Production memory: Lưu technical outcome và business performance để cải thiện prompt/model/idea/budget.
-2. Pipeline tổng thể
-PRODUCT INPUT
-  │
-  ▼
-P0 — PROJECT / BRAND CONFIG
-  │
-  ▼
-W01 — PRODUCT FACT EXTRACTOR
-  └─ PRODUCT_RECORD + EVIDENCE_MAP + ALLOWED_CLAIMS
-  │
-  ▼
-W02 — CUSTOMER / PAIN ENGINE
-  └─ PAIN_MAP (grounded / inferred)
-  │
-  ▼
-W03 — CREATIVE IDEA ENGINE + PREDICTIVE SCORING
-  └─ IDEA_POOL
-  │
-  ▼
-GATE #1 — IDEA TOURNAMENT
-  └─ CORE IDEA + N VARIANTS
-  │
-  ├──────────────► W03.5 — VISUAL DIRECTOR
-  │                  └─ CORE_BIBLE + DERIVED_BIBLE + STYLE_ANCHOR
-  │
-  ▼
-W04 — MASTER SCRIPT ENGINE
-  └─ MASTER_SCRIPT
-  │
-  ├──────────────► W13 — TTS ENGINE
-  │                  └─ VOICE_TRACK + AUDIO_SEGMENTS
-  │                           │
-  │                           ▼
-  │                  W04.5 — AUDIO PACING ENGINE
-  │                           └─ AUDIO_TIMELINE
-  │
-  ▼
-W05 — GLOBAL NARRATIVE + SHOT PLANNER
-  └─ SHOT_PLAN (audio-locked, causal)
-  │
-  ▼
-W06 — MOTION ANALYZER
-  │
-  ▼
-W06.5 — PHYSICS / FEASIBILITY PREFLIGHT
-  └─ SAFE_MOTION_PLAN + RISK FLAGS + FALLBACKS
-  │
-  ▼
-W07 — MOTION CONSTRAINT COMPILER
-  └─ MOTION_CONSTRAINT_SET
-  │
-  ▼
-W08 — KEYFRAME / STATE PLANNER
-  └─ KEYFRAME_PLAN
-  │
-  ▼
-W09 — CONTROLNET / IP-ADAPTER PROMPT COMPILER
-  └─ PICTURE_RENDER_SPEC
-  │
-  ▼
-W09.5 — BUDGET + DEDUP + DEPENDENCY GATE
-  │
-  ▼
-W10 — PICTURE FACTORY (PARALLEL BY SHOT)
-  └─ SHOT_IMAGES
-  │
-  ▼
-W10.5 — IMAGE PREFLIGHT
-  └─ deterministic checks + risk heatmap
-  │
-  ▼
-GATE #2 — BATCH STORYBOARD REVIEW
-  │
-  ▼
-W11 — VIDEO MOTION PROMPT COMPILER
-  └─ VIDEO_RENDER_SPEC
-  │
-  ▼
-W12 — MOTION FACTORY (PARALLEL BY SHOT)
-  └─ SHOT_VIDEOS
-  │
-  ▼
-W12.5 — VIDEO PREFLIGHT
-  └─ technical checks + semantic risk flags
-  │
-  ▼
-GATE #3 — BATCH VIDEO REVIEW
-  │
-  ├──────────────► W14 — MUSIC / SFX PREP (parallel)
-  │
-  ▼
-W15 — ASSEMBLY ENGINE
-  └─ DRAFT_AD + PROJECT_MANIFEST
-  │
-  ▼
-FINAL HUMAN GATE
-  │
-  ▼
-FINAL_AD
-  │
-  ▼
-W16 — DISTRIBUTION + PERFORMANCE INGEST
-  └─ PLATFORM_ASSETS + PERFORMANCE_RECORD
-              │
-              ▼
-       CREATIVE MEMORY BANK
-              └─ feedback → W03/W04/W09/W11/W12
-3. Worker registry & output contract
-Worker
-Vai trò
-Input
-Output
-Invariant
-W01
-Fact extraction
-PRODUCT_INPUT
+AI AD CREATIVE COMPILER — PRODUCTION V4
+
+┌─────────────────────────────┐
+                           │       PRODUCT INPUT         │
+                           └──────────────┬──────────────┘
+                                          │
+                                          ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 0 — CREATIVE INTELLIGENCE                                    │
+│                                                                     │
+│ W01 PRODUCT FACT EXTRACTOR                                          │
+│     │                                                               │
+│     ├── PRODUCT_RECORD                                               │
+│     ├── EVIDENCE_MAP                                                 │
+│     └── ALLOWED_CLAIMS                                               │
+│                                                                     │
+│     ▼                                                               │
+│ W02 CUSTOMER / PAIN ENGINE                                           │
+│     └── PAIN_MAP                                                     │
+│                                                                     │
+│     ▼                                                               │
+│ W03 CREATIVE IDEA + PERFORMANCE SCORER                               │
+│     └── IDEA_POOL                                                    │
+│                                                                     │
+│     ▼                                                               │
+│ GATE #1 — IDEA TOURNAMENT                                            │
+│     └── CORE_IDEA + VARIANTS                                        │
+└──────────────────────────────────┬──────────────────────────────────┘
+                                   │
+                                   ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 1 — CREATIVE FOUNDATION                                       │
+│                                                                     │
+│ W03.5 VISUAL DIRECTOR                                                │
+│     ├── CORE_VISUAL_BIBLE  [LOCKED]                                 │
+│     ├── DERIVED_VISUAL_BIBLE                                        │
+│     └── STYLE_ANCHOR                                                 │
+│                                                                     │
+│ W04 MASTER SCRIPT ENGINE                                             │
+│     └── MASTER_SCRIPT                                                │
+│             │                                                        │
+│             ├──────────────────────┐                                 │
+│             ▼                      ▼                                 │
+│       W13 TTS ENGINE        CLAIM FIREWALL                            │
+│             │                      │                                 │
+│             ▼                      │                                 │
+│       VOICE_TRACK                  │                                 │
+│             │                      │                                 │
+│             ▼                      │                                 │
+│       W04.5 AUDIO PACING            │                                 │
+│             │                      │                                 │
+│             ▼                      │                                 │
+│       AUDIO_TIMELINE               │                                 │
+└────────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 2 — GLOBAL NARRATIVE COMPILATION                              │
+│                                                                     │
+│ W05 GLOBAL NARRATIVE / SHOT PLANNER                                  │
+│     │                                                               │
+│     ▼                                                               │
+│ W05.5 SPATIAL-TEMPORAL GRAPH ENGINE                                 │
+│                                                                     │
+│     CONTEXT GRAPH                                                    │
+│     ├── CHARACTER_STATE                                              │
+│     ├── PRODUCT_STATE                                                │
+│     ├── ENVIRONMENT_STATE                                            │
+│     ├── LIGHTING_STATE                                               │
+│     ├── CAMERA_AXIS                                                  │
+│     ├── SPATIAL_RELATION                                             │
+│     ├── TEMPORAL_STATE                                               │
+│     └── CAUSAL_DEPENDENCY                                            │
+│                                                                     │
+│     ▼                                                               │
+│ SHOT_PLAN + STATE_GRAPH                                              │
+└────────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 3 — MOTION COMPILATION                                        │
+│                                                                     │
+│ W06 MOTION ANALYZER                                                  │
+│     │                                                               │
+│     ▼                                                               │
+│ W06.5 PHYSICS / MODEL FEASIBILITY                                   │
+│     │                                                               │
+│     ├── MODEL_CAPABILITY_MATRIX                                     │
+│     ├── MOTION_RISK                                                  │
+│     └── FALLBACK_STRATEGY                                            │
+│                                                                     │
+│     ▼                                                               │
+│ W07 MOTION CONSTRAINT COMPILER                                       │
+│     │                                                               │
+│     ▼                                                               │
+│ MOTION_CONSTRAINT_SET                                                │
+│                                                                     │
+│     ▼                                                               │
+│ W08 KEYFRAME / STATE PLANNER                                         │
+│     │                                                               │
+│     └── START_STATE ← STATE_GRAPH                                   │
+│     └── END_STATE   ← STATE_GRAPH                                   │
+│                                                                     │
+└────────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 4 — IMAGE COMPILATION                                         │
+│                                                                     │
+│ W09 CONTROL / REFERENCE COMPILER                                    │
+│     ├── IP-ADAPTER                                                   │
+│     ├── CONTROLNET                                                   │
+│     ├── DEPTH / CANNY / POSE                                        │
+│     ├── SEED                                                         │
+│     └── REFERENCE_CHAIN                                              │
+│                                                                     │
+│     ▼                                                               │
+│ PICTURE_RENDER_SPEC                                                  │
+│                                                                     │
+│     ▼                                                               │
+│ W09.5 RESOURCE / DEDUP GATE                                         │
+│                                                                     │
+│     ├── BUDGET RESERVATION                                           │
+│     ├── DUPLICATE CHECK                                              │
+│     ├── SHOT COUNT                                                   │
+│     └── MODEL AVAILABILITY                                           │
+│                                                                     │
+│     ▼                                                               │
+│ W10 PICTURE FACTORY                                                  │
+│     └── PARALLEL SHOT RENDER                                        │
+│                                                                     │
+│     ▼                                                               │
+│ W10.5 IMAGE PREFLIGHT                                                │
+│     │                                                               │
+│     └── VLM ADVERSARIAL CRITIC                                       │
+│             │                                                        │
+│             ├── PASS ──────────────────────┐                         │
+│             │                               │                         │
+│             └── CORRECTION_HINT             │                         │
+│                     │                       │                         │
+│                     ▼                       │                         │
+│              AUTO-REPAIR LOOP               │                         │
+│              max_auto_retry = 2              │                         │
+│                     │                       │                         │
+│                     └───────────────────────┘                         │
+│                                                                     │
+│     ▼                                                               │
+│ IMAGE_REVIEW_PACKAGE                                                 │
+│                                                                     │
+│     ▼                                                               │
+│ GATE #2 — BATCH STORYBOARD REVIEW                                   │
+└────────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 5 — VIDEO GENERATION                                         │
+│                                                                     │
+│ W11 VIDEO MOTION COMPILER                                           │
+│     └── VIDEO_RENDER_SPEC                                            │
+│                                                                     │
+│     ▼                                                               │
+│ W12 MOTION FACTORY                                                   │
+│     └── PARALLEL SHOT VIDEO                                         │
+│                                                                     │
+│     ▼                                                               │
+│ W12.5 VIDEO PREFLIGHT                                                │
+│     │                                                               │
+│     └── VLM ADVERSARIAL CRITIC                                       │
+│             │                                                        │
+│             ├── PASS                                                 │
+│             │                                                        │
+│             └── ERROR_DELTA_SPEC                                     │
+│                     │                                                │
+│                     ▼                                                │
+│              AUTO-REPAIR                                             │
+│              max_auto_retry = 2                                      │
+│                     │                                                │
+│                     └── W11 / W12                                    │
+│                                                                     │
+│     ▼                                                               │
+│ VIDEO_REVIEW_PACKAGE                                                 │
+│                                                                     │
+│     ▼                                                               │
+│ GATE #3 — BATCH VIDEO REVIEW                                        │
+└────────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 6 — AUDIO / ASSEMBLY                                          │
+│                                                                     │
+│              VOICE_TRACK                                             │
+│                   │                                                  │
+│ AUDIO_TIMELINE ──┼── MUSIC/SFX                                      │
+│                   │                                                  │
+│ SHOT_VIDEOS ─────┼── CAPTIONS                                      │
+│                   │                                                  │
+│ BRAND_RULES ─────┼── CTA                                            │
+│                   │                                                  │
+│                   ▼                                                  │
+│ W15 ASSEMBLY ENGINE                                                  │
+│                                                                     │
+│     ├── FINAL_TIMELINE                                               │
+│     ├── CAPTION_TIMELINE                                             │
+│     ├── AUDIO_MIX                                                    │
+│     ├── TRANSITIONS                                                  │
+│     └── PROJECT_MANIFEST                                             │
+│                                                                     │
+│     ▼                                                               │
+│ DRAFT_AD                                                             │
+│                                                                     │
+│     ▼                                                               │
+│ FINAL HUMAN GATE                                                     │
+└────────────────────────────────────┬────────────────────────────────┘
+                                     │
+                                     ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│ PHASE 7 — DISTRIBUTION & EVOLUTION                                  │
+│                                                                     │
+│ W16 MULTI-PLATFORM DISTRIBUTION                                     │
+│     ├── META                                                          │
+│     ├── TIKTOK                                                        │
+│     ├── YOUTUBE                                                       │
+│     └── OTHER CHANNELS                                                │
+│                                                                     │
+│     ▼                                                               │
+│ PERFORMANCE DATA                                                     │
+│     ├── CTR                                                           │
+│     ├── HOLD / RETENTION                                              │
+│     ├── CVR                                                           │
+│     ├── CPA                                                           │
+│     └── ROAS                                                          │
+│                                                                     │
+│     ▼                                                               │
+│ W17 PERFORMANCE INGESTION                                            │
+│                                                                     │
+│     ▼                                                               │
+│ CREATIVE MEMORY BANK                                                 │
+│     ├── CREATIVE MEMORY                                               │
+│     ├── TECHNICAL MEMORY                                              │
+│     ├── MODEL CAPABILITY MEMORY                                      │
+│     └── BUSINESS PERFORMANCE MEMORY                                  │
+│                                                                     │
+│     ▼                                                               │
+│ W03 / W04 / W06 / W09 / W11                                         │
+│        ↑          LEARNED SIGNALS                                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+Điểm thay đổi quan trọng nhất
+
+1. VLM không còn là QA cuối — trở thành Self-Healing Layer
+
+Luồng đúng phải là:
+
+GENERATE
+   ↓
+VLM CRITIC
+   ↓
+PASS ───────────────► REVIEW
+   │
+   └─ FAIL
+       ↓
+ERROR_DELTA_SPEC
+       ↓
+PROMPT / PARAMETER REWRITE
+       ↓
+RENDER
+       ↓
+VLM CRITIC
+       │
+       ├─ PASS → REVIEW
+       └─ FAIL → HUMAN
+
+Giới hạn cứng:
+
+AUTO_RETRY ≤ 2
+
+Sau đó mới tới Human Gate.
+
+Điều này tránh việc VLM tự chữa vô hạn và đốt budget.
+
+
+---
+
+2. Spatial-Temporal Graph trở thành xương sống
+
+Không nên chỉ lưu:
+
+{
+  "shot_id": "S02",
+  "duration": 4
+}
+
+Mà phải có:
+
+{
+  "shot_id": "S02",
+
+  "audio": {
+    "start": 4.2,
+    "end": 8.1
+  },
+
+  "character_state": {
+    "position": "standing",
+    "hand": "left",
+    "apparel": "locked"
+  },
+
+  "product_state": {
+    "cap": "closed",
+    "orientation": "front"
+  },
+
+  "environment_state": {
+    "location": "studio",
+    "time_of_day": "evening"
+  },
+
+  "lighting_state": {
+    "direction": "45deg_right"
+  },
+
+  "camera_state": {
+    "axis": "180deg_locked"
+  },
+
+  "causal_parent": "S01"
+}
+
+Khi W08 tạo keyframe:
+
+S01 END_STATE
+      │
+      ▼
+S02 START_STATE
+      │
+      ▼
+S02 END_STATE
+      │
+      ▼
+S03 START_STATE
+
+Như vậy audio timeline quyết định WHEN, còn context graph quyết định WHAT STATE.
+
+Hai thứ không cạnh tranh nhau.
+
+
+---
+
+3. Human Gate trở thành nơi quyết định, không phải nơi debugging
+
+Đây là thay đổi rất quan trọng.
+
+Trước đây
+
+Render
+  ↓
+Human
+  ↓
+"Lỗi tay"
+  ↓
+Developer/LLM tìm cách sửa
+  ↓
+Render lại
+
+V4
+
+Render
+  ↓
+VLM Critic
+  ↓
+Auto Repair × 2
+  ↓
+Human
+
+Human chỉ phải xử lý:
+
+UNKNOWN
+SEMANTIC
+AESTHETIC
+BRAND JUDGEMENT
+CONVERSION JUDGEMENT
+
+chứ không phải những lỗi máy có thể tự xử lý.
+
+
+---
+
+4. Reject phải là một Contract
+
+Mỗi rejection không được chỉ là:
+
+REJECT
+
+Mà phải là:
+
+{
+  "decision": "REJECT",
+
+  "reason_code": "MOTION_ARTIFACT",
+
+  "scope": "LOCAL",
+
+  "target": {
+    "shot_id": "S04",
+    "artifact_id": "video_S04_v2"
+  },
+
+  "iteration_id": 2,
+
+  "correction": {
+    "type": "MOTION_SIMPLIFICATION",
+    "hint": "reduce hand rotation"
+  },
+
+  "route": "W11"
+}
+
+Router đọc contract này và biết chính xác phải đi đâu.
+
+
+---
+
+5. Local / Derived Global / Core Global
+
+Đây là phần tôi cho rằng không nên bỏ từ V3.
+
+REJECT
+                    │
+          ┌─────────┼──────────┐
+          ▼         ▼          ▼
+        LOCAL     DERIVED      CORE
+          │        GLOBAL      GLOBAL
+          ▼          │           │
+      1 SHOT       AFFECTED     NEW
+      REBUILD       SHOTS      REVISION
+
+LOCAL
+
+Ví dụ:
+
+Sai tay ở S04
+
+→ chỉ S04 regenerate.
+
+DERIVED GLOBAL
+
+Ví dụ:
+
+Lighting direction không phù hợp
+
+→ tạo DERIVED_BIBLE_v2.
+
+Sau đó compatibility check:
+
+S01 compatible → KEEP
+S02 compatible → KEEP
+S03 incompatible → REGENERATE
+S04 compatible → KEEP
+
+Không phá toàn bộ pipeline.
+
+CORE GLOBAL
+
+Ví dụ:
+
+Đổi sản phẩm
+Đổi nhân vật
+Đổi brand identity
+Đổi claim policy
+
+→ revision mới.
+
+
+---
+
+6. Performance Loop không được phép "tự sửa hệ thống"
+
+Đây là điểm cần phản biện đề xuất Yura/Omneky.
+
+Không nên:
+
+ROAS thấp
+ ↓
+AI tự sửa W03
+
+Mà:
+
+ROAS / CTR
+   ↓
+PERFORMANCE ANALYSIS
+   ↓
+LEARNED SIGNAL
+   ↓
+CREATIVE MEMORY
+   ↓
+W03 SCORING
+
+Memory ảnh hưởng ranking, không có quyền phá policy.
+
+Ví dụ:
+
+{
+  "hook_pattern": "problem_first",
+  "sample_size": 142,
+
+  "performance": {
+    "ctr_mean": 0.031,
+    "retention_3s": 0.71
+  },
+
+  "confidence": 0.86,
+
+  "recommendation": "increase_priority"
+}
+
+W03 có thể dùng nó để ưu tiên, nhưng không được biến nó thành:
+
+"luôn dùng problem_first"
+
+
+---
+
+7. Kiến trúc Contract giữa Worker
+
+Tôi khuyến nghị mọi worker đều dùng chung một envelope:
+
+┌────────────────────────────────────┐
+│ ARTIFACT CONTRACT                  │
+├────────────────────────────────────┤
+│ artifact_id                        │
+│ artifact_type                      │
+│ schema_version                     │
+│ project_id                         │
+│ creative_id                        │
+│ variant_id                         │
+│ shot_id                            │
+│ iteration_id                       │
+│ parent_artifact_ids[]              │
+│ core_bible_version                 │
+│ derived_bible_version              │
+│ state_graph_version                │
+│ audio_timeline_version             │
+│ model_spec                         │
+│ resource_budget                    │
+│ evidence_refs[]                    │
+│ constraints                        │
+│ validation                          │
+│ lineage                             │
+│ payload                             │
+└────────────────────────────────────┘
+
+Điều này biến pipeline thành dataflow system có lineage, thay vì một chuỗi prompt nối nhau.
+
+
+---
+
+8. Worker nào được phép làm gì?
+
+Worker	Được phép	Không được phép
+
+W01	Extract facts	Tự bịa claims
+W02	Phân loại pain	Biến pain thành claim
+W03	Creative ideation	Override claim policy
+W03.5	Visual direction	Tự đổi CORE identity
+W04	Script	Tạo unsupported claim
+W13	TTS	Tự đổi script
+W04.5	Audio timing	Tự đổi nội dung VO
+W05	Shot planning	Phá audio duration
+W05.5	State graph	Tự sáng tạo state
+W06	Motion design	Override core state
+W06.5	Feasibility	Đảm bảo model chắc chắn thành công
+W07	Constraint compilation	Ép model video tuyệt đối
+W08	Keyframe planning	Phá STATE_GRAPH
+W09	Control/prompt compilation	Thay Core Bible
+W10	Image generation	Thay creative intent
+W10.5	Critique/repair	Tự approve semantic quality
+W11	Video prompt	Phá motion constraints
+W12	Video generation	Tự sửa story
+W12.5	Critique/repair	Tự quyết định aesthetics
+W15	Assembly	Viết lại claim/script
+W16	Distribution	Thay creative policy
+W17	Learn	Tự thay policy
+
+
+
+---
+
+9. Kiến trúc thực sự nên được gọi là gì?
+
+Tôi sẽ không gọi nó đơn thuần là "LLM Compiler" nữa.
+
+Tên chính xác hơn:
+
+> AI Ad Creative Compiler — Graph-Orchestrated, Audio-First, Self-Healing Production System
+
+
+
+Vì nó thực chất gồm 6 lớp:
+
+┌─────────────────────┐
+                    │ PERFORMANCE MEMORY  │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │ CREATIVE INTELLIGENCE│
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │ NARRATIVE / STATE   │
+                    │ GRAPH               │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │ CONSTRAINT + MODEL  │
+                    │ CONTROL             │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │ GENERATION +        │
+                    │ SELF-HEALING        │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │ HUMAN + DISTRIBUTION│
+                    └─────────────────────┘
+
+Đây mới là điểm trưởng thành của V4: không cố biến AI thành một compiler deterministic. Thay vào đó, hệ thống deterministic hóa những gì có thể deterministic, quản lý phần xác suất bằng risk/retry/fallback, và dùng con người ở đúng nơi máy không thể quyết định đáng tin cậy.PRODUCT_INPUT
 PRODUCT_RECORD / EVIDENCE_MAP / ALLOWED_CLAIMS
 Không bịa spec.
 W02
@@ -375,5 +873,3 @@ DRAFT
 □ Parallel scheduler theo dependency graph?
 □ Manifest có lineage và reproduce information?
 □ Performance data được ghi vào Creative Memory?
-16. Kết luận
-Đây là kiến trúc production thay vì một chuỗi prompt. LLM đảm nhiệm phần sáng tạo và lập kế hoạch; schema/validator đảm nhiệm tính hợp lệ; constraint compiler và capability matrix quản lý giới hạn model; budget ledger quản lý kinh tế; scheduler quản lý song song; rejection router quản lý feedback; human gate xử lý những đánh giá khó định lượng; và Creative Memory đưa kết quả kỹ thuật lẫn kinh doanh trở lại vòng sinh creative. Điểm quan trọng nhất là không tuyên bố AI có khả năng đảm bảo những thứ mà model hiện tại không đảm bảo được.
