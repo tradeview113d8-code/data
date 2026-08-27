@@ -1,0 +1,1499 @@
+Đúng. Sau toàn bộ phần phản biện trên, tôi sẽ không tiếp tục coi đây là một pipeline “LLM → prompt → video” nữa.
+
+Kiến trúc hợp lý hơn là:
+
+> Một Creative Compiler có State Machine + Data Contracts + Human Gates + Loopback có phạm vi + các worker chuyên biệt.
+
+
+
+Điểm quan trọng nhất: LLM không trực tiếp điều khiển render. LLM chỉ biến đổi dữ liệu từ tầng ý tưởng → kịch bản → kế hoạch hình ảnh → kế hoạch chuyển động → render specification. Mỗi lần dữ liệu đi qua một worker, nó phải được thu hẹp phạm vi, cấu trúc hóa và kiểm tra.
+
+
+---
+
+AI AD CREATIVE COMPILER — PIPELINE HOÀN CHỈNH
+
+┌──────────────────────┐
+                         │      PRODUCT INPUT   │
+                         │ ảnh + thông tin SP   │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    CREATIVE / BRAIN LAYER                  │
+│                                                             │
+│ W01 PRODUCT FACTS                                           │
+│     ↓ PRODUCT_RECORD                                        │
+│                                                             │
+│ W02 CUSTOMER PAIN                                           │
+│     ↓ PAIN_MAP                                              │
+│                                                             │
+│ W03 CREATIVE IDEA ENGINE                                    │
+│     ↓ IDEA_POOL                                             │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ▼
+                  ┌──────────────────┐
+                  │ TELEGRAM GATE #1 │
+                  │ HUMAN PICK IDEA  │
+                  └────────┬─────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    SCRIPT LAYER                             │
+│                                                             │
+│ W04 SCRIPT ENGINE                                           │
+│     ↓ MASTER_SCRIPT                                         │
+│                                                             │
+│ W04.1 TTS / VOICE FACTORY                                   │
+│     ↓ VOICE_TRACK                                           │
+│                                                             │
+│ W04.2 AUDIO ANALYZER                                        │
+│     ↓ AUDIO_TIMELINE                                        │
+│                                                             │
+│ W04.3 VISUAL DIRECTOR                                       │
+│     ↓ VISUAL_BIBLE                                          │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    SHOT PLANNING LAYER                      │
+│                                                             │
+│ W05 SHOT PLANNER                                            │
+│     INPUT: Script + Audio Timeline + Visual Bible           │
+│     ↓                                                       │
+│     SHOT_PLAN                                                │
+│                                                             │
+│ W06 MOTION ANALYZER                                         │
+│     ↓ MOTION_PLAN                                           │
+│                                                             │
+│ W07 PHYSICS / RISK ANALYZER                                 │
+│     ↓ RISK_REPORT                                            │
+│                                                             │
+│ W08 MOTION CONTRACT COMPILER                                │
+│     ↓ MOTION_CONTRACT                                       │
+│                                                             │
+│ W09 KEYFRAME DECOMPOSER                                     │
+│     ↓ KEYFRAME_PLAN                                         │
+└──────────────────────────┬──────────────────────────────────┘
+                           │
+                           ▼
+                    W09.5 BUDGET GATE
+                           │
+                    ┌──────┴──────┐
+                    │             │
+                  FAIL            PASS
+                    │             │
+                    ▼             ▼
+               revise plan   W10 IMAGE
+                              PROMPT COMPILER
+                                   │
+                                   ▼
+                              W11 PICTURE
+                                FACTORY
+                                   │
+                                   ▼
+                         W11.5 IMAGE QA
+                                   │
+                                   ▼
+                         TELEGRAM GATE #2
+                           IMAGE REVIEW
+                                   │
+                       ┌───────────┴───────────┐
+                       │                       │
+                    APPROVE                 REJECT
+                       │                       │
+                       │                ┌──────┴─────────┐
+                       │                │ ROUTE BY REASON│
+                       │                └──────┬─────────┘
+                       │                       │
+                       │        ┌──────────────┼──────────────┐
+                       │        │              │              │
+                       │      STYLE          MOTION       COMPOSITION
+                       │        │              │              │
+                       │       W03.4          W06/W08       W09/W10
+                       │
+                       ▼
+                 W12 VIDEO PROMPT
+                    COMPILER
+                       │
+                       ▼
+                 W13 MOTION FACTORY
+                       │
+                       ▼
+                 W13.5 VIDEO QA
+                       │
+                       ▼
+                 TELEGRAM GATE #3
+                   VIDEO REVIEW
+                       │
+             ┌─────────┴─────────┐
+             │                   │
+          APPROVE              REJECT
+             │                   │
+             │             ROUTE BY REASON
+             │                   │
+             │        ┌──────────┼──────────┐
+             │        │          │          │
+             │      MOTION     IMAGE      OTHER
+             │        │          │          │
+             │      W06/W12     W10/W11    ESCALATE
+             │
+             ▼
+       APPROVED SHOT VIDEOS
+             │
+             ├──────────────┐
+             │              │
+             ▼              ▼
+       MUSIC / SFX       CAPTION
+             │              │
+             └──────┬───────┘
+                    ▼
+             W14 ASSEMBLY
+                    │
+                    ▼
+              DRAFT AD
+                    │
+                    ▼
+           HUMAN FINAL GATE
+                    │
+                    ▼
+               FINAL AD
+                    │
+                    ▼
+                PUBLISH
+
+
+---
+
+1. PRODUCT INPUT
+
+Đây là điểm duy nhất nơi thế giới thực đi vào hệ thống.
+
+Input có thể gồm:
+
+PRODUCT
+├── name
+├── description
+├── manufacturer_claims
+├── product_images
+├── known_features
+├── price
+├── target_market
+└── restrictions
+
+Nhưng hệ thống phải phân biệt:
+
+FACT
+INFERRED
+UNKNOWN
+UNVERIFIED
+
+Ví dụ:
+
+"Chống nước IP68"
+→ FACT
+→ source = manufacturer
+
+"Phù hợp người hay tập thể thao"
+→ INFERENCE
+
+"Pin dùng được 7 ngày"
+→ UNKNOWN nếu không có nguồn
+
+Không được để LLM tự biến UNKNOWN thành FACT.
+
+
+---
+
+2. W01 — PRODUCT FACT EXTRACTOR
+
+Nhiệm vụ
+
+Biến input hỗn tạp thành:
+
+PRODUCT_RECORD
+
+Đây là data contract đầu tiên.
+
+PRODUCT_RECORD
+├── identity
+├── physical_properties
+├── verified_features
+├── allowed_claims
+├── forbidden_claims
+├── evidence
+└── uncertainty
+
+W01 không sáng tạo quảng cáo.
+
+Nó chỉ trả lời:
+
+> "Ta thực sự biết gì về sản phẩm?"
+
+
+
+
+---
+
+3. W02 — CUSTOMER PAIN ENGINE
+
+Input:
+
+PRODUCT_RECORD
+
+Output:
+
+PAIN_MAP
+
+Ví dụ:
+
+CUSTOMER
+    ↓
+CURRENT SITUATION
+    ↓
+PAIN
+    ↓
+EMOTION
+    ↓
+DESIRE
+    ↓
+PRODUCT RELEVANCE
+
+Điểm quan trọng:
+
+Nỗi đau được suy luận được.
+
+Nhưng:
+
+FACT ≠ PAIN
+PAIN ≠ PRODUCT CLAIM
+
+LLM được phép sáng tạo ở tầng này nhưng không được thay đổi PRODUCT_RECORD.
+
+
+---
+
+4. W03 — CREATIVE IDEA ENGINE
+
+Input:
+
+PRODUCT_RECORD
++
+PAIN_MAP
+
+Output:
+
+IDEA_POOL
+
+Ví dụ tạo 5 concept:
+
+IDEA_01
+IDEA_02
+IDEA_03
+IDEA_04
+IDEA_05
+
+Mỗi idea có:
+
+hook
+core_conflict
+emotional_angle
+product_role
+visual_concept
+ending
+cta_direction
+risk
+
+Đây là nơi có thể sáng tạo mạnh.
+
+Nhưng 5 idea vẫn chưa phải script.
+
+
+---
+
+5. TELEGRAM GATE #1 — HUMAN CREATIVE SELECTION
+
+Đây là một điểm cực kỳ quan trọng.
+
+LLM:
+
+> tạo 5 khả năng.
+
+
+
+Human:
+
+> chọn 1.
+
+
+
+IDEA_POOL
+     ↓
+Telegram
+     ↓
+HUMAN
+     ↓
+SELECTED_IDEA
+
+Không nên để hệ thống tự chọn nếu mục tiêu là sản xuất quảng cáo thực tế.
+
+
+---
+
+6. W04 — SCRIPT ENGINE
+
+Input:
+
+SELECTED_IDEA
++
+PRODUCT_RECORD
++
+PAIN_MAP
+
+Output:
+
+MASTER_SCRIPT
+
+Ví dụ:
+
+HOOK
+↓
+PROBLEM
+↓
+ESCALATION
+↓
+DISCOVERY
+↓
+PRODUCT
+↓
+TRANSFORMATION
+↓
+CTA
+
+Nhưng MASTER_SCRIPT chưa được coi là video.
+
+Nó mới là:
+
+> Narrative Contract.
+
+
+
+
+---
+
+7. W04.1 — TTS / VOICE FACTORY
+
+Đây là thay đổi quan trọng so với pipeline cũ.
+
+Không chờ video hoàn thành mới tạo voice.
+
+MASTER_SCRIPT
+       ↓
+     TTS
+       ↓
+VOICE_TRACK
+
+Output:
+
+audio.wav
+
+và metadata:
+
+VOICE_TRACK
+├── total_duration
+├── sentence[]
+│   ├── text
+│   ├── start
+│   ├── end
+│   └── duration
+└── pauses
+
+
+---
+
+8. W04.2 — AUDIO PACING ANALYZER
+
+Bây giờ hệ thống biết chính xác tiếng nói dài bao lâu.
+
+Ví dụ:
+
+00.0 ───── 02.8  HOOK
+02.8 ───── 06.1  PROBLEM
+06.1 ───── 10.4  DEMO
+10.4 ───── 14.7  BENEFIT
+14.7 ───── 20.0  CTA
+
+Output:
+
+AUDIO_TIMELINE
+
+Từ đây video không còn:
+
+> "ước chừng 30 giây"
+
+
+
+mà là:
+
+> "đây là timeline thực tế mà hình ảnh phải phục vụ."
+
+
+
+
+---
+
+9. W04.3 — VISUAL DIRECTOR
+
+Tạo:
+
+VISUAL_BIBLE
+
+Đây là Global Visual Contract.
+
+Ví dụ:
+
+VISUAL_BIBLE
+├── visual_style
+├── lighting
+├── camera_language
+├── lens_language
+├── color_language
+├── environment
+├── character_identity
+├── product_identity
+├── composition_rules
+└── continuity_rules
+
+Tất cả shot về sau đều phải kế thừa Bible này.
+
+
+---
+
+10. W05 — SHOT PLANNER
+
+Đây là nơi biến:
+
+MASTER_SCRIPT
++
+VOICE_TRACK
++
+AUDIO_TIMELINE
++
+VISUAL_BIBLE
+
+thành:
+
+SHOT_PLAN
+
+Ví dụ:
+
+30s AD
+
+SHOT 01  0.0–3.0
+SHOT 02  3.0–5.5
+SHOT 03  5.5–8.5
+SHOT 04  8.5–12.0
+SHOT 05 12.0–16.0
+SHOT 06 16.0–20.0
+SHOT 07 20.0–24.0
+SHOT 08 24.0–27.0
+SHOT 09 27.0–30.0
+
+Không còn rule:
+
+> "phải 8–15 shot".
+
+
+
+Thay bằng:
+
+> Audio + narrative determine shot boundaries.
+
+
+
+
+---
+
+11. W06 — MOTION ANALYZER
+
+Đây là worker cực kỳ quan trọng.
+
+Nó không viết prompt.
+
+Nó hỏi:
+
+> Trong shot này, vật lý thực sự phải thay đổi như thế nào?
+
+
+
+Ví dụ:
+
+SHOT:
+
+Người chơi đánh bóng pickleball.
+
+LLM phải phân tích thành:
+
+INITIAL STATE
+↓
+ACTION
+↓
+INTERMEDIATE STATES
+↓
+FINAL STATE
+
+Ví dụ:
+
+P0:
+Người chơi đứng ở tư thế chuẩn bị.
+
+P1:
+Bóng được tung lên.
+
+P2:
+Vợt bắt đầu vung.
+
+P3:
+Vợt tiếp xúc bóng.
+
+P4:
+Bóng rời khỏi vợt.
+
+Đây chính là điểm mà pipeline bắt đầu đối xử với video như animation.
+
+
+---
+
+12. W07 — PHYSICS / RISK ANALYZER
+
+Không chỉ:
+
+LOW
+MEDIUM
+HIGH
+
+mà nên tạo một risk vector.
+
+RISK
+├── object_risk
+├── hand_risk
+├── contact_risk
+├── liquid_risk
+├── deformation_risk
+├── temporal_risk
+├── multi_actor_risk
+├── camera_risk
+└── identity_risk
+
+Ví dụ:
+
+hand ↔ paddle
+       HIGH
+
+ball trajectory
+       HIGH
+
+static background
+       LOW
+
+camera push-in
+       LOW
+
+Sau đó:
+
+RISK_SCORE = weighted(...)
+
+
+---
+
+13. W08 — MOTION CONTRACT COMPILER
+
+Đây là nơi biến phân tích thành hợp đồng cho Video Factory.
+
+Ví dụ:
+
+MOTION_CONTRACT
+
+START_STATE:
+Player ready.
+Ball not yet airborne.
+Paddle stationary.
+
+DOMINANT_ACTION:
+Ball travels upward from hand.
+
+SECONDARY:
+Player maintains stance.
+
+FORBIDDEN:
+- no second ball
+- no paddle transformation
+- no hand swapping
+- no body morphing
+- no teleportation
+- no camera jump
+
+END_STATE:
+Ball reaches apex.
+Player remains prepared.
+
+Điểm quan trọng:
+
+W08 không render.
+
+Nó chỉ tạo contract.
+
+
+---
+
+14. W09 — KEYFRAME DECOMPOSER
+
+Đây là bước biến:
+
+> "một hành động"
+
+
+
+thành:
+
+> một chuỗi trạng thái hình ảnh.
+
+
+
+Ví dụ:
+
+ACTION: đánh bóng
+
+        ┌─────────────┐
+        │ PICTURE 01  │
+        │ READY       │
+        └──────┬──────┘
+               ↓
+        ┌─────────────┐
+        │ PICTURE 02  │
+        │ BALL UP     │
+        └──────┬──────┘
+               ↓
+        ┌─────────────┐
+        │ PICTURE 03  │
+        │ SWING       │
+        └──────┬──────┘
+               ↓
+        ┌─────────────┐
+        │ PICTURE 04  │
+        │ BALL AWAY   │
+        └─────────────┘
+
+Ảnh trước là nguyên liệu cho ảnh sau.
+
+Đây là tư duy animation chứ không phải tư duy:
+
+> "render 4 ảnh độc lập".
+
+
+
+
+---
+
+15. W09.5 — BUDGET / FEASIBILITY GATE
+
+Trước khi tốn tiền render:
+
+SHOT_COUNT
+×
+KEYFRAME_COUNT
+×
+IMAGE_RETRY_BUDGET
+×
+VIDEO_RETRY_BUDGET
+
+phải được kiểm tra.
+
+Ví dụ:
+
+Budget:
+100 image generations
+30 video generations
+
+Plan:
+8 shots
+4 pictures/shot
+= 32 pictures
+
+PASS
+
+Nếu:
+
+15 shots × 6 pictures
+= 90 pictures
+
++
+video retries
+
+thì hệ thống có thể đánh dấu:
+
+HIGH_COST
+
+và yêu cầu giảm complexity.
+
+
+---
+
+16. W10 — IMAGE PROMPT COMPILER
+
+Đây là nơi Schema → Prompt.
+
+Không để LLM trực tiếp sáng tác prompt từ đầu.
+
+Nó nhận:
+
+VISUAL_BIBLE
++
+SHOT_SCRIPT
++
+MOTION_CONTRACT
++
+KEYFRAME_PLAN
++
+REFERENCE_STATE
+
+rồi tạo:
+
+PICTURE_RENDER_SPEC
+
+Ví dụ:
+
+P1
+├── prompt
+├── reference
+├── composition
+├── character
+├── product
+├── environment
+└── camera
+
+P2
+├── prompt
+├── reference = P1
+├── delta
+└── preserved_state
+
+P3
+reference = P2
+
+P4
+reference = P3
+
+Đây mới là:
+
+> State Inheritance Chain.
+
+
+
+
+---
+
+17. W11 — PICTURE FACTORY
+
+Worker này không suy nghĩ.
+
+Nó chỉ thực thi:
+
+PICTURE_RENDER_SPEC
+        ↓
+IMAGE MODEL
+        ↓
+PICTURE[]
+
+Có thể dùng:
+
+Flux
+SDXL
+ComfyUI
+IP-Adapter
+ControlNet
+reference image
+...
+
+nhưng đây là tầng implementation.
+
+
+---
+
+18. W11.5 — IMAGE QA
+
+Trước khi tốn tiền render video:
+
+PICTURE
+   ↓
+QA
+
+Kiểm tra:
+
+identity
+product
+hands
+object count
+logo
+composition
+style
+continuity
+state
+
+Nếu ảnh sai:
+
+không được đưa sang Video Factory.
+
+
+---
+
+19. TELEGRAM GATE #2 — IMAGE HUMAN GATE
+
+Human nhìn:
+
+P1
+P2
+P3
+P4
+
+và duyệt.
+
+Quan trọng: Gate này không chỉ có:
+
+APPROVE
+REJECT
+
+mà:
+
+APPROVE
+
+REJECT
+ ├── STYLE
+ ├── CHARACTER
+ ├── PRODUCT
+ ├── COMPOSITION
+ ├── KEYFRAME
+ ├── PHYSICS
+ └── OTHER
+
+và:
+
+SCOPE
+├── LOCAL
+└── GLOBAL
+
+
+---
+
+20. LOCAL VS GLOBAL LOOP
+
+Đây là phần cực kỳ quan trọng.
+
+LOCAL
+
+Ví dụ:
+
+> "Shot 4 sai tay."
+
+
+
+Chỉ:
+
+SHOT_04
+   ↓
+W10
+   ↓
+W11
+
+Không đụng shot khác.
+
+
+---
+
+GLOBAL
+
+Ví dụ:
+
+> "Visual direction toàn bộ quảng cáo sai."
+
+
+
+Khi đó:
+
+W04.3
+   ↓
+VISUAL_BIBLE v2
+   ↓
+recompile affected shots
+
+Không phải render lại mù toàn bộ pipeline.
+
+
+---
+
+21. W12 — VIDEO MOTION PROMPT COMPILER
+
+Chỉ khi ảnh đã APPROVED.
+
+Input:
+
+APPROVED_PICTURE
++
+MOTION_CONTRACT
++
+KEYFRAME_RELATION
++
+AUDIO_TIMELINE
+
+Output:
+
+VIDEO_RENDER_SPEC
+
+Ví dụ:
+
+START FRAME:
+P2
+
+DOMINANT MOTION:
+Paddle moves forward toward ball.
+
+MOTION:
+single continuous swing
+
+END STATE:
+ball leaves paddle
+
+CAMERA:
+locked medium shot
+
+FORBIDDEN:
+duplicate ball
+paddle morphing
+hand deformation
+camera jump
+object teleportation
+
+
+---
+
+22. W13 — MOTION FACTORY
+
+Đây là nơi duy nhất thực sự:
+
+> render video.
+
+
+
+VIDEO_RENDER_SPEC
+        +
+APPROVED_IMAGE
+        ↓
+VIDEO MODEL
+        ↓
+SHOT_VIDEO
+
+Mỗi shot có:
+
+shot_id
+iteration_id
+source_image_id
+motion_contract_version
+render_model
+render_params
+video_url
+
+
+---
+
+23. W13.5 — VIDEO QA
+
+Kiểm tra kết quả thực tế:
+
+TEMPORAL
+PHYSICS
+OBJECT
+CHARACTER
+PRODUCT
+CAMERA
+ARTIFACT
+
+Ví dụ:
+
+ball_count = 2
+→ FAIL
+
+paddle changed shape
+→ FAIL
+
+player identity drift
+→ FAIL
+
+motion plausible
+→ PASS
+
+
+---
+
+24. TELEGRAM GATE #3 — VIDEO HUMAN GATE
+
+Human xem video thực tế.
+
+Nếu:
+
+APPROVE
+
+→ shot được đóng băng:
+
+APPROVED_SHOT_VIDEO
+
+Nếu reject:
+
+MOTION
+IMAGE
+ARTIFACT
+CAMERA
+OTHER
+
+
+---
+
+25. VIDEO LOOPBACK PHẢI CÓ ROUTER
+
+Ví dụ:
+
+Motion lỗi
+
+GATE #3
+ ↓
+MOTION_REJECT
+ ↓
+W06
+ ↓
+W08
+ ↓
+W12
+ ↓
+W13
+
+Ảnh gây artifact
+
+GATE #3
+ ↓
+IMAGE_REJECT
+ ↓
+W10
+ ↓
+W11
+ ↓
+W12
+ ↓
+W13
+
+Chỉ prompt video chưa tốt
+
+GATE #3
+ ↓
+PROMPT_REJECT
+ ↓
+W12
+ ↓
+W13
+
+
+---
+
+26. RETRY BUDGET
+
+Mỗi shot phải có giới hạn.
+
+Ví dụ:
+
+image_retry ≤ 3
+video_retry ≤ 3
+
+Nếu:
+
+retry == 3
+AND still FAIL
+
+không tiếp tục loop vô hạn.
+
+Chuyển:
+
+ESCALATED
+
+và Telegram yêu cầu quyết định:
+
+[ACCEPT]
+[REPLAN SHOT]
+[REPLACE SHOT]
+[RETURN IDEA]
+
+
+---
+
+27. SONG SONG HÓA
+
+Pipeline nhìn ngoài là:
+
+W01 → W02 → W03 → ...
+
+nhưng bên trong Shot Layer phải chạy:
+
+┌─ SHOT 01
+                 ├─ SHOT 02
+SHOT_PLAN ───────┼─ SHOT 03
+                 ├─ SHOT 04
+                 ├─ SHOT 05
+                 └─ SHOT 06
+
+Mỗi shot có State Machine riêng.
+
+Ví dụ:
+
+SHOT_01 → IMAGE APPROVED → VIDEO APPROVED
+
+SHOT_02 → IMAGE REJECT → regenerate → APPROVED
+
+SHOT_03 → IMAGE APPROVED → VIDEO REJECT → regenerate
+
+SHOT_04 → IMAGE APPROVED → VIDEO APPROVED
+
+Không được để Shot 2 chặn Shot 3.
+
+
+---
+
+28. AUDIO / MUSIC / SFX
+
+Sau khi shot videos được approve:
+
+VOICE_TRACK
++
+SHOT_VIDEOS
++
+AUDIO_TIMELINE
+        │
+        ├── MUSIC
+        ├── SFX
+        └── CAPTIONS
+
+Music/SFX có thể chạy song song với Video Factory vì chúng không quyết định hình học shot.
+
+
+---
+
+29. W14 — ASSEMBLY ENGINE
+
+Input phải được contract hóa:
+
+ASSEMBLY_MANIFEST
+│
+├── APPROVED_SHOT_VIDEO[]
+├── VOICE_TRACK
+├── AUDIO_TIMELINE
+├── MUSIC
+├── SFX
+├── CAPTION_TIMELINE
+├── CTA
+└── OUTPUT_SPEC
+
+Output:
+
+DRAFT_AD.mp4
+
+
+---
+
+30. HUMAN FINAL GATE
+
+Human chỉ còn kiểm:
+
+Story
+Pacing
+Voice
+Music
+CTA
+Brand
+Overall quality
+
+Không còn phải:
+
+tự tìm lỗi từng ảnh
+
+tự render lại video
+
+tự viết prompt
+
+tự chia shot
+
+tự đồng bộ VO.
+
+
+
+---
+
+31. FINAL OUTPUT
+
+FINAL_AD
+├── video.mp4
+├── audio.wav
+├── captions
+├── thumbnail
+├── project_manifest
+└── production_metadata
+
+
+---
+
+32. CONTRACT GIỮA CÁC WORKER
+
+Điểm quan trọng nhất của toàn bộ kiến trúc là:
+
+> Worker không truyền "ý tưởng" cho nhau. Worker truyền DATA CONTRACT.
+
+
+
+Ví dụ:
+
+W01
+PRODUCT_INPUT
+      ↓
+PRODUCT_RECORD
+
+W02
+PRODUCT_RECORD
+      ↓
+PAIN_MAP
+
+W03
+PRODUCT_RECORD + PAIN_MAP
+      ↓
+IDEA_POOL
+
+W04
+SELECTED_IDEA
+      ↓
+MASTER_SCRIPT
+
+W04.1
+MASTER_SCRIPT
+      ↓
+VOICE_TRACK
+
+W04.2
+VOICE_TRACK
+      ↓
+AUDIO_TIMELINE
+
+W04.3
+PRODUCT_RECORD + SELECTED_IDEA
+      ↓
+VISUAL_BIBLE
+
+W05
+MASTER_SCRIPT
++ AUDIO_TIMELINE
++ VISUAL_BIBLE
+      ↓
+SHOT_PLAN
+
+W06
+SHOT
+      ↓
+MOTION_PLAN
+
+W07
+MOTION_PLAN
+      ↓
+RISK_REPORT
+
+W08
+MOTION_PLAN + RISK_REPORT
+      ↓
+MOTION_CONTRACT
+
+W09
+MOTION_CONTRACT
+      ↓
+KEYFRAME_PLAN
+
+W10
+KEYFRAME_PLAN + VISUAL_BIBLE
+      ↓
+PICTURE_RENDER_SPEC
+
+W11
+PICTURE_RENDER_SPEC
+      ↓
+PICTURE[]
+
+W12
+APPROVED_PICTURE + MOTION_CONTRACT
+      ↓
+VIDEO_RENDER_SPEC
+
+W13
+VIDEO_RENDER_SPEC
+      ↓
+SHOT_VIDEO
+
+W14
+APPROVED_SHOT_VIDEO[]
++ AUDIO
+      ↓
+FINAL_AD
+
+
+---
+
+33. CÁI HAY NHẤT CỦA KIẾN TRÚC NÀY
+
+Có một thay đổi tư duy rất lớn.
+
+Pipeline cũ:
+
+LLM
+ ↓
+Prompt
+ ↓
+Image
+ ↓
+Prompt
+ ↓
+Video
+
+Pipeline mới:
+
+REALITY
+   ↓
+FACT
+   ↓
+PAIN
+   ↓
+IDEA
+   ↓
+SCRIPT
+   ↓
+AUDIO
+   ↓
+TIMELINE
+   ↓
+SHOT
+   ↓
+MOTION
+   ↓
+PHYSICS
+   ↓
+STATE
+   ↓
+KEYFRAME
+   ↓
+IMAGE
+   ↓
+HUMAN
+   ↓
+MOTION
+   ↓
+VIDEO
+   ↓
+HUMAN
+   ↓
+ASSEMBLY
+
+Mỗi tầng làm mất đi một phần tự do của LLM.
+
+Và đó chính là thứ giúp giảm hallucination.
+
+
+---
+
+34. TRIẾT LÝ CỐT LÕI
+
+Tôi sẽ đóng gói toàn bộ kiến trúc thành 6 nguyên tắc:
+
+① LLM được sáng tạo, nhưng không được tự ý thay đổi contract
+
+CREATIVE FREEDOM
+       ↓
+STRUCTURED OUTPUT
+       ↓
+VALIDATION
+
+② Không render thứ chưa được kiểm tra
+
+PLAN
+ ↓
+QA
+ ↓
+RENDER
+
+③ Không để lỗi đắt tiền phát hiện quá muộn
+
+FACT ERROR → W01
+SCRIPT ERROR → W04
+MOTION ERROR → W07
+IMAGE ERROR → W11.5
+VIDEO ERROR → W13.5
+
+④ Mỗi shot là một state machine độc lập
+
+SHOT_01
+SHOT_02
+SHOT_03
+...
+
+⑤ Human chỉ can thiệp tại những điểm AI khó đánh giá
+
+IDEA SELECTION
+IMAGE APPROVAL
+VIDEO APPROVAL
+FINAL APPROVAL
+
+⑥ Loopback phải quay về nơi tạo ra lỗi, không phải quay đại về phía trước.
+
+
+---
+
+35. VÀ ĐIỂM QUAN TRỌNG NHẤT: ĐÂY KHÔNG CÒN LÀ "VIDEO GENERATOR"
+
+Tên đúng hơn về mặt kiến trúc là:
+
+> AI AD CREATIVE COMPILER
+
+
+
+Nó giống compiler ở chỗ:
+
+HIGH-LEVEL CREATIVE INTENT
+             ↓
+       intermediate data
+             ↓
+        validated plan
+             ↓
+       render specification
+             ↓
+          execution
+             ↓
+         final binary
+
+Trong đó:
+
+MASTER_SCRIPT
+      ↓
+SHOT_PLAN
+      ↓
+MOTION_CONTRACT
+      ↓
+KEYFRAME_PLAN
+      ↓
+PICTURE_RENDER_SPEC
+      ↓
+VIDEO_RENDER_SPEC
+      ↓
+SHOT_VIDEO
+
+chính là chuỗi intermediate representations (IR) của hệ thống.
+
+Và theo tôi, đây mới là nền tảng đáng xây: không cố bắt LLM "hiểu vật lý" hoàn hảo, mà thiết kế compiler để LLM không được phép nhảy cóc qua những trạng thái mà nó dễ làm sai.
