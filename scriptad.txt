@@ -1,1043 +1,610 @@
-PROJECT SPEC — AI AD CREATIVE PIPELINE V0.1
+AI AD CREATIVE PIPELINE — SPEC SỬ DỤNG
 
-Status: Implementation Specification
-Scope: Product/Web → Customer Pain Intelligence → Script → Human Selection → OpenMontage → Final Video
-Core principle: Minimize custom pipeline logic. Use LLM where reasoning/creation is required; use deterministic code and OpenMontage for production execution.
-Video generation model: Not required. Static images + motion effects + TTS + programmatic editing are the default production path.
+1. Mục tiêu
 
+Tạo quảng cáo video từ:
 
----
-
-1. MỤC TIÊU
-
-Xây dựng hệ thống tạo quảng cáo video từ:
-
-PRODUCT / WEBSITE
+SẢN PHẨM / WEBSITE / DỮ LIỆU THÔ
         ↓
-CUSTOMER PAIN INTELLIGENCE
+NỖI ĐAU KHÁCH HÀNG
         ↓
-MULTIPLE AD SCRIPTS
+10 KỊCH BẢN
         ↓
-HUMAN SELECTION
+KHÁCH HÀNG CHỌN 1
         ↓
 OPENMONTAGE
         ↓
-FINAL AD VIDEO
-
-Hệ thống phải:
-
-Nhận sản phẩm dưới dạng ảnh, dữ liệu thô hoặc website.
-
-Phân tích sản phẩm và suy luận những nỗi đau khách hàng mà sản phẩm có khả năng giải quyết.
-
-Sinh nhiều kịch bản quảng cáo dựa trên các pain đã xác định.
-
-Cho con người lựa chọn kịch bản.
-
-Chuyển kịch bản được chọn thành production package.
-
-Giao production package cho OpenMontage.
-
-OpenMontage thực hiện image generation, TTS, editing, effects, captions và FFmpeg theo khả năng của hệ thống.
-
-Không xây lại một video-production framework mới nếu OpenMontage đã cung cấp chức năng tương ứng.
-
+VIDEO QUẢNG CÁO
 
 
 ---
 
-2. KIẾN TRÚC TỔNG THỂ
+2. Kiến trúc
 
-┌──────────────────────────────────────────────────────┐
-│                    CUSTOMER                          │
-└────────────────────────┬─────────────────────────────┘
-                         │
-                         ▼
-┌──────────────────────────────────────────────────────┐
-│                 INPUT LAYER                          │
-│                                                      │
-│ Product PNG / Product Data / Website / Raw Data      │
-└────────────────────────┬─────────────────────────────┘
-                         │
-                         ▼
-┌──────────────────────────────────────────────────────┐
-│             TEXT BACKEND                             │
-│                                                      │
-│ Product Understanding                                │
-│        ↓                                             │
-│ Customer Pain Intelligence                           │
-│        ↓                                             │
-│ Multiple Advertising Scripts                         │
-│        ↓                                             │
-│ Human Selection                                      │
-│        ↓                                             │
-│ Production Contract                                  │
-└────────────────────────┬─────────────────────────────┘
-                         │
-                  PRODUCTION CONTRACT
-                         │
-                         ▼
-┌──────────────────────────────────────────────────────┐
-│             VIDEO BACKEND                            │
-│                                                      │
-│ OpenMontage                                          │
-│        ↓                                             │
-│ Image / TTS / Edit / Effects / Captions              │
-│        ↓                                             │
-│ FFmpeg                                               │
-│        ↓                                             │
-│ FINAL AD                                             │
-└────────────────────────┬─────────────────────────────┘
-                         │
-                         ▼
-                     CUSTOMER
+Hệ thống gồm 2 backend:
+
+TEXT BACKEND
+     │
+     │ AD_PRODUCTION_CONTRACT
+     ▼
+VIDEO BACKEND
+
+Text Backend
+
+Product
+  ↓
+Pain Intelligence
+  ↓
+10 Scripts
+  ↓
+Human Selection
+  ↓
+Production Contract
+
+Video Backend
+
+Production Contract
+  ↓
+Asset Generation
+  ↓
+TTS
+  ↓
+Timing
+  ↓
+OpenMontage
+  ↓
+QC
+  ↓
+Final Video
 
 
 ---
 
-3. HAI BACKEND
+3. Input
 
-3.1 Text Backend
-
-Chịu trách nhiệm:
-
-PRODUCT
-→ PRODUCT UNDERSTANDING
-→ CUSTOMER PAIN
-→ AD SCRIPTS
-→ HUMAN SELECTION
-→ PRODUCTION CONTRACT
-
-Không chịu trách nhiệm:
-
-render ảnh;
-
-render video;
-
-FFmpeg;
-
-TTS execution;
-
-compositing.
-
-
-
----
-
-3.2 Video Backend
-
-Chịu trách nhiệm:
-
-PRODUCTION CONTRACT
-→ OPENMONTAGE
-→ ASSETS
-→ EDIT
-→ FFmpeg
-→ FINAL VIDEO
-
-Không chịu trách nhiệm:
-
-suy luận customer pain;
-
-tự thay đổi ý tưởng quảng cáo;
-
-tự viết lại marketing strategy nếu không được yêu cầu.
-
-
-
----
-
-4. CONTRACT CHÍNH
-
-Hai backend giao tiếp bằng một contract duy nhất.
-
-Tên:
-
-AD_PRODUCTION_CONTRACT.json
-
-Contract phải chứa tối thiểu:
-
-{
-  "project_id": "",
-  "product": {},
-  "selected_script": {},
-  "voice": {},
-  "shots": [],
-  "visual_requirements": {},
-  "audio_requirements": {},
-  "editing_requirements": {},
-  "output_requirements": {}
-}
-
-Contract là ranh giới giữa Marketing/Creative và Production.
-
-Video Backend không cần biết quá trình suy luận pain trước đó.
-
-
----
-
-5. INPUT LAYER
-
-Hệ thống phải hỗ trợ ba loại input.
-
-5.1 Product Image
+Hệ thống nhận một hoặc nhiều:
 
 product.png
-
-Có thể kèm:
-
-product_name
-category
-price
-description
+product images
+raw product data
+product description
+product website URL
 
 
 ---
 
-5.2 Raw Product Data
+4. Product Understanding
 
-Ví dụ:
+Input
+
+PRODUCT INPUT
+
+Output
+
+PRODUCT_RECORD.json
 
 {
+  "product_id": "",
   "name": "",
-  "category": "",
+  "description": "",
   "features": [],
   "specifications": [],
-  "price": "",
-  "description": ""
+  "use_cases": [],
+  "target_customers": [],
+  "limitations": [],
+  "claims": [],
+  "evidence": []
 }
 
-
----
-
-5.3 Website
-
-Input:
-
-https://example.com/product
-
-Hệ thống thu thập thông tin liên quan đến:
-
-product;
-
-features;
-
-specifications;
-
-use cases;
-
-target customer;
-
-claims;
-
-FAQ;
-
-reviews nếu có;
-
-limitations;
-
-pricing;
-
-supporting evidence.
-
-
-Website content phải được xem là source material, không mặc nhiên là sự thật nếu nội dung mâu thuẫn hoặc thiếu căn cứ.
-
-
----
-
-6. CUSTOMER PAIN INTELLIGENCE
-
-Đây là lớp khác biệt chính của hệ thống.
-
-Không gọi đơn giản là:
-
-"Pain Generator"
-
-Mà là:
-
-CUSTOMER PAIN INTELLIGENCE
-
-Mục tiêu:
-
-> Xác định vấn đề thực tế mà khách hàng có thể gặp và xác định sản phẩm có thực sự liên quan đến vấn đề đó hay không.
-
-
-
-
----
-
-7. PAIN REASONING
-
-LLM không được phép thực hiện:
-
-PRODUCT FEATURE
-      ↓
-PAIN
-
-Thay vào đó:
-
-PRODUCT FACT
-      ↓
-CUSTOMER
-      ↓
-SITUATION
-      ↓
-CUSTOMER JOB
-      ↓
-PROBLEM
-      ↓
-ROOT CAUSE
-      ↓
-CONSEQUENCE
-      ↓
-UNMET NEED
-      ↓
-PRODUCT FIT
-      ↓
-CUSTOMER PAIN
-
-Framework tham chiếu:
-
-Jobs-to-be-Done;
-
-Value Proposition Canvas;
-
-5 Whys / Root Cause reasoning;
-
-Sales Discovery;
-
-Evidence / Assumption Mapping.
-
-
-Các framework này là phương pháp suy luận, không phải các worker riêng biệt.
-
-
----
-
-8. FACT CLASSIFICATION
-
-Mọi thông tin quan trọng phải được phân loại.
+Thông tin được phân loại:
 
 FACT
 INFERENCE
 ASSUMPTION
-CUSTOMER_PAIN
-PRODUCT_CLAIM
-
-FACT
-
-Có bằng chứng trực tiếp từ input.
-
-INFERENCE
-
-Suy luận hợp lý dựa trên FACT.
-
-ASSUMPTION
-
-Chưa có đủ bằng chứng.
-
-CUSTOMER_PAIN
-
-Vấn đề/bất tiện có ý nghĩa với khách hàng.
-
-PRODUCT_CLAIM
-
-Điều sản phẩm thực sự được phép tuyên bố.
 
 
 ---
 
-9. CLAIM FIREWALL
+5. Pain Intelligence
 
-Không được phép biến:
+Input
 
-ASSUMPTION
+PRODUCT_RECORD
++
+EVIDENCE
 
-thành:
-
-PRODUCT_CLAIM
-
-Không được phép biến:
-
-INFERRED PAIN
-
-thành:
-
-PROVEN CUSTOMER FACT
-
-Nếu sản phẩm không có bằng chứng hỗ trợ khả năng giải quyết một pain:
-
-REJECT PRODUCT FIT
-
-hoặc:
-
-MARK AS INFERRED
-
-
----
-
-10. PAIN MAP
-
-CPI phải xuất cấu trúc dữ liệu tương đương:
-
-{
-  "pain_id": "",
-  "customer": "",
-  "situation": "",
-  "job": "",
-  "problem": "",
-  "root_cause": "",
-  "consequence": "",
-  "unmet_need": "",
-  "product_fit": "",
-  "evidence": [],
-  "classification": "FACT|INFERENCE|ASSUMPTION",
-  "confidence": 0,
-  "allowed_claims": []
-}
-
-Không cần xuất toàn bộ reasoning nội bộ của LLM.
-
-Chỉ lưu kết quả reasoning có cấu trúc cần thiết cho hệ thống.
-
-
----
-
-11. SCRIPT GENERATION
-
-Input:
+Quy trình
 
 PRODUCT
+ ↓
+CUSTOMER SITUATION
+ ↓
+CUSTOMER JOB
+ ↓
+PROBLEM
+ ↓
+ROOT CAUSE
+ ↓
+CONSEQUENCE
+ ↓
+UNMET NEED
+ ↓
+PRODUCT FIT
+ ↓
+CUSTOMER PAIN
+
+Sử dụng:
+
+JTBD
+5 WHYS
+VALUE PROPOSITION CANVAS
+ASSUMPTION CHECK
+
+Không chuyển trực tiếp:
+
+FEATURE → AD
+
+
+---
+
+6. PAIN_MAP.json
+
+{
+  "product_id": "",
+  "pains": [
+    {
+      "pain_id": "",
+      "customer_situation": "",
+      "customer_job": "",
+      "problem": "",
+      "root_causes": [],
+      "consequences": [],
+      "unmet_need": "",
+      "product_fit": "",
+      "classification": "FACT|INFERENCE|ASSUMPTION",
+      "confidence": 0,
+      "evidence_ids": [],
+      "allowed_claims": [],
+      "forbidden_claims": []
+    }
+  ]
+}
+
+
+---
+
+7. Script Generation
+
+Input
+
+PRODUCT_RECORD
 +
-PAIN MAP
+PAIN_MAP
 
-Output:
+Output
 
-MULTIPLE AD SCRIPTS
+Tạo 10 kịch bản quảng cáo.
 
-Ví dụ:
-
-10 scripts
-
-Số lượng không được hard-code ở kiến trúc. Có thể cấu hình:
-
-script_count = N
-
-
----
-
-12. SCRIPT PRINCIPLE
-
-Mỗi script phải có:
-
-HOOK
-→ CUSTOMER PROBLEM
-→ ESCALATION / CONSEQUENCE
-→ PRODUCT INTRODUCTION
-→ PRODUCT SOLUTION
-→ BENEFIT
-→ CTA
-
-Tùy loại quảng cáo có thể sử dụng:
-
-Problem/Solution;
-
-Before/After;
-
-Demonstration;
-
-Testimonial;
-
-Story;
-
-Comparison;
-
-Educational;
-
-UGC-style;
-
-Product showcase.
-
-
-Không ép mọi sản phẩm vào cùng một công thức.
-
-
----
-
-13. SCRIPT OUTPUT
-
-Mỗi script phải có:
+Mỗi kịch bản:
 
 {
   "script_id": "",
   "title": "",
   "core_pain": "",
+  "pain_ids": [],
   "hook": "",
   "narrative": "",
   "voiceover": "",
   "cta": "",
   "estimated_duration": 0,
-  "shots_summary": []
+  "shots_summary": [],
+  "claims": []
 }
 
-narrative là bản văn xuôi để con người dễ đánh giá.
+10 kịch bản phải có cách tiếp cận khác nhau về:
+
+HOOK
+PAIN ANGLE
+NARRATIVE
+EMOTIONAL ANGLE
+CTA
 
 
 ---
 
-14. HUMAN SELECTION
+8. Human Selection
 
-Human không tham gia mọi bước.
-
-Human chỉ kiểm soát các điểm có giá trị quyết định.
-
-Luồng:
-
-LLM
- ↓
 10 SCRIPTS
- ↓
-HUMAN
- ↓
+     ↓
+   HUMAN
+     ↓
 1 SELECTED SCRIPT
 
 Human có thể:
 
 SELECT
-REJECT
 EDIT
-REQUEST REGENERATION
-
-Nếu tất cả script bị reject:
-
-RETURN TO SCRIPT GENERATION
-
-Human có thể cung cấp constraint mới.
-
-Không cần quay lại Product Analysis nếu sản phẩm không thay đổi.
-
-
----
-
-15. PRODUCTION CONTRACT GENERATION
-
-Sau khi chọn script:
-
-SELECTED SCRIPT
-        ↓
-LLM
-        ↓
-AD_PRODUCTION_CONTRACT
-
-LLM chuyển bản văn xuôi thành production instructions.
-
-
----
-
-16. SHOT STRUCTURE
-
-Mỗi shot phải có:
-
-{
-  "shot_id": "",
-  "duration": 0,
-  "voiceover": "",
-  "visual_description": "",
-  "image_prompt": "",
-  "motion_instruction": "",
-  "text_overlay": "",
-  "transition": "",
-  "asset_requirements": []
-}
-
-Ví dụ:
-
-SHOT 01
-duration: 3s
-voiceover: ...
-visual: ...
-image_prompt: ...
-motion: slow zoom-in
-
-
----
-
-17. AUDIO
-
-TTS được quyết định từ:
-
-SELECTED SCRIPT
-
-và được thực thi trong Video Backend/OpenMontage nếu OpenMontage hỗ trợ workflow tương ứng.
-
-Audio phải là nguồn xác định thời lượng thực tế khi production cần timing chính xác.
-
-Không tạo một audio timeline phức tạp nếu OpenMontage đã có cơ chế xử lý timing.
-
-Nguyên tắc:
-
-SCRIPT
-→ TTS
-→ ACTUAL AUDIO DURATION
-→ EDIT TIMING
-
-
----
-
-18. IMAGE GENERATION
-
-Image generation là bước bắt buộc nếu quảng cáo cần hình ảnh AI.
-
-Pipeline:
-
-SHOT
- ↓
-IMAGE PROMPT
- ↓
-IMAGE GENERATION
- ↓
-STATIC IMAGE
-
-Không sử dụng generative video model làm dependency bắt buộc.
-
-
----
-
-19. VIDEO MOTION
-
-Default:
-
-STATIC IMAGE
-+
-MOTION EFFECT
-
-Ví dụ:
-
-zoom;
-
-pan;
-
-crop;
-
-camera movement simulation;
-
-parallax;
-
-transition;
-
-text animation;
-
-overlay;
-
-product highlight.
-
-
-Không yêu cầu video generation model.
-
-
----
-
-20. OPENMONTAGE
-
-OpenMontage là Production Engine.
-
-Không xây lại các module production nếu OpenMontage đã cung cấp.
-
-OpenMontage có thể chịu trách nhiệm cho:
-
-asset handling
-image generation integration
-TTS
-scene assembly
-audio mixing
-captions
-transitions
-motion effects
-composition
-FFmpeg
-render
-
-Các chức năng thực tế phải được xác nhận theo phiên bản OpenMontage được triển khai.
-
-
----
-
-21. VIDEO BACKEND FLOW
-
-AD_PRODUCTION_CONTRACT
-          │
-          ▼
-     OPENMONTAGE
-          │
-    ┌─────┼───────────┐
-    ▼     ▼           ▼
- Images   TTS       Assets
-    │     │           │
-    └─────┼───────────┘
-          ▼
-      EDIT PLAN
-          ↓
-       EFFECTS
-          ↓
-      CAPTIONS
-          ↓
-       FFmpeg
-          ↓
-      FINAL VIDEO
-
-
----
-
-22. OUTPUT FORMAT
-
-Default advertising output:
-
-1080 × 1920
-9:16
-MP4
-H.264
-AAC
-
-Các thông số khác phải configurable.
-
-Ví dụ:
-
-{
-  "width": 1080,
-  "height": 1920,
-  "fps": 30,
-  "video_codec": "h264",
-  "audio_codec": "aac"
-}
-
-
----
-
-23. QUALITY CONTROL
-
-Không xây một hệ thống QA AI phức tạp nếu không cần thiết.
-
-Deterministic checks:
-
-file exists
-duration
-resolution
-codec
-audio exists
-video exists
-shot ordering
-missing asset
-broken asset
-caption timing
-output format
-
-LLM/VLM chỉ dùng khi thực sự cần đánh giá nội dung.
-
-QA không được giả định có khả năng deterministic kiểm tra hoàn hảo:
-
-identity drift
-physics
-semantic correctness
-object continuity
-
-Các lỗi khó đo được thuộc về human review hoặc risk flag.
-
-
----
-
-24. HUMAN REVIEW CUỐI
-
-Human nhận:
-
-FINAL VIDEO
-
-Có thể:
-
-APPROVE
 REJECT
-REQUEST EDIT
+REGENERATE
 
-Nếu reject:
+Nếu tất cả bị từ chối:
 
-reason
-+
-scope
+→ SCRIPT GENERATION
 
-Ví dụ:
+
+---
+
+9. Production Contract
+
+Script được chọn chuyển thành:
+
+AD_PRODUCTION_CONTRACT.json
 
 {
-  "reason": "caption",
-  "scope": "local",
-  "shot_id": "shot_03"
+  "schema_version": "0.2",
+  "contract_version": "1.0.0",
+  "project_id": "",
+
+  "source_artifacts": {
+    "product_record_id": "",
+    "pain_map_id": "",
+    "script_id": ""
+  },
+
+  "product": {},
+  "selected_script": {},
+  "voice": {},
+  "shots": [],
+
+  "brand": {},
+  "visual_requirements": {},
+  "audio_requirements": {},
+  "editing_requirements": {},
+  "output_requirements": {},
+
+  "compliance": {
+    "approved_claims": [],
+    "forbidden_claims": [],
+    "risk_level": ""
+  },
+
+  "required_capabilities": {}
 }
+
+Đây là contract duy nhất giữa Text Backend và Video Backend.
+
+
+---
+
+10. Claim Control
+
+Không cho phép:
+
+ASSUMPTION → PRODUCT CLAIM
 
 hoặc:
 
-{
-  "reason": "creative",
-  "scope": "global"
-}
+INFERRED PAIN → PROVEN CUSTOMER FACT
+
+Claim sử dụng trong video phải thuộc:
+
+approved_claims
 
 
 ---
 
-25. LOCAL / GLOBAL REVISION
+11. Video Backend
 
-Local
+Video Backend nhận duy nhất:
 
-Chỉ sửa:
+AD_PRODUCTION_CONTRACT
 
-shot
-asset
-caption
-timing
-effect
+Sau đó thực hiện:
 
-Không regenerate toàn bộ quảng cáo.
-
-Global
-
-Chỉ sử dụng khi thay đổi:
-
-core concept
-product positioning
-main pain
-script
-brand direction
-
-Global revision có thể yêu cầu chạy lại các bước downstream.
+CONTRACT
+ ↓
+ASSETS
+ ↓
+TTS
+ ↓
+TIMING
+ ↓
+OPENMONTAGE
+ ↓
+QC
+ ↓
+FINAL VIDEO
 
 
 ---
 
-26. RESOURCE CONTROL
+12. Asset Generation
 
-Hệ thống phải theo dõi:
+Mỗi shot có:
+
+shot_id
+image_prompt
+visual_requirements
+product_assets
+brand_assets
+
+Output:
+
+IMAGE ASSET
+
+Asset hợp lệ đã tồn tại được tái sử dụng.
+
+
+---
+
+13. TTS
+
+Input:
+
+VOICEOVER
+
+Output:
+
+AUDIO
+ACTUAL_AUDIO_DURATION
+TIMESTAMPS nếu hỗ trợ
+
+Thời lượng audio thực tế được dùng để xác định timing.
+
+
+---
+
+14. Timing
+
+VOICEOVER
+ ↓
+TTS
+ ↓
+ACTUAL AUDIO DURATION
+ ↓
+SHOT TIMING
+
+Các policy:
+
+fit_to_audio
+fixed
+extend_visual
+split_shot
+
+Không cắt voiceover giữa câu mặc định.
+
+Text overlay phải có đủ thời gian hiển thị.
+
+
+---
+
+15. OpenMontage
+
+OpenMontage thực hiện production:
+
+IMAGE ASSETS
++
+AUDIO
++
+CAPTIONS
++
+SHOT TIMING
++
+EFFECTS
++
+TRANSITIONS
++
+OUTPUT CONFIG
+        ↓
+OPENMONTAGE
+        ↓
+FINAL VIDEO
+
+OpenMontage là video production engine, không phải Text Backend.
+
+
+---
+
+16. Output
+
+Mặc định:
+
+1080 × 1920
+9:16
+30 FPS
+H.264
+AAC
+MP4
+
+Output profile có thể thay đổi theo nền tảng.
+
+
+---
+
+17. QC
+
+Kiểm tra trước khi trả video:
+
+FILE EXISTS
+RESOLUTION
+FPS
+CODEC
+AUDIO
+VIDEO
+DURATION
+SHOT ORDER
+ASSET EXISTENCE
+CAPTION TIMING
+OUTPUT FORMAT
+
+Nếu không đạt:
+
+FAIL
+
+Nếu nội dung có rủi ro cao:
+
+HUMAN REVIEW
+
+
+---
+
+18. Revision
+
+Revision phải xác định:
+
+scope
+target
+reason
+
+Sửa cục bộ thì chỉ chạy lại phần bị ảnh hưởng.
+
+Ví dụ:
+
+VOICEOVER
+ ↓
+TTS
+ ↓
+TIMING
+ ↓
+CAPTION
+ ↓
+RENDER
+
+Không chạy lại toàn bộ pipeline nếu không cần.
+
+
+---
+
+19. Resource Control
+
+Mỗi production job có giới hạn:
 
 LLM calls
 image generations
 TTS generations
 render operations
-retry count
-storage
-execution time
+retries
+cost
 
-Không cho phép loop vô hạn.
+Bắt buộc:
 
-Mỗi production job có:
+CACHE
+IDEMPOTENCY
+RETRY LIMIT
+RESUME
+BUDGET CONTROL
 
-max_retries
-max_image_generations
-max_regeneration_cost
-
-
----
-
-27. COST ARCHITECTURE
-
-Chi phí chính dự kiến nằm ở:
-
-IMAGE GENERATION
-TTS
-COMPUTE / RENDER
-
-LLM text generation phải được tối giản.
-
-Kiến trúc không yêu cầu:
-
-20 LLM workers
-
-Thay vào đó:
-
-LLM #1
-Product → Pain Intelligence
-
-LLM #2
-Pain → Multiple Scripts
-
-LLM #3
-Selected Script → Production Contract
-
-Có thể gộp LLM #2 và #3 nếu model/context đủ tốt.
-
-
----
-
-28. LLM PRINCIPLE
-
-LLM chỉ được dùng ở nơi cần:
-
-reasoning
-interpretation
-creative generation
-language transformation
-
-Không dùng LLM cho:
-
-JSON validation
-duration calculation
-file management
-FFmpeg execution
-image resizing
-video encoding
-audio concatenation
-cost calculation
-
-Các phần này dùng deterministic code/OpenMontage.
-
-
----
-
-29. THREE CORE DATA OBJECTS
-
-Hệ thống chỉ cần tập trung vào ba contract chính.
-
-29.1 PRODUCT_RECORD
-
-PRODUCT_RECORD.json
-
-Chứa thông tin sản phẩm và evidence.
-
-
----
-
-29.2 PAIN_MAP
-
-PAIN_MAP.json
-
-Chứa customer insight/pain đã được suy luận.
-
-
----
-
-29.3 AD_PRODUCTION_CONTRACT
-
-AD_PRODUCTION_CONTRACT.json
-
-Chứa script đã chọn và toàn bộ thông tin cần cho production.
-
-
----
-
-30. TOÀN BỘ PIPELINE
-
-CUSTOMER
-                       │
-                       ▼
-              PRODUCT / WEBSITE
-                       │
-                       ▼
-              ┌─────────────────┐
-              │  PRODUCT LLM    │
-              │                 │
-              │ Understand      │
-              │ Product         │
-              └────────┬────────┘
-                       │
-                  PRODUCT_RECORD
-                       │
-                       ▼
-              ┌─────────────────┐
-              │       CPI       │
-              │                 │
-              │ Situation       │
-              │ Job             │
-              │ Problem         │
-              │ Root Cause      │
-              │ Consequence     │
-              │ Need            │
-              │ Product Fit     │
-              └────────┬────────┘
-                       │
-                    PAIN_MAP
-                       │
-                       ▼
-              ┌─────────────────┐
-              │ SCRIPT LLM      │
-              │                 │
-              │ Pain → Ideas    │
-              │ → Scripts       │
-              └────────┬────────┘
-                       │
-                  N SCRIPTS
-                       │
-                       ▼
-                    HUMAN
-                       │
-                 SELECT 1
-                       │
-                       ▼
-              ┌─────────────────┐
-              │ PRODUCTION LLM  │
-              │                 │
-              │ Script → Shots  │
-              │ Prompts         │
-              │ Audio           │
-              │ Edit Plan       │
-              └────────┬────────┘
-                       │
-             AD_PRODUCTION_CONTRACT
-                       │
-                       ▼
-              ┌─────────────────┐
-              │   OPENMONTAGE   │
-              │                 │
-              │ Image           │
-              │ TTS             │
-              │ Edit            │
-              │ Effects         │
-              │ Caption         │
-              │ FFmpeg          │
-              └────────┬────────┘
-                       │
-                       ▼
-                   FINAL AD
-                       │
-                       ▼
-                    CUSTOMER
-
-
----
-
-31. NGUYÊN TẮC KIẾN TRÚC CUỐI
-
-Không xây lại thứ đã có
-
-OpenMontage = Production
-FFmpeg      = Rendering
-TTS engine  = Audio
-Image model = Image
-
-Chỉ xây phần tạo giá trị khác biệt
+Job phải có trạng thái:
 
 PRODUCT
-   ↓
-CUSTOMER PAIN INTELLIGENCE
-   ↓
-AD CREATIVE
+PAIN
+SCRIPT
+SELECTION
+CONTRACT
+IMAGE
+TTS
+TIMING
+RENDER
+QC
+COMPLETED
 
-Toàn bộ hệ thống được rút xuống:
 
-┌───────────────┐
-                │ TEXT BACKEND  │
-                │               │
-PRODUCT ───────►│ Pain          │
-                │ Script        │
-                │ Selection     │
-                └───────┬───────┘
-                        │
-                   CONTRACT
-                        │
-                        ▼
-                ┌───────────────┐
-                │ VIDEO BACKEND │
-                │               │
-                │ OpenMontage   │
-                │ + FFmpeg      │
-                └───────┬───────┘
-                        │
-                        ▼
-                      VIDEO
+---
 
-Đây là bản spec tối giản hóa ở cấp hệ thống: phần cần tự xây là Customer Pain Intelligence + Script/Production Contract; phần sản xuất video được coi là một execution backend, với OpenMontage làm lõi thay vì tái tạo lại hàng chục worker riêng lẻ.
+20. Ba JSON chính
+
+Hệ thống tập trung vào 3 artifact chính:
+
+PRODUCT_RECORD.json
+        ↓
+PAIN_MAP.json
+        ↓
+AD_PRODUCTION_CONTRACT.json
+
+Các asset production như:
+
+images
+audio
+captions
+renders
+
+được tham chiếu từ Production Contract.
+
+
+---
+
+21. Luồng hoàn chỉnh
+
+CUSTOMER
+   │
+   ▼
+PRODUCT / WEBSITE / RAW DATA
+   │
+   ▼
+PRODUCT_RECORD
+   │
+   ▼
+PAIN INTELLIGENCE
+   │
+   ▼
+PAIN_MAP
+   │
+   ▼
+10 AD SCRIPTS
+   │
+   ▼
+HUMAN SELECT
+   │
+   ▼
+SELECTED SCRIPT
+   │
+   ▼
+AD_PRODUCTION_CONTRACT
+   │
+   ▼
+VIDEO BACKEND
+   │
+   ├── IMAGE
+   ├── TTS
+   ├── TIMING
+   └── EDIT
+          │
+          ▼
+     OPENMONTAGE
+          │
+          ▼
+         QC
+          │
+          ▼
+      FINAL VIDEO
+          │
+          ▼
+       CUSTOMER
+
+22. Nguyên tắc thực thi
+
+LLM
+→ phân tích, suy luận, sáng tác
+
+PYTHON
+→ validation, state, timing, budget, routing
+
+OPENMONTAGE
+→ production
+
+FFMPEG
+→ rendering
+
+HUMAN
+→ chọn kịch bản và xử lý các trường hợp cần quyết định
+
+JSON
+→ giao tiếp giữa các module
+
+Không xây lại video engine nếu OpenMontage đáp ứng yêu cầu.
+
+Không đưa logic marketing vào Video Backend.
+
+Không để Video Backend tự suy luận lại Pain hoặc Script.
+
+Không render video bằng generative video model.
